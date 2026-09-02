@@ -41,9 +41,15 @@ export const AnalyticsOverview: React.FC<AnalyticsOverviewProps> = ({ analytics 
               <CheckCircle2 className="w-5 h-5" />
             </div>
           </div>
-          <div className="text-3xl font-black text-white">{analytics.totalLessonsCompleted}</div>
-          <div className="text-xs text-slate-400">Lượt hoàn tất 8 bước bài học</div>
+          <div className="flex items-baseline gap-2">
+            <div className="text-3xl font-black text-white">{analytics.totalLessonsCompleted}</div>
+            {analytics.totalCertificatesIssued > 0 && (
+              <span className="text-xs text-amber-300 font-bold">({analytics.totalCertificatesIssued} chứng chỉ)</span>
+            )}
+          </div>
+          <div className="text-xs text-slate-400">Lượt hoàn tất & cấp chứng nhận</div>
         </div>
+
 
         {/* Avg Quiz Score */}
         <div className="p-5 rounded-3xl bg-gradient-to-br from-purple-950/60 to-slate-900 border border-purple-500/30 space-y-2 shadow-floating">

@@ -51,6 +51,7 @@ export interface StudentFullData {
 export interface AdminAnalytics {
   totalStudents: number;
   totalLessonsCompleted: number;
+  totalCertificatesIssued: number;
   averageQuizScore: number;
   studentsByGrade: {
     10: number;
@@ -70,6 +71,8 @@ export interface AdminAnalytics {
     province: string;
     totalXp: number;
     completedCount: number;
+    certificatesCount: number;
     avgScore: number;
   }[];
 }
+

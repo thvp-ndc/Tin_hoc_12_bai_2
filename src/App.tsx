@@ -55,7 +55,14 @@ export function App() {
   });
 
   const [activeStep, setActiveStep] = useState<number>(1);
-  const [xp, setXp] = useState<number>(150);
+  const [xp, setXp] = useState<number>(() => {
+    const student = getCurrentStudent();
+    if (student) {
+      const stats = calculateStudentStats(student.id);
+      return stats.totalXp;
+    }
+    return 0;
+  });
   const [soundEnabled, setSoundEnabled] = useState<boolean>(true);
   const [smartboardMode, setSmartboardMode] = useState<boolean>(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
@@ -64,7 +71,7 @@ export function App() {
   const [isCurriculumMindmapOpen, setIsCurriculumMindmapOpen] = useState<boolean>(false);
   const [studentName, setStudentName] = useState<string>(() => {
     const student = getCurrentStudent();
-    return student ? student.fullName : 'Nguyễn Văn An';
+    return student ? student.fullName : 'Học Sinh Mới';
   });
 
   // Track user interactions per lesson
@@ -76,7 +83,7 @@ export function App() {
   const [hasDownloadedMindmap, setHasDownloadedMindmap] = useState<boolean>(false);
   const [quizScorePercent, setQuizScorePercent] = useState<number>(100);
 
-  // Completed lessons map by grade
+  // Completed lessons map by grade: Mặc định tất cả các khối đều rỗng []
   const [completedLessonsByGrade, setCompletedLessonsByGrade] = useState<Record<number, number[]>>(() => {
     const student = getCurrentStudent();
     if (student) {
@@ -94,7 +101,7 @@ export function App() {
         // Fallback
       }
     }
-    return { 10: [1], 11: [1], 12: [1] };
+    return { 10: [], 11: [], 12: [] };
   });
 
   // Khi học sinh đăng nhập / đổi tài khoản -> Đồng bộ lại tiến độ và tên
@@ -102,27 +109,29 @@ export function App() {
     if (currentUser) {
       setStudentName(currentUser.fullName);
       const stats = calculateStudentStats(currentUser.id);
-      if (stats.totalXp > 0) setXp(stats.totalXp);
+      setXp(stats.totalXp);
       setCompletedLessonsByGrade({
         10: getCompletedLessonIds(currentUser.id, 10),
         11: getCompletedLessonIds(currentUser.id, 11),
         12: getCompletedLessonIds(currentUser.id, 12)
       });
     } else {
-      setStudentName('Nguyễn Văn An');
+      setStudentName('Học Sinh Mới');
+      setXp(0);
+      setCompletedLessonsByGrade({ 10: [], 11: [], 12: [] });
     }
   }, [currentUser]);
 
-
   const totalLessonsInGrade = getTotalLessons(currentGrade);
   const currentLesson = getLesson(currentGrade, currentLessonId);
-  const currentCompletedLessons = completedLessonsByGrade[currentGrade] || [1];
+  const currentCompletedLessons = completedLessonsByGrade[currentGrade] || [];
 
   // Save current grade & lesson to localStorage
   useEffect(() => {
     localStorage.setItem('tin_current_grade', currentGrade.toString());
     localStorage.setItem(`tin_${currentGrade}_lesson_id`, currentLessonId.toString());
   }, [currentGrade, currentLessonId]);
+
 
   useEffect(() => {
     localStorage.setItem('tin_completed_lessons', JSON.stringify(completedLessonsByGrade));
@@ -139,10 +148,72 @@ export function App() {
     7: useRef<HTMLDivElement>(null),
   };
 
+  // Đặt lại toàn bộ hệ thống về trạng thái ban đầu cho học sinh mới
+  const resetToInitialState = (student: StudentUser | null) => {
+    setCurrentLessonId(1);
+    setActiveStep(1);
+    setCompletedObjectives([]);
+    setHasAnsweredPoll(false);
+    setHasExploredKnowledge(false);
+    setHasWonGame(false);
+    setHasCompletedQuiz(false);
+    setHasDownloadedMindmap(false);
+    setQuizScorePercent(100);
+
+    if (student) {
+      setStudentName(student.fullName);
+      const stats = calculateStudentStats(student.id);
+      setXp(stats.totalXp);
+      setCompletedLessonsByGrade({
+        10: getCompletedLessonIds(student.id, 10),
+        11: getCompletedLessonIds(student.id, 11),
+        12: getCompletedLessonIds(student.id, 12)
+      });
+    } else {
+      setStudentName('Học Sinh Mới');
+      setXp(0);
+      setCompletedLessonsByGrade({ 10: [], 11: [], 12: [] });
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Ghi nhận hoàn thành bài học và tự động cấp Giấy chứng nhận
+  const handleLessonCompletion = (earnedScore?: number) => {
+    const score = earnedScore !== undefined ? earnedScore : quizScorePercent;
+    const xpGain = currentLesson.xpTotal;
+
+    // 1. Cập nhật state bài đã hoàn thành trên giao diện ngay lập tức
+    setCompletedLessonsByGrade(prev => {
+      const currentList = prev[currentGrade] || [];
+      if (!currentList.includes(currentLessonId)) {
+        return {
+          ...prev,
+          [currentGrade]: [...currentList, currentLessonId]
+        };
+      }
+      return prev;
+    });
+
+    // 2. Ghi nhận và cấp chứng chỉ số vào hồ sơ học sinh
+    if (currentUser) {
+      markLessonComplete(currentUser.id, currentGrade, currentLessonId, xpGain, score);
+      saveCertificate(currentUser.id, {
+        grade: currentGrade,
+        lessonId: currentLessonId,
+        lessonTitle: currentLesson.title,
+        scorePercent: score
+      });
+      // Cập nhật lại XP chuẩn xác cho học sinh
+      const stats = calculateStudentStats(currentUser.id);
+      setXp(stats.totalXp);
+    }
+  };
+
   // Scroll to step
   const scrollToStep = (stepNum: number) => {
     setActiveStep(stepNum);
     if (stepNum === 8) {
+      handleLessonCompletion();
       setIsCompletionOpen(true);
       return;
     }
@@ -207,31 +278,9 @@ export function App() {
     const percent = Math.round((score / total) * 100);
     setQuizScorePercent(percent);
     handleGainXp(xpGain);
-    setCompletedLessonsByGrade(prev => {
-
-      const currentList = prev[currentGrade] || [];
-      if (!currentList.includes(currentLessonId)) {
-        return {
-          ...prev,
-          [currentGrade]: [...currentList, currentLessonId]
-        };
-      }
-      return prev;
-    });
-
-    // Tự động lưu tiến độ và điểm số vào tài khoản học sinh
-    if (currentUser) {
-      markLessonComplete(currentUser.id, currentGrade, currentLessonId, xpGain, percent);
-      if (percent >= 80) {
-        saveCertificate(currentUser.id, {
-          grade: currentGrade,
-          lessonId: currentLessonId,
-          lessonTitle: currentLesson.title,
-          scorePercent: percent
-        });
-      }
-    }
+    handleLessonCompletion(percent);
   };
+
 
   // Keyboard navigation for Smartboard/Presentation
   useEffect(() => {
@@ -379,6 +428,7 @@ export function App() {
         lesson={currentLesson}
         xpEarned={currentLesson.xpTotal}
         onOpenCertificate={() => {
+          handleLessonCompletion();
           setIsCompletionOpen(false);
           setIsCertificateOpen(true);
         }}
@@ -403,6 +453,7 @@ export function App() {
         studentName={studentName}
         onUpdateStudentName={setStudentName}
         scorePercent={quizScorePercent}
+        onSaveCertificate={() => handleLessonCompletion()}
       />
 
       {/* Lesson Drawer (Full Grade Index) */}
@@ -433,7 +484,7 @@ export function App() {
         defaultMode={authModalMode}
         onSuccess={(user) => {
           setCurrentUser(user);
-          setStudentName(user.fullName);
+          resetToInitialState(user);
         }}
       />
 
@@ -446,9 +497,11 @@ export function App() {
           onLogout={() => {
             logoutStudent();
             setCurrentUser(null);
+            resetToInitialState(null);
           }}
         />
       )}
+
 
       {/* Teacher Admin Login Modal */}
       <AdminLoginModal

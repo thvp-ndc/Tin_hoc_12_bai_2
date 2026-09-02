@@ -20,6 +20,7 @@ export function exportStudentsToCsv(): void {
     'Trường học',
     'Tỉnh / Thành phố',
     'Số bài hoàn thành',
+    'Số chứng chỉ đã nhận',
     'Tổng điểm XP',
     'Điểm trắc nghiệm TB (%)',
     'Ngày đăng ký',
@@ -39,12 +40,14 @@ export function exportStudentsToCsv(): void {
       `"${std.schoolName}"`,
       `"${std.province}"`,
       stats.completedCount,
+      stats.certificatesCount,
       stats.totalXp,
       `${stats.avgQuizScore}%`,
       `"${createdDate}"`,
       `"${lastActiveDate}"`
     ].join(',');
   });
+
 
   // UTF-8 BOM (\uFEFF) giúp Excel tự động nhận diện bảng mã tiếng Việt có dấu
   const csvContent = '\uFEFF' + [headers.join(','), ...rows].join('\r\n');

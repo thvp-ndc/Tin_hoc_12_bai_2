@@ -181,12 +181,20 @@ export const StudentRosterTable: React.FC<StudentRosterTableProps> = ({
                       <div className="text-[10px] text-slate-400">{std.province}</div>
                     </td>
 
-                    {/* Completed Count */}
+                    {/* Completed Count & Certificates */}
                     <td className="py-3 px-4 text-center">
-                      <span className="font-bold text-emerald-400">
-                        {stats.completedCount} bài
-                      </span>
+                      <div className="flex flex-col items-center">
+                        <span className="font-bold text-emerald-400">
+                          {stats.completedCount} bài
+                        </span>
+                        {stats.certificatesCount > 0 && (
+                          <span className="text-[10px] text-amber-300 font-semibold flex items-center gap-0.5">
+                            📜 {stats.certificatesCount} chứng chỉ
+                          </span>
+                        )}
+                      </div>
                     </td>
+
 
                     {/* XP */}
                     <td className="py-3 px-4 text-right">

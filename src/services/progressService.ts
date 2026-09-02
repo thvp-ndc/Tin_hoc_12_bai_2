@@ -108,8 +108,10 @@ export function calculateStudentStats(studentId: string): {
   completedCount: number;
   completedByGrade: { 10: number; 11: number; 12: number };
   avgQuizScore: number;
+  certificatesCount: number;
 } {
   const progress = getStudentProgress(studentId);
+  const certs = getStudentCertificates(studentId);
   let totalXp = 0;
   let completedCount = 0;
   let scoreSum = 0;
@@ -132,18 +134,21 @@ export function calculateStudentStats(studentId: string): {
     });
   });
 
+  const certificatesCount = certs.length;
+
   const avgQuizScore = scoreCount > 0 ? Math.round(scoreSum / scoreCount) : 0;
 
   return {
     totalXp,
     completedCount,
     completedByGrade,
-    avgQuizScore
+    avgQuizScore,
+    certificatesCount
   };
 }
 
 /**
- * Lưu giấy chứng nhận hoàn thành
+ * Lưu giấy chứng nhận hoàn thành và đồng bộ trạng thái bài học
  */
 export function saveCertificate(
   studentId: string,
@@ -151,14 +156,33 @@ export function saveCertificate(
 ): void {
   try {
     const key = getCertificatesStorageKey(studentId);
-    const existing = JSON.parse(localStorage.getItem(key) || '[]');
-    const newCert = {
-      id: `cert_${cert.grade}_${cert.lessonId}_${Date.now()}`,
-      ...cert,
-      issuedAt: new Date().toISOString()
-    };
-    existing.push(newCert);
+    const existing: any[] = JSON.parse(localStorage.getItem(key) || '[]');
+    
+    // Kiểm tra xem đã có chứng chỉ cho bài học này của khối lớp này chưa
+    const idx = existing.findIndex(c => c.grade === cert.grade && c.lessonId === cert.lessonId);
+    if (idx >= 0) {
+      existing[idx] = {
+        ...existing[idx],
+        scorePercent: Math.max(existing[idx].scorePercent || 0, cert.scorePercent),
+        lessonTitle: cert.lessonTitle || existing[idx].lessonTitle,
+        issuedAt: new Date().toISOString()
+      };
+    } else {
+      const newCert = {
+        id: `cert_${cert.grade}_${cert.lessonId}_${Date.now()}`,
+        ...cert,
+        issuedAt: new Date().toISOString()
+      };
+      existing.push(newCert);
+    }
     localStorage.setItem(key, JSON.stringify(existing));
+
+    // Đồng bộ ngay lập tức trạng thái bài học thành hoàn thành
+    saveLessonProgress(studentId, cert.grade, cert.lessonId, {
+      isCompleted: true,
+      quizScorePercent: cert.scorePercent,
+      completedAt: new Date().toISOString()
+    });
   } catch (err) {
     console.error('Lỗi khi lưu giấy chứng nhận:', err);
   }
@@ -182,6 +206,7 @@ export function getStudentCertificates(studentId: string): any[] {
 export function getAdminAnalytics(): AdminAnalytics {
   const students = getAllStudents();
   let totalLessonsCompleted = 0;
+  let totalCertificatesIssued = 0;
   let totalScoreSum = 0;
   let totalScoreCount = 0;
 
@@ -193,6 +218,7 @@ export function getAdminAnalytics(): AdminAnalytics {
   students.forEach(student => {
     const stats = calculateStudentStats(student.id);
     totalLessonsCompleted += stats.completedCount;
+    totalCertificatesIssued += stats.certificatesCount;
 
     if (stats.avgQuizScore > 0) {
       totalScoreSum += stats.avgQuizScore;
@@ -218,6 +244,7 @@ export function getAdminAnalytics(): AdminAnalytics {
       province: student.province,
       totalXp: stats.totalXp,
       completedCount: stats.completedCount,
+      certificatesCount: stats.certificatesCount,
       avgScore: stats.avgQuizScore
     });
   });
@@ -243,9 +270,11 @@ export function getAdminAnalytics(): AdminAnalytics {
   return {
     totalStudents: students.length,
     totalLessonsCompleted,
+    totalCertificatesIssued,
     averageQuizScore: totalScoreCount > 0 ? Math.round(totalScoreSum / totalScoreCount) : 0,
     studentsByGrade,
     completionRateByGrade,
     topStudents: topStudentsList.slice(0, 10)
   };
 }
+

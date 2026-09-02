@@ -17,6 +17,7 @@ interface CertificateModalProps {
   studentName: string;
   onUpdateStudentName: (name: string) => void;
   scorePercent: number;
+  onSaveCertificate?: () => void;
 }
 
 export const CertificateModal: React.FC<CertificateModalProps> = ({
@@ -25,12 +26,20 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
   lesson,
   studentName,
   onUpdateStudentName,
-  scorePercent
+  scorePercent,
+  onSaveCertificate
 }) => {
   const certRef = useRef<HTMLDivElement>(null);
   const [isDownloading, setIsDownloading] = useState(false);
 
+  React.useEffect(() => {
+    if (isOpen && onSaveCertificate) {
+      onSaveCertificate();
+    }
+  }, [isOpen]);
+
   if (!isOpen) return null;
+
 
   const handleDownload = async () => {
     if (!certRef.current) return;
