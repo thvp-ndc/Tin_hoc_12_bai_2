@@ -118,26 +118,26 @@ export const InteractiveGame: React.FC<InteractiveGameProps> = ({
     : (game.matchingPairs && matchedPairs.length === game.matchingPairs.length);
 
   return (
-    <section className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-2xl bg-gradient-to-tr from-emerald-500 to-cyan-600 text-white shadow-glow-cyan">
-            <Gamepad2 className="w-6 h-6" />
+    <section className="space-y-4 sm:space-y-6">
+      {/* Section Header */}
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex items-center gap-2.5 sm:gap-3">
+          <div className="p-2 sm:p-2.5 rounded-2xl bg-gradient-to-tr from-emerald-500 to-cyan-600 text-white shadow-glow-cyan shrink-0">
+            <Gamepad2 className="w-5 h-5 sm:w-6 sm:h-6" />
           </div>
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">Bước 5 / 8</span>
-            <h2 className="text-2xl sm:text-3xl font-black text-white">Luyện Tập & Mini-Game "Thử Thách Tin Học"</h2>
+            <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-emerald-400">Bước 5 / 8</span>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white">Luyện Tập & Mini-Game "Thử Thách Tin Học"</h2>
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+          <div className="flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
             <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
             +50 XP
           </div>
           <button
             onClick={handleReset}
-            className="p-2 rounded-xl bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 transition-all"
+            className="p-1.5 sm:p-2 rounded-xl bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 transition-all"
             title="Chơi lại mini-game"
           >
             <RotateCcw className="w-4 h-4" />
@@ -146,18 +146,18 @@ export const InteractiveGame: React.FC<InteractiveGameProps> = ({
       </div>
 
       {/* Main Game Container */}
-      <div className="rounded-3xl bg-slate-900 border border-slate-700/80 p-6 sm:p-8 shadow-floating-lg space-y-6 text-white">
+      <div className="rounded-2xl sm:rounded-3xl bg-slate-900 border border-slate-700/80 p-4 sm:p-8 shadow-floating-lg space-y-5 sm:space-y-6 text-white">
         <div className="space-y-1">
-          <h3 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
-            <Trophy className="w-6 h-6 text-amber-400" />
-            {game.title}
+          <h3 className="text-lg sm:text-2xl font-bold text-white flex items-center gap-2">
+            <Trophy className="w-5 h-5 sm:w-6 sm:h-6 text-amber-400 shrink-0" />
+            <span>{game.title}</span>
           </h3>
-          <p className="text-slate-300 text-sm">{game.instruction}</p>
+          <p className="text-slate-300 text-xs sm:text-sm">{game.instruction}</p>
         </div>
 
         {/* Feedback Message Banner */}
         {feedbackMsg && (
-          <div className={`p-3.5 rounded-2xl text-xs sm:text-sm font-semibold flex items-center gap-2 animate-in fade-in duration-200 ${
+          <div className={`p-3 sm:p-3.5 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-semibold flex items-center gap-2 animate-in fade-in duration-200 ${
             feedbackMsg.includes('Chính xác') || feedbackMsg.includes('Tuyệt vời')
               ? 'bg-emerald-950/60 border border-emerald-500/40 text-emerald-300'
               : 'bg-rose-950/60 border border-rose-500/40 text-rose-300'
@@ -252,62 +252,70 @@ export const InteractiveGame: React.FC<InteractiveGameProps> = ({
 
         {/* GAME TYPE 2: MATCHING PAIRS */}
         {game.type === 'matching' && game.matchingPairs && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Left Column */}
-            <div className="space-y-3">
-              <div className="text-xs font-bold uppercase tracking-wider text-cyan-400">Khái niệm / Thuật ngữ</div>
-              {game.matchingPairs.map((pair) => {
-                const isMatched = matchedPairs.includes(pair.id);
-                const isSelected = selectedLeft === pair.id;
+          <div className="space-y-3 sm:space-y-4">
+            {(selectedLeft || selectedRight) && (
+              <div className="p-2.5 rounded-xl bg-cyan-950/60 border border-cyan-500/40 text-cyan-300 text-xs text-center animate-pulse">
+                👉 Đã chọn 1 thẻ. Hãy chạm thẻ tương ứng ở cột đối diện để ghép đôi!
+              </div>
+            )}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+              {/* Left Column */}
+              <div className="space-y-2.5 sm:space-y-3">
+                <div className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-cyan-400">Khái niệm / Thuật ngữ</div>
+                {game.matchingPairs.map((pair) => {
+                  const isMatched = matchedPairs.includes(pair.id);
+                  const isSelected = selectedLeft === pair.id;
 
-                return (
-                  <button
-                    key={`left_${pair.id}`}
-                    disabled={isMatched}
-                    onClick={() => handleLeftClick(pair.id)}
-                    className={`w-full p-4 rounded-2xl text-left text-xs sm:text-sm font-semibold border transition-all cursor-pointer flex items-center justify-between ${
-                      isMatched
-                        ? 'bg-emerald-950/40 border-emerald-500/40 text-emerald-300 opacity-80 cursor-default'
-                        : isSelected
-                        ? 'bg-cyan-500 text-slate-950 font-bold border-cyan-300 shadow-glow-cyan scale-102'
-                        : 'bg-slate-800 text-slate-200 border-slate-700 hover:border-cyan-400 hover:bg-slate-750'
-                    }`}
-                  >
-                    <span>{pair.left}</span>
-                    {isMatched && <CheckCircle2 className="w-4 h-4 text-emerald-400" />}
-                  </button>
-                );
-              })}
-            </div>
+                  return (
+                    <button
+                      key={`left_${pair.id}`}
+                      disabled={isMatched}
+                      onClick={() => handleLeftClick(pair.id)}
+                      className={`w-full p-3 sm:p-4 rounded-xl sm:rounded-2xl text-left text-xs sm:text-sm font-semibold border transition-all cursor-pointer flex items-center justify-between ${
+                        isMatched
+                          ? 'bg-emerald-950/40 border-emerald-500/40 text-emerald-300 opacity-80 cursor-default'
+                          : isSelected
+                          ? 'bg-cyan-500 text-slate-950 font-bold border-cyan-300 shadow-glow-cyan scale-[1.01]'
+                          : 'bg-slate-800 text-slate-200 border-slate-700 hover:border-cyan-400 hover:bg-slate-750'
+                      }`}
+                    >
+                      <span>{pair.left}</span>
+                      {isMatched && <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 ml-2" />}
+                    </button>
+                  );
+                })}
+              </div>
 
-            {/* Right Column */}
-            <div className="space-y-3">
-              <div className="text-xs font-bold uppercase tracking-wider text-purple-400">Ứng dụng / Ý nghĩa</div>
-              {game.matchingPairs.map((pair) => {
-                const isMatched = matchedPairs.includes(pair.id);
-                const isSelected = selectedRight === pair.id;
+              {/* Right Column */}
+              <div className="space-y-2.5 sm:space-y-3">
+                <div className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-purple-400">Ứng dụng / Ý nghĩa</div>
+                {game.matchingPairs.map((pair) => {
+                  const isMatched = matchedPairs.includes(pair.id);
+                  const isSelected = selectedRight === pair.id;
 
-                return (
-                  <button
-                    key={`right_${pair.id}`}
-                    disabled={isMatched}
-                    onClick={() => handleRightClick(pair.id)}
-                    className={`w-full p-4 rounded-2xl text-left text-xs sm:text-sm font-semibold border transition-all cursor-pointer flex items-center justify-between ${
-                      isMatched
-                        ? 'bg-emerald-950/40 border-emerald-500/40 text-emerald-300 opacity-80 cursor-default'
-                        : isSelected
-                        ? 'bg-purple-500 text-slate-950 font-bold border-purple-300 shadow-glow-purple scale-102'
-                        : 'bg-slate-800 text-slate-200 border-slate-700 hover:border-purple-400 hover:bg-slate-750'
-                    }`}
-                  >
-                    <span>{pair.right}</span>
-                    {isMatched && <CheckCircle2 className="w-4 h-4 text-emerald-400" />}
-                  </button>
-                );
-              })}
+                  return (
+                    <button
+                      key={`right_${pair.id}`}
+                      disabled={isMatched}
+                      onClick={() => handleRightClick(pair.id)}
+                      className={`w-full p-3 sm:p-4 rounded-xl sm:rounded-2xl text-left text-xs sm:text-sm font-semibold border transition-all cursor-pointer flex items-center justify-between ${
+                        isMatched
+                          ? 'bg-emerald-950/40 border-emerald-500/40 text-emerald-300 opacity-80 cursor-default'
+                          : isSelected
+                          ? 'bg-purple-500 text-slate-950 font-bold border-purple-300 shadow-glow-purple scale-[1.01]'
+                          : 'bg-slate-800 text-slate-200 border-slate-700 hover:border-purple-400 hover:bg-slate-750'
+                      }`}
+                    >
+                      <span>{pair.right}</span>
+                      {isMatched && <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 ml-2" />}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
         )}
+
 
         {/* Victory Celebration Card */}
         {isComplete && (

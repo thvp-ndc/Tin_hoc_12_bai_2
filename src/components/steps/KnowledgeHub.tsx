@@ -76,67 +76,68 @@ export const KnowledgeHub: React.FC<KnowledgeHubProps> = ({
   };
 
   return (
-    <section className="space-y-6">
+    <section className="space-y-4 sm:space-y-6">
       {/* Section Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-2xl bg-gradient-to-tr from-purple-600 to-indigo-600 text-white shadow-glow-purple">
-            <BookOpen className="w-6 h-6" />
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex items-center gap-2.5 sm:gap-3">
+          <div className="p-2 sm:p-2.5 rounded-2xl bg-gradient-to-tr from-purple-600 to-indigo-600 text-white shadow-glow-purple shrink-0">
+            <BookOpen className="w-5 h-5 sm:w-6 sm:h-6" />
           </div>
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-purple-400">Bước 4 / 8</span>
-            <h2 className="text-2xl sm:text-3xl font-black text-white">Khám Phá Kiến Thức</h2>
+            <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-purple-400">Bước 4 / 8</span>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white">Khám Phá Kiến Thức</h2>
           </div>
         </div>
-        <div className="flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">
+        <div className="flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">
           <Sparkles className="w-3.5 h-3.5 text-purple-400" />
           +30 XP
         </div>
       </div>
 
       {/* Tabs Navigation */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar">
+      <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-1 no-scrollbar">
         {lesson.knowledge.map((tab, idx) => (
           <button
             key={tab.id}
             onClick={() => handleTabChange(idx)}
-            className={`px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all shrink-0 flex items-center gap-2 border ${
+            className={`px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-bold transition-all shrink-0 flex items-center gap-1.5 sm:gap-2 border ${
               activeTabIdx === idx
                 ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white border-purple-400 shadow-glow-purple scale-[1.02]'
                 : 'bg-slate-800/80 text-slate-300 border-slate-700 hover:bg-slate-700 hover:text-white'
             }`}
           >
-            <Layers className="w-4 h-4" />
+            <Layers className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             <span>{tab.title}</span>
           </button>
         ))}
       </div>
 
       {/* Active Tab Main Card */}
-      <div className="rounded-3xl bg-slate-900 border border-slate-700/80 p-6 sm:p-8 shadow-floating-lg space-y-8 text-white">
+      <div className="rounded-2xl sm:rounded-3xl bg-slate-900 border border-slate-700/80 p-4 sm:p-8 shadow-floating-lg space-y-6 sm:space-y-8 text-white">
         {/* Title & Subtitle */}
         <div className="space-y-1">
-          <span className="text-xs font-bold uppercase tracking-wider text-cyan-400">Nội dung cốt lõi</span>
-          <h3 className="text-xl sm:text-2xl font-bold text-white">{activeTab.title}</h3>
-          <p className="text-slate-400 text-sm">{activeTab.subtitle}</p>
+          <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-cyan-400">Nội dung cốt lõi</span>
+          <h3 className="text-lg sm:text-2xl font-bold text-white">{activeTab.title}</h3>
+          <p className="text-slate-400 text-xs sm:text-sm">{activeTab.subtitle}</p>
         </div>
 
         {/* Key Points Bullet List */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
           {activeTab.keyPoints.map((point, idx) => (
             <div 
               key={idx}
-              className="p-4 rounded-2xl bg-slate-800/60 border border-slate-700/60 flex items-start gap-3 hover:border-slate-500 transition-colors"
+              className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-800/60 border border-slate-700/60 flex items-start gap-2.5 sm:gap-3 hover:border-slate-500 transition-colors"
             >
-              <div className="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0 font-bold text-xs mt-0.5 border border-cyan-500/30">
+              <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0 font-bold text-xs mt-0.5 border border-cyan-500/30">
                 {idx + 1}
               </div>
-              <p className="text-slate-200 text-sm sm:text-base leading-relaxed">
+              <p className="text-slate-200 text-xs sm:text-sm md:text-base leading-relaxed">
                 {point}
               </p>
             </div>
           ))}
         </div>
+
 
         {/* Visual Experience Sandbox / Infographic */}
         <div className="space-y-4 pt-2">

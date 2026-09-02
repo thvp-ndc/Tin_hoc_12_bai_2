@@ -99,26 +99,26 @@ export const CurriculumMindmapModal: React.FC<CurriculumMindmapModalProps> = ({
       <div className="relative w-full max-w-7xl h-[92vh] flex flex-col rounded-3xl bg-slate-900 border border-slate-700/80 shadow-2xl overflow-hidden text-white">
         
         {/* Modal Header */}
-        <div className="flex flex-wrap items-center justify-between gap-4 p-5 border-b border-slate-800 bg-slate-900/90 shrink-0">
-          <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-2xl bg-gradient-to-tr from-cyan-600 to-indigo-600 text-white shadow-glow-cyan">
-              <Network className="w-6 h-6" />
+        <div className="flex flex-wrap items-center justify-between gap-2.5 sm:gap-4 p-3 sm:p-5 border-b border-slate-800 bg-slate-900/90 shrink-0">
+          <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+            <div className="p-2 sm:p-2.5 rounded-2xl bg-gradient-to-tr from-cyan-600 to-indigo-600 text-white shadow-glow-cyan shrink-0">
+              <Network className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
-            <div>
+            <div className="min-w-0">
               <div className="flex items-center gap-2">
-                <span className="text-xs font-bold uppercase tracking-wider text-cyan-400">Infographic Bản Đồ Tri Thức</span>
-                <span className="text-[11px] px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
-                  Chuẩn taphuan.nxbgd.vn
+                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-cyan-400">Infographic Tri Thức</span>
+                <span className="hidden sm:inline text-[11px] px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                  Chuẩn GDPT 2018
                 </span>
               </div>
-              <h2 className="text-xl sm:text-2xl font-black text-white">
-                Sơ Đồ Tư Duy Tổng Quát Toàn Bộ Bài Học
+              <h2 className="text-base sm:text-2xl font-black text-white truncate">
+                Sơ Đồ Tư Duy Tổng Quát
               </h2>
             </div>
           </div>
 
           {/* Grade Selector Tabs */}
-          <div className="flex items-center gap-1.5 p-1 rounded-2xl bg-slate-950 border border-slate-800">
+          <div className="flex items-center gap-1 sm:gap-1.5 p-0.5 sm:p-1 rounded-xl sm:rounded-2xl bg-slate-950 border border-slate-800">
             {([10, 11, 12] as const).map(grade => (
               <button
                 key={grade}
@@ -127,7 +127,7 @@ export const CurriculumMindmapModal: React.FC<CurriculumMindmapModalProps> = ({
                   onSelectGrade(grade);
                   setSelectedThemeId(null);
                 }}
-                className={`px-3 sm:px-4 py-1.5 rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer ${
+                className={`px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer ${
                   currentGrade === grade
                     ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-glow-cyan'
                     : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
@@ -140,6 +140,7 @@ export const CurriculumMindmapModal: React.FC<CurriculumMindmapModalProps> = ({
 
           {/* Action Tools & Close */}
           <div className="flex items-center gap-2">
+
             {/* Zoom Controls */}
             <div className="flex items-center bg-slate-950 rounded-xl border border-slate-800 p-0.5">
               <button

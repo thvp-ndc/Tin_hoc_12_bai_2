@@ -64,47 +64,47 @@ export const ApplicationMindmap: React.FC<ApplicationMindmapProps> = ({
   };
 
   return (
-    <section className="space-y-8">
+    <section className="space-y-6 sm:space-y-8">
       {/* Step Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-2xl bg-gradient-to-tr from-cyan-600 to-indigo-600 text-white shadow-glow-cyan">
-            <Briefcase className="w-6 h-6" />
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex items-center gap-2.5 sm:gap-3">
+          <div className="p-2 sm:p-2.5 rounded-2xl bg-gradient-to-tr from-cyan-600 to-indigo-600 text-white shadow-glow-cyan shrink-0">
+            <Briefcase className="w-5 h-5 sm:w-6 sm:h-6" />
           </div>
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-cyan-400">Bước 7 / 8</span>
-            <h2 className="text-2xl sm:text-3xl font-black text-white">Vận Dụng Thực Tiễn & Sơ Đồ Tư Duy</h2>
+            <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-cyan-400">Bước 7 / 8</span>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white">Vận Dụng Thực Tiễn & Sơ Đồ Tư Duy</h2>
           </div>
         </div>
-        <div className="flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+        <div className="flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
           <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
           +50 XP
         </div>
       </div>
 
       {/* Part 1: Real-world Application Project */}
-      <div className="rounded-3xl bg-slate-900 border border-slate-700/80 p-6 sm:p-8 shadow-floating-lg space-y-6 text-white">
+      <div className="rounded-2xl sm:rounded-3xl bg-slate-900 border border-slate-700/80 p-4 sm:p-8 shadow-floating-lg space-y-5 sm:space-y-6 text-white">
         <div className="space-y-2">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
-            <Briefcase className="w-4 h-4 text-cyan-400" />
+          <div className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+            <Briefcase className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan-400" />
             Dự án nhỏ thực chiến
           </div>
-          <h3 className="text-xl sm:text-2xl font-bold text-white">
+          <h3 className="text-lg sm:text-2xl font-bold text-white">
             {project.title}
           </h3>
-          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-300 text-xs sm:text-base leading-relaxed">
             {project.context}
           </p>
         </div>
 
         {/* Mission Box */}
-        <div className="p-4 rounded-2xl bg-gradient-to-r from-blue-950/60 to-cyan-950/60 border border-cyan-500/40 space-y-3">
-          <div className="text-xs font-bold uppercase tracking-wider text-cyan-400">Nhiệm vụ của bạn:</div>
-          <p className="text-white text-base font-semibold">{project.mission}</p>
+        <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-gradient-to-r from-blue-950/60 to-cyan-950/60 border border-cyan-500/40 space-y-2.5 sm:space-y-3">
+          <div className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-cyan-400">Nhiệm vụ của bạn:</div>
+          <p className="text-white text-sm sm:text-base font-semibold">{project.mission}</p>
 
           <div className="space-y-2 pt-2 border-t border-slate-800">
             {project.steps.map((step, sIdx) => (
-              <div key={sIdx} className="flex items-start gap-2.5 text-sm text-slate-200">
+              <div key={sIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-200">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                 <span>{step}</span>
               </div>
@@ -119,23 +119,22 @@ export const ApplicationMindmap: React.FC<ApplicationMindmapProps> = ({
       </div>
 
       {/* Part 2: Interactive Mindmap (Infographic nhánh phẳng) */}
-      <div className="rounded-3xl bg-slate-900 border border-slate-700/80 p-6 sm:p-8 shadow-floating-lg space-y-6 text-white">
+      <div className="rounded-2xl sm:rounded-3xl bg-slate-900 border border-slate-700/80 p-4 sm:p-8 shadow-floating-lg space-y-5 sm:space-y-6 text-white">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="space-y-1">
-            <h3 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
-              <Network className="w-6 h-6 text-cyan-400" />
-              Sơ Đồ Tư Duy Tổng Kết Bài Học
+            <h3 className="text-lg sm:text-2xl font-bold text-white flex items-center gap-2">
+              <Network className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400 shrink-0" />
+              <span>Sơ Đồ Tư Duy Tổng Kết Bài Học</span>
             </h3>
             <p className="text-slate-400 text-xs sm:text-sm">
               Infographic sơ đồ tư duy tổng kết các mục trọng tâm theo đúng nội dung phần Khám phá kiến thức trong SGK.
             </p>
-
           </div>
 
           {/* Export & Zoom Controls */}
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <button
-              onClick={() => setZoomLevel(prev => Math.max(0.8, prev - 0.1))}
+              onClick={() => setZoomLevel(prev => Math.max(0.6, prev - 0.1))}
               className="p-2 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 border border-slate-700"
               title="Thu nhỏ"
             >
@@ -156,7 +155,7 @@ export const ApplicationMindmap: React.FC<ApplicationMindmapProps> = ({
                   sounds.playClick();
                   onOpenCurriculumMindmap();
                 }}
-                className="px-3.5 py-2.5 rounded-2xl bg-indigo-600/80 hover:bg-indigo-500 text-white font-bold text-xs sm:text-sm border border-indigo-400/40 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-1.5 cursor-pointer shadow-sm"
+                className="px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-xl sm:rounded-2xl bg-indigo-600/80 hover:bg-indigo-500 text-white font-bold text-xs sm:text-sm border border-indigo-400/40 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-1.5 cursor-pointer shadow-sm shrink-0"
                 title="Xem sơ đồ tư duy tổng quát toàn bộ các bài học trong năm học"
               >
                 <Network className="w-4 h-4 text-cyan-300" />
@@ -168,21 +167,27 @@ export const ApplicationMindmap: React.FC<ApplicationMindmapProps> = ({
             <button
               disabled={isExporting}
               onClick={handleDownloadPng}
-              className="px-4 py-2.5 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-xs sm:text-sm shadow-glow-cyan hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2 cursor-pointer"
+              className="px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl sm:rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-xs sm:text-sm shadow-glow-cyan hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-1.5 sm:gap-2 cursor-pointer shrink-0"
             >
               <Download className="w-4 h-4" />
-              <span>{isExporting ? 'Đang xuất ảnh...' : 'Tải ảnh Mindmap (.PNG)'}</span>
+              <span>{isExporting ? 'Đang xuất...' : 'Tải PNG'}</span>
             </button>
           </div>
         </div>
 
+        {/* Mobile touch tip */}
+        <div className="text-center text-[11px] text-slate-500 sm:hidden">
+          💡 Vuốt ngang màn hình hoặc dùng nút Phóng to/Thu nhỏ để xem toàn bộ sơ đồ
+        </div>
+
         {/* Mindmap Canvas Area */}
-        <div className="overflow-x-auto p-4 rounded-2xl bg-slate-950 border border-slate-800 flex justify-center">
+        <div className="overflow-x-auto p-2 sm:p-4 rounded-2xl bg-slate-950 border border-slate-800 touch-pan-x">
           <div 
             ref={mindmapRef}
-            style={{ transform: `scale(${zoomLevel})`, transformOrigin: 'top center' }}
-            className={`p-8 rounded-3xl bg-slate-950 border border-slate-800/80 transition-transform duration-200 ${
-              (rootNode.children?.length || 1) >= 4 ? 'min-w-[900px] max-w-6xl' : 'min-w-[700px] max-w-5xl'
+            style={{ transform: `scale(${zoomLevel})`, transformOrigin: 'top left' }}
+            className={`mx-auto p-4 sm:p-8 rounded-2xl sm:rounded-3xl bg-slate-950 border border-slate-800/80 transition-transform duration-200 ${
+              (rootNode.children?.length || 1) >= 4 ? 'min-w-[900px] max-w-6xl' : 'min-w-[650px] max-w-5xl'
+
             }`}
           >
             {/* Root Node */}

@@ -350,9 +350,9 @@ export function App() {
 
 
       {/* Main 8-Step Learning Container */}
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16">
+      <main className="max-w-6xl mx-auto px-2.5 sm:px-6 lg:px-8 py-5 sm:py-8 space-y-8 sm:space-y-14 md:space-y-16">
         {/* Step 1: Hero Banner */}
-        <div ref={stepRefs[1]} id="step-1" className="scroll-mt-24">
+        <div ref={stepRefs[1]} id="step-1" className="scroll-mt-28 sm:scroll-mt-24 md:scroll-mt-28">
           <HeroBanner
             lesson={currentLesson}
             xp={xp}
@@ -365,7 +365,7 @@ export function App() {
         </div>
 
         {/* Step 2: Objective Cards */}
-        <div ref={stepRefs[2]} id="step-2" className="scroll-mt-24">
+        <div ref={stepRefs[2]} id="step-2" className="scroll-mt-28 sm:scroll-mt-24 md:scroll-mt-28">
           <ObjectiveCards
             lesson={currentLesson}
             completedObjectives={completedObjectives}
@@ -374,7 +374,7 @@ export function App() {
         </div>
 
         {/* Step 3: Warm-up Scenario */}
-        <div ref={stepRefs[3]} id="step-3" className="scroll-mt-24">
+        <div ref={stepRefs[3]} id="step-3" className="scroll-mt-28 sm:scroll-mt-24 md:scroll-mt-28">
           <WarmUpScenario
             lesson={currentLesson}
             onAnswerPoll={(gain) => {
@@ -386,7 +386,7 @@ export function App() {
         </div>
 
         {/* Step 4: Knowledge Hub (Interactive Sandbox & Em cần nhớ) */}
-        <div ref={stepRefs[4]} id="step-4" className="scroll-mt-24">
+        <div ref={stepRefs[4]} id="step-4" className="scroll-mt-28 sm:scroll-mt-24 md:scroll-mt-28">
           <KnowledgeHub
             lesson={currentLesson}
             onExploreCompleted={(gain) => {
@@ -398,7 +398,7 @@ export function App() {
         </div>
 
         {/* Step 5: Interactive Game (Mini-game Thử thách Tin học) */}
-        <div ref={stepRefs[5]} id="step-5" className="scroll-mt-24">
+        <div ref={stepRefs[5]} id="step-5" className="scroll-mt-28 sm:scroll-mt-24 md:scroll-mt-28">
           <InteractiveGame
             lesson={currentLesson}
             onGameCompleted={(gain) => {
@@ -410,7 +410,7 @@ export function App() {
         </div>
 
         {/* Step 6: Assessment Quiz (Tự đánh giá trắc nghiệm) */}
-        <div ref={stepRefs[6]} id="step-6" className="scroll-mt-24">
+        <div ref={stepRefs[6]} id="step-6" className="scroll-mt-28 sm:scroll-mt-24 md:scroll-mt-28">
           <AssessmentQuiz
             lesson={currentLesson}
             onQuizCompleted={handleQuizCompleted}
@@ -419,10 +419,11 @@ export function App() {
         </div>
 
         {/* Step 7: Application & Mindmap (Vận dụng & Sơ đồ tư duy xuất PNG) */}
-        <div ref={stepRefs[7]} id="step-7" className="scroll-mt-24">
+        <div ref={stepRefs[7]} id="step-7" className="scroll-mt-28 sm:scroll-mt-24 md:scroll-mt-28">
           <ApplicationMindmap
             lesson={currentLesson}
             onMindmapDownloaded={(gain) => {
+
               setHasDownloadedMindmap(true);
               handleGainXp(gain);
             }}
