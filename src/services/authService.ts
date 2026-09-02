@@ -2,7 +2,9 @@ import { StudentUser } from '../types/auth';
 import { 
   syncStudentToCloud, 
   fetchStudentDataFromCloud, 
-  fetchStudentsFromCloud 
+  fetchStudentsFromCloud,
+  pullAllCloudData,
+  getCloudConfig
 } from './cloudSyncService';
 
 const STORAGE_KEY_STUDENTS = 'tin_thpt_students_db';
@@ -32,11 +34,14 @@ export function getAllStudents(): StudentUser[] {
 }
 
 /**
- * Tải danh sách học sinh mới nhất từ Cloud và gộp vào máy
+ * Tải danh sách học sinh, tiến độ và chứng chỉ mới nhất từ Cloud và gộp vào máy
  */
 export async function refreshStudentsFromCloud(): Promise<StudentUser[]> {
   try {
     const cloudStudents = await fetchStudentsFromCloud();
+    // Đồng bộ toàn bộ tiến độ bài học và chứng chỉ từ Cloud
+    await pullAllCloudData();
+
     if (cloudStudents.length === 0) return getAllStudents();
 
     const localStudents = getAllStudents();
@@ -57,6 +62,7 @@ export async function refreshStudentsFromCloud(): Promise<StudentUser[]> {
     return getAllStudents();
   }
 }
+
 
 /**
  * Lưu danh sách học sinh vào LocalStorage
@@ -178,6 +184,23 @@ export async function loginStudent(
     return { success: false, error: 'Mật khẩu không chính xác!' };
   }
 
+  // Kéo tiến độ và chứng chỉ mới nhất từ Cloud (để cập nhật nếu học sinh vừa học ở máy khác)
+  if (getCloudConfig().isEnabled) {
+    try {
+      const cloudResult = await fetchStudentDataFromCloud(usernameClean, passwordClean);
+      if (cloudResult) {
+        if (cloudResult.progress) {
+          localStorage.setItem(`tin_progress_${user.id}`, JSON.stringify(cloudResult.progress));
+        }
+        if (cloudResult.certificates && cloudResult.certificates.length > 0) {
+          localStorage.setItem(`tin_certs_${user.id}`, JSON.stringify(cloudResult.certificates));
+        }
+      }
+    } catch (err) {
+      console.warn('Lỗi khi kéo tiến độ mới nhất từ Cloud:', err);
+    }
+  }
+
   // Cập nhật lần đăng nhập gần nhất
   user.lastActiveAt = new Date().toISOString();
   saveAllStudents(students);
@@ -188,6 +211,7 @@ export async function loginStudent(
 
   return { success: true, user };
 }
+
 
 
 /**

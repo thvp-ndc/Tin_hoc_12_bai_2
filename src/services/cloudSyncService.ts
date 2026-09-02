@@ -235,8 +235,157 @@ export async function syncCertificateToCloud(
 }
 
 /**
+ * Tải toàn bộ tiến độ của tất cả học sinh từ Cloud về và lưu vào máy cục bộ
+ */
+export async function fetchAllProgressFromCloud(): Promise<boolean> {
+  const config = getCloudConfig();
+  if (!config.isEnabled || !config.url || !config.anonKey) return false;
+
+  try {
+    const res = await fetch(`${config.url}/rest/v1/student_progress?select=*`, {
+      method: 'GET',
+      headers: {
+        'apikey': config.anonKey,
+        'Authorization': `Bearer ${config.anonKey}`
+      }
+    });
+
+    if (!res.ok) return false;
+    const list = await res.json();
+    if (!Array.isArray(list)) return false;
+
+    // Gom nhóm theo student_id
+    const grouped: { [studentId: string]: any } = {};
+    list.forEach((p: any) => {
+      const sId = p.student_id;
+      if (!grouped[sId]) {
+        try {
+          const raw = localStorage.getItem(`tin_progress_${sId}`);
+          grouped[sId] = raw ? JSON.parse(raw) : { 10: {}, 11: {}, 12: {} };
+        } catch {
+          grouped[sId] = { 10: {}, 11: {}, 12: {} };
+        }
+      }
+
+      if (!grouped[sId][p.grade]) {
+        grouped[sId][p.grade] = {};
+      }
+
+      const prev = grouped[sId][p.grade][p.lesson_id];
+      grouped[sId][p.grade][p.lesson_id] = {
+        lessonId: p.lesson_id,
+        grade: p.grade,
+        isCompleted: p.is_completed || (prev ? prev.isCompleted : false),
+        completedSteps: [1, 2, 3, 4, 5, 6, 7, 8],
+        quizScorePercent: Math.max(p.quiz_score_percent || 0, prev ? prev.quizScorePercent || 0 : 0),
+        quizAttempts: Math.max(p.quiz_attempts || 1, prev ? prev.quizAttempts || 1 : 1),
+        xpEarned: Math.max(p.xp_earned || 0, prev ? prev.xpEarned || 0 : 0),
+        completedAt: p.updated_at
+      };
+    });
+
+    // Lưu vào LocalStorage của từng học sinh
+    Object.entries(grouped).forEach(([sId, progData]) => {
+      try {
+        localStorage.setItem(`tin_progress_${sId}`, JSON.stringify(progData));
+      } catch (err) {
+        console.error(`Lỗi khi lưu tiến độ cho học sinh ${sId}:`, err);
+      }
+    });
+
+    return true;
+  } catch (err) {
+    console.warn('Lỗi khi tải tiến độ từ Cloud:', err);
+    return false;
+  }
+}
+
+/**
+ * Tải toàn bộ giấy chứng nhận của tất cả học sinh từ Cloud về và lưu vào máy cục bộ
+ */
+export async function fetchAllCertificatesFromCloud(): Promise<boolean> {
+  const config = getCloudConfig();
+  if (!config.isEnabled || !config.url || !config.anonKey) return false;
+
+  try {
+    const res = await fetch(`${config.url}/rest/v1/student_certificates?select=*`, {
+      method: 'GET',
+      headers: {
+        'apikey': config.anonKey,
+        'Authorization': `Bearer ${config.anonKey}`
+      }
+    });
+
+    if (!res.ok) return false;
+    const list = await res.json();
+    if (!Array.isArray(list)) return false;
+
+    // Gom nhóm theo student_id
+    const grouped: { [studentId: string]: any[] } = {};
+    list.forEach((c: any) => {
+      const sId = c.student_id;
+      if (!grouped[sId]) {
+        try {
+          const raw = localStorage.getItem(`tin_certs_${sId}`);
+          grouped[sId] = raw ? JSON.parse(raw) : [];
+        } catch {
+          grouped[sId] = [];
+        }
+      }
+
+      // Kiểm tra trùng lặp theo khối và bài học
+      const existingIdx = grouped[sId].findIndex(
+        ex => ex.grade === c.grade && ex.lessonId === c.lesson_id
+      );
+
+      const certObj = {
+        id: c.id,
+        grade: c.grade,
+        lessonId: c.lesson_id,
+        lessonTitle: c.lesson_title,
+        scorePercent: c.score_percent,
+        issuedAt: c.issued_at
+      };
+
+      if (existingIdx >= 0) {
+        if (c.score_percent >= (grouped[sId][existingIdx].scorePercent || 0)) {
+          grouped[sId][existingIdx] = certObj;
+        }
+      } else {
+        grouped[sId].push(certObj);
+      }
+    });
+
+    // Lưu vào LocalStorage
+    Object.entries(grouped).forEach(([sId, certList]) => {
+      try {
+        localStorage.setItem(`tin_certs_${sId}`, JSON.stringify(certList));
+      } catch (err) {
+        console.error(`Lỗi khi lưu chứng chỉ cho học sinh ${sId}:`, err);
+      }
+    });
+
+    return true;
+  } catch (err) {
+    console.warn('Lỗi khi tải chứng chỉ từ Cloud:', err);
+    return false;
+  }
+}
+
+/**
+ * Kéo toàn bộ dữ liệu Đám mây (Tiến độ + Chứng chỉ) về máy
+ */
+export async function pullAllCloudData(): Promise<void> {
+  await Promise.all([
+    fetchAllProgressFromCloud(),
+    fetchAllCertificatesFromCloud()
+  ]);
+}
+
+/**
  * Tìm kiếm học sinh trên Cloud và kéo toàn bộ tiến độ & chứng chỉ về máy
  */
+
 export async function fetchStudentDataFromCloud(username: string, password: string): Promise<{
   student: StudentUser;
   progress: any;
