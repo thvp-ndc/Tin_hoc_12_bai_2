@@ -23,16 +23,16 @@ export const THEME1_LESSONS_11: Lesson[] = [
         id: 'obj_11_1_1',
         category: 'knowledge',
         categoryName: 'Kiến thức cốt lõi',
-        title: 'Bản chất và chức năng hệ điều hành',
-        description: 'Trình bày được vai trò trung gian và các chức năng chính: quản lý tệp, quản lý thiết bị, quản lý tiến trình và cung cấp giao diện.',
+        title: 'Khái niệm, lịch sử & chức năng hệ điều hành',
+        description: 'Trình bày được khái niệm, lịch sử phát triển và các chức năng chính của hệ điều hành: quản lý tài nguyên và cung cấp giao diện người dùng.',
         iconName: 'Cpu'
       },
       {
         id: 'obj_11_1_2',
         category: 'skill',
         categoryName: 'Kỹ năng & Năng lực',
-        title: 'Phân loại các hệ điều hành',
-        description: 'So sánh được đặc điểm của hệ điều hành cho máy tính cá nhân (Windows, Linux, macOS) và thiết bị di động (Android, iOS).',
+        title: 'Phân loại hệ điều hành máy tính và di động',
+        description: 'Phân biệt được đặc điểm của hệ điều hành cho máy tính cá nhân (Windows, Linux, macOS) và thiết bị di động (Android, iOS).',
         iconName: 'Layers'
       },
       {
@@ -40,7 +40,7 @@ export const THEME1_LESSONS_11: Lesson[] = [
         category: 'attitude',
         categoryName: 'Phẩm chất & Đạo đức',
         title: 'Tôn trọng bản quyền hệ điều hành',
-        description: 'Hình thành ý thức sử dụng hệ điều hành có bản quyền hợp pháp và cập nhật bản vá bảo mật thường xuyên.',
+        description: 'Hình thành ý thức sử dụng hệ điều hành có bản quyền hợp pháp và chủ động cập nhật bản vá bảo mật thường xuyên.',
         iconName: 'ShieldCheck'
       }
     ],
@@ -58,26 +58,104 @@ export const THEME1_LESSONS_11: Lesson[] = [
     knowledge: [
       {
         id: 'tab_11_1_1',
-        title: '1. Khái niệm và Vai trò của Hệ điều hành',
+        title: '1. Khái niệm hệ điều hành',
         subtitle: 'Cầu nối giữa người dùng, phần mềm ứng dụng và phần cứng',
         iconName: 'Server',
         keyPoints: [
           'Hệ điều hành (Operating System - OS) là tập hợp các chương trình quản lý, điều phối tài nguyên phần cứng và cung cấp môi trường chạy các phần mềm ứng dụng.',
-          'Các chức năng cơ bản: Quản lý bộ nhớ (RAM), quản lý bộ vi xử lý (CPU Schedule), quản lý thiết bị ngoại vi, quản lý hệ thống tệp tin (File System) và cung cấp giao diện người dùng.',
-          'Lịch sử giao diện: Từ giao diện dòng lệnh CLI (MS-DOS) đến giao diện đồ họa GUI (Windows 95 -> 11, macOS) và giao diện cảm ứng đa điểm (Touch UI trên Android, iOS).'
+          'Hệ điều hành đóng vai trò trung gian giữa người dùng và phần cứng máy tính.',
+          'Không có hệ điều hành, người dùng không thể giao tiếp và điều khiển các thiết bị phần cứng của máy tính.'
         ],
         visualType: 'infographic',
         visualData: {
           nodes: [
-            { label: 'Người dùng & Ứng dụng', desc: 'Word, Excel, Chrome, Photoshop' },
-            { label: 'Hệ điều hành (OS)', desc: 'Windows, Linux, macOS, Android, iOS' },
-            { label: 'Phần cứng (Hardware)', desc: 'CPU, RAM, Ổ đĩa SSD, GPU, Màn hình, Chuột' }
+            { label: 'Người dùng & Ứng dụng', desc: 'Word, Excel, Trình duyệt, Game' },
+            { label: 'Hệ điều hành (OS)', desc: 'Windows, macOS, Linux, Android, iOS' },
+            { label: 'Phần cứng (Hardware)', desc: 'CPU, RAM, Ổ cứng, Bàn phím, Màn hình' }
           ]
         },
         emCanNho: [
-          'Hệ điều hành là môi trường trung gian điều khiển toàn bộ tài nguyên phần cứng máy tính.',
-          'Hệ điều hành cung cấp giao diện đồ họa trực quan (GUI) giúp con người dễ dàng sử dụng thiết bị.',
-          'Các hệ điều hành phổ biến: Máy tính (Windows, Linux, macOS), Di động (Android, iOS).'
+          'Hệ điều hành là phần mềm hệ thống quản lý toàn bộ tài nguyên phần cứng và phần mềm.',
+          'Hệ điều hành là môi trường trung gian kết nối người dùng với phần cứng máy tính.',
+          'Mọi máy tính và thiết bị thông minh đều cần có hệ điều hành để hoạt động.'
+        ]
+      },
+      {
+        id: 'tab_11_1_2',
+        title: '2. Lịch sử phát triển của hệ điều hành',
+        subtitle: 'Từ giao diện dòng lệnh CLI đến giao diện đồ họa GUI và cảm ứng',
+        iconName: 'Clock',
+        keyPoints: [
+          'Thế hệ đầu: Máy tính chưa có hệ điều hành, người dùng phải nạp chương trình bằng thẻ đục lỗ.',
+          'Giao diện dòng lệnh (CLI - Command Line Interface): Người dùng giao tiếp bằng cách gõ các câu lệnh văn bản (tiêu biểu là MS-DOS). Đòi hỏi phải nhớ câu lệnh chính xác.',
+          'Giao diện đồ họa (GUI - Graphical User Interface): Người dùng thao tác qua cửa sổ, biểu tượng (Icon), con trỏ chuột và bảng chọn (Menu). Ra mắt từ Macintosh (1984) và Windows 95.',
+          'Giao diện cảm ứng (Touch UI): Tương tác trực tiếp bằng ngón tay trên màn hình cảm ứng di động (iOS, Android).'
+        ],
+        visualType: 'comparison-table',
+        visualData: {
+          headers: ['Thời kỳ', 'Loại giao diện', 'Cách tương tác', 'Đại diện tiêu biểu'],
+          rows: [
+            ['Những năm 1980', 'Dòng lệnh (CLI)', 'Gõ lệnh văn bản từ bàn phím', 'MS-DOS, Unix'],
+            ['Những năm 1990 - 2000', 'Đồ họa (GUI)', 'Dùng chuột nhấp icon, menu, cửa sổ', 'Windows 95, Windows XP, macOS'],
+            ['Từ 2007 đến nay', 'Cảm ứng & Giọng nói', 'Chạm vuốt đa điểm, trợ lý ảo AI', 'iOS, Android, Windows 11']
+          ]
+        },
+        emCanNho: [
+          'Lịch sử hệ điều hành phát triển từ dòng lệnh (CLI) sang đồ họa (GUI) và cảm ứng đa điểm.',
+          'Giao diện đồ họa GUI giúp máy tính trở nên thân thiện và phổ cập đến toàn nhân loại.',
+          'Hiện nay giao diện cảm ứng và điều khiển bằng giọng nói, cử chỉ đang chiếm ưu thế trên thiết bị số.'
+        ]
+      },
+      {
+        id: 'tab_11_1_3',
+        title: '3. Một số chức năng cơ bản của hệ điều hành',
+        subtitle: 'Bốn nhóm nhiệm vụ cốt lõi điều hành hệ thống máy tính',
+        iconName: 'Cpu',
+        keyPoints: [
+          'Quản lý bộ nhớ (Memory Management): Phân phối và giải phóng bộ nhớ RAM cho các chương trình đang chạy.',
+          'Quản lý bộ xử lý (CPU Scheduling): Điều phối thời gian hoạt động của CPU giữa các tiến trình để chạy đa nhiệm mượt mà.',
+          'Quản lý thiết bị ngoại vi: Cung cấp trình điều khiển (Driver) để nhận diện và điều khiển chuột, bàn phím, máy in, ổ cứng.',
+          'Quản lý tệp tin (File System): Tổ chức lưu trữ dữ liệu dạng cây thư mục và bảo mật tệp.',
+          'Cung cấp giao diện người dùng: Cho phép người dùng ra lệnh và nhận thông báo kết quả.'
+        ],
+        visualType: 'infographic',
+        visualData: {
+          nodes: [
+            { label: 'Quản lý CPU & RAM', desc: 'Phân bổ tài nguyên đa nhiệm tối ưu' },
+            { label: 'Quản lý Tệp & Ổ đĩa', desc: 'Cây thư mục và phân quyền bảo mật' },
+            { label: 'Quản lý Ngoại vi', desc: 'Driver giao tiếp bàn phím, màn hình, máy in' }
+          ]
+        },
+        emCanNho: [
+          'Hệ điều hành quản lý bộ xử lý CPU, bộ nhớ RAM, thiết bị ngoại vi và hệ thống tệp tin.',
+          'Hệ điều hành đảm bảo các ứng dụng chạy độc lập, không xâm lấn dữ liệu của nhau.',
+          'Cung cấp môi trường giao tiếp thuận tiện, an toàn cho người dùng.'
+        ]
+      },
+      {
+        id: 'tab_11_1_4',
+        title: '4. Hệ điều hành cho thiết bị di động',
+        subtitle: 'Tối ưu hóa cho màn hình cảm ứng, pin và kết nối không dây',
+        iconName: 'Smartphone',
+        keyPoints: [
+          'Đặc điểm HĐH di động: Tiết kiệm năng lượng tối đa, tối ưu hóa giao diện cảm ứng đa điểm, tích hợp sẵn định vị GPS, camera, cảm biến xoay và kết nối 4G/5G, Wi-Fi, Bluetooth.',
+          'Google Android: Hệ điều hành mã nguồn mở dựa trên nhân Linux, được tùy biến bởi nhiều hãng sản xuất (Samsung, Xiaomi, Oppo).',
+          'Apple iOS: Hệ điều hành mã nguồn đóng độc quyền dành riêng cho iPhone, nổi tiếng về tính mượt mà và bảo mật cao.'
+        ],
+        visualType: 'comparison-table',
+        visualData: {
+          headers: ['Đặc điểm', 'Hệ điều hành PC (Windows, macOS)', 'Hệ điều hành Di động (Android, iOS)'],
+          rows: [
+            ['Thiết bị', 'Máy tính để bàn, Laptop', 'Điện thoại thông minh, Máy tính bảng'],
+            ['Tương tác chính', 'Chuột, Bàn phím cơ', 'Màn hình cảm ứng chạm vuốt đa điểm'],
+            ['Nguồn điện', 'Cắm sạc liên tục hoặc pin lớn', 'Pin di động giới hạn (cần tiết kiệm tối đa)'],
+            ['Cảm biến tích hợp', 'Ít cảm biến', 'Rất nhiều (GPS, Gia tốc kế, Con quay hồi chuyển, Vân tay)']
+          ]
+        },
+        emCanNho: [
+          'HĐH di động được thiết kế chuyên biệt cho màn hình cảm ứng và tiết kiệm pin.',
+          'Android (mã nguồn mở) và iOS (độc quyền) là hai HĐH di động thống trị thế giới.',
+          'Tích hợp sâu các dịch vụ đám mây, kho ứng dụng và cảm biến định vị.'
         ]
       }
     ],
@@ -108,96 +186,104 @@ export const THEME1_LESSONS_11: Lesson[] = [
           'Cung cấp giao diện trực quan cho người dùng tương tác với thiết bị'
         ],
         correctIndex: 0,
-        explanation: 'Viết bài văn là nhiệm vụ của con người hoặc phần mềm chuyên biệt, không phải chức năng quản lý tài nguyên của hệ điều hành.',
+        explanation: 'Viết văn là chức năng của ứng dụng AI hoặc người dùng, không phải nhiệm vụ hệ thống của HĐH.',
         difficulty: 'Thông hiểu'
       },
       {
         id: 2,
-        question: 'Giao diện dòng lệnh (Command Line Interface) có chữ viết tắt là gì?',
-        options: ['CLI', 'GUI', 'API', 'CPU'],
+        question: 'Giao diện đồ họa người dùng (GUI) có ưu điểm vượt trội nào so với giao diện dòng lệnh (CLI)?',
+        options: [
+          'Người dùng thao tác trực quan qua biểu tượng, cửa sổ và chuột mà không cần ghi nhớ câu lệnh phức tạp',
+          'Chạy không tốn pin máy tính',
+          'Không bao giờ bị lỗi phần mềm',
+          'Chỉ dành cho các kỹ sư lập trình'
+        ],
         correctIndex: 0,
-        explanation: 'CLI là viết tắt của Command Line Interface (Giao diện dòng lệnh).',
+        explanation: 'GUI giúp đại đa số người dùng phổ thông dễ dàng tiếp cận và điều khiển máy tính.',
         difficulty: 'Nhận biết'
       },
       {
         id: 3,
-        question: 'Hệ điều hành di động Android được phát triển dựa trên nền tảng nhân (Kernel) của hệ điều hành nào?',
-        options: ['Linux', 'MS-DOS', 'Windows NT', 'macOS'],
+        question: 'Hai hệ điều hành phổ biến nhất trên điện thoại thông minh hiện nay là gì?',
+        options: ['Android và iOS', 'Windows và Linux', 'macOS và Unix', 'MS-DOS và Symbian'],
         correctIndex: 0,
-        explanation: 'Android được Google phát triển dựa trên nền tảng nhân mã nguồn mở Linux.',
+        explanation: 'Android và iOS chiếm hơn 99% thị phần hệ điều hành di động toàn cầu.',
         difficulty: 'Nhận biết'
       },
       {
         id: 4,
-        question: 'Hệ điều hành mã nguồn mở Linux có ưu điểm nổi bật nào so với các hệ điều hành thương mại?',
-        options: [
-          'Mã nguồn công khai, miễn phí, tính bảo mật cao và người dùng có quyền tự do chỉnh sửa',
-          'Chỉ cài đặt được trên máy tính của hãng Apple',
-          'Không thể kết nối Internet',
-          'Không hỗ trợ đa nhiệm'
-        ],
+        question: 'Khi bạn mở cùng lúc 10 tab Chrome và một ứng dụng Word, bộ phận nào của Hệ điều hành đảm nhận việc chia sẻ thời gian tính toán để không bị giật lag?',
+        options: ['Quản lý bộ xử lý (CPU Scheduling)', 'Bộ tản nhiệt máy tính', 'Bàn phím cơ', 'Dây cắm nguồn điện'],
         correctIndex: 0,
-        explanation: 'Linux là hệ điều hành nguồn mở miễn phí, cho phép cộng đồng phát triển kiểm tra mã nguồn và tùy biến linh hoạt.',
-        difficulty: 'Thông hiểu'
+        explanation: 'Cơ chế lập lịch CPU (CPU Scheduling) phân chia luân phiên các lát thời gian cho từng tiến trình.',
+        difficulty: 'Vận dụng'
       },
       {
         id: 5,
-        question: 'Hành động nào sau đây là thói quen sử dụng hệ điều hành an toàn và bền vững nhất?',
+        question: 'Đặc trưng nào sau đây là yêu cầu QUAN TRỌNG NHẤT đối với hệ điều hành thiết bị di động so với máy tính?',
         options: [
-          'Thường xuyên cài đặt các bản vá bảo mật chính thức và sao lưu tệp định kỳ',
-          'Tắt toàn bộ phần mềm chống virus và tường lửa để máy chạy nhanh hơn',
-          'Tải và kích hoạt các phần mềm bẻ khóa trôi nổi trên mạng',
-          'Tắt máy bằng cách rút phích cắm điện trực tiếp'
+          'Tối ưu hóa tiết kiệm pin và hỗ trợ thao tác cảm ứng đa điểm',
+          'Phải kết nối chuột có dây',
+          'Kích thước màn hình bắt buộc phải trên 30 inch',
+          'Không được phép kết nối Internet'
         ],
         correctIndex: 0,
-        explanation: 'Cập nhật bản vá bảo mật và sao lưu dữ liệu là biện pháp phòng chống mã độc và sự cố hàng đầu.',
-        difficulty: 'Vận dụng'
+        explanation: 'Do chạy bằng pin và tương tác bằng ngón tay, HĐH di động tối ưu năng lượng và thao tác cảm ứng.',
+        difficulty: 'Thông hiểu'
       }
     ],
     application: {
       project: {
-        title: 'Khảo sát và Tối ưu hóa Hệ điều hành Máy tính',
-        context: 'Sau một thời gian học tập, máy tính phòng máy hoặc máy tính cá nhân bị chậm khi khởi động.',
-        mission: 'Sử dụng công cụ quản trị của hệ điều hành để kiểm tra và tối ưu hiệu suất.',
+        title: 'Báo Cáo: So Sánh Trải Nghiệm Người Dùng Trên Windows 11 và Android',
+        context: 'Trường học chuẩn bị trang bị máy tính bảng và laptop cho học sinh học trực tuyến.',
+        mission: 'Lập bảng phân tích ưu và nhược điểm của giao diện Windows so với giao diện cảm ứng Android khi làm bài tập về nhà.',
         steps: [
-          'Bước 1: Mở Task Manager (Ctrl + Shift + Esc) và xem thông số CPU, RAM, Disk.',
-          'Bước 2: Vào tab Startup Apps để vô hiệu hóa (Disable) các ứng dụng tự khởi động không cần thiết.',
-          'Bước 3: Sử dụng công cụ Disk Cleanup để dọn dẹp các tệp tạm thời (Temporary Files).'
+          'Bước 1: Liệt kê các thao tác thường dùng: Soạn văn bản, xem video bài giảng, gửi bài tập qua Zalo/Drive.',
+          'Bước 2: So sánh tốc độ thao tác: Bàn phím chuột máy tính vs Bàn phím ảo cảm ứng trên di động.',
+          'Bước 3: Đưa ra đề xuất: Hoạt động nào nên dùng máy tính, hoạt động nào dùng điện thoại thông minh.'
         ],
-        outputRequirement: 'Bảng ghi nhận dung lượng RAM và thời gian khởi động trước và sau khi tối ưu.',
-        practicalTip: 'Không vô hiệu hóa các tiến trình có chữ "System" hoặc "Windows Explorer" trong Task Manager.'
+        outputRequirement: 'Một báo cáo so sánh ngắn gọn kèm biểu đồ đánh giá mức độ tiện lợi.',
+        practicalTip: 'Đối với nhập liệu dài (soạn thảo báo cáo), bàn phím vật lý trên PC luôn mang lại hiệu suất vượt trội gấp 3 lần.'
       },
       mindmap: {
         id: 'mm_11_1',
         label: 'HỆ ĐIỀU HÀNH',
-        color: '#7c3aed',
+        color: '#8b5cf6',
         children: [
           {
             id: 'mm_11_1_1',
-            label: 'Chức năng cơ bản',
+            label: 'Khái niệm & Vai trò',
             children: [
-              { id: 'mm_11_1_1_1', label: 'Quản lý CPU & RAM' },
-              { id: 'mm_11_1_1_2', label: 'Quản lý tệp & thư mục' },
-              { id: 'mm_11_1_1_3', label: 'Giao diện người dùng' }
+              { id: 'mm_11_1_1_1', label: 'Cầu nối Người - Phần cứng' },
+              { id: 'mm_11_1_1_2', label: 'Quản lý tài nguyên hệ thống' }
             ]
           },
           {
             id: 'mm_11_1_2',
-            label: 'Phân loại',
+            label: 'Chức năng cốt lõi',
             children: [
-              { id: 'mm_11_1_2_1', label: 'Máy tính: Windows, Linux, macOS' },
-              { id: 'mm_11_1_2_2', label: 'Di động: Android, iOS' }
+              { id: 'mm_11_1_2_1', label: 'Quản lý CPU & RAM' },
+              { id: 'mm_11_1_2_2', label: 'Quản lý Thiết bị & Tệp tin' },
+              { id: 'mm_11_1_2_3', label: 'Giao diện đồ họa (GUI)' }
+            ]
+          },
+          {
+            id: 'mm_11_1_3',
+            label: 'Phân loại thiết bị',
+            children: [
+              { id: 'mm_11_1_3_1', label: 'Máy tính: Windows, macOS, Linux' },
+              { id: 'mm_11_1_3_2', label: 'Di động: Android, iOS' }
             ]
           }
         ]
       }
     },
     completion: {
-      badgeName: 'Chuyên Viên Hệ Điều Hành 11',
-      badgeIcon: 'Cpu',
-      roleTitle: 'Quản Trị Viên Hệ Điều Hành Cơ Bản',
-      congratsMessage: 'Tuyệt vời! Bạn đã làm chủ lý thuyết và thực hành Hệ điều hành theo chuẩn SGK Tin học 11 GDPT 2018.',
-      skillsUnlocked: ['Hiểu kiến trúc OS', 'Quản lý tiến trình Task Manager', 'Tối ưu hóa hệ thống máy tính']
+      badgeName: 'Nhà Điều Hành Hệ Thống 11',
+      badgeIcon: 'Server',
+      roleTitle: 'Chuyên Viên Phân Tích Hệ Điều Hành',
+      congratsMessage: 'Tuyệt vời! Bạn đã nắm trọn khái niệm nền tảng về Hệ điều hành và sẵn sàng bước vào bài thực hành sử dụng Task Manager.',
+      skillsUnlocked: ['Hiểu bản chất Hệ điều hành', 'Phân biệt GUI vs CLI', 'Phân loại HĐH PC vs Di động']
     }
   },
 
@@ -208,191 +294,226 @@ export const THEME1_LESSONS_11: Lesson[] = [
     title: 'Thực hành sử dụng hệ điều hành',
     themeId: 1,
     themeName: 'Chủ đề 1: Máy tính và xã hội tri thức',
-    topicBadge: 'Thực hành OS',
+    topicBadge: 'Kỹ năng HĐH',
     grade: 11,
     estimatedMinutes: 45,
     xpTotal: 250,
     hero: {
-      tagline: 'Làm chủ các công cụ quản trị hệ thống và kiểm soát tiến trình',
-      description: 'Thực hành thiết lập cá nhân hóa giao diện, quản lý tài khoản người dùng, giám sát tài nguyên qua Task Manager và xử lý sự cố ứng dụng bị treo.',
-      accentColor: 'from-purple-600 to-indigo-600',
-      keyHighlights: ['Giám sát hiệu suất với Task Manager', 'Quản lý User Accounts', 'Tắt ứng dụng bị treo (End Task)']
+      tagline: 'Làm chủ công cụ điều hành: Tùy biến môi trường và kiểm soát tiến trình',
+      description: 'Luyện tập các kỹ năng thực tế: quản lý tài khoản người dùng, thiết lập giao diện Windows Settings và theo dõi tài nguyên với Task Manager.',
+      accentColor: 'from-blue-600 to-indigo-600',
+      keyHighlights: ['Tùy biến Windows Settings', 'Quản lý tài khoản User', 'Giám sát CPU/RAM với Task Manager']
     },
     objectives: [
       {
         id: 'obj_11_2_1',
         category: 'knowledge',
         categoryName: 'Kiến thức cốt lõi',
-        title: 'Hiểu các tiện ích hệ thống',
-        description: 'Nắm rõ vai trò của Task Manager, Settings, Control Panel và các tiện ích dọn dẹp hệ thống.',
-        iconName: 'Wrench'
+        title: 'Cơ chế phân quyền tài khoản & tiến trình',
+        description: 'Hiểu được vai trò của tài khoản quản trị (Administrator) so với tài khoản người dùng tiêu chuẩn (Standard User) và cơ chế hoạt động của tiến trình hệ thống.',
+        iconName: 'UserCheck'
       },
       {
         id: 'obj_11_2_2',
         category: 'skill',
         categoryName: 'Kỹ năng & Năng lực',
-        title: 'Thao tác xử lý sự cố tiến trình',
-        description: 'Biết cách đọc biểu đồ tài nguyên CPU/RAM, xác định phần mềm gây đơ máy và buộc dừng bằng End Task an toàn.',
+        title: 'Thao tác cấu hình & sử dụng Task Manager',
+        description: 'Thực hiện được việc tùy chỉnh môi trường làm việc trong Windows Settings và sử dụng tiện ích Task Manager để kiểm tra mức sử dụng CPU/RAM, đóng ứng dụng bị treo (End Task).',
         iconName: 'Activity'
       },
       {
         id: 'obj_11_2_3',
         category: 'attitude',
         categoryName: 'Phẩm chất & Đạo đức',
-        title: 'Cẩn trọng khi quản trị hệ thống',
-        description: 'Có ý thức sao lưu dữ liệu trước khi thay đổi cài đặt hệ thống và bảo vệ mật khẩu tài khoản máy tính.',
-        iconName: 'ShieldCheck'
+        title: 'Ý thức bảo mật & thao tác an toàn',
+        description: 'Có thói quen thiết lập mật khẩu an toàn cho tài khoản cá nhân và không tùy tiện tắt các tiến trình quan trọng của hệ thống.',
+        iconName: 'ShieldAlert'
       }
     ],
     warmup: {
-      title: 'Tình huống: Phần mềm đang dùng bị đơ (Not Responding)',
-      scenario: 'Bạn đang chỉnh sửa một file tài liệu thì phần mềm bị đơ, con trỏ chuột quay tròn và xuất hiện dòng chữ "(Not Responding)". Bấm dấu [X] đỏ góc trên không tắt được.',
-      pollQuestion: 'Phím tắt thần thánh nào giúp mở công cụ quản lý tiến trình để đóng ứng dụng bị treo một cách chuyên nghiệp?',
+      title: 'Tình huống: Ứng dụng "Not Responding" và đơ màn hình',
+      scenario: 'Bạn đang làm bài tập trên máy tính thì phần mềm bị đơ, hiện dòng chữ "Not Responding". Chuột nhấp vào dấu X màu đỏ không tắt được, quạt máy tính kêu to bất thường.',
+      pollQuestion: 'Công cụ quyền lực nào trong Windows giúp bạn xem ứng dụng nào đang chiếm hết CPU và ép đóng nó ngay lập tức?',
       pollOptions: [
-        { id: 'p11_2_1', text: 'Ctrl + Shift + Esc (hoặc Ctrl + Alt + Delete)', votesPercent: 88, isPopular: true, insight: 'Chính xác! Phím tắt này mở trực tiếp trình quản lý tiến trình Task Manager của Windows.' },
-        { id: 'p11_2_2', text: 'Rút ngay phích cắm điện máy tính', votesPercent: 5, insight: 'Rút điện đột ngột có thể làm hỏng ổ cứng và mất dữ liệu chưa kịp lưu.' },
-        { id: 'p11_2_3', text: 'Bấm liên tục chuột trái vào màn hình', votesPercent: 7, insight: 'Bấm liên tục sẽ làm nghẽn hàng đợi xử lý của hệ điều hành, khiến máy càng đơ thêm.' }
+        { id: 'p11_2_1', text: 'Trình quản lý tác vụ Task Manager (Ctrl + Shift + Esc)', votesPercent: 93, isPopular: true, insight: 'Chính xác! Task Manager liệt kê mọi tiến trình đang chạy và cho phép cưỡng chế dừng ứng dụng bằng End Task.' },
+        { id: 'p11_2_2', text: 'Rút dây nguồn máy tính ra cắm lại', votesPercent: 4, insight: 'Rút điện đột ngột rất dễ làm hỏng ổ cứng SSD và mất dữ liệu chưa kịp lưu.' },
+        { id: 'p11_2_3', text: 'Đập mạnh vào bàn phím', votesPercent: 3, insight: 'Đập máy có thể gây hỏng hóc vật lý linh kiện.' }
       ],
-      reflection: 'Sử dụng Task Manager là kỹ năng cứu nguy căn bản của mọi người dùng máy tính chuyên nghiệp.'
+      reflection: 'Thành thạo Task Manager là kỹ năng cứu cánh số một giúp bạn xử lý các sự cố treo máy tính hàng ngày.'
     },
     knowledge: [
       {
         id: 'tab_11_2_1',
-        title: '1. Giám sát Hiệu suất với Task Manager',
-        subtitle: 'Quản lý CPU, Bộ nhớ RAM và các tiến trình nền',
+        title: '1. Tùy chỉnh môi trường và quản lý tài khoản người dùng',
+        subtitle: 'Cá nhân hóa và bảo mật đa người dùng trên một máy tính',
+        iconName: 'Settings',
+        keyPoints: [
+          'Windows Settings: Trung tâm tùy biến độ phân giải màn hình, hình nền, âm thanh, mạng và cập nhật hệ thống.',
+          'Hai loại tài khoản cơ bản:',
+          '  - Administrator (Quản trị viên): Toàn quyền cài đặt phần mềm, thay đổi cấu hình sâu và can thiệp file hệ thống.',
+          '  - Standard User (Người dùng tiêu chuẩn): Chỉ được chạy ứng dụng và lưu tài liệu cá nhân, không thể tự ý cài phần mềm lạ.',
+          'Bảo mật tài khoản: Luôn cài đặt mật khẩu (Password) hoặc mã PIN/Vân tay (Windows Hello) cho tài khoản.'
+        ],
+        visualType: 'comparison-table',
+        visualData: {
+          headers: ['Quyền hạn', 'Tài khoản Administrator', 'Tài khoản Standard User'],
+          rows: [
+            ['Cài đặt phần mềm mới', 'Toàn quyền cho phép', 'Cần mật khẩu quản trị phê duyệt'],
+            ['Chỉnh sửa file hệ thống', 'Có quyền can thiệp', 'Bị từ chối truy cập'],
+            ['Tạo thêm người dùng mới', 'Được phép tạo', 'Không được phép'],
+            ['Ứng dụng thực tế', 'Dành cho chủ máy tính, kỹ thuật viên', 'Dành cho học sinh, nhân viên văn phòng']
+          ]
+        },
+        emCanNho: [
+          'Windows Settings giúp cá nhân hóa môi trường làm việc và quản lý thiết bị.',
+          'Tài khoản Administrator có toàn quyền; tài khoản Standard User bị giới hạn để an toàn.',
+          'Đặt mật khẩu mạnh cho tài khoản bảo vệ dữ liệu riêng tư khi dùng chung máy tính.'
+        ]
+      },
+      {
+        id: 'tab_11_2_2',
+        title: '2. Quản lý ứng dụng và tiến trình với Task Manager',
+        subtitle: 'Giám sát tài nguyên phần cứng thời gian thực và xử lý sự cố treo máy',
         iconName: 'Activity',
         keyPoints: [
-          'Thẻ Processes: Hiển thị danh sách tất cả các ứng dụng (Apps) và tiến trình chạy ngầm (Background Processes) cùng mức tiêu hao tài nguyên.',
-          'Thẻ Performance: Biểu đồ thời gian thực về mức độ sử dụng CPU, RAM, Ổ đĩa (SSD/HDD) và Mạng (Wi-Fi/Ethernet).',
-          'Thao tác "End Task": Cho phép buộc dừng ngay lập tức một ứng dụng bị lỗi, giải phóng tài nguyên cho hệ thống.'
+          'Cách mở Task Manager: Nhấn tổ hợp phím `Ctrl + Shift + Esc` hoặc nhấp chuột phải vào Taskbar chọn `Task Manager`.',
+          'Thẻ Processes (Tiến trình): Hiển thị danh sách các ứng dụng (Apps) và tiến trình nền (Background processes) cùng tỷ lệ % CPU, RAM, Disk, Network đang tiêu thụ.',
+          'Thẻ Performance (Hiệu năng): Biểu đồ nhịp tim thời gian thực của CPU, Memory, Ổ cứng SSD/HDD và Card đồ họa GPU.',
+          'Xử lý ứng dụng bị đơ: Nhấp chuột vào ứng dụng bị Not Responding -> Nhấn nút `End task` để đóng cưỡng bức an toàn.'
         ],
         visualType: 'infographic',
         visualData: {
           nodes: [
-            { label: 'Bước 1: Mở Task Manager', desc: 'Nhấn Ctrl + Shift + Esc' },
-            { label: 'Bước 2: Tìm ứng dụng treo', desc: 'Kiểm tra cột CPU / Memory' },
-            { label: 'Bước 3: Nhấn End Task', desc: 'Buộc dừng ứng dụng an toàn' }
+            { label: '1. Ctrl + Shift + Esc', desc: 'Mở cửa sổ Task Manager' },
+            { label: '2. Kiểm tra cột CPU/RAM', desc: 'Tìm ứng dụng đang ngốn trên 90% tài nguyên' },
+            { label: '3. Nhấn End Task', desc: 'Cưỡng chế đóng ứng dụng bị treo, giải phóng RAM' }
           ]
         },
         emCanNho: [
-          'Task Manager là công cụ giám sát tiến trình và hiệu năng tài nguyên máy tính.',
-          'Tổ hợp phím tắt nhanh để mở Task Manager: `Ctrl + Shift + Esc`.',
-          'Dùng `End Task` để tắt ứng dụng bị treo một cách an toàn mà không cần khởi động lại máy.'
+          'Tổ hợp phím tắt mở nhanh Task Manager: `Ctrl + Shift + Esc`.',
+          'Thẻ Processes cho biết ứng dụng nào đang chiếm dụng nhiều CPU và RAM nhất.',
+          'Dùng `End task` để tắt ứng dụng bị treo (Not Responding) mà không cần khởi động lại máy.'
         ]
       }
     ],
     miniGame: {
       type: 'matching',
-      title: 'Ghép cặp Thao tác và Ý nghĩa trong Task Manager',
-      instruction: 'Nối thao tác quản trị với mục đích sử dụng tương ứng:',
+      title: 'Ghép cặp Thao tác và Công cụ trong Hệ điều hành',
+      instruction: 'Nối thao tác quản trị với công cụ thực hiện tương ứng:',
       matchingPairs: [
-        { id: 'm1', left: 'Ctrl + Shift + Esc', right: 'Mở nhanh công cụ Task Manager' },
-        { id: 'm2', left: 'Thẻ Performance', right: 'Xem biểu đồ nhịp tim sử dụng CPU, RAM, Disk' },
-        { id: 'm3', left: 'Nút End Task', right: 'Buộc đóng tiến trình hoặc phần mềm bị treo' },
-        { id: 'm4', left: 'Thẻ Startup apps', right: 'Bật/tắt các ứng dụng tự khởi động cùng Windows' }
+        { id: 'm1', left: 'Mở nhanh Task Manager', right: 'Tổ hợp phím Ctrl + Shift + Esc' },
+        { id: 'm2', left: 'Cưỡng bức đóng ứng dụng bị treo', right: 'Nút End task trong thẻ Processes' },
+        { id: 'm3', left: 'Đổi hình nền Desktop và độ phân giải', right: 'Windows Settings -> Personalization' },
+        { id: 'm4', left: 'Xem biểu đồ tải của CPU và RAM', right: 'Thẻ Performance trong Task Manager' }
       ]
     },
     assessment: [
       {
         id: 1,
-        question: 'Tổ hợp phím tắt nào sau đây mở TRỰC TIẾP cửa sổ Task Manager trong Windows?',
-        options: ['Ctrl + Shift + Esc', 'Ctrl + C', 'Alt + F4', 'Windows + D'],
+        question: 'Tổ hợp phím tắt nhanh nhất để mở trực tiếp cửa sổ Task Manager trong Windows là gì?',
+        options: ['Ctrl + Shift + Esc', 'Ctrl + Alt + Delete', 'Alt + F4', 'Windows + R'],
         correctIndex: 0,
-        explanation: 'Ctrl + Shift + Esc là tổ hợp phím mở trực tiếp Task Manager mà không cần qua màn hình trung gian.',
+        explanation: 'Ctrl + Shift + Esc mở thẳng Task Manager ngay lập tức mà không qua màn hình chờ trung gian.',
         difficulty: 'Nhận biết'
       },
       {
         id: 2,
-        question: 'Trong thẻ Performance của Task Manager, thông số "Memory" cho biết điều gì?',
+        question: 'Khi một ứng dụng bị đơ (Not Responding) không thể tắt bằng nút X, bạn nên làm gì trong Task Manager?',
         options: [
-          'Dung lượng bộ nhớ truy cập ngẫu nhiên (RAM) đang được sử dụng',
-          'Dung lượng còn trống của pin laptop',
-          'Tốc độ quạt tản nhiệt của thùng máy',
-          'Độ phân giải của màn hình'
+          'Chọn ứng dụng đó trong thẻ Processes và nhấn nút "End task"',
+          'Tắt màn hình máy tính',
+          'Rút dây mạng Internet',
+          'Nhấn phím Enter liên tục'
         ],
         correctIndex: 0,
-        explanation: 'Memory thể hiện mức tiêu thụ bộ nhớ RAM vật lý của toàn bộ hệ thống.',
+        explanation: 'Lệnh End task yêu cầu hệ điều hành hủy ngay tiến trình đang bị lỗi, giải phóng tài nguyên.',
         difficulty: 'Thông hiểu'
       },
       {
         id: 3,
-        question: 'Để giảm thời gian khởi động máy tính Windows, ta nên thiết lập điều gì trong Task Manager?',
+        question: 'Tại sao trong phòng máy tính trường học, giáo viên thường chỉ cấp tài khoản loại "Standard User" cho học sinh?',
         options: [
-          'Vào thẻ Startup apps và chuyển trạng thái các phần mềm không thiết yếu thành "Disabled"',
-          'Xóa vĩnh viễn thư mục Windows',
-          'Tắt màn hình ngay khi vừa bấm nút nguồn',
-          'Rút dây chuột'
+          'Để ngăn chặn học sinh tự ý cài đặt phần mềm lạ, game hoặc xóa nhầm các tệp tin hệ thống quan trọng',
+          'Vì tài khoản Standard User chạy máy tính nhanh hơn',
+          'Vì tài khoản Administrator tốn tiền mua hơn',
+          'Để học sinh không thể gõ văn bản'
         ],
         correctIndex: 0,
-        explanation: 'Vô hiệu hóa (Disable) các ứng dụng khởi động cùng Windows giúp hệ điều hành tải nhanh hơn rất nhiều.',
-        difficulty: 'Vận dụng'
-      },
-      {
-        id: 4,
-        question: 'Khi một ứng dụng có trạng thái "Not Responding" trong Task Manager, điều đó có nghĩa là gì?',
-        options: [
-          'Ứng dụng đang bị lỗi treo và tạm thời ngừng phản hồi tín hiệu từ hệ điều hành',
-          'Ứng dụng đã hoàn thành xong nhiệm vụ xuất sắc',
-          'Ứng dụng yêu cầu người dùng nạp tiền',
-          'Máy tính sắp nổ'
-        ],
-        correctIndex: 0,
-        explanation: 'Not Responding báo hiệu tiến trình ứng dụng đang bị nghẽn logic hoặc lỗi vòng lặp vô hạn.',
+        explanation: 'Standard User giúp bảo vệ hệ thống không bị lây nhiễm mã độc do cài phần mềm tùy tiện.',
         difficulty: 'Thông hiểu'
       },
       {
-        id: 5,
-        question: 'Tiện ích nào có sẵn trong Windows dùng để quét và giải phóng dung lượng rác trên ổ đĩa?',
-        options: ['Disk Cleanup', 'Calculator', 'Paint 3D', 'Notepad'],
+        id: 4,
+        question: 'Trong thẻ Performance của Task Manager, thông số "Memory" hiển thị điều gì?',
+        options: [
+          'Dung lượng bộ nhớ RAM đang được hệ thống và các phần mềm sử dụng',
+          'Dung lượng còn trống của thẻ nhớ điện thoại',
+          'Tốc độ quay của quạt tản nhiệt',
+          'Số lượng chữ đã soạn trong Word'
+        ],
         correctIndex: 0,
-        explanation: 'Disk Cleanup là công cụ chính thức dọn dẹp các tệp tạm (temporary files) và tệp rác hệ thống an toàn.',
+        explanation: 'Memory trong Task Manager đại diện cho bộ nhớ truy xuất ngẫu nhiên RAM.',
         difficulty: 'Nhận biết'
+      },
+      {
+        id: 5,
+        question: 'Hành động nào sau đây khi sử dụng máy tính được coi là ĐẢM BẢO AN TOÀN hệ thống?',
+        options: [
+          'Khóa màn hình máy tính (Windows + L) khi rời khỏi bàn làm việc',
+          'Dùng chung một mật khẩu 123456 cho mọi tài khoản',
+          'Tắt hết các tiến trình có chữ System trong Task Manager',
+          'Rút nguồn điện đột ngột mỗi khi tắt máy'
+        ],
+        correctIndex: 0,
+        explanation: 'Khóa màn hình (Win + L) ngăn chặn người khác truy cập trái phép khi bạn tạm vắng mặt.',
+        difficulty: 'Vận dụng'
       }
     ],
     application: {
       project: {
-        title: 'Bài thực hành: Khảo sát tài nguyên hệ thống phòng thực hành',
-        context: 'Thực hiện bài kiểm tra hiệu năng định kỳ cho máy tính học tập.',
-        mission: 'Ghi lại báo cáo cấu hình và mức độ sử dụng tài nguyên của máy tính bạn đang ngồi.',
+        title: 'Thực Hành: Chẩn Đoán Tình Trạng Sức Khỏe Máy Tính Trường Học',
+        context: 'Máy tính phòng thực hành có hiện tượng quạt kêu to và mở ứng dụng chậm chạp.',
+        mission: 'Sử dụng Task Manager để điều tra nguyên nhân và lập báo cáo chẩn đoán.',
         steps: [
-          'Bước 1: Mở Task Manager, chuyển sang thẻ Performance.',
-          'Bước 2: Ghi nhận tên bộ vi xử lý (CPU), tổng dung lượng RAM và loại ổ đĩa (SSD hay HDD).',
-          'Bước 3: Ghi lại mức tiêu thụ RAM khi mở 5 tab trình duyệt web.'
+          'Bước 1: Bấm `Ctrl + Shift + Esc` mở Task Manager, bấm vào cột `CPU` để sắp xếp từ cao xuống thấp.',
+          'Bước 2: Ghi lại tên 3 ứng dụng đang tiêu tốn nhiều CPU và RAM nhất.',
+          'Bước 3: Chuyển sang thẻ `Performance`, kiểm tra xem % RAM có bị vượt quá 90% không.',
+          'Bước 4: Sử dụng `End task` đóng các phần mềm chạy ngầm không cần thiết.'
         ],
-        outputRequirement: 'Một phiếu khảo sát thông số cấu hình và nhận xét khả năng đáp ứng học tập.',
-        practicalTip: 'So sánh tốc độ đọc/ghi giữa ổ cứng SSD và HDD để hiểu tại sao máy dùng SSD khởi động nhanh hơn.'
+        outputRequirement: 'Ảnh chụp màn hình Task Manager trước và sau khi tối ưu kèm kết luận.',
+        practicalTip: 'Nếu Memory liên tục ở mức 95-100%, máy tính đang bị thiếu RAM và cần nâng cấp thêm thanh RAM mới.'
       },
       mindmap: {
         id: 'mm_11_2',
         label: 'THỰC HÀNH HỆ ĐIỀU HÀNH',
-        color: '#7c3aed',
+        color: '#3b82f6',
         children: [
           {
             id: 'mm_11_2_1',
-            label: 'Task Manager',
+            label: 'Cài đặt hệ thống',
             children: [
-              { id: 'mm_11_2_1_1', label: 'Quản lý Processes' },
-              { id: 'mm_11_2_1_2', label: 'Theo dõi Performance' },
-              { id: 'mm_11_2_1_3', label: 'Quản lý Startup Apps' }
+              { id: 'mm_11_2_1_1', label: 'Windows Settings' },
+              { id: 'mm_11_2_1_2', label: 'Tài khoản Administrator vs Standard' }
             ]
           },
           {
             id: 'mm_11_2_2',
-            label: 'Xử lý sự cố',
+            label: 'Task Manager (Ctrl+Shift+Esc)',
             children: [
-              { id: 'mm_11_2_2_1', label: 'Đóng app treo với End Task' },
-              { id: 'mm_11_2_2_2', label: 'Dọn dẹp rác Disk Cleanup' }
+              { id: 'mm_11_2_2_1', label: 'Thẻ Processes: Giám sát tài nguyên' },
+              { id: 'mm_11_2_2_2', label: 'Thẻ Performance: Biểu đồ CPU, RAM' },
+              { id: 'mm_11_2_2_3', label: 'Nút End task: Đóng ứng dụng treo' }
             ]
           }
         ]
       }
     },
     completion: {
-      badgeName: 'Bậc Thầy Tinh Chỉnh OS 11',
+      badgeName: 'Bác Sĩ Máy Tính 11',
       badgeIcon: 'Activity',
       roleTitle: 'Chuyên Viên Quản Trị Hệ Thống Thực Hành',
-      congratsMessage: 'Tuyệt vời! Bạn đã thành thạo kỹ năng quản lý tiến trình và tối ưu hóa hệ thống máy tính.',
-      skillsUnlocked: ['Sử dụng Task Manager', 'Tắt app treo End Task', 'Quản lý khởi động Startup']
+      congratsMessage: 'Xuất sắc! Bạn đã làm chủ Task Manager và các công cụ quản trị hệ thống để bảo vệ chiếc máy tính luôn chạy mượt mà.',
+      skillsUnlocked: ['Phím tắt Ctrl+Shift+Esc', 'Xử lý treo máy với End Task', 'Phân quyền tài khoản User']
     }
   },
 
@@ -403,194 +524,214 @@ export const THEME1_LESSONS_11: Lesson[] = [
     title: 'Phần mềm nguồn mở và phần mềm chạy trên Internet',
     themeId: 1,
     themeName: 'Chủ đề 1: Máy tính và xã hội tri thức',
-    topicBadge: 'Phần mềm nguồn mở',
+    topicBadge: 'Nguồn mở & SaaS',
     grade: 11,
     estimatedMinutes: 45,
     xpTotal: 250,
     hero: {
-      tagline: 'Sức mạnh của tự do công nghệ và điện toán đám mây SaaS',
-      description: 'Phân biệt phần mềm thương mại độc quyền, phần mềm nguồn mở FOSS (giấy phép GPL), phần mềm miễn phí và các ứng dụng chạy trực tiếp trên nền tảng đám mây.',
-      accentColor: 'from-purple-600 to-indigo-600',
-      keyHighlights: ['Phần mềm mã nguồn mở (FOSS)', 'Giấy phép công cộng GPL', 'Phần mềm dịch vụ (SaaS)']
+      tagline: 'Văn hóa chia sẻ tri thức số: Sức mạnh mã nguồn mở FOSS và ứng dụng đám mây SaaS',
+      description: 'Phân biệt phần mềm thương mại độc quyền và phần mềm nguồn mở, các giấy phép tự do GPL, cùng xu hướng chuyển dịch mạnh mẽ sang các ứng dụng chạy trên Internet (SaaS) không cần cài đặt.',
+      accentColor: 'from-emerald-600 to-teal-600',
+      keyHighlights: ['Mã nguồn đóng vs Mã nguồn mở', 'Giấy phép GNU GPL', 'Phần mềm dịch vụ đám mây (SaaS)']
     },
     objectives: [
       {
         id: 'obj_11_3_1',
         category: 'knowledge',
         categoryName: 'Kiến thức cốt lõi',
-        title: 'Phân biệt nguồn đóng và nguồn mở',
-        description: 'Trình bày được sự khác nhau giữa phần mềm nguồn đóng (thương mại độc quyền) và phần mềm nguồn mở (FOSS).',
-        iconName: 'FileCode'
+        title: 'Bản chất phần mềm nguồn mở & SaaS',
+        description: 'Phân biệt được phần mềm thương mại nguồn đóng độc quyền với phần mềm nguồn mở (FOSS), hiểu được mô hình phần mềm dịch vụ chạy trên Internet (SaaS).',
+        iconName: 'Code'
       },
       {
         id: 'obj_11_3_2',
         category: 'skill',
         categoryName: 'Kỹ năng & Năng lực',
-        title: 'Nhận diện các giấy phép mở',
-        description: 'Nhận biết được ý nghĩa của giấy phép GNU GPL và các giải pháp phần mềm chạy trực tiếp trên Internet (SaaS).',
-        iconName: 'Globe'
+        title: 'Lựa chọn & khai thác phần mềm hợp lý',
+        description: 'Lựa chọn và khai thác hiệu quả các giải pháp phần mềm nguồn mở (LibreOffice, GIMP, Inkscape) và ứng dụng đám mây (Google Docs, Canva) phục vụ học tập.',
+        iconName: 'Cloud'
       },
       {
         id: 'obj_11_3_3',
         category: 'attitude',
         categoryName: 'Phẩm chất & Đạo đức',
-        title: 'Tôn trọng bản quyền tác giả',
-        description: 'Có thái độ tôn trọng quyền tác giả và lựa chọn giải pháp phần mềm hợp pháp trong học tập và công việc.',
-        iconName: 'ShieldCheck'
+        title: 'Tôn trọng bản quyền & đạo đức số',
+        description: 'Có ý thức tôn trọng quyền tác giả, tuân thủ các điều khoản giấy phép mã nguồn mở (GNU GPL, MIT) và kiên quyết không dùng phần mềm bẻ khóa (crack).',
+        iconName: 'CheckCircle'
       }
     ],
     warmup: {
-      title: 'Tình huống: Cần phần mềm văn phòng nhưng không có kinh phí mua bản quyền',
-      scenario: 'Một trường THPT vùng khó khăn cần trang bị phần mềm soạn thảo văn bản và bảng tính cho 40 máy tính nhưng kinh phí mua bản quyền Microsoft Office có giới hạn.',
-      pollQuestion: 'Giải pháp nào vừa hợp pháp, vừa tiết kiệm 100% kinh phí và đáp ứng đầy đủ tính năng văn phòng?',
+      title: 'Tình huống: Tải phần mềm "bẻ khóa" (Crack) trên mạng',
+      scenario: 'Để tiết kiệm chi phí mua bản quyền bộ phần mềm văn phòng vài triệu đồng, một bạn học sinh tìm cách tải bản "crack" trôi nổi trên diễn đàn mạng. Sau khi cài đặt, máy tính bị dính mã độc tống tiền, toàn bộ ảnh kỷ niệm bị mã hóa đòi tiền chuộc.',
+      pollQuestion: 'Giải pháp hợp pháp, an toàn và hoàn toàn miễn phí mà học sinh nên lựa chọn thay thế là gì?',
       pollOptions: [
-        { id: 'p11_3_1', text: 'Sử dụng bộ ứng dụng nguồn mở LibreOffice hoặc Google Docs chạy trên web', votesPercent: 92, isPopular: true, insight: 'Chính xác! Phần mềm nguồn mở LibreOffice và Google Docs hoàn toàn miễn phí, hợp pháp và đầy đủ tính năng.' },
-        { id: 'p11_3_2', text: 'Tải phần mềm lậu bẻ khóa (crack) từ các trang web lạ', votesPercent: 4, insight: 'Bẻ khóa vi phạm bản quyền nghiêm trọng và có nguy cơ cao lây nhiễm mã độc tống tiền.' },
-        { id: 'p11_3_3', text: 'Không dạy thực hành tin học nữa', votesPercent: 4, insight: 'Thực hành là bắt buộc trong chương trình GDPT 2018.' }
+        { id: 'p11_3_1', text: 'Sử dụng phần mềm nguồn mở (như LibreOffice) hoặc ứng dụng đám mây (Google Docs)', votesPercent: 94, isPopular: true, insight: 'Chính xác! Phần mềm nguồn mở và ứng dụng đám mây hoàn toàn miễn phí, hợp pháp 100% và an toàn tuyệt đối.' },
+        { id: 'p11_3_2', text: 'Tiếp tục tìm trang web crack khác kín đáo hơn', votesPercent: 3, insight: 'Gần 90% tệp crack trên mạng đều chứa mã độc gián điệp đánh cắp tài khoản ngân hàng.' },
+        { id: 'p11_3_3', text: 'Không dùng máy tính nữa', votesPercent: 3, insight: 'Không thể từ bỏ công nghệ trong thời đại chuyển đổi số.' }
       ],
-      reflection: 'Phần mềm nguồn mở và ứng dụng trên Internet mang lại cơ hội bình đẳng tiếp cận công nghệ cho mọi người.'
+      reflection: 'Phần mềm nguồn mở mở ra cơ hội bình đẳng tiếp cận công nghệ cho mọi học sinh mà không phải vi phạm pháp luật bản quyền.'
     },
     knowledge: [
       {
         id: 'tab_11_3_1',
-        title: '1. Phân loại Phần mềm theo Bản quyền & Mã nguồn',
-        subtitle: 'Thương mại độc quyền vs Nguồn mở tự do',
-        iconName: 'Layers',
+        title: '1. Phần mềm thương mại và phần mềm nguồn mở (FOSS)',
+        subtitle: 'Bản quyền đóng kín và văn hóa tự do chia sẻ tri thức',
+        iconName: 'Lock',
         keyPoints: [
-          'Phần mềm nguồn đóng (Proprietary Software): Nhà sản xuất giữ kín mã nguồn (như Microsoft Windows, Photoshop). Người dùng chỉ được cấp quyền sử dụng.',
-          'Phần mềm nguồn mở (Free and Open Source Software - FOSS): Mã nguồn được công khai. Người dùng có 4 quyền tự do cơ bản: Chạy, nghiên cứu mã, sửa đổi và phân phối lại.',
-          'Giấy phép GNU GPL: Yêu cầu bất kỳ sản phẩm phái sinh nào phát triển từ mã nguồn mở cũng phải tiếp tục được chia sẻ dưới dạng mã nguồn mở.',
-          'Phần mềm chạy trên Internet (SaaS): Không cần cài đặt lên máy tính, truy cập trực tiếp qua trình duyệt web (Google Docs, Canva, Figma).'
+          'Phần mềm thương mại (Commercial Software): Được phát triển vì mục đích lợi nhuận, giấu kín mã nguồn (nguồn đóng). Người dùng phải trả tiền mua bản quyền sử dụng (License) và không được phép sao chép, chỉnh sửa. Ví dụ: Microsoft Office, Adobe Photoshop, Windows.',
+          'Phần mềm nguồn mở (Free and Open Source Software - FOSS): Công khai toàn bộ mã nguồn lập trình. Người dùng được tự do: (1) Sử dụng cho mọi mục đích, (2) Nghiên cứu cách hoạt động, (3) Chỉnh sửa cải tiến, (4) Phân phối lại cho cộng đồng.',
+          'Giấy phép nguồn mở phổ biến: GNU GPL (buộc các bản cải tiến cũng phải mở mã nguồn), MIT License, Apache License.',
+          'Các ví dụ nguồn mở tiêu biểu: Hệ điều hành Linux, bộ văn phòng LibreOffice, đồ họa GIMP, Inkscape, máy chủ web Apache, hệ quản trị MySQL.'
         ],
         visualType: 'comparison-table',
         visualData: {
-          headers: ['Tiêu chí', 'Phần mềm nguồn đóng', 'Phần mềm nguồn mở (FOSS)', 'Phần mềm Web (SaaS)'],
+          headers: ['Tiêu chí', 'Phần mềm thương mại nguồn đóng', 'Phần mềm nguồn mở (FOSS)'],
           rows: [
-            ['Mã nguồn', 'Bảo mật tuyệt đối, giữ kín', 'Công khai minh bạch', 'Chạy trên máy chủ đám mây'],
-            ['Chi phí', 'Thường trả phí bản quyền cao', 'Miễn phí tải và sử dụng', 'Miễn phí hoặc thuê bao'],
-            ['Khả năng tùy biến', 'Không thể sửa đổi', 'Tự do chỉnh sửa mã nguồn', 'Tùy biến theo tính năng cung cấp'],
-            ['Ví dụ tiêu biểu', 'MS Office, macOS, Corel', 'LibreOffice, Linux, GIMP', 'Google Sheets, Canva, Figma']
+            ['Mã nguồn (Source code)', 'Bí mật tuyệt đối, khóa kín', 'Công khai miễn phí cho toàn thế giới'],
+            ['Chi phí sử dụng', 'Phải mua giấy phép bản quyền', 'Hầu hết miễn phí sử dụng'],
+            ['Quyền chỉnh sửa', 'Nghiêm cấm người dùng can thiệp', 'Khuyến khích lập trình viên cải tiến'],
+            ['Tính phụ thuộc', 'Phụ thuộc hoàn toàn vào công ty phát hành', 'Độc lập, cộng đồng toàn cầu cùng duy trì']
           ]
         },
         emCanNho: [
-          'Phần mềm nguồn mở (FOSS) công khai mã nguồn, cho phép tự do nghiên cứu, sửa đổi và phân phối.',
-          'Giấy phép GNU GPL bảo đảm tính tự do liên tục cho các phần mềm mã nguồn mở.',
-          'Phần mềm SaaS hoạt động trực tiếp trên trình duyệt Internet mà không cần cài đặt cục bộ.'
+          'Phần mềm nguồn đóng giấu mã nguồn, phải trả phí bản quyền sử dụng.',
+          'Phần mềm nguồn mở công khai mã nguồn, người dùng có 4 quyền tự do cơ bản.',
+          'Phần mềm nguồn mở tuân thủ các giấy phép quốc tế như GNU GPL, MIT.'
+        ]
+      },
+      {
+        id: 'tab_11_3_2',
+        title: '2. Phần mềm chạy trên Internet và điện toán đám mây (SaaS)',
+        subtitle: 'Xu hướng ứng dụng không cần cài đặt (Software as a Service)',
+        iconName: 'Cloud',
+        keyPoints: [
+          'Khái niệm: Phần mềm chạy trên Internet (SaaS) là phần mềm được lưu trữ và thực thi trên máy chủ đám mây, người dùng chỉ cần trình duyệt web và kết nối Internet để sử dụng mà không cần cài đặt lên máy tính cá nhân.',
+          'Ưu điểm vượt trội: (1) Không chiếm dung lượng ổ cứng, (2) Tự động cập nhật phiên bản mới nhất, (3) Dễ dàng làm việc nhóm đồng thời thời gian thực, (4) Dữ liệu đồng bộ mọi lúc mọi nơi trên cả điện thoại và máy tính.',
+          'Các ví dụ quen thuộc: Google Docs/Sheets/Slides, Canva, Office 365 Online, Figma.'
+        ],
+        visualType: 'infographic',
+        visualData: {
+          nodes: [
+            { label: 'Máy tính người dùng', desc: 'Chỉ cần Trình duyệt web (Chrome, Edge)' },
+            { label: 'Mạng Internet', desc: 'Truyền tải dữ liệu mã hóa an toàn' },
+            { label: 'Máy chủ Đám mây (Cloud)', desc: 'Xử lý tính toán, lưu trữ tệp tin tự động' }
+          ]
+        },
+        emCanNho: [
+          'Phần mềm chạy trên Internet (SaaS) không cần cài đặt lên máy tính cá nhân.',
+          'Hỗ trợ cộng tác làm việc nhóm theo thời gian thực vượt trội.',
+          'Dữ liệu được lưu trữ an toàn trên đám mây, truy cập được từ mọi thiết bị số.'
         ]
       }
     ],
     miniGame: {
       type: 'drag-drop',
-      title: 'Phân loại Phần mềm Nguồn đóng và Nguồn mở',
-      instruction: 'Phân loại các phần mềm sau vào đúng nhóm bản quyền:',
+      title: 'Phân loại Phần mềm Nguồn Đóng, Nguồn Mở và Ứng Dụng Web',
+      instruction: 'Kéo thả các phần mềm vào đúng nhóm bản chất của chúng:',
       categories: [
-        { id: 'closed_src', title: 'Phần mềm Nguồn đóng (Thương mại)', color: 'border-amber-500 bg-amber-950/40 text-amber-300' },
-        { id: 'open_src', title: 'Phần mềm Mã nguồn mở (FOSS)', color: 'border-emerald-500 bg-emerald-950/40 text-emerald-300' }
+        { id: 'cat_close', title: 'Phần mềm Nguồn Đóng Thương Mại', color: 'border-amber-500 bg-amber-950/40 text-amber-300' },
+        { id: 'cat_open', title: 'Phần mềm Mã Nguồn Mở (FOSS)', color: 'border-emerald-500 bg-emerald-950/40 text-emerald-300' }
       ],
       dragItems: [
-        { id: 's1', text: 'Hệ điều hành Ubuntu Linux', category: 'open_src', explanation: 'Hệ điều hành mã nguồn mở cộng đồng lớn nhất thế giới.' },
-        { id: 's2', text: 'Microsoft Office 365', category: 'closed_src', explanation: 'Bộ ứng dụng văn phòng thương mại nguồn đóng của Microsoft.' },
-        { id: 's3', text: 'Phần mềm đồ họa GIMP', category: 'open_src', explanation: 'Công cụ chỉnh sửa ảnh nguồn mở thay thế Photoshop.' },
-        { id: 's4', text: 'Adobe Photoshop', category: 'closed_src', explanation: 'Phần mềm thương mại nguồn đóng chuyên nghiệp của Adobe.' },
-        { id: 's5', text: 'Trình duyệt web Mozilla Firefox', category: 'open_src', explanation: 'Trình duyệt web mã nguồn mở bảo vệ quyền riêng tư.' }
+        { id: 'f1', text: 'Hệ điều hành Microsoft Windows 11', category: 'cat_close', explanation: 'Sản phẩm thương mại nguồn đóng độc quyền của Microsoft.' },
+        { id: 'f2', text: 'Bộ ứng dụng văn phòng LibreOffice', category: 'cat_open', explanation: 'Dự án nguồn mở hoàn toàn miễn phí thay thế Microsoft Office.' },
+        { id: 'f3', text: 'Hệ điều hành nhân Linux (Ubuntu, Debian)', category: 'cat_open', explanation: 'Biểu tượng vĩ đại nhất của phong trào mã nguồn mở thế giới.' },
+        { id: 'f4', text: 'Phần mềm đồ họa Adobe Photoshop', category: 'cat_close', explanation: 'Phần mềm độc quyền trả phí định kỳ đắt đỏ.' },
+        { id: 'f5', text: 'Phần mềm chỉnh sửa ảnh GIMP', category: 'cat_open', explanation: 'Phần mềm đồ họa vector và bitmap nguồn mở chuẩn FOSS.' }
       ]
     },
     assessment: [
       {
         id: 1,
-        question: 'Đặc điểm quan trọng nhất của phần mềm mã nguồn mở (FOSS) là gì?',
+        question: 'Đặc điểm cốt lõi nào sau đây phân biệt phần mềm nguồn mở (Open Source) với phần mềm nguồn đóng thương mại?',
         options: [
-          'Mã nguồn được công khai, cho phép người dùng tự do nghiên cứu, sửa đổi và phân phối lại',
-          'Mã nguồn bị khóa chặt bằng mật khẩu',
-          'Bắt buộc người dùng phải trả phí hàng tháng',
-          'Chỉ chạy được trên điện thoại cũ'
+          'Mã nguồn lập trình được công khai để mọi người tự do nghiên cứu, chỉnh sửa và phân phối lại',
+          'Phần mềm nguồn mở không bao giờ có lỗi',
+          'Phần mềm nguồn mở chỉ chạy được trên điện thoại',
+          'Phần mềm nguồn mở không cần dùng điện'
         ],
         correctIndex: 0,
-        explanation: 'FOSS trao quyền tự do sử dụng, nghiên cứu, cải tiến và chia sẻ mã nguồn cho cộng đồng.',
-        difficulty: 'Nhận biết'
+        explanation: 'Tính công khai và tự do của mã nguồn (Source code) là bản chất định nghĩa phần mềm nguồn mở.',
+        difficulty: 'Thông hiểu'
       },
       {
         id: 2,
-        question: 'Giấy phép GNU GPL áp dụng cho phần mềm nguồn mở có điều khoản cốt lõi nào sau đây?',
-        options: [
-          'Phần mềm phái sinh được tạo ra từ mã nguồn GPL cũng bắt buộc phải công khai mã nguồn theo chuẩn GPL',
-          'Cấm tất cả mọi người sử dụng phần mềm',
-          'Yêu cầu nộp tiền cho nhà sáng lập',
-          'Không cho phép cài đặt lên máy tính Linux'
-        ],
+        question: 'Phần mềm nào sau đây là một phần mềm mã nguồn mở nổi tiếng thế giới?',
+        options: ['Hệ điều hành Linux', 'Microsoft Word', 'Adobe Illustrator', 'Apple iOS'],
         correctIndex: 0,
-        explanation: 'Quy tắc "Copyleft" của GPL đảm bảo phần mềm mở luôn giữ tính mở cho các thế hệ phái sinh.',
-        difficulty: 'Thông hiểu'
-      },
-      {
-        id: 3,
-        question: 'Ứng dụng nào sau đây là ví dụ điển hình của mô hình "Phần mềm chạy trên Internet" (SaaS)?',
-        options: ['Google Docs', 'Notepad trên máy tính', 'Paint cài đặt sẵn', 'BIOS máy tính'],
-        correctIndex: 0,
-        explanation: 'Google Docs chạy hoàn toàn trên đám mây thông qua trình duyệt web mà không cần cài đặt phần mềm lên máy.',
+        explanation: 'Linux là hệ điều hành mã nguồn mở được phát triển bởi Linus Torvalds và cộng đồng toàn cầu.',
         difficulty: 'Nhận biết'
       },
       {
-        id: 4,
-        question: 'Tại sao việc tải và sử dụng các phần mềm "bẻ khóa" (Crack/Keygen) lại tiềm ẩn rủi ro lớn?',
+        id: 3,
+        question: 'Ưu điểm LỚN NHẤT khi sử dụng các phần mềm chạy trên Internet (SaaS) như Google Docs hay Canva là gì?',
         options: [
-          'Các tệp bẻ khóa thường bị tin tặc cài cắm mã độc gián điệp, Trojan hoặc Ransomware tống tiền',
-          'Vì phần mềm bẻ khóa làm máy tính nhẹ hơn',
-          'Vì phần mềm bẻ khóa tự động dọn rác',
-          'Vì phần mềm bẻ khóa hợp pháp'
+          'Không cần cài đặt, không tốn ổ cứng và nhiều người có thể cùng chỉnh sửa một tài liệu theo thời gian thực',
+          'Không cần có kết nối mạng Internet vẫn dùng bình thường',
+          'Máy tính cũ từ 50 năm trước cũng chạy được',
+          'Tự động làm bài thi hộ học sinh'
         ],
         correctIndex: 0,
-        explanation: 'Tệp crack là phương thức phổ biến nhất để hacker phát tán virus và chiếm đoạt dữ liệu tài khoản.',
-        difficulty: 'Vận dụng'
+        explanation: 'SaaS chạy trên nền web máy chủ đám mây, tối ưu khả năng cộng tác nhóm mọi lúc mọi nơi.',
+        difficulty: 'Thông hiểu'
+      },
+      {
+        id: 4,
+        question: 'Giấy phép công cộng phổ biến nhất trong thế giới mã nguồn mở là gì?',
+        options: ['GNU GPL (General Public License)', 'Giấy phép lái xe máy', 'Bản quyền độc quyền Microsoft EULA', 'Hợp đồng bảo hiểm'],
+        correctIndex: 0,
+        explanation: 'GNU GPL bảo đảm phần mềm và các sản phẩm phái sinh từ nó luôn giữ nguyên tính tự do nguồn mở.',
+        difficulty: 'Nhận biết'
       },
       {
         id: 5,
-        question: 'Lợi ích kinh tế lớn nhất khi một cơ quan hoặc trường học chuyển đổi sang dùng phần mềm nguồn mở là gì?',
+        question: 'Tại sao việc tải và sử dụng các phần mềm bẻ khóa (crack) lại cực kỳ NGUY HIỂM?',
         options: [
-          'Tiết kiệm tối đa chi phí bản quyền và không phụ thuộc vào một nhà cung cấp duy nhất',
-          'Không cần dùng màn hình máy tính',
-          'Máy tính không cần cắm điện',
-          'Tự động tăng tốc độ đường truyền mạng lên 100 lần'
+          'Các tệp crack thường bị tin tặc chèn sẵn virus gián điệp để đánh cắp mật khẩu, tống tiền và vi phạm pháp luật bản quyền',
+          'Vì phần mềm crack sẽ làm hỏng bàn phím',
+          'Vì tệp crack làm máy tính phát ra tiếng ồn',
+          'Vì phần mềm crack chỉ có tiếng nước ngoài'
         ],
         correctIndex: 0,
-        explanation: 'Phần mềm nguồn mở giúp tiết kiệm ngân sách mua bản quyền và tăng tính tự chủ công nghệ.',
-        difficulty: 'Thông hiểu'
+        explanation: 'Crack là con đường số 1 lây nhiễm mã độc nguy hiểm và là hành vi xâm phạm quyền sở hữu trí tuệ.',
+        difficulty: 'Vận dụng'
       }
     ],
     application: {
       project: {
-        title: 'Dự án: Xây dựng Bộ công cụ Học tập Nguồn Mở & Đám Mây',
-        context: 'Lập danh mục các phần mềm miễn phí và hợp pháp thay thế các phần mềm trả phí cho học sinh lớp 11.',
-        mission: 'Thiết lập danh sách các công cụ tương đương để học tập môn Tin học suốt năm học.',
+        title: 'Chuyển Đổi Số Học Đường: Xây Dựng Bộ Công Cụ Học Tập Miễn Phí 0 Đồng',
+        context: 'Lớp học phát động phong trào sử dụng phần mềm hợp pháp, nói không với phần mềm lậu crack.',
+        mission: 'Tìm kiếm và lập danh mục các phần mềm nguồn mở hoặc ứng dụng đám mây thay thế hoàn toàn các phần mềm thương mại đắt đỏ.',
         steps: [
-          'Bước 1: Tìm công cụ nguồn mở thay thế MS Office (Gợi ý: LibreOffice hoặc Google Workspace).',
-          'Bước 2: Tìm công cụ thay thế Photoshop (Gợi ý: GIMP hoặc Photopea).',
-          'Bước 3: Tìm công cụ dựng video thay thế Premiere (Gợi ý: OpenShot hoặc Clipchamp).'
+          'Văn phòng: Thay Microsoft Office bằng LibreOffice hoặc Google Docs.',
+          'Đồ họa ảnh: Thay Adobe Photoshop bằng GIMP (gimp.org).',
+          'Đồ họa vector: Thay Adobe Illustrator bằng Inkscape (inkscape.org).',
+          'Làm phim: Thay Adobe Premiere bằng CapCut Web hoặc Shotcut (shotcut.org).'
         ],
-        outputRequirement: 'Một bảng đối chiếu phần mềm thương mại và phần mềm nguồn mở/đám mây tương đương.',
-        practicalTip: 'Khai thác tối đa các công cụ đám mây giúp bạn có thể học tập trên mọi thiết bị mà không lo mất tệp.'
+        outputRequirement: 'Bảng tổng hợp phần mềm thay thế kèm link tải trang chủ chính thống.',
+        practicalTip: 'Sử dụng phần mềm nguồn mở giúp học sinh tự tin trình bày sản phẩm mà không sợ vi phạm bản quyền quốc tế.'
       },
       mindmap: {
         id: 'mm_11_3',
         label: 'PHẦN MỀM NGUỒN MỞ & ĐÁM MÂY',
-        color: '#7c3aed',
+        color: '#059669',
         children: [
           {
             id: 'mm_11_3_1',
-            label: 'Nguồn mở (FOSS)',
+            label: 'Phần mềm nguồn mở (FOSS)',
             children: [
-              { id: 'mm_11_3_1_1', label: 'Tự do nghiên cứu mã nguồn' },
-              { id: 'mm_11_3_1_2', label: 'Giấy phép GNU GPL' },
-              { id: 'mm_11_3_1_3', label: 'Ví dụ: Linux, LibreOffice, GIMP' }
+              { id: 'mm_11_3_1_1', label: 'Công khai mã nguồn tự do' },
+              { id: 'mm_11_3_1_2', label: 'Giấy phép GNU GPL, MIT' },
+              { id: 'mm_11_3_1_3', label: 'Linux, LibreOffice, GIMP' }
             ]
           },
           {
             id: 'mm_11_3_2',
-            label: 'Đám mây (SaaS)',
+            label: 'Ứng dụng Internet (SaaS)',
             children: [
-              { id: 'mm_11_3_2_1', label: 'Chạy trực tiếp trên Web' },
-              { id: 'mm_11_3_2_2', label: 'Cộng tác thời gian thực' },
-              { id: 'mm_11_3_2_3', label: 'Ví dụ: Google Docs, Canva' }
+              { id: 'mm_11_3_2_1', label: 'Không cần cài đặt ổ cứng' },
+              { id: 'mm_11_3_2_2', label: 'Cộng tác nhóm thời gian thực' },
+              { id: 'mm_11_3_2_3', label: 'Google Docs, Canva, Figma' }
             ]
           }
         ]
@@ -598,10 +739,10 @@ export const THEME1_LESSONS_11: Lesson[] = [
     },
     completion: {
       badgeName: 'Hiệp Sĩ Nguồn Mở 11',
-      badgeIcon: 'Globe',
-      roleTitle: 'Đại Sứ Công Nghệ Tự Do & Nguồn Mở',
-      congratsMessage: 'Tuyệt vời! Bạn đã thấu hiểu sức mạnh của phong trào mã nguồn mở và ứng dụng đám mây trong kỷ nguyên số.',
-      skillsUnlocked: ['Phân biệt FOSS vs Nguồn đóng', 'Hiểu giấy phép GPL', 'Ứng dụng công nghệ đám mây SaaS']
+      badgeIcon: 'Code',
+      roleTitle: 'Đại Sứ Công Nghệ Nguồn Mở & Đám Mây',
+      congratsMessage: 'Tuyệt vời! Bạn đã thấu hiểu triết lý nhân văn của phần mềm nguồn mở và sẵn sàng khai thác các giải pháp đám mây văn minh.',
+      skillsUnlocked: ['Phân biệt FOSS vs Nguồn đóng', 'Hiểu giấy phép GNU GPL', 'Ứng dụng đám mây SaaS']
     }
   },
 
@@ -617,190 +758,240 @@ export const THEME1_LESSONS_11: Lesson[] = [
     estimatedMinutes: 45,
     xpTotal: 250,
     hero: {
-      tagline: 'Khám phá trái tim vi xử lý và cấu trúc kiến trúc phần cứng',
-      description: 'Khám phá kiến trúc Von Neumann kinh điển, chức năng của CPU (ALU, CU, Registers), phân biệt bộ nhớ trong (RAM, ROM) và bộ nhớ ngoài (SSD, HDD).',
-      accentColor: 'from-purple-600 to-indigo-600',
-      keyHighlights: ['Kiến trúc Von Neumann', 'Bộ não vi xử lý CPU', 'Bộ nhớ RAM vs Ổ đĩa SSD']
+      tagline: 'Khám phá trái tim điện tử: Giải mã kiến trúc Von Neumann và các linh kiện phần cứng',
+      description: 'Mở thùng máy tính để tìm hiểu cấu tạo và nguyên lý hoạt động của bộ vi xử lý CPU, bộ nhớ trong RAM/ROM, bộ nhớ ngoài SSD/HDD và bo mạch chủ Mainboard kết nối toàn hệ thống.',
+      accentColor: 'from-amber-600 to-orange-600',
+      keyHighlights: ['Kiến trúc Von Neumann', 'Bộ ba CPU - RAM - SSD', 'Bo mạch chủ và Bus hệ thống']
     },
     objectives: [
       {
         id: 'obj_11_4_1',
         category: 'knowledge',
         categoryName: 'Kiến thức cốt lõi',
-        title: 'Kiến trúc máy tính Von Neumann',
-        description: 'Trình bày được các khối chức năng chính: Bộ xử lý trung tâm (CPU), Bộ nhớ (Memory), Thiết bị vào/ra (I/O) và Bus liên kết.',
+        title: 'Kiến trúc Von Neumann & chức năng linh kiện',
+        description: 'Trình bày được nguyên lý kiến trúc máy tính Von Neumann và chức năng của các thành phần chính: CPU, RAM, ROM, các loại bộ nhớ ngoài và bo mạch chủ.',
         iconName: 'Cpu'
       },
       {
         id: 'obj_11_4_2',
         category: 'skill',
         categoryName: 'Kỹ năng & Năng lực',
-        title: 'Đọc hiểu thông số phần cứng',
-        description: 'Đọc và giải thích được các thông số kỹ thuật cơ bản khi chọn mua máy tính: tốc độ CPU (GHz), dung lượng RAM (GB), chuẩn ổ cứng (NVMe SSD).',
-        iconName: 'HardDrive'
+        title: 'Nhận diện & đánh giá thông số phần cứng',
+        description: 'Đọc hiểu được các thông số kỹ thuật cơ bản của máy tính (Xung nhịp CPU GHz, dung lượng RAM GB, chuẩn ổ cứng SSD NVMe) khi chọn mua thiết bị.',
+        iconName: 'Search'
       },
       {
         id: 'obj_11_4_3',
         category: 'attitude',
         categoryName: 'Phẩm chất & Đạo đức',
-        title: 'Bảo quản và sử dụng thiết bị bền bỉ',
-        description: 'Hình thành thói quen vệ sinh, tản nhiệt tốt và bảo vệ linh kiện phần cứng máy tính tránh ẩm mốc, quá nhiệt.',
-        iconName: 'ShieldCheck'
+        title: 'Bảo quản & sử dụng phần cứng đúng cách',
+        description: 'Hình thành thói quen sử dụng máy tính nơi khô ráo, thoáng mát và có ý thức giữ gìn vệ sinh các thiết bị điện tử.',
+        iconName: 'Shield'
       }
     ],
     warmup: {
-      title: 'Tình huống: Tư vấn nâng cấp máy tính chạy giật lag',
-      scenario: 'Chiếc máy tính của bạn khi mở cùng lúc 15 tab trình duyệt và ứng dụng học trực tuyến Zoom thì bị giật lag nghiêm trọng. Kiểm tra Task Manager thấy thanh Memory luôn ở mức 98%.',
-      pollQuestion: 'Linh kiện phần cứng nào cần được ưu tiên nâng cấp để giải quyết dứt điểm tình trạng này?',
+      title: 'Tình huống: Nâng cấp máy tính chơi game và học tập',
+      scenario: 'Một chiếc máy tính bật ứng dụng rất chậm, mỗi lần mở máy phải đợi mất 5 phút. Bạn của bạn khuyên nên nâng cấp ổ cứng từ HDD truyền thống sang ổ thể rắn SSD NVMe.',
+      pollQuestion: 'Tại sao thay ổ SSD lại làm máy tính khởi động nhanh gấp 10 lần so với ổ HDD?',
       pollOptions: [
-        { id: 'p11_4_1', text: 'Nâng cấp thêm dung lượng bộ nhớ trong RAM (từ 4GB lên 8GB hoặc 16GB)', votesPercent: 90, isPopular: true, insight: 'Chính xác! Thiếu hụt RAM khiến máy tính phải dùng ổ đĩa làm bộ nhớ ảo, gây giật lag nghiêm trọng.' },
-        { id: 'p11_4_2', text: 'Thay vỏ thùng máy (Case) có đèn LED nhiều màu hơn', votesPercent: 4, insight: 'Đèn LED chỉ có tác dụng trang trí, không ảnh hưởng đến dung lượng RAM xử lý.' },
-        { id: 'p11_4_3', text: 'Mua thêm bàn di chuột kích thước lớn', votesPercent: 6, insight: 'Bàn di chuột không giải quyết được vấn đề quá tải bộ nhớ RAM.' }
+        { id: 'p11_4_1', text: 'Ổ SSD dùng chip nhớ bán dẫn thể rắn (Flash) không có phiến đĩa quay cơ học nên tốc độ đọc ghi dữ liệu cực nhanh', votesPercent: 92, isPopular: true, insight: 'Chính xác! SSD đọc ghi điện tử thuần túy với tốc độ hàng nghìn MB/s, vượt trội hoàn toàn so với đầu kim cơ học của HDD.' },
+        { id: 'p11_4_2', text: 'Vì ổ SSD nhẹ hơn nên máy tính chạy bay hơn', votesPercent: 4, insight: 'Trọng lượng vật lý nhẹ không làm tăng tốc độ xử lý bit dữ liệu.' },
+        { id: 'p11_4_3', text: 'Vì ổ SSD dùng nhiều điện hơn', votesPercent: 4, insight: 'SSD thực chất tiết kiệm điện và mát hơn HDD rất nhiều.' }
       ],
-      reflection: 'Hiểu rõ chức năng của từng linh kiện bên trong máy tính giúp bạn trở thành người tiêu dùng công nghệ thông thái.'
+      reflection: 'Hiểu rõ các linh kiện bên trong máy tính giúp bạn trở thành người tiêu dùng thông thái, tự tin chọn mua hoặc nâng cấp thiết bị hiệu quả.'
     },
     knowledge: [
       {
         id: 'tab_11_4_1',
-        title: '1. Kiến trúc Von Neumann & Các Khối Linh Kiện',
-        subtitle: 'Nguyên lý hoạt động của máy tính điện tử hiện đại',
+        title: '1. Kiến trúc máy tính Von Neumann',
+        subtitle: 'Nguyên lý nền tảng của mọi máy tính điện tử hiện đại',
         iconName: 'Cpu',
         keyPoints: [
-          'Kiến trúc Von Neumann: Gồm Bộ xử lý trung tâm (CPU), Bộ nhớ (RAM/ROM), Thiết bị Vào/Ra (I/O) và hệ thống đường truyền tín hiệu (Bus).',
-          'CPU (Central Processing Unit): "Bộ não" máy tính, gồm Khối tính toán số học/logic (ALU), Khối điều khiển (CU) và các thanh ghi (Registers).',
-          'RAM (Random Access Memory): Bộ nhớ truy cập ngẫu nhiên, lưu dữ liệu tạm thời khi máy đang chạy, mất dữ liệu khi mất điện (Volatile).',
-          'ROM (Read Only Memory): Bộ nhớ chỉ đọc, lưu chương trình khởi động máy tính cơ bản (BIOS/UEFI), không mất dữ liệu khi tắt máy.',
-          'Bộ nhớ ngoài (SSD / HDD): Lưu trữ dữ liệu lâu dài và bền vững.'
+          'Kiến trúc Von Neumann (do nhà toán học John von Neumann đề xuất năm 1945) xác lập cấu trúc kinh điển gồm 4 khối:',
+          '  1. Bộ xử lý trung tâm (CPU): Điều khiển và thực hiện các phép tính.',
+          '  2. Bộ nhớ (Memory): Gồm bộ nhớ trong lưu chương trình đang chạy và dữ liệu.',
+          '  3. Thiết bị Vào/Ra (Input/Output Devices): Bàn phím, chuột, màn hình, máy in.',
+          '  4. Đường truyền (Bus hệ thống): Kết nối các khối lại với nhau.',
+          'Nguyên lý lưu trữ chương trình: Chương trình được nạp vào bộ nhớ dưới dạng mã nhị phân và được CPU thực hiện tuần tự từng lệnh.'
         ],
         visualType: 'infographic',
         visualData: {
           nodes: [
-            { label: '1. Thiết bị Vào (Input)', desc: 'Bàn phím, Chuột, Microphone, Scanner' },
-            { label: '2. Khối Xử lý & Nhớ (CPU & RAM)', desc: 'CU, ALU, Registers, Bộ nhớ RAM chính' },
-            { label: '3. Thiết bị Ra (Output)', desc: 'Màn hình, Loa, Máy in' }
+            { label: 'Thiết bị vào (Input)', desc: 'Bàn phím, Chuột, Máy quét' },
+            { label: 'CPU + Bộ nhớ trong (RAM/ROM)', desc: 'Xử lý tính toán và điều phối tuần tự' },
+            { label: 'Thiết bị ra (Output)', desc: 'Màn hình, Máy in, Loa' }
           ]
         },
         emCanNho: [
-          'Kiến trúc Von Neumann là nền tảng của mọi máy tính điện tử hiện nay.',
-          'CPU gồm ALU (tính toán), CU (điều khiển) và Registers (thanh ghi nhớ siêu nhanh).',
-          'RAM là bộ nhớ tạm thời (mất khi tắt điện); SSD/HDD là bộ nhớ lưu trữ lâu dài.'
+          'Kiến trúc Von Neumann là nền tảng của mọi máy tính kỹ thuật số hiện nay.',
+          'Gồm 4 khối: Bộ xử lý CPU, Bộ nhớ, Thiết bị vào/ra và Bus kết nối.',
+          'Dữ liệu và chương trình cùng được lưu trữ trong bộ nhớ dưới dạng mã nhị phân.'
+        ]
+      },
+      {
+        id: 'tab_11_4_2',
+        title: '2. Các thành phần chính bên trong máy tính',
+        subtitle: 'CPU, RAM, ROM, Ổ cứng lưu trữ và Bo mạch chủ',
+        iconName: 'Layers',
+        keyPoints: [
+          'CPU (Central Processing Unit): Bộ não của máy tính, gồm Khối tính toán số học/logic (ALU), Khối điều khiển (CU) và các Thanh ghi (Registers). Tốc độ đo bằng GHz.',
+          'RAM (Random Access Memory): Bộ nhớ truy xuất ngẫu nhiên, tốc độ siêu nhanh nhưng là bộ nhớ khả biến (mất sạch dữ liệu khi ngắt điện).',
+          'ROM (Read Only Memory): Bộ nhớ chỉ đọc, lưu sẵn chương trình khởi động máy tính (BIOS/UEFI), không bị mất khi tắt nguồn.',
+          'Bộ nhớ ngoài (SSD / HDD): Lưu trữ lâu dài hệ điều hành, phần mềm và tệp tin (SSD nhanh gấp 5-10 lần HDD).',
+          'Bo mạch chủ (Mainboard): Bảng mạch in lớn nhất chứa socket CPU, khe cắm RAM, khe PCIe và các mạch dẫn liên kết toàn bộ linh kiện.'
+        ],
+        visualType: 'comparison-table',
+        visualData: {
+          headers: ['Linh kiện', 'Loại bộ nhớ', 'Đặc tính mất điện', 'Tốc độ truy xuất', 'Dung lượng tiêu biểu'],
+          rows: [
+            ['RAM', 'Bộ nhớ trong', 'Mất dữ liệu khi tắt nguồn', 'Cực nhanh (hàng chục GB/s)', '8GB - 32GB'],
+            ['ROM', 'Bộ nhớ trong', 'Không mất dữ liệu (lưu BIOS)', 'Nhanh', 'vài MB'],
+            ['SSD / HDD', 'Bộ nhớ ngoài', 'Không mất dữ liệu (lưu trữ lâu dài)', 'Trung bình (500MB/s - 7000MB/s)', '256GB - 2TB']
+          ]
+        },
+        emCanNho: [
+          'CPU là bộ não xử lý; RAM là bàn làm việc tạm thời (mất điện là mất dữ liệu).',
+          'Ổ cứng SSD/HDD là tủ kho lưu trữ tài liệu lâu dài không sợ mất khi tắt điện.',
+          'Bo mạch chủ Mainboard là xương sống kết nối toàn bộ linh kiện máy tính.'
+        ]
+      },
+      {
+        id: 'tab_11_4_3',
+        title: '3. Cổng kết nối và các bus truyền dữ liệu',
+        subtitle: 'Đường cao tốc vận chuyển tín hiệu điện tử',
+        iconName: 'GitCommit',
+        keyPoints: [
+          'Bus hệ thống: Là tập hợp các đường dây dẫn điện tử truyền thông tin giữa CPU, RAM và các thiết bị:',
+          '  - Bus dữ liệu (Data Bus): Truyền các bit dữ liệu.',
+          '  - Bus địa chỉ (Address Bus): Xác định vị trí ô nhớ cần truy xuất.',
+          '  - Bus điều khiển (Control Bus): Truyền các tín hiệu đọc/ghi/đồng bộ nhịp.',
+          'Các cổng giao tiếp ngoài phổ biến: Cổng USB (USB-A, USB Type-C tốc độ cao), cổng xuất hình ảnh HDMI, DisplayPort, cổng mạng LAN RJ-45 và jack âm thanh 3.5mm.'
+        ],
+        visualType: 'infographic',
+        visualData: {
+          nodes: [
+            { label: 'Data Bus', desc: 'Đường truyền dữ liệu 64-bit hai chiều' },
+            { label: 'Address Bus', desc: 'Chỉ định địa chỉ ô nhớ trong RAM' },
+            { label: 'Control Bus', desc: 'Phát tín hiệu Read/Write nhịp đồng hồ' }
+          ]
+        },
+        emCanNho: [
+          'Bus là hệ thống dây dẫn truyền dữ liệu, địa chỉ và tín hiệu điều khiển giữa các khối.',
+          'Bus càng rộng và tần số càng cao thì máy tính truyền dữ liệu càng nhanh.',
+          'Các cổng kết nối hiện đại như USB-C, HDMI giúp truyền tải âm thanh, hình ảnh tốc độ cao.'
         ]
       }
     ],
     miniGame: {
       type: 'matching',
-      title: 'Ghép cặp Linh kiện phần cứng và Vai trò',
-      instruction: 'Nối linh kiện bên trong máy tính với chức năng cốt lõi của nó:',
+      title: 'Ghép cặp Linh Kiện và Vai Trò Cốt Lõi',
+      instruction: 'Nối linh kiện phần cứng với vai trò chuẩn xác:',
       matchingPairs: [
-        { id: 'hw1', left: 'Bộ xử lý trung tâm (CPU)', right: 'Bộ não tính toán logic và điều phối mọi lệnh' },
-        { id: 'hw2', left: 'Bộ nhớ RAM', right: 'Lưu dữ liệu tạm thời của các phần mềm đang chạy' },
-        { id: 'hw3', left: 'Ổ cứng SSD NVMe', right: 'Lưu trữ hệ điều hành và dữ liệu lâu dài với tốc độ cao' },
-        { id: 'hw4', left: 'Bo mạch chủ (Motherboard)', right: 'Bản mạch chính kết nối toàn bộ các linh kiện với nhau' }
+        { id: 'hw1', left: 'Bộ vi xử lý CPU', right: 'Thực hiện các phép tính số học/logic và điều khiển toàn máy' },
+        { id: 'hw2', left: 'Bộ nhớ RAM', right: 'Lưu trữ tạm thời chương trình đang chạy, mất dữ liệu khi tắt nguồn' },
+        { id: 'hw3', left: 'Ổ cứng SSD', right: 'Lưu trữ lâu dài hệ điều hành và dữ liệu, không mất khi ngắt điện' },
+        { id: 'hw4', left: 'Bo mạch chủ (Mainboard)', right: 'Bảng mạch nền tảng gắn kết và cấp điện cho mọi linh kiện' }
       ]
     },
     assessment: [
       {
         id: 1,
-        question: 'Thành phần nào sau đây được coi là "bộ não" thực hiện tính toán và điều khiển của máy tính?',
-        options: ['Bộ vi xử lý trung tâm (CPU)', 'Thùng máy (Case)', 'Cáp nguồn điện', 'Bàn phím'],
+        question: 'Theo kiến trúc máy tính kinh điển Von Neumann, các lệnh và dữ liệu được nạp vào đâu để CPU thực hiện tuần tự?',
+        options: ['Bộ nhớ (Memory)', 'Bàn phím cơ', 'Màn hình máy tính', 'Loa âm thanh'],
         correctIndex: 0,
-        explanation: 'CPU (Central Processing Unit) là linh kiện cốt lõi xử lý mọi chỉ thị và dữ liệu trong máy tính.',
-        difficulty: 'Nhận biết'
-      },
-      {
-        id: 2,
-        question: 'Đặc điểm nào sau đây là sự khác biệt then chốt giữa bộ nhớ RAM và ổ đĩa SSD?',
-        options: [
-          'RAM bị mất toàn bộ dữ liệu khi mất nguồn điện, còn SSD lưu trữ dữ liệu bền vững ngay cả khi tắt máy',
-          'RAM lưu dữ liệu vĩnh viễn không bao giờ xóa được',
-          'SSD chỉ dùng để nối mạng',
-          'RAM có dung lượng lớn hơn SSD hàng nghìn lần'
-        ],
-        correctIndex: 0,
-        explanation: 'RAM là bộ nhớ khả biến (volatile), cần có điện để duy trì trạng thái dữ liệu.',
+        explanation: 'Nguyên lý Von Neumann quy định chương trình và dữ liệu cùng được lưu trong bộ nhớ dưới dạng mã nhị phân.',
         difficulty: 'Thông hiểu'
       },
       {
-        id: 3,
-        question: 'Trong CPU, khối chức năng nào chịu trách nhiệm thực hiện các phép tính số học (+, -, *, /) và phép so sánh logic?',
-        options: ['ALU (Arithmetic Logic Unit)', 'CU (Control Unit)', 'ROM', 'Cổng HDMI'],
+        id: 2,
+        question: 'Hiện tượng gì sẽ xảy ra với dữ liệu đang lưu trong bộ nhớ RAM khi bạn đột ngột tắt nguồn điện máy tính?',
+        options: [
+          'Toàn bộ dữ liệu trong RAM sẽ bị biến mất hoàn toàn',
+          'Dữ liệu vẫn được giữ nguyên vĩnh viễn',
+          'Dữ liệu tự động bay lên Google Drive',
+          'Dữ liệu tự động in ra giấy'
+        ],
         correctIndex: 0,
-        explanation: 'ALU (Arithmetic Logic Unit) là khối chuyên trách các phép tính số học và logic.',
+        explanation: 'RAM là bộ nhớ khả biến (Volatile Memory), cần có nguồn điện duy trì các transistor tích điện.',
+        difficulty: 'Nhận biết'
+      },
+      {
+        id: 3,
+        question: 'Bộ phận nào được coi là "bộ não" thực thi mọi phép toán số học và điều khiển các hoạt động của máy tính?',
+        options: ['CPU (Central Processing Unit)', 'Chuột quang', 'Vỏ case kim loại', 'Quạt tản nhiệt'],
+        correctIndex: 0,
+        explanation: 'CPU là bộ vi xử lý trung tâm điều phối và tính toán toàn bộ lệnh chương trình.',
         difficulty: 'Nhận biết'
       },
       {
         id: 4,
-        question: 'Khi đọc thông số một chiếc laptop: "Intel Core i5 13400, RAM 16GB, SSD 512GB NVMe", con số "16GB" thể hiện điều gì?',
+        question: 'Ổ thể rắn SSD có ưu điểm vượt trội nào so với ổ cứng cơ học HDD truyền thống?',
         options: [
-          'Dung lượng bộ nhớ truy cập ngẫu nhiên (RAM)',
-          'Tốc độ quay của quạt gió',
-          'Độ lớn của màn hình đo theo inch',
-          'Thời gian bảo hành của hãng'
+          'Tốc độ đọc ghi dữ liệu nhanh hơn gấp 5 - 10 lần, chống sốc tốt và không gây tiếng ồn cơ học',
+          'SSD có thể dùng làm gương soi',
+          'SSD không bao giờ bị hỏng',
+          'SSD nặng hơn HDD gấp 10 lần'
         ],
         correctIndex: 0,
-        explanation: '16GB là chỉ số dung lượng bộ nhớ RAM của máy tính.',
+        explanation: 'SSD sử dụng chip nhớ flash không có phiến đĩa quay nên tốc độ cực nhanh và bền bỉ khi di chuyển.',
         difficulty: 'Thông hiểu'
       },
       {
         id: 5,
-        question: 'Hệ số Bus trong kiến trúc máy tính có chức năng gì?',
-        options: [
-          'Là các đường dẫn truyền tín hiệu điện tử kết nối dữ liệu giữa CPU, Bộ nhớ và các thiết bị ngoại vi',
-          'Dùng để nghe nhạc mp3',
-          'Dùng để sạc pin cho chuột',
-          'Dùng để in màu'
-        ],
+        question: 'Hệ thống các đường dây dẫn điện tử chuyên dùng để vận chuyển dữ liệu giữa CPU, RAM và các thiết bị ngoại vi được gọi là gì?',
+        options: ['Bus hệ thống (System Bus)', 'Dây thừng', 'Cáp truyền hình', 'Ống dẫn nước'],
         correctIndex: 0,
-        explanation: 'Hệ thống Bus là các kênh truyền tải dữ liệu và địa chỉ giữa các linh kiện trong máy tính.',
-        difficulty: 'Thông hiểu'
+        explanation: 'Bus là mạng lưới đường truyền tín hiệu điện tử đồng bộ hóa hoạt động của toàn bộ linh kiện.',
+        difficulty: 'Nhận biết'
       }
     ],
     application: {
       project: {
-        title: 'Dự án: Xây dựng Cấu hình Máy tính Học tập & Thiết kế Đồ họa',
-        context: 'Học sinh lớp 11 cần tư vấn mua một bộ máy tính để học tập Tin học ứng dụng (chạy tốt CSDL và GIMP).',
-        mission: 'Lựa chọn các linh kiện phần cứng tương thích trong tầm giá hợp lý.',
+        title: 'Tư Vấn Cấu Hình: Lắp Ráp Máy Tính Học Tập & Đồ Họa Phù Hợp Tài Chính',
+        context: 'Gia đình dự định đầu tư một bộ máy tính để bạn học Tin học 11, học đồ họa GIMP và dựng video.',
+        mission: 'Lựa chọn các linh kiện phần cứng tương thích và giải thích lý do lựa chọn.',
         steps: [
-          'Bước 1: Chọn CPU (tối thiểu 4 nhân 8 luồng để xử lý đa nhiệm).',
-          'Bước 2: Chọn RAM (tối thiểu 8GB hoặc khuyến nghị 16GB để mở nhiều ứng dụng).',
-          'Bước 3: Chọn ổ cứng SSD (tối thiểu 256GB hoặc 512GB chuẩn NVMe).',
-          'Bước 4: Chọn Bo mạch chủ và Nguồn máy tính công suất thực phù hợp.'
+          'Chọn CPU: Tối thiểu 6 nhân 12 luồng (Intel Core i5 hoặc AMD Ryzen 5).',
+          'Chọn RAM: Tối thiểu 16GB Dual Channel để chạy mượt ứng dụng đồ họa.',
+          'Chọn Ổ cứng: SSD 512GB chuẩn M.2 NVMe tốc độ cao để khởi động máy trong 10 giây.',
+          'Chọn Nguồn (PSU) và Mainboard tương thích với socket của CPU.'
         ],
-        outputRequirement: 'Bảng báo giá chi tiết cấu hình linh kiện và lý do lựa chọn từng món.',
-        practicalTip: 'Ưu tiên đầu tư ổ cứng SSD thay vì HDD vì tốc độ SSD giúp máy khởi động và mở phần mềm nhanh gấp 5 - 10 lần.'
+        outputRequirement: 'Bảng báo giá cấu hình chi tiết kèm tổng chi phí dự kiến.',
+        practicalTip: 'Luôn ưu tiên cấu hình 2 thanh RAM 8GB (Dual Channel) thay vì 1 thanh 16GB để băng thông bộ nhớ tăng gấp đôi.'
       },
       mindmap: {
         id: 'mm_11_4',
         label: 'BÊN TRONG MÁY TÍNH',
-        color: '#7c3aed',
+        color: '#d97706',
         children: [
           {
             id: 'mm_11_4_1',
-            label: 'Bộ xử lý CPU',
+            label: 'Kiến trúc Von Neumann',
             children: [
-              { id: 'mm_11_4_1_1', label: 'Khối tính toán ALU' },
-              { id: 'mm_11_4_1_2', label: 'Khối điều khiển CU' },
-              { id: 'mm_11_4_1_3', label: 'Thanh ghi Registers' }
+              { id: 'mm_11_4_1_1', label: 'CPU xử lý lệnh' },
+              { id: 'mm_11_4_1_2', label: 'Bộ nhớ nhị phân' },
+              { id: 'mm_11_4_1_3', label: 'Thiết bị Vào / Ra' }
             ]
           },
           {
             id: 'mm_11_4_2',
-            label: 'Hệ thống bộ nhớ',
+            label: 'Linh kiện cốt lõi',
             children: [
-              { id: 'mm_11_4_2_1', label: 'RAM (Khả biến, tốc độ cao)' },
-              { id: 'mm_11_4_2_2', label: 'ROM (Chỉ đọc, giữ BIOS)' },
-              { id: 'mm_11_4_2_3', label: 'SSD/HDD (Lưu trữ lâu dài)' }
+              { id: 'mm_11_4_2_1', label: 'CPU: Bộ não tính toán' },
+              { id: 'mm_11_4_2_2', label: 'RAM: Tạm thời (mất điện mất)' },
+              { id: 'mm_11_4_2_3', label: 'SSD: Lưu trữ lâu dài' },
+              { id: 'mm_11_4_2_4', label: 'Mainboard & Bus hệ thống' }
             ]
           }
         ]
       }
     },
     completion: {
-      badgeName: 'Kiến Trúc Sư Phần Cứng 11',
-      badgeIcon: 'HardDrive',
-      roleTitle: 'Chuyên Viên Phân Tích Phần Cứng Máy Tính',
-      congratsMessage: 'Tuyệt vời! Bạn đã nắm vững kiến trúc phần cứng bên trong máy tính theo chuẩn SGK Tin học 11 GDPT 2018.',
-      skillsUnlocked: ['Đọc thông số CPU/RAM/SSD', 'Hiểu kiến trúc Von Neumann', 'Tư vấn cấu hình máy tính']
+      badgeName: 'Kỹ Sư Phần Cứng 11',
+      badgeIcon: 'Cpu',
+      roleTitle: 'Chuyên Viên Kiến Trúc Phần Cứng Máy Tính',
+      congratsMessage: 'Tuyệt vời! Bạn đã mở toang cánh cửa phần cứng, thấu hiểu kiến trúc Von Neumann và sẵn sàng kết nối các thiết bị ngoại vi.',
+      skillsUnlocked: ['Kiến trúc máy tính Von Neumann', 'Đọc thông số CPU / RAM / SSD', 'Hiểu chức năng Mainboard & Bus']
     }
   },
 
@@ -816,194 +1007,213 @@ export const THEME1_LESSONS_11: Lesson[] = [
     estimatedMinutes: 45,
     xpTotal: 250,
     hero: {
-      tagline: 'Mở rộng không gian số: Kết nối màn hình phụ, máy chiếu và thiết bị thông minh',
-      description: 'Tìm hiểu các chuẩn cổng giao tiếp vật lý (HDMI, DisplayPort, VGA, USB Type-C) và công nghệ kết nối không dây (Bluetooth, Wi-Fi Direct) để kết nối máy tính với máy chiếu, máy in và smartphone.',
-      accentColor: 'from-purple-600 to-indigo-600',
-      keyHighlights: ['Cổng HDMI vs VGA', 'Chuẩn kết nối USB-C', 'Kết nối không dây Bluetooth']
+      tagline: 'Mở rộng không gian làm việc: Làm chủ các chuẩn kết nối ngoại vi có dây và không dây',
+      description: 'Thực hành kết nối máy tính với máy chiếu, màn hình phụ qua cổng HDMI/VGA, kết nối máy in văn phòng và truyền tệp tin không dây qua Bluetooth/Wi-Fi Direct.',
+      accentColor: 'from-cyan-600 to-blue-600',
+      keyHighlights: ['Cổng xuất hình HDMI vs VGA', 'Chế độ hiển thị Duplicate & Extend', 'Kết nối máy in & Bluetooth']
     },
     objectives: [
       {
         id: 'obj_11_5_1',
         category: 'knowledge',
         categoryName: 'Kiến thức cốt lõi',
-        title: 'Nhận biết các chuẩn cổng kết nối',
-        description: 'Phân biệt được hình dạng và đặc tính truyền dẫn của các cổng: HDMI, VGA, DisplayPort, USB Type-A, USB Type-C, Jack 3.5mm.',
-        iconName: 'Cable'
+        title: 'Các chuẩn giao tiếp vật lý & không dây',
+        description: 'Nêu được đặc điểm của các chuẩn kết nối vật lý (HDMI, VGA, USB) và chuẩn kết nối không dây (Bluetooth, Wi-Fi Direct).',
+        iconName: 'Tv'
       },
       {
         id: 'obj_11_5_2',
         category: 'skill',
         categoryName: 'Kỹ năng & Năng lực',
-        title: 'Thao tác kết nối máy chiếu & Thiết bị di động',
-        description: 'Thực hiện được việc xuất hình ảnh ra máy chiếu (phím tắt Win + P) và truyền tệp tin qua Bluetooth hoặc cáp USB an toàn.',
-        iconName: 'Cast'
+        title: 'Thao tác kết nối máy chiếu & máy in',
+        description: 'Thực hiện được việc kết nối máy tính với máy chiếu/màn hình phụ bằng tổ hợp phím `Windows + P` (chọn Duplicate hoặc Extend) và kết nối máy in in tài liệu thành công.',
+        iconName: 'Printer'
       },
       {
         id: 'obj_11_5_3',
         category: 'attitude',
         categoryName: 'Phẩm chất & Đạo đức',
-        title: 'Cẩn thận khi thao tác thiết bị',
-        description: 'Có thói quen cắm đúng chiều chân cắm, ngắt kết nối an toàn (Eject USB) để bảo vệ mạch điện tử của thiết bị.',
-        iconName: 'ShieldCheck'
+        title: 'Thao tác kỹ thuật chuẩn xác',
+        description: 'Thực hiện đúng quy tắc an toàn điện tử: cắm/rút cáp thẳng chân tiếp xúc, ngắt kết nối an toàn (Eject) tránh hỏng thiết bị số.',
+        iconName: 'CheckCircle'
       }
     ],
     warmup: {
-      title: 'Tình huống: Báo cáo thuyết trình trước lớp học',
-      scenario: 'Nhóm của bạn được phân công thuyết trình bằng PowerPoint. Khi cắm dây nối từ máy chiếu vào laptop, màn hình máy chiếu vẫn báo "No Signal" (Không có tín hiệu).',
-      pollQuestion: 'Phím tắt nhanh nào trên Windows giúp lựa chọn chế độ xuất hình ảnh (Duplicate / Extend) ra máy chiếu?',
+      title: 'Tình huống: Buổi thuyết trình trước toàn trường',
+      scenario: 'Bạn được phân công chiếu bài thuyết trình của nhóm lên màn hình máy chiếu hội trường. Khi cắm cáp HDMI từ laptop vào máy chiếu, màn hình hội trường vẫn báo "No Signal" màu xanh lè.',
+      pollQuestion: 'Phím tắt kỳ diệu nào trong Windows giúp bạn kích hoạt việc truyền tín hiệu hình ảnh lên máy chiếu ngay lập tức?',
       pollOptions: [
-        { id: 'p11_5_1', text: 'Phím Windows + P', votesPercent: 89, isPopular: true, insight: 'Chính xác! Windows + P mở menu chọn chế độ hiển thị Project màn hình máy chiếu.' },
-        { id: 'p11_5_2', text: 'Phím Ctrl + Z', votesPercent: 5, insight: 'Ctrl + Z dùng để hoàn tác (Undo) thao tác vừa làm.' },
-        { id: 'p11_5_3', text: 'Tắt màn hình laptop đi', votesPercent: 6, insight: 'Tắt màn hình có thể khiến máy tính chuyển vào chế độ Sleep (ngủ).' }
+        { id: 'p11_5_1', text: 'Tổ hợp phím Windows + P (Project)', votesPercent: 93, isPopular: true, insight: 'Chính xác! Windows + P mở menu chọn chế độ hiển thị: Duplicate (nhân bản), Extend (mở rộng không gian) hoặc Second screen only.' },
+        { id: 'p11_5_2', text: 'Nhấn phím F5 liên tục', votesPercent: 4, insight: 'F5 chỉ dùng để làm mới trang (Refresh).' },
+        { id: 'p11_5_3', text: 'Tắt nguồn máy chiếu đi bật lại', votesPercent: 3, insight: 'Nếu máy tính chưa bật chế độ xuất tín hiệu thì máy chiếu bật lại vẫn báo No Signal.' }
       ],
-      reflection: 'Thành thạo kỹ năng kết nối thiết bị ngoại vi giúp bạn tự tin làm chủ mọi buổi thuyết trình và hội thảo công nghệ.'
+      reflection: 'Làm chủ kỹ năng kết nối thiết bị số giúp bạn luôn tự tin, làm chủ mọi buổi báo cáo dự án học đường và thuyết trình chuyên nghiệp.'
     },
     knowledge: [
       {
         id: 'tab_11_5_1',
-        title: '1. Các Cổng Giao Tiếp Hình Ảnh & Dữ Liệu Phổ Biến',
-        subtitle: 'HDMI, VGA, USB-C và Bluetooth',
-        iconName: 'Cable',
+        title: '1. Kết nối màn hình phụ, máy chiếu qua HDMI/VGA',
+        subtitle: 'Mở rộng không gian làm việc và trình chiếu',
+        iconName: 'Tv',
         keyPoints: [
-          'HDMI (High-Definition Multimedia Interface): Chuẩn số truyền đồng thời cả hình ảnh độ nét cao và âm thanh vòm trên một sợi cáp duy nhất.',
-          'VGA (Video Graphics Array): Cổng truyền hình ảnh tương tự (Analog) truyền thống màu xanh dương có 15 chân, chỉ truyền hình ảnh, không truyền âm thanh.',
-          'USB Type-C: Chuẩn kết nối hiện đại cắm được cả hai mặt, truyền dữ liệu siêu nhanh, truyền hình ảnh và hỗ trợ sạc công suất lớn.',
-          'Bluetooth: Công nghệ truyền thông không dây tầm ngắn (khoảng 10 mét), dùng kết nối tai nghe, chuột không dây, bàn phím và điện thoại.'
+          'Chuẩn VGA (Video Graphics Array): Cổng màu xanh dương có 15 chân kim, truyền tín hiệu hình ảnh tương tự (Analog), không truyền được âm thanh.',
+          'Chuẩn HDMI (High-Definition Multimedia Interface): Cổng dẹt hiện đại truyền đồng thời cả hình ảnh kỹ thuật số độ nét cao (Full HD, 4K) và âm thanh đa kênh chỉ qua một sợi cáp duy nhất.',
+          'Tổ hợp phím trình chiếu `Windows + P` cung cấp 4 chế độ:',
+          '  - PC screen only: Chỉ hiển thị trên màn hình laptop.',
+          '  - Duplicate: Sao chép y hệt màn hình laptop lên máy chiếu (thích hợp thuyết trình).',
+          '  - Extend: Mở rộng màn hình thành 2 không gian làm việc độc lập (thích hợp làm việc đa nhiệm).',
+          '  - Second screen only: Tắt màn hình laptop, chỉ hiển thị trên màn hình phụ.'
         ],
         visualType: 'comparison-table',
         visualData: {
-          headers: ['Chuẩn kết nối', 'Loại tín hiệu', 'Truyền âm thanh?', 'Ứng dụng chính'],
+          headers: ['Đặc điểm', 'Cổng VGA (Cũ)', 'Cổng HDMI (Hiện đại)'],
           rows: [
-            ['HDMI', 'Tín hiệu số (Digital)', 'Có (hình + tiếng)', 'Màn hình TV, Máy chiếu hiện đại, PC'],
-            ['VGA', 'Tín hiệu tương tự (Analog)', 'Không (chỉ hình)', 'Máy chiếu đời cũ, màn hình CRT/LCD'],
-            ['USB Type-C', 'Số đa năng tốc độ cao', 'Có', 'Laptop mỏng nhẹ, smartphone hiện đại'],
-            ['Bluetooth', 'Sóng vô tuyến không dây', 'Có', 'Tai nghe, Chuột không dây, Loa bluetooth']
+            ['Tín hiệu truyền', 'Tương tự (Analog)', 'Kỹ thuật số (Digital)'],
+            ['Truyền âm thanh', 'Không truyền được âm thanh (cần cáp riêng)', 'Truyền đồng thời cả hình ảnh và âm thanh'],
+            ['Độ phân giải tối đa', 'Thường giới hạn Full HD', 'Hỗ trợ 4K, 8K siêu sắc nét'],
+            ['Hình dạng cổng', 'Hình thang 15 chân có 2 ốc vặn', 'Dẹt nhỏ gọn, cắm nhanh chóng']
           ]
         },
         emCanNho: [
-          'Cổng HDMI truyền cả hình ảnh độ phân giải cao và âm thanh.',
-          'Cổng VGA chỉ truyền tín hiệu hình ảnh dạng tương tự (Analog).',
-          'Tổ hợp phím tắt trình chiếu màn hình trên Windows: `Windows + P`.'
+          'HDMI truyền cả hình ảnh số và âm thanh qua 1 sợi cáp; VGA chỉ truyền hình ảnh.',
+          'Dùng phím tắt `Windows + P` để chuyển đổi chế độ hiển thị màn hình ngoài.',
+          'Chế độ Duplicate dùng cho thuyết trình; Extend dùng để mở rộng thêm màn hình làm việc.'
+        ]
+      },
+      {
+        id: 'tab_11_5_2',
+        title: '2. Kết nối máy in và truyền dữ liệu Bluetooth/USB',
+        subtitle: 'In ấn văn phòng và trao đổi tệp tin không dây tiện lợi',
+        iconName: 'Printer',
+        keyPoints: [
+          'Kết nối máy in: Cắm cáp USB hoặc kết nối chung mạng Wi-Fi/LAN -> Vào `Settings -> Bluetooth & devices -> Printers & scanners` -> Chọn `Add device` để hệ điều hành tự động cài đặt Driver máy in.',
+          'Kết nối Bluetooth: Bật Bluetooth trên cả máy tính và thiết bị (Tai nghe, chuột, điện thoại) -> Ghép đôi (Pairing) bằng mã xác thực -> Truyền gửi tệp tin không dây an toàn.',
+          'Ngắt kết nối an toàn (Safely Remove Hardware and Eject Media): Luôn nhấp biểu tượng USB dưới thanh Taskbar chọn Eject trước khi rút USB ra khỏi máy tính để tránh lỗi tệp tin.'
+        ],
+        visualType: 'infographic',
+        visualData: {
+          nodes: [
+            { label: '1. Cắm cáp / Bật Bluetooth', desc: 'Kết nối vật lý hoặc sóng không dây' },
+            { label: '2. Cài đặt Driver', desc: 'Hệ điều hành nhận diện và nạp trình điều khiển' },
+            { label: '3. In ấn & Truyền tệp', desc: 'Sử dụng lệnh Print hoặc Send files qua Bluetooth' }
+          ]
+        },
+        emCanNho: [
+          'Máy in cần có trình điều khiển (Driver) phù hợp để hệ điều hành gửi lệnh in.',
+          'Bluetooth hỗ trợ kết nối không dây tầm ngắn cho tai nghe, chuột và truyền file.',
+          'Luôn sử dụng tính năng "Eject" an toàn trước khi rút ổ đĩa USB ra khỏi máy.'
         ]
       }
     ],
     miniGame: {
       type: 'matching',
-      title: 'Ghép nối Cổng giao tiếp và Đặc điểm',
-      instruction: 'Nối tên chuẩn cổng kết nối với tính năng tương ứng:',
+      title: 'Ghép cặp Chế độ Hiển thị Windows + P và Tình huống Sử dụng',
+      instruction: 'Nối chế độ Project với nhu cầu thực tế phù hợp:',
       matchingPairs: [
-        { id: 'c1', left: 'Cổng HDMI', right: 'Truyền đồng thời cả hình ảnh HD và âm thanh' },
-        { id: 'c2', left: 'Cổng VGA (15 chân xanh)', right: 'Chỉ truyền hình ảnh dạng tín hiệu tương tự' },
-        { id: 'c3', left: 'Cổng USB Type-C', right: 'Đầu cắm đối xứng 2 chiều, truyền dữ liệu & sạc nhanh' },
-        { id: 'c4', left: 'Kết nối Bluetooth', right: 'Truyền thông không dây tầm ngắn cho tai nghe, chuột' }
+        { id: 'p_dup', left: 'Chế độ Duplicate', right: 'Thuyết trình trên máy chiếu để người nghe thấy đúng những gì bạn thấy' },
+        { id: 'p_ext', left: 'Chế độ Extend', right: 'Một màn hình mở tài liệu Word, màn hình kia mở YouTube nghe nhạc' },
+        { id: 'p_sec', left: 'Chế độ Second screen only', right: 'Gấp nắp laptop lại và chỉ sử dụng màn hình cong 27 inch' },
+        { id: 'p_hdmi', left: 'Cáp kết nối HDMI', right: 'Truyền đồng thời cả hình ảnh sắc nét và âm thanh ra loa TV/máy chiếu' }
       ]
     },
     assessment: [
       {
         id: 1,
-        question: 'Điểm khác biệt lớn nhất giữa cổng HDMI và cổng VGA là gì?',
-        options: [
-          'HDMI là chuẩn số truyền cả hình ảnh và âm thanh, trong khi VGA chỉ truyền tín hiệu hình ảnh',
-          'VGA truyền nhanh hơn HDMI 100 lần',
-          'HDMI chỉ dùng cho máy giặt',
-          'VGA là cổng không dây'
-        ],
+        question: 'Tổ hợp phím nào trong hệ điều hành Windows dùng để mở menu tùy chọn xuất hình ảnh ra máy chiếu hoặc màn hình phụ?',
+        options: ['Windows + P', 'Windows + D', 'Windows + L', 'Ctrl + Alt + Del'],
         correctIndex: 0,
-        explanation: 'HDMI là chuẩn kỹ thuật số hiện đại tích hợp cả kênh hình ảnh và âm thanh.',
-        difficulty: 'Thông hiểu'
-      },
-      {
-        id: 2,
-        question: 'Để chuyển đổi nhanh các chế độ hiển thị màn hình (Duplicate / Extend) khi cắm máy chiếu trong Windows, ta dùng phím tắt nào?',
-        options: ['Phím Windows + P', 'Phím Windows + L', 'Phím Ctrl + P', 'Phím Alt + Tab'],
-        correctIndex: 0,
-        explanation: 'Windows + P (Project) dùng để chọn chế độ xuất hình ra màn hình phụ hoặc máy chiếu.',
+        explanation: 'Windows + P (Project) mở nhanh bảng điều khiển các chế độ hiển thị đa màn hình.',
         difficulty: 'Nhận biết'
       },
       {
-        id: 3,
-        question: 'Chế độ hiển thị "Extend" (Mở rộng màn hình) mang lại lợi ích gì cho người thuyết trình?',
+        id: 2,
+        question: 'Điểm ưu việt lớn nhất của cổng HDMI so với cổng VGA cũ là gì?',
         options: [
-          'Màn hình máy chiếu chiếu bài thuyết trình, còn màn hình laptop để người thuyết trình xem ghi chú riêng',
-          'Màn hình sẽ tắt hẳn không hiển thị gì',
-          'Làm chữ phóng to gấp 10 lần',
-          'Máy tính tự động in tài liệu'
+          'HDMI truyền đồng thời cả tín hiệu hình ảnh kỹ thuật số độ nét cao và âm thanh chỉ qua 1 sợi cáp',
+          'HDMI làm máy tính chạy mát hơn',
+          'HDMI không cần dùng dây dẫn',
+          'HDMI chỉ dùng cho máy giặt'
         ],
         correctIndex: 0,
-        explanation: 'Extend biến màn hình ngoài thành không gian làm việc thứ hai độc lập với màn hình chính.',
+        explanation: 'HDMI mang cả audio và video số, trong khi VGA chỉ mang video tương tự và chất lượng thấp hơn.',
+        difficulty: 'Thông hiểu'
+      },
+      {
+        id: 3,
+        question: 'Khi bạn muốn vừa xem video bài giảng trên màn hình lớn, vừa mở phần mềm soạn bài tập trên màn hình laptop độc lập, bạn nên chọn chế độ nào trong Windows + P?',
+        options: ['Extend (Mở rộng)', 'Duplicate (Nhân bản)', 'PC screen only', 'Second screen only'],
+        correctIndex: 0,
+        explanation: 'Chế độ Extend tạo thành một không gian làm việc kép rộng lớn cho phép kéo thả cửa sổ giữa 2 màn hình.',
         difficulty: 'Vận dụng'
       },
       {
         id: 4,
-        question: 'Chuẩn kết nối USB Type-C có ưu điểm thiết kế nổi bật nào so với chuẩn USB Type-A truyền thống?',
+        question: 'Tại sao trước khi rút ổ đĩa USB ra khỏi máy tính, bạn luôn nên thực hiện thao tác "Safely Remove Hardware and Eject Media"?',
         options: [
-          'Thiết kế chân cắm đối xứng, có thể cắm theo bất kỳ chiều nào mà không sợ cắm ngược',
-          'Chân cắm hình tròn như que tăm',
-          'Chỉ dùng được một lần rồi bỏ',
-          'Không thể truyền dữ liệu'
+          'Để đảm bảo hệ điều hành đã ghi xong toàn bộ dữ liệu tạm thời vào USB, tránh làm hỏng hoặc mất file',
+          'Để USB không bị nóng',
+          'Để máy tính tự động diệt virus',
+          'Để bàn phím không bị khóa'
         ],
         correctIndex: 0,
-        explanation: 'USB Type-C có thiết kế đảo ngược (reversible) giúp người dùng cắm thuận tiện không lo ngược chiều.',
-        difficulty: 'Nhận biết'
+        explanation: 'Eject đảm bảo cơ chế bộ đệm ghi (Write-caching) đã hoàn tất việc lưu file trước khi ngắt kết nối vật lý.',
+        difficulty: 'Thông hiểu'
       },
       {
         id: 5,
-        question: 'Trước khi rút ổ nhớ USB ra khỏi máy tính, thao tác nào giúp đảm bảo không bị lỗi dữ liệu trên USB?',
-        options: [
-          'Nhấp chuột phải vào biểu tượng USB trên thanh tác vụ và chọn "Eject" (Ngắt kết nối an toàn)',
-          'Giật mạnh ổ USB ra thật nhanh',
-          'Tắt màn hình máy tính',
-          'Bấm nút Restart máy tính'
-        ],
+        question: 'Để kết nối một tai nghe không dây hoặc chuột không dây tầm ngắn với máy tính xách tay, công nghệ truyền thông nào được sử dụng phổ biến nhất?',
+        options: ['Sóng Bluetooth', 'Cáp quang biển', 'Sóng truyền hình vệ tinh', 'Tia hồng ngoại xa'],
         correctIndex: 0,
-        explanation: 'Thao tác Eject đảm bảo toàn bộ dữ liệu đang ghi trong bộ đệm được hoàn tất trước khi ngắt nguồn điện.',
-        difficulty: 'Thông hiểu'
+        explanation: 'Bluetooth là chuẩn kết nối không dây tầm ngắn (dưới 10m) tiết kiệm điện năng cho thiết bị cá nhân.',
+        difficulty: 'Nhận biết'
       }
     ],
     application: {
       project: {
-        title: 'Thực hành: Thiết lập Hệ thống Hai Màn Hình Đa Nhiệm',
-        context: 'Khi làm việc với cơ sở dữ liệu và thiết kế đồ họa, việc có thêm một màn hình phụ giúp tăng năng suất gấp đôi.',
-        mission: 'Kết nối máy tính với màn hình thứ hai và cấu hình chế độ Extend.',
+        title: 'Thiết Lập Không Gian Học Tập Hai Màn Hình (Dual Monitors Setup)',
+        context: 'Nâng cao năng suất học tập trực tuyến bằng việc gắn thêm màn hình phụ cho laptop.',
+        mission: 'Kết nối laptop với màn hình ngoài qua cáp HDMI và thiết lập chế độ Extend.',
         steps: [
-          'Bước 1: Cắm cáp HDMI giữa máy tính và màn hình phụ.',
-          'Bước 2: Bấm Windows + P và chọn chế độ "Extend".',
-          'Bước 3: Mở một bên là tệp lý thuyết SGK, một bên là phần mềm thực hành để thao tác song song.'
+          'Bước 1: Cắm một đầu cáp HDMI vào cổng laptop, đầu còn lại cắm vào màn hình phụ.',
+          'Bước 2: Bấm tổ hợp phím `Windows + P`, chọn chế độ `Extend`.',
+          'Bước 3: Mở `Display settings`, kéo thả vị trí ảo màn hình 1 và 2 cho đúng với vị trí đặt màn hình thực tế trên bàn.',
+          'Bước 4: Kéo thử một cửa sổ từ màn hình laptop sang màn hình phụ mượt mà.'
         ],
-        outputRequirement: 'Ảnh chụp màn hình hiển thị hai ứng dụng chạy song song trên hai không gian làm việc.',
-        practicalTip: 'Trong Windows Display Settings, bạn có thể kéo thả để sắp xếp vị trí tương đối giữa hai màn hình trái - phải đúng với thực tế.'
+        outputRequirement: 'Ảnh chụp không gian bàn học 2 màn hình đang hoạt động hiệu quả.',
+        practicalTip: 'Đặt màn hình lớn hơn làm màn hình chính (Main Display) để thanh Taskbar hiển thị đầy đủ icon làm việc.'
       },
       mindmap: {
         id: 'mm_11_5',
         label: 'KẾT NỐI THIẾT BỊ SỐ',
-        color: '#7c3aed',
+        color: '#0284c7',
         children: [
           {
             id: 'mm_11_5_1',
-            label: 'Kết nối có dây',
+            label: 'Kết nối xuất hình ảnh',
             children: [
-              { id: 'mm_11_5_1_1', label: 'HDMI (Hình + Tiếng HD)' },
-              { id: 'mm_11_5_1_2', label: 'VGA (Tương tự, chỉ hình)' },
-              { id: 'mm_11_5_1_3', label: 'USB Type-C (Đa năng, sạc)' }
+              { id: 'mm_11_5_1_1', label: 'HDMI (Hình ảnh + Âm thanh)' },
+              { id: 'mm_11_5_1_2', label: 'VGA (Chỉ hình ảnh tương tự)' },
+              { id: 'mm_11_5_1_3', label: 'Windows + P (Duplicate, Extend)' }
             ]
           },
           {
             id: 'mm_11_5_2',
-            label: 'Kết nối không dây',
+            label: 'Thiết bị ngoại vi & Không dây',
             children: [
-              { id: 'mm_11_5_2_1', label: 'Bluetooth (Tầm ngắn)' },
-              { id: 'mm_11_5_2_2', label: 'Wi-Fi Direct / Miracast' }
+              { id: 'mm_11_5_2_1', label: 'Máy in (Cài đặt Driver)' },
+              { id: 'mm_11_5_2_2', label: 'Bluetooth (Tai nghe, Chuột)' },
+              { id: 'mm_11_5_2_3', label: 'Eject an toàn thiết bị USB' }
             ]
           }
         ]
       }
     },
     completion: {
-      badgeName: 'Bậc Thầy Kết Nối Thiết Bị 11',
-      badgeIcon: 'Cast',
+      badgeName: 'Bậc Thầy Kết Nối Số 11',
+      badgeIcon: 'Tv',
       roleTitle: 'Chuyên Viên Tích Hợp Thiết Bị Ngoại Vi',
-      congratsMessage: 'Tuyệt vời! Bạn đã nắm vững các chuẩn kết nối phần cứng và kỹ năng trình chiếu chuyên nghiệp.',
-      skillsUnlocked: ['Xuất máy chiếu Windows + P', 'Phân biệt HDMI / VGA / USB-C', 'Ngắt thiết bị Eject an toàn']
+      congratsMessage: 'Tuyệt vời! Bạn đã hoàn thành toàn bộ Chủ đề 1 Lớp 11 và làm chủ kỹ năng kết nối các thiết bị số chuyên nghiệp.',
+      skillsUnlocked: ['Phím tắt Windows + P', 'Phân biệt HDMI vs VGA', 'Ghép nối Bluetooth & Eject USB']
     }
   }
 ];

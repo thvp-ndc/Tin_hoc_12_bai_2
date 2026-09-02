@@ -1492,16 +1492,38 @@ export const LESSONS_DATA: Lesson[] = [
   }
 ];
 
+import { ALL_GRADE_12_CURRICULUM } from './grade12/curriculum12';
+
 // Helper to generate template lesson data for the remaining lessons to ensure all 28 lessons are fully defined with rich valid interactive structures
 export function getLessonById(id: number): Lesson {
   const existing = LESSONS_DATA.find(l => l.id === id);
-  if (existing) return existing;
+  const curriculum = ALL_GRADE_12_CURRICULUM[id];
+
+  if (existing) {
+    if (curriculum) {
+      return {
+        ...existing,
+        objectives: curriculum.objectives,
+        knowledge: curriculum.knowledge
+      };
+    }
+    return existing;
+  }
 
   // Rich fallback / dynamic generator for remaining lessons (8 to 28)
-  return generateLessonTemplate(id);
+  const template = generateLessonTemplate(id);
+  if (curriculum) {
+    return {
+      ...template,
+      objectives: curriculum.objectives,
+      knowledge: curriculum.knowledge
+    };
+  }
+  return template;
 }
 
 const LESSON_TITLES: Record<number, { title: string; themeId: number; themeName: string; badge: string; desc: string }> = {
+
   8: { title: 'Định dạng văn bản', themeId: 4, themeName: 'Chủ đề 4: Thiết kế Web với HTML & CSS', badge: 'HTML Văn bản', desc: 'Các thẻ định dạng tiêu đề h1-h6, đoạn văn p, in đậm strong, in nghiêng em, ngắt dòng br và đường kẻ ngang hr.' },
   9: { title: 'Tạo danh sách, bảng', themeId: 4, themeName: 'Chủ đề 4: Thiết kế Web với HTML & CSS', badge: 'HTML Bảng biểu', desc: 'Tạo danh sách có thứ tự ol, không thứ tự ul, danh sách mô tả dl và cấu trúc bảng table, tr, th, td.' },
   10: { title: 'Tạo liên kết', themeId: 4, themeName: 'Chủ đề 4: Thiết kế Web với HTML & CSS', badge: 'HTML Liên kết', desc: 'Sử dụng thẻ siêu liên kết a với thuộc tính href, liên kết nội bộ, liên kết ngoài và liên kết neo anchor.' },

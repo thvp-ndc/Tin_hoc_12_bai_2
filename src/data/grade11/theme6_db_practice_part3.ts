@@ -24,15 +24,15 @@ export const THEME6_LESSONS_PART3_11: Lesson[] = [
         category: 'knowledge',
         categoryName: 'Kiến thức cốt lõi',
         title: 'Hiểu các hành vi ràng buộc tham chiếu',
-        description: 'Giải thích được sự khác nhau giữa RESTRICT (chặn thao tác nếu còn dữ liệu con), CASCADE (cập nhật/xóa đồng thời dữ liệu con) và SET NULL.',
+        description: 'Giải thích được sự khác nhau giữa các hành vi tham chiếu: RESTRICT (chặn thao tác nếu còn dữ liệu con phụ thuộc), CASCADE (thao tác liên hoàn) và SET NULL.',
         iconName: 'ShieldAlert'
       },
       {
         id: 'obj_11_22_2',
         category: 'skill',
         categoryName: 'Kỹ năng & Năng lực',
-        title: 'Khai báo CASCADE / RESTRICT trong SQL',
-        description: 'Thực hiện được câu lệnh khai báo khóa ngoại có kèm `ON UPDATE CASCADE ON DELETE RESTRICT` an toàn.',
+        title: 'Khai báo CASCADE & RESTRICT trong SQL',
+        description: 'Cấu hình được tùy chọn `ON UPDATE CASCADE ON DELETE RESTRICT` khi định nghĩa khóa ngoài để bảo vệ dữ liệu phụ thuộc không bị xóa nhầm.',
         iconName: 'Code'
       },
       {
@@ -40,7 +40,7 @@ export const THEME6_LESSONS_PART3_11: Lesson[] = [
         category: 'attitude',
         categoryName: 'Phẩm chất & Đạo đức',
         title: 'Ý thức bảo vệ dữ liệu phụ thuộc',
-        description: 'Cẩn trọng tối đa trước khi xóa một bản ghi cha (như xóa một danh mục sách, xóa một lớp học) để tránh mất mát dữ liệu con liên quan.',
+        description: 'Cẩn trọng tối đa trước khi xóa một bản ghi cha (như xóa một danh mục sách, xóa một lớp học) để tránh làm mất mát dữ liệu con liên quan.',
         iconName: 'AlertTriangle'
       }
     ],
@@ -58,144 +58,177 @@ export const THEME6_LESSONS_PART3_11: Lesson[] = [
     knowledge: [
       {
         id: 'tab_11_22_1',
-        title: '1. Các Hành Vi Tham Chiếu Khi Xóa / Sửa Bản Ghi Cha',
-        subtitle: 'RESTRICT, CASCADE, SET NULL',
+        title: '1. Ràng buộc tham chiếu khi xóa/sửa bản ghi cha',
+        subtitle: 'Bản chất của tính toàn vẹn tham chiếu Referential Integrity',
         iconName: 'GitBranch',
         keyPoints: [
-          '`RESTRICT / NO ACTION` (Mặc định): Chặn đứng thao tác xóa/sửa bản ghi ở bảng cha nếu bản ghi đó đang được tham chiếu bởi ít nhất một bản ghi ở bảng con.',
-          '`CASCADE`: Thao tác liên hoàn. Nếu sửa khóa chính ở bảng cha, khóa ngoài ở bảng con tự động sửa theo. Nếu xóa bản ghi cha, TẤT CẢ các bản ghi con liên quan tự động bị xóa theo.',
-          '`SET NULL`: Nếu xóa bản ghi cha, khóa ngoài ở bảng con tự động chuyển thành giá trị NULL (vô chủ).',
-          'Khuyến nghị thực tế: Luôn dùng `ON UPDATE CASCADE` (để tự đồng bộ khi đổi mã) và `ON DELETE RESTRICT` (để chống xóa nhầm).'
+          'Vấn đề: Khi hai bảng đã liên kết qua khóa ngoài, nếu người dùng sửa đổi khóa chính ở bảng cha hoặc xóa bỏ bản ghi cha thì các bản ghi con đang tham chiếu tới sẽ bị ảnh hưởng trực tiếp.',
+          'Ví dụ: Nếu đổi mã lớp `11A1` thành `11A_Chuyen`, nếu không có cơ chế đồng bộ thì 40 học sinh sẽ bị mất thông tin lớp.',
+          'Nếu xóa hẳn lớp `11A1`, các học sinh sẽ trở thành các bản ghi mồ côi (Orphan Records) trỏ vào một mã lớp không hề tồn tại trong CSDL.',
+          'Vì vậy, Hệ QTCSDL cung cấp các quy tắc xử lý hành vi tham chiếu tự động.'
         ],
-        visualType: 'interactive-sql',
+        visualType: 'infographic',
         visualData: {
-          defaultSql: '-- Khai báo khóa ngoại với hành vi an toàn:\nALTER TABLE HOC_SINH\nADD CONSTRAINT fk_hocsinh_lop\nFOREIGN KEY (MaLop) REFERENCES LOP(MaLop)\nON UPDATE CASCADE\nON DELETE RESTRICT;'
+          nodes: [
+            { label: 'Bản ghi cha bị sửa/xóa', desc: 'Thao tác UPDATE MaLop hoặc DELETE lớp' },
+            { label: 'Kiểm tra khóa ngoài FK', desc: 'Hệ QTCSDL kiểm tra xem có học sinh nào thuộc lớp này không' },
+            { label: 'Kích hoạt hành vi quy định', desc: 'Chặn đứng (RESTRICT) hoặc Cập nhật theo (CASCADE)' }
+          ]
         },
         emCanNho: [
-          '`RESTRICT`: Chặn xóa bản ghi cha nếu còn bản ghi con đang tham chiếu (an toàn nhất).',
-          '`CASCADE`: Xóa/Sửa bản ghi cha thì tự động xóa/sửa luôn các bản ghi con tương ứng.',
-          'Nên thiết lập: `ON UPDATE CASCADE` và `ON DELETE RESTRICT` cho các bảng quan trọng.'
+          'Toàn vẹn tham chiếu đảm bảo không bao giờ sinh ra dữ liệu mồ côi.',
+          'Mọi thay đổi trên bản ghi cha đều được Hệ QTCSDL kiểm soát chặt chẽ.',
+          'Cần cân nhắc kỹ hậu quả trước khi sửa đổi hoặc xóa bản ghi cha.'
+        ]
+      },
+      {
+        id: 'tab_11_22_2',
+        title: '2. Quy tắc ON DELETE RESTRICT và ON DELETE CASCADE',
+        subtitle: 'Chặn đứng an toàn hay tự động xóa dây chuyền liên hoàn',
+        iconName: 'ShieldAlert',
+        keyPoints: [
+          '1. `RESTRICT / NO ACTION` (Mặc định): Chặn đứng hoàn toàn thao tác xóa hoặc sửa ở bảng cha nếu vẫn còn ít nhất một bản ghi con đang tham chiếu tới. Muốn xóa bảng cha, bắt buộc người dùng phải xóa hoặc chuyển toàn bộ bản ghi con sang chỗ khác trước.',
+          '2. `CASCADE`: Thao tác liên hoàn tự động. Nếu sửa khóa chính ở bảng cha, khóa ngoài ở bảng con tự động sửa theo. Nếu xóa bản ghi cha, TẤT CẢ bản ghi con liên quan tự động bị xóa sổ theo.',
+          '3. `SET NULL`: Tự động gán giá trị khóa ngoài ở bảng con thành NULL khi bản ghi cha bị xóa.',
+          'Cú pháp khuyên dùng chuẩn doanh nghiệp:',
+          '  `FOREIGN KEY (MaLop) REFERENCES LOP_HOC(MaLop)`',
+          '  `ON UPDATE CASCADE`',
+          '  `ON DELETE RESTRICT;`'
+        ],
+        visualType: 'comparison-table',
+        visualData: {
+          headers: ['Quy tắc tham chiếu', 'Hành vi khi XÓA bản ghi cha', 'Hành vi khi SỬA khóa chính cha', 'Trường hợp nên dùng'],
+          rows: [
+            ['RESTRICT (Mặc định)', 'Báo lỗi, chặn không cho xóa', 'Báo lỗi, chặn không cho sửa', 'Bảo vệ dữ liệu học sinh, đơn hàng'],
+            ['CASCADE', 'Tự động xóa luôn mọi dữ liệu con', 'Tự động sửa theo đồng bộ', 'Xóa bài viết thì xóa các bình luận theo'],
+            ['SET NULL', 'Khóa ngoài ở bản con biến thành NULL', 'Tự động gán NULL', 'Nhân viên nghỉ việc thì người quản lý = NULL']
+          ]
+        },
+        emCanNho: [
+          '`ON DELETE RESTRICT`: Chặn xóa an toàn, bảo vệ dữ liệu phụ thuộc.',
+          '`ON UPDATE CASCADE`: Tự động cập nhật đồng bộ khóa ngoài khi khóa chính đổi mã.',
+          'Cực kỳ cẩn trọng khi dùng `ON DELETE CASCADE` vì có thể xóa sạch dữ liệu liên đới.'
         ]
       }
     ],
     miniGame: {
       type: 'matching',
-      title: 'Ghép cặp Hành vi Tham chiếu và Tác động',
-      instruction: 'Nối từ khóa hành vi tham chiếu với kết quả tương ứng khi xóa bản ghi cha:',
+      title: 'Ghép cặp Hành Vi Tham Chiếu và Hậu Quả',
+      instruction: 'Nối tùy chọn tham chiếu với phản ứng tương ứng của hệ thống:',
       matchingPairs: [
-        { id: 'ref1', left: 'ON DELETE RESTRICT', right: 'Báo lỗi và chặn không cho xóa bản ghi cha nếu còn dữ liệu con' },
-        { id: 'ref2', left: 'ON DELETE CASCADE', right: 'Tự động xóa sạch toàn bộ các bản ghi con có liên quan' },
-        { id: 'ref3', left: 'ON UPDATE CASCADE', right: 'Khi đổi mã lớp ở bảng cha, mã lớp của học sinh tự động đổi theo' },
-        { id: 'ref4', left: 'ON DELETE SET NULL', right: 'Giữ lại bản ghi con nhưng gán giá trị khóa ngoài về rỗng (NULL)' }
+        { id: 'rc1', left: 'Tùy chọn ON DELETE RESTRICT', right: 'Báo lỗi ngăn chặn không cho xóa lớp học khi vẫn còn học sinh' },
+        { id: 'rc2', left: 'Tùy chọn ON DELETE CASCADE', right: 'Xóa bài đăng Facebook đồng thời tự động xóa sạch mọi bình luận bên dưới' },
+        { id: 'rc3', left: 'Tùy chọn ON UPDATE CASCADE', right: 'Đổi mã khoa từ CNTT sang IT thì mã khoa của sinh viên tự động đổi theo' },
+        { id: 'rc4', left: 'Tùy chọn ON DELETE SET NULL', right: 'Khi danh mục bị xóa thì trường danh mục của sản phẩm chuyển thành để trống' }
       ]
     },
     assessment: [
       {
         id: 1,
-        question: 'Trong cơ sở dữ liệu quản lý học sinh, hành vi nào sau đây là AN TOÀN NHẤT khi thiết lập cho sự kiện xóa một Lớp học (ON DELETE)?',
-        options: [
-          'RESTRICT (Chặn xóa nếu trong lớp vẫn còn danh sách học sinh)',
-          'CASCADE (Xóa luôn cả 40 học sinh khi xóa lớp)',
-          'Tắt toàn bộ kiểm tra khóa ngoài',
-          'Xóa luôn cơ sở dữ liệu'
-        ],
+        question: 'Tùy chọn nào sau đây sẽ TỰ ĐỘNG XÓA toàn bộ các bản ghi con ở bảng phụ thuộc khi bản ghi cha tương ứng bị xóa?',
+        options: ['ON DELETE CASCADE', 'ON DELETE RESTRICT', 'ON DELETE SET NULL', 'ON DELETE NO ACTION'],
         correctIndex: 0,
-        explanation: 'RESTRICT bảo vệ dữ liệu học sinh không bao giờ bị xóa oan uổng khi người dùng vô tình bấm xóa lớp.',
-        difficulty: 'Thông hiểu'
+        explanation: 'CASCADE (thác nước liên hoàn) sẽ tự động xóa sạch các bản ghi con phụ thuộc.',
+        difficulty: 'Nhận biết'
       },
       {
         id: 2,
-        question: 'Tùy chọn `ON UPDATE CASCADE` mang lại lợi ích gì cho hệ thống?',
+        question: 'Hành vi mặc định của MySQL khi bạn không khai báo tùy chọn ON DELETE là gì?',
         options: [
-          'Khi mã lớp trong bảng LOP thay đổi (ví dụ đổi từ 11A thành 11A1), mã lớp của tất cả học sinh trong bảng HOC_SINH tự động cập nhật đồng bộ theo',
-          'Tự động tăng gấp đôi số lượng học sinh',
-          'Xóa toàn bộ điểm số',
-          'Khóa máy tính lại'
+          'RESTRICT: Chặn không cho xóa bản ghi cha nếu đang có bản ghi con tham chiếu',
+          'CASCADE: Xóa luôn bản ghi con',
+          'Tự động tắt máy tính',
+          'Tự động chuyển bản ghi con sang bảng khác'
         ],
         correctIndex: 0,
-        explanation: 'ON UPDATE CASCADE đảm bảo tính nhất quán dữ liệu tự động mà không cần phải đi sửa thủ công từng học sinh.',
+        explanation: 'RESTRICT là cơ chế mặc định an toàn nhất ngăn chặn việc làm mất mát dữ liệu ngoài ý muốn.',
         difficulty: 'Thông hiểu'
       },
       {
         id: 3,
-        question: 'Trong tình huống một Hóa đơn có nhiều Chi tiết đơn hàng, nếu khách hàng hủy đơn và xóa Hóa đơn, các Chi tiết đơn hàng bên trong nên được thiết lập hành vi gì?',
-        options: ['ON DELETE CASCADE (Xóa hóa đơn thì các dòng chi tiết tự động xóa theo)', 'ON DELETE RESTRICT', 'Bắt khách hàng đền tiền', 'Không làm gì'],
+        question: 'Trong hệ thống quản lý học sinh, tùy chọn nào sau đây là AN TOÀN NHẤT cho mối quan hệ giữa LOP và HOC_SINH?',
+        options: [
+          'ON UPDATE CASCADE ON DELETE RESTRICT',
+          'ON DELETE CASCADE (xóa lớp xóa luôn học sinh)',
+          'Không dùng khóa ngoài',
+          'ON DELETE SET NULL'
+        ],
         correctIndex: 0,
-        explanation: 'Chi tiết đơn hàng chỉ có ý nghĩa khi đi liền với Hóa đơn, khi xóa Hóa đơn thì xóa luôn chi tiết là hoàn toàn hợp lý (CASCADE).',
+        explanation: 'ON UPDATE CASCADE giúp đổi tên lớp thì học sinh cập nhật theo, ON DELETE RESTRICT ngăn xóa nhầm học sinh.',
         difficulty: 'Vận dụng'
       },
       {
         id: 4,
-        question: 'Lỗi "Cannot delete or update a parent row: a foreign key constraint fails" xuất hiện khi nào?',
+        question: 'Khi bạn chạy lệnh xóa một khách hàng và nhận được thông báo lỗi: `Cannot delete or update a parent row: a foreign key constraint fails`, bạn cần làm gì?',
         options: [
-          'Khi bạn cố gắng xóa một bản ghi cha đang được cài đặt quy tắc RESTRICT và đang có bản ghi con tham chiếu tới nó',
-          'Khi máy tính bị mất điện',
-          'Khi bạn nhập đúng mật khẩu',
-          'Khi bàn phím bị kẹt phím'
+          'Kiểm tra và xóa các đơn hàng của khách hàng đó ở bảng con trước, sau đó mới xóa khách hàng',
+          'Đập máy tính',
+          'Cố gắng gõ lệnh xóa lại 100 lần',
+          'Xóa toàn bộ CSDL'
         ],
         correctIndex: 0,
-        explanation: 'Đây là thông báo lỗi kinh điển bảo vệ dữ liệu của MySQL khi cơ chế RESTRICT kích hoạt.',
-        difficulty: 'Thông hiểu'
+        explanation: 'Quy tắc toàn vẹn tham chiếu đòi hỏi giải phóng liên kết ở bảng con trước khi xóa bản ghi cha.',
+        difficulty: 'Vận dụng'
       },
       {
         id: 5,
-        question: 'Muốn xóa thành công một bản ghi cha khi đang ở chế độ RESTRICT, bạn bắt buộc phải làm thao tác nào trước?',
+        question: 'Tùy chọn `ON DELETE SET NULL` yêu cầu cột Khóa ngoài ở bảng con phải thỏa mãn điều kiện gì?',
         options: [
-          'Chuyển các bản ghi con sang bản ghi cha khác, hoặc xóa các bản ghi con trước',
-          'Tắt máy chủ CSDL',
-          'Xóa toàn bộ CSDL',
-          'Đổi tên máy tính'
+          'Cột Khóa ngoài phải cho phép nhận giá trị NULL (không có ràng buộc NOT NULL)',
+          'Cột Khóa ngoài bắt buộc phải có NOT NULL',
+          'Cột Khóa ngoài phải là số âm',
+          'Cột Khóa ngoài phải là chữ in hoa'
         ],
         correctIndex: 0,
-        explanation: 'Giải phóng toàn bộ các ràng buộc con trước thì bản ghi cha mới có thể được xóa an toàn.',
-        difficulty: 'Vận dụng'
+        explanation: 'Nếu cột có ràng buộc NOT NULL thì không thể gán giá trị NULL khi bản ghi cha bị xóa.',
+        difficulty: 'Thông hiểu'
       }
     ],
     application: {
       project: {
-        title: 'Thực hành: Thử Nghiệm Ràng Buộc Tham Chiếu RESTRICT & CASCADE',
-        context: 'Kiểm chứng hành vi của Hệ QTCSDL khi thao tác xóa trên bảng cha.',
-        mission: 'Tạo hai bảng thử nghiệm và ghi nhận phản ứng của MySQL.',
+        title: 'Thực Hành: Cấu Hình Toàn Vẹn Tham Chiếu Cho Hệ Thống Bài Viết & Bình Luận',
+        context: 'Xây dựng diễn đàn học tập trực tuyến.',
+        mission: 'Thiết lập bảng BAI_VIET và BINH_LUAN sao cho khi xóa bài viết, các bình luận của bài đó tự động biến mất.',
         steps: [
-          'Bước 1: Tạo bảng `KHOA` (bảng cha) và `NGANH` (bảng con có khóa ngoại ON DELETE RESTRICT).',
-          'Bước 2: Thêm 1 khoa và 2 ngành trực thuộc.',
-          'Bước 3: Chạy lệnh xóa Khoa và chụp lại thông báo lỗi vi phạm tham chiếu của MySQL.',
-          'Bước 4: Thử thay đổi cấu hình sang ON DELETE CASCADE và quan sát kết quả.'
+          'Bước 1: Tạo bảng cha `BAI_VIET (MaBV INT PRIMARY KEY, TieuDe VARCHAR(200), NoiDung TEXT)`.',
+          'Bước 2: Tạo bảng con `BINH_LUAN (MaBL INT PRIMARY KEY, NoiDungBL TEXT, MaBV INT)`.',
+          'Bước 3: Khai báo khóa ngoài: `FOREIGN KEY (MaBV) REFERENCES BAI_VIET(MaBV) ON DELETE CASCADE`.',
+          'Bước 4: Chèn thử 1 bài viết và 3 bình luận. Thử xóa bài viết và kiểm tra bảng bình luận.'
         ],
-        outputRequirement: 'Báo cáo so sánh sự khác biệt thực tế giữa RESTRICT và CASCADE.',
-        practicalTip: 'Hiểu rõ thông báo lỗi khóa ngoài sẽ giúp bạn tự tin giải quyết mọi khúc mắc trong các dự án CSDL sau này.'
+        outputRequirement: 'Script SQL hoàn chỉnh kèm kết quả thực nghiệm chứng minh 3 bình luận đã tự động bị xóa.',
+        practicalTip: 'Đối với các dữ liệu phụ thuộc hoàn toàn (như bình luận của bài viết), ON DELETE CASCADE là lựa chọn tuyệt vời.'
       },
       mindmap: {
         id: 'mm_11_22',
-        label: 'CẬP NHẬT BẢNG THAM CHIẾU',
+        label: 'RÀNG BUỘC THAM CHIẾU',
         color: '#0891b2',
         children: [
           {
             id: 'mm_11_22_1',
-            label: 'Các chế độ chính',
+            label: 'Các hành vi chính',
             children: [
-              { id: 'mm_11_22_1_1', label: 'RESTRICT (Chặn thao tác)' },
-              { id: 'mm_11_22_1_2', label: 'CASCADE (Tự động liên hoàn)' },
-              { id: 'mm_11_22_1_3', label: 'SET NULL (Gán giá trị rỗng)' }
+              { id: 'mm_11_22_1_1', label: 'RESTRICT: Chặn xóa an toàn' },
+              { id: 'mm_11_22_1_2', label: 'CASCADE: Xóa/sửa liên hoàn' },
+              { id: 'mm_11_22_1_3', label: 'SET NULL: Gán rỗng vô chủ' }
             ]
           },
           {
             id: 'mm_11_22_2',
-            label: 'Nguyên tắc an toàn',
+            label: 'Cấu hình khuyên dùng',
             children: [
-              { id: 'mm_11_22_2_1', label: 'ON UPDATE CASCADE' },
-              { id: 'mm_11_22_2_2', label: 'ON DELETE RESTRICT' }
+              { id: 'mm_11_22_2_1', label: 'ON UPDATE CASCADE (Đồng bộ)' },
+              { id: 'mm_11_22_2_2', label: 'ON DELETE RESTRICT (Chống mất mát)' }
             ]
           }
         ]
       }
     },
     completion: {
-      badgeName: 'Chuyên Viên Toàn Vẹn Tham Chiếu 11',
-      badgeIcon: 'GitBranch',
-      roleTitle: 'Chuyên Viên Kiểm Soát Ràng Buộc Dữ Liệu',
-      congratsMessage: 'Tuyệt vời! Bạn đã nắm vững cơ chế kiểm soát dây chuyền CASCADE và RESTRICT trong CSDL.',
-      skillsUnlocked: ['Hiểu sâu RESTRICT vs CASCADE', 'Bảo vệ dữ liệu phụ thuộc', 'Xử lý lỗi Foreign Key Constraint']
+      badgeName: 'Chuyên Gia Toàn Vẹn Dữ Liệu 11',
+      badgeIcon: 'ShieldAlert',
+      roleTitle: 'Chuyên Viên Kiểm Soát Ràng Buộc Tham Chiếu',
+      congratsMessage: 'Tuyệt vời! Bạn đã nắm vững các hành vi tham chiếu dây chuyền, kiểm soát an toàn tối đa cho hệ thống cơ sở dữ liệu.',
+      skillsUnlocked: ['Hiểu bản chất RESTRICT & CASCADE', 'Cấu hình ON UPDATE / ON DELETE', 'Xử lý lỗi Foreign Key Constraint']
     }
   },
 
@@ -206,199 +239,220 @@ export const THEME6_LESSONS_PART3_11: Lesson[] = [
     title: 'Thực hành truy xuất dữ liệu qua liên kết các bảng',
     themeId: 6,
     themeName: 'Chủ đề 6: Thực hành tạo và khai thác cơ sở dữ liệu',
-    topicBadge: 'Liên kết bảng JOIN',
+    topicBadge: 'Phép nối INNER JOIN',
     grade: 11,
     estimatedMinutes: 45,
     xpTotal: 250,
     hero: {
-      tagline: 'Kết hợp sức mạnh đa bảng: Khám phá phép nối INNER JOIN và LEFT JOIN',
-      description: 'Làm chủ kỹ thuật trích xuất thông tin tổng hợp từ nhiều bảng dữ liệu khác nhau bằng mệnh đề JOIN (INNER JOIN, LEFT JOIN) kết hợp điều kiện so khớp ON, phục vụ các bài toán báo cáo thống kê phức tạp.',
-      accentColor: 'from-cyan-600 to-blue-600',
-      keyHighlights: ['Phép nối INNER JOIN', 'Mệnh đề so khớp ON', 'Truy xuất báo cáo tổng hợp']
+      tagline: 'Kết nối các mảnh ghép thông tin: Phép nối bảng thần kỳ INNER JOIN trong SQL',
+      description: 'Luyện tập kỹ thuật truy vấn dữ liệu phân tán ở nhiều bảng khác nhau: cú pháp INNER JOIN kết nối bảng cha và bảng con qua mệnh đề ON, sử dụng bí danh Alias và lọc dữ liệu đa bảng.',
+      accentColor: 'from-blue-600 to-indigo-600',
+      keyHighlights: ['Cú pháp INNER JOIN ... ON ...', 'Bí danh bảng (Table Alias)', 'Truy vấn kết xuất báo cáo đa bảng']
     },
     objectives: [
       {
         id: 'obj_11_23_1',
         category: 'knowledge',
         categoryName: 'Kiến thức cốt lõi',
-        title: 'Bản chất của phép nối bảng JOIN',
-        description: 'Hiểu được nguyên lý so khớp các bản ghi giữa bảng A và bảng B dựa trên điều kiện `A.KhoaChinh = B.KhoaNgoai`.',
-        iconName: 'GitMerge'
+        title: 'Hiểu nguyên lý so khớp INNER JOIN',
+        description: 'Giải thích được nguyên lý so khớp dữ liệu giữa khóa chính của bảng cha và khóa ngoài của bảng con thông qua mệnh đề `ON`.',
+        iconName: 'Link2'
       },
       {
         id: 'obj_11_23_2',
         category: 'skill',
         categoryName: 'Kỹ năng & Năng lực',
-        title: 'Viết câu lệnh INNER JOIN thành thạo',
-        description: 'Viết được câu truy vấn lấy Họ tên học sinh cùng Tên lớp học từ 2 bảng riêng biệt bằng mệnh đề `INNER JOIN ... ON ...`.',
-        iconName: 'Play'
+        title: 'Viết câu lệnh truy vấn đa bảng chuẩn',
+        description: 'Viết và thực thi thành thạo câu lệnh `SELECT ... FROM BangA INNER JOIN BangB ON BangA.Khoa = BangB.Khoa WHERE ...` kèm sử dụng bí danh Alias.',
+        iconName: 'Code'
       },
       {
         id: 'obj_11_23_3',
         category: 'attitude',
         categoryName: 'Phẩm chất & Đạo đức',
-        title: 'Tư duy liên kết dữ liệu đa chiều',
-        description: 'Hình thành khả năng phân tích và tổng hợp thông tin từ nhiều nguồn dữ liệu độc lập để đưa ra bức tranh toàn cảnh.',
-        iconName: 'Eye'
+        title: 'Tư duy liên kết hệ thống đa chiều',
+        description: 'Phát triển tư duy phân tích tổng hợp, nhìn nhận dữ liệu trong một bức tranh tổng thể kết nối logic thay vì các thông tin rời rạc.',
+        iconName: 'CheckCircle'
       }
     ],
     warmup: {
-      title: 'Tình huống: Bảng Học sinh chỉ có "Mã lớp", muốn in ra "Tên lớp" thì làm sao?',
-      scenario: 'Trong bảng `HOC_SINH` chỉ lưu cột `MaLop` (ví dụ: "L01"). Tên lớp chi tiết ("Lớp 11A1 Chuyên Tin") và tên Giáo viên chủ nhiệm lại nằm ở bảng `LOP`. Ban Giám hiệu yêu cầu in danh sách gồm: Họ tên học sinh, Tên lớp đầy đủ và Tên Giáo viên chủ nhiệm.',
-      pollQuestion: 'Phép toán nào trong ngôn ngữ SQL cho phép ghép nối thông tin từ cả hai bảng lại với nhau?',
+      title: 'Tình huống: Tên học sinh ở một bảng, Tên lớp ở bảng khác',
+      scenario: 'Bảng `HOC_SINH` chỉ lưu `MaLop` (ví dụ: "L01"). Bảng `LOP_HOC` mới lưu `TenLop` (ví dụ: "Lớp 11A1 Chuyên Tin"). Khi in giấy khen cho học sinh, bạn cần hiển thị đầy đủ: "Nguyễn Văn An - Lớp 11A1 Chuyên Tin".',
+      pollQuestion: 'Phép toán liên kết bảng nào trong SQL giúp bạn gộp các cột từ 2 bảng khác nhau thành một bảng kết quả duy nhất dựa trên trường chung MaLop?',
       pollOptions: [
-        { id: 'p11_23_1', text: 'Mệnh đề INNER JOIN kết hợp điều kiện ON (HOC_SINH.MaLop = LOP.MaLop)', votesPercent: 94, isPopular: true, insight: 'Chính xác! Phép JOIN so khớp cột khóa ngoại và khóa chính để tạo ra bảng kết quả tổng hợp hoàn chỉnh.' },
-        { id: 'p11_23_2', text: 'Ngồi gõ tay từng tên lớp vào bảng học sinh', votesPercent: 3, insight: 'Gõ thủ công lãng phí thời gian và vi phạm nguyên tắc chống dư thừa dữ liệu.' },
-        { id: 'p11_23_3', text: 'Ghép hai màn hình máy tính lại với nhau', votesPercent: 3, insight: 'Ghép màn hình vật lý không liên quan đến xử lý logic dữ liệu trong CSDL.' }
+        { id: 'p11_23_1', text: 'Phép nối bảng INNER JOIN với điều kiện so khớp ON HOC_SINH.MaLop = LOP_HOC.MaLop', votesPercent: 95, isPopular: true, insight: 'Chính xác! INNER JOIN kết nối các hàng của hai bảng lại với nhau khi giá trị ở cột liên kết bằng nhau.' },
+        { id: 'p11_23_2', text: 'Dùng lệnh COPY PASTE thủ công bằng tay', votesPercent: 3, insight: 'Thao tác tay không thể áp dụng cho cơ sở dữ liệu hàng triệu học sinh.' },
+        { id: 'p11_23_3', text: 'Lệnh gộp file ZIP', votesPercent: 2, insight: 'ZIP chỉ nén file trên đĩa, không thực hiện được phép kết nối bảng quan hệ SQL.' }
       ],
-      reflection: 'Phép JOIN là đỉnh cao của ngôn ngữ SQL, biến các bảng dữ liệu rời rạc thành kho tri thức tổng hợp mạnh mẽ.'
+      reflection: 'Phép nối JOIN là chìa khóa mở toang sức mạnh của cơ sở dữ liệu quan hệ, cho phép tái hợp các thông tin đã được chuẩn hóa phân tán.'
     },
     knowledge: [
       {
         id: 'tab_11_23_1',
-        title: '1. Cú Pháp & Nguyên Lý Hoạt Động của INNER JOIN',
-        subtitle: 'Ghép nối các dòng dữ liệu thỏa mãn điều kiện so khớp',
-        iconName: 'Layers',
+        title: '1. Phép nối bảng INNER JOIN và điều kiện ON',
+        subtitle: 'Nguyên lý so khớp khóa chính và khóa ngoài để hợp nhất dữ liệu',
+        iconName: 'Link2',
         keyPoints: [
-          'Cú pháp chuẩn: `SELECT BangA.Cot1, BangB.Cot2 FROM BangA INNER JOIN BangB ON BangA.KhoaChinh = BangB.KhoaNgoai WHERE <DieuKien>;`',
-          'Nguyên lý INNER JOIN: Chỉ giữ lại những dòng dữ liệu có sự trùng khớp giá trị giữa 2 bảng theo điều kiện ở mệnh đề `ON`.',
-          'Định danh rõ nguồn gốc: Khi các bảng có tên cột trùng nhau (như cùng có cột `MaLop`), bắt buộc phải viết tiền tố tên bảng phía trước: `HOC_SINH.MaLop` hoặc sử dụng bí danh (Alias: `hs.MaLop`).',
-          'Mở rộng: Có thể nối 3 hoặc nhiều bảng cùng lúc bằng cách lặp lại các mệnh đề `JOIN ... ON ...`.'
+          'Khái niệm: INNER JOIN là phép nối trả về các hàng dữ liệu khi có sự trùng khớp giá trị giữa hai bảng dựa trên điều kiện nối chỉ định sau từ khóa `ON`.',
+          'Cú pháp chuẩn:',
+          '  `SELECT BangA.Cot1, BangB.Cot2`',
+          '  `FROM BangA`',
+          '  `INNER JOIN BangB ON BangA.CotChung = BangB.CotChung`',
+          '  `WHERE <Dieu_Kien_Loc>;`',
+          'Xử lý trùng tên cột: Khi hai bảng có cùng tên cột (như `MaLop`), bắt buộc phải ghi rõ tiền tố `TenBang.TenCot` (ví dụ: `HOC_SINH.MaLop`) để tránh lỗi nhập nhằng (Ambiguous Column).'
+        ],
+        visualType: 'infographic',
+        visualData: {
+          nodes: [
+            { label: 'Bảng HOC_SINH', desc: 'Chứa: MaHS, HoTen, MaLop' },
+            { label: 'Cầu nối INNER JOIN ON', desc: 'So khớp: HOC_SINH.MaLop = LOP_HOC.MaLop' },
+            { label: 'Bảng LOP_HOC', desc: 'Chứa: MaLop, TenLop, GiaoVienCN' }
+          ]
+        },
+        emCanNho: [
+          'INNER JOIN kết nối các dòng có giá trị so khớp bằng nhau giữa 2 bảng.',
+          'Mệnh đề `ON` xác định điều kiện nối (thường là Khóa chính = Khóa ngoài).',
+          'Dùng `TenBang.TenCot` để chỉ định chính xác cột khi hai bảng trùng tên cột.'
+        ]
+      },
+      {
+        id: 'tab_11_23_2',
+        title: '2. Sử dụng bí danh (Alias) và truy vấn đa bảng',
+        subtitle: 'Viết câu lệnh SQL ngắn gọn, sáng sủa và kết nối nhiều hơn 2 bảng',
+        iconName: 'Code',
+        keyPoints: [
+          'Bí danh bảng (Table Alias): Đặt tên viết tắt ngắn gọn cho bảng ngay sau tên bảng trong mệnh đề FROM / JOIN để không phải gõ lại tên bảng dài dòng.',
+          'Ví dụ đặt bí danh `hs` cho `HOC_SINH` và `l` cho `LOP_HOC`:',
+          '  `SELECT hs.MaHS, hs.HoTen, l.TenLop`',
+          '  `FROM HOC_SINH AS hs`',
+          '  `INNER JOIN LOP_HOC AS l ON hs.MaLop = l.MaLop;`',
+          'Nối nhiều hơn 2 bảng: Có thể viết liên tiếp các mệnh đề INNER JOIN để kết nối 3, 4 bảng dữ liệu (ví dụ: Học sinh nối với Điểm, Điểm nối với Môn học).'
         ],
         visualType: 'interactive-sql',
         visualData: {
-          defaultSql: '-- Truy vấn lấy Họ tên học sinh kèm Tên lớp đầy đủ:\nSELECT \n  HOC_SINH.MaHS,\n  HOC_SINH.HoTen,\n  LOP.TenLop,\n  LOP.GiaoVienChuNhiem\nFROM HOC_SINH\nINNER JOIN LOP ON HOC_SINH.MaLop = LOP.MaLop\nORDER BY LOP.TenLop ASC, HOC_SINH.HoTen ASC;'
+          initialSql: 'SELECT hs.MaHS, hs.HoTen, l.TenLop, hs.DiemTB\nFROM HOC_SINH hs\nINNER JOIN LOP_HOC l ON hs.MaLop = l.MaLop\nWHERE hs.DiemTB >= 8.0\nORDER BY hs.DiemTB DESC;'
         },
         emCanNho: [
-          'Cú pháp: `SELECT ... FROM BangA INNER JOIN BangB ON BangA.Khoa = BangB.Khoa`.',
-          'Mệnh đề `ON` dùng để xác định cặp thuộc tính liên kết giữa hai bảng.',
-          'Dùng `TenBang.TenCot` để tránh nhầm lẫn khi hai bảng có cột trùng tên.'
+          'Bí danh bảng (Alias) giúp câu lệnh SQL ngắn gọn, dễ đọc và chuyên nghiệp hơn.',
+          'Từ khóa `AS` có thể lược bỏ (ví dụ: `FROM HOC_SINH hs`).',
+          'Có thể liên kết nối nhiều bảng liên tiếp bằng nhiều mệnh đề INNER JOIN.'
         ]
       }
     ],
     miniGame: {
       type: 'matching',
-      title: 'Ghép cặp Thành phần trong câu truy vấn JOIN',
-      instruction: 'Nối các từ khóa trong câu lệnh nối bảng với vai trò tương ứng:',
+      title: 'Ghép cặp Mệnh đề Truy Vấn Đa Bảng và Chức Năng',
+      instruction: 'Nối thành phần câu truy vấn JOIN với vai trò của nó:',
       matchingPairs: [
-        { id: 'j1', left: 'SELECT hs.HoTen, lop.TenLop', right: 'Chỉ định các cột cần hiển thị từ cả hai bảng' },
-        { id: 'j2', left: 'FROM HOC_SINH hs', right: 'Chỉ định bảng nguồn thứ nhất và đặt bí danh ngắn là hs' },
-        { id: 'j3', left: 'INNER JOIN LOP lop', right: 'Nối với bảng nguồn thứ hai và đặt bí danh là lop' },
-        { id: 'j4', left: 'ON hs.MaLop = lop.MaLop', right: 'Điều kiện so khớp khóa ngoại MaLop của học sinh với khóa chính của lớp' }
+        { id: 'j1', left: 'INNER JOIN LOP_HOC l', right: 'Chỉ định bảng thứ hai tham gia liên kết kèm bí danh l' },
+        { id: 'j2', left: 'ON hs.MaLop = l.MaLop', right: 'Xác lập điều kiện so khớp khóa ngoại và khóa chính giữa hai bảng' },
+        { id: 'j3', left: 'SELECT hs.HoTen, l.TenLop', right: 'Lấy đồng thời cột tên từ bảng học sinh và cột tên lớp từ bảng lớp' },
+        { id: 'j4', left: 'FROM HOC_SINH hs', right: 'Chỉ định bảng gốc bắt đầu truy xuất kèm bí danh hs' }
       ]
     },
     assessment: [
       {
         id: 1,
-        question: 'Mục đích cốt lõi của mệnh đề `INNER JOIN` trong câu lệnh SQL là gì?',
-        options: [
-          'Kết hợp các dòng từ hai hay nhiều bảng dựa trên một cột chung có giá trị so khớp tương ứng',
-          'Xóa toàn bộ các bảng trong CSDL',
-          'Tạo mật khẩu cho người dùng',
-          'Tắt máy chủ CSDL'
-        ],
+        question: 'Trong câu lệnh INNER JOIN, mệnh đề nào bắt buộc phải có để xác định điều kiện so khớp giữa hai bảng?',
+        options: ['ON', 'WHERE', 'USING', 'WITH'],
         correctIndex: 0,
-        explanation: 'INNER JOIN dùng để kết nối và tổng hợp thông tin từ nhiều bảng dữ liệu quan hệ.',
+        explanation: 'Mệnh đề ON chỉ định biểu thức so khớp (ví dụ: ON BangA.ID = BangB.ID).',
         difficulty: 'Nhận biết'
       },
       {
         id: 2,
-        question: 'Trong câu lệnh JOIN, mệnh đề `ON` có vai trò gì?',
+        question: 'Nếu cả hai bảng HOC_SINH và LOP_HOC đều có cột mang tên `MaLop`, làm sao để chỉ thị lấy cột MaLop của bảng HOC_SINH mà không bị báo lỗi nhập nhằng (Ambiguous)?',
         options: [
-          'Xác định điều kiện so khớp liên kết giữa hai bảng (thường là so sánh Khóa chính = Khóa ngoài)',
-          'Bật máy tính lên',
-          'Sắp xếp dữ liệu từ A đến Z',
-          'Đếm tổng số bản ghi'
+          'Viết rõ: HOC_SINH.MaLop',
+          'Viết MaLop_1',
+          'Viết hoa chữ MALOP',
+          'Không thể lấy được'
         ],
         correctIndex: 0,
-        explanation: 'Mệnh đề ON chỉ định chuẩn quy tắc so sánh để ghép cặp hai dòng dữ liệu của hai bảng.',
+        explanation: 'Thêm tiền tố tên bảng (HOC_SINH.MaLop) phân định rõ nguồn gốc cột dữ liệu.',
         difficulty: 'Thông hiểu'
       },
       {
         id: 3,
-        question: 'Nếu hai bảng `HOC_SINH` và `LOP` đều có chung một cột mang tên `MaLop`, làm thế nào để SQL không bị lỗi nhầm lẫn (Ambiguous Column)?',
+        question: 'Mục đích của việc sử dụng "Bí danh" (Alias) trong câu lệnh truy vấn đa bảng là gì?',
         options: [
-          'Ghi rõ tên bảng phía trước tên cột, ví dụ: `HOC_SINH.MaLop` hoặc `LOP.MaLop`',
-          'Xóa cột MaLop ở một trong hai bảng',
-          'Đổi tên một bảng thành tên khác',
-          'Bỏ không dùng cột MaLop nữa'
+          'Giúp viết tên bảng ngắn gọn hơn (ví dụ: HOC_SINH viết thành hs) làm câu lệnh sáng sủa, dễ đọc',
+          'Để giấu tên bảng không cho ai biết',
+          'Làm cho câu lệnh chạy nhanh gấp 100 lần',
+          'Để máy tính tự động dịch sang tiếng Pháp'
         ],
         correctIndex: 0,
-        explanation: 'Cú pháp `TenBang.TenCot` giúp phân biệt chính xác cột dữ liệu thuộc bảng nào.',
+        explanation: 'Bí danh là tên đại diện tạm thời ngắn gọn giúp lập trình viên viết code nhanh và rõ ràng.',
         difficulty: 'Thông hiểu'
       },
       {
         id: 4,
-        question: 'Giả sử bảng `HOC_SINH` có 100 học sinh, trong đó có 2 bạn chưa được xếp lớp (`MaLop` mang giá trị NULL). Khi thực hiện `INNER JOIN` với bảng `LOP`, kết quả trả về bao nhiêu học sinh?',
+        question: 'Một học sinh chưa được phân vào lớp nào (MaLop mang giá trị NULL). Khi thực hiện câu lệnh INNER JOIN giữa HOC_SINH và LOP_HOC, học sinh này có xuất hiện trong bảng kết quả không?',
         options: [
-          '98 học sinh (vì 2 bạn có MaLop là NULL không so khớp được với bất kỳ lớp nào trong bảng LOP)',
-          '100 học sinh',
-          '102 học sinh',
-          '0 học sinh'
+          'Không xuất hiện, vì INNER JOIN chỉ lấy các hàng có sự khớp bằng nhau giữa hai bảng',
+          'Có xuất hiện với tên lớp để trống',
+          'Có xuất hiện và máy tự gán vào lớp 11A1',
+          'Câu lệnh bị dừng lại báo lỗi'
         ],
         correctIndex: 0,
-        explanation: 'INNER JOIN chỉ lấy những bản ghi có sự trùng khớp ở cả 2 bảng, các dòng NULL sẽ bị loại bỏ.',
+        explanation: 'INNER JOIN chỉ trả về các hàng thỏa mãn điều kiện nối; giá trị NULL không khớp nên bị loại trừ.',
         difficulty: 'Vận dụng'
       },
       {
         id: 5,
-        question: 'Để viết ngắn gọn câu lệnh JOIN phức tạp, kỹ thuật nào sau đây thường được các lập trình viên sử dụng?',
-        options: [
-          'Đặt bí danh (Alias) cho tên bảng, ví dụ: `FROM HOC_SINH hs INNER JOIN LOP l ON hs.MaLop = l.MaLop`',
-          'Viết hoa toàn bộ câu lệnh',
-          'Xóa hết dấu cách',
-          'Không dùng dấu chấm phẩy'
-        ],
+        question: 'Để kết nối 3 bảng: HOC_SINH, KET_QUA_HOC_TAP và MON_HOC, bạn cần sử dụng bao nhiêu mệnh đề INNER JOIN trong câu lệnh?',
+        options: ['2 mệnh đề INNER JOIN', '1 mệnh đề INNER JOIN', '3 mệnh đề INNER JOIN', 'Không cần mệnh đề nào'],
         correctIndex: 0,
-        explanation: 'Bí danh bảng (Table Alias) giúp câu lệnh SQL ngắn gọn, sáng sủa và dễ đọc hơn rất nhiều.',
-        difficulty: 'Thông hiểu'
+        explanation: 'Quy tắc: Để nối N bảng cần tối thiểu (N - 1) phép nối JOIN.',
+        difficulty: 'Vận dụng'
       }
     ],
     application: {
       project: {
-        title: 'Thực hành: Truy Xuất Báo Cáo Mượn Trả Sách Thư Viện',
-        context: 'Cán bộ thư viện cần in phiếu mượn sách có đầy đủ Họ tên người mượn và Tên cuốn sách.',
-        mission: 'Viết câu truy vấn JOIN liên kết 3 bảng: `HOC_SINH`, `PHIEU_MUON` và `SACH`.',
+        title: 'Báo Cáo Điểm Thi Đa Bảng: In Bảng Điểm Chi Tiết Môn Học',
+        context: 'Phần mềm quản lý học tập cần in phiếu điểm học kỳ cho từng học sinh.',
+        mission: 'Viết câu lệnh SQL kết nối 3 bảng HOC_SINH, BANG_DIEM và MON_HOC.',
         steps: [
-          'Bước 1: Nối bảng `PHIEU_MUON` với bảng `HOC_SINH` qua `MaHS`.',
-          'Bước 2: Tiếp tục nối với bảng `SACH` qua `MaSach`.',
-          'Bước 3: Chọn các cột: `HoTen`, `TenSach`, `NgayMuon`, `NgayPhaiTra` và lọc những phiếu chưa trả.'
+          'Bước 1: Chọn các cột cần in: `hs.HoTen, mh.TenMon, bd.DiemGiuaKy, bd.DiemCuoiKy`.',
+          'Bước 2: Nối bảng 1: `FROM HOC_SINH hs INNER JOIN BANG_DIEM bd ON hs.MaHS = bd.MaHS`.',
+          'Bước 3: Nối bảng 2: `INNER JOIN MON_HOC mh ON bd.MaMon = mh.MaMon`.',
+          'Bước 4: Thêm điều kiện: `WHERE hs.MaHS = \'HS001\';`.'
         ],
-        outputRequirement: 'Một câu lệnh SQL nối 3 bảng hoàn chỉnh và kết quả bảng báo cáo mượn sách.',
-        practicalTip: 'Khi nối 3 bảng, bạn chỉ cần viết 2 lần mệnh đề `INNER JOIN ... ON ...` liên tiếp nhau.'
+        outputRequirement: 'Câu lệnh truy vấn 3 bảng hoàn chỉnh và kết quả hiển thị bảng điểm đầy đủ tên môn.',
+        practicalTip: 'Viết mỗi mệnh đề JOIN trên một dòng riêng biệt và thụt lề vào trong để code luôn rõ ràng, chuẩn chuyên nghiệp.'
       },
       mindmap: {
         id: 'mm_11_23',
-        label: 'LIÊN KẾT BẢNG JOIN',
-        color: '#0891b2',
+        label: 'TRUY VẤN NỐI BẢNG JOIN',
+        color: '#2563eb',
         children: [
           {
             id: 'mm_11_23_1',
-            label: 'Nguyên tắc nối',
+            label: 'Cú pháp INNER JOIN',
             children: [
-              { id: 'mm_11_23_1_1', label: 'So khớp Khóa chính = Khóa ngoài' },
-              { id: 'mm_11_23_1_2', label: 'Mệnh đề ON bắt buộc' },
-              { id: 'mm_11_23_1_3', label: 'Dùng bí danh (Alias) bảng' }
+              { id: 'mm_11_23_1_1', label: 'FROM BangA INNER JOIN BangB' },
+              { id: 'mm_11_23_1_2', label: 'Mệnh đề ON so khớp khóa' },
+              { id: 'mm_11_23_1_3', label: 'Tiền tố TenBang.TenCot' }
             ]
           },
           {
             id: 'mm_11_23_2',
-            label: 'Ứng dụng thực tế',
+            label: 'Tối ưu hóa',
             children: [
-              { id: 'mm_11_23_2_1', label: 'Báo cáo điểm học sinh' },
-              { id: 'mm_11_23_2_2', label: 'Hóa đơn chi tiết bán hàng' },
-              { id: 'mm_11_23_2_3', label: 'Phiếu mượn sách thư viện' }
+              { id: 'mm_11_23_2_1', label: 'Bí danh bảng (Alias: hs, l)' },
+              { id: 'mm_11_23_2_2', label: 'Nối liên tiếp 3 bảng' },
+              { id: 'mm_11_23_2_3', label: 'Kết hợp điều kiện lọc WHERE' }
             ]
           }
         ]
       }
     },
     completion: {
-      badgeName: 'Bậc Thầy Nối Bảng JOIN 11',
-      badgeIcon: 'GitMerge',
-      roleTitle: 'Chuyên Viên Phân Tích Dữ Liệu Đa Bảng',
-      congratsMessage: 'Xuất sắc! Bạn đã làm chủ câu lệnh INNER JOIN liên kết nhiều bảng để trích xuất báo cáo tổng hợp.',
-      skillsUnlocked: ['Viết câu lệnh INNER JOIN', 'Sử dụng mệnh đề ON và Alias', 'Nối 3 bảng dữ liệu liên hoàn']
+      badgeName: 'Bậc Thầy Nối Bảng SQL 11',
+      badgeIcon: 'Link2',
+      roleTitle: 'Chuyên Viên Truy Vấn Dữ Liệu Phức Hợp',
+      congratsMessage: 'Tuyệt vời! Bạn đã làm chủ vũ khí tối thượng INNER JOIN, tự tin trích xuất báo cáo từ nhiều bảng dữ liệu quan hệ liên kết.',
+      skillsUnlocked: ['Cú pháp INNER JOIN ... ON ...', 'Sử dụng bí danh Alias', 'Truy vấn liên kết 3 bảng phức hợp']
     }
   },
 
@@ -409,198 +463,230 @@ export const THEME6_LESSONS_PART3_11: Lesson[] = [
     title: 'Thực hành sao lưu dữ liệu',
     themeId: 6,
     themeName: 'Chủ đề 6: Thực hành tạo và khai thác cơ sở dữ liệu',
-    topicBadge: 'Sao lưu & Phục hồi',
+    topicBadge: 'Sao lưu & Phục hồi CSDL',
     grade: 11,
     estimatedMinutes: 45,
     xpTotal: 250,
     hero: {
-      tagline: 'Phao cứu sinh số: Kỹ thuật Xuất bản sao lưu (Export) và Phục hồi (Import) CSDL',
-      description: 'Làm chủ quy trình xuất tệp sao lưu dữ liệu (.sql dump) trong HeidiSQL / MySQL, lập chiến lược sao lưu định kỳ và các bước phục hồi lại toàn bộ cấu trúc và dữ liệu sau sự cố hỏng hóc phần cứng.',
-      accentColor: 'from-cyan-600 to-blue-600',
-      keyHighlights: ['Xuất tệp sao lưu SQL Dump (.sql)', 'Phục hồi dữ liệu Import', 'Chiến lược sao lưu dự phòng']
+      tagline: 'Lá chắn bảo vệ kho báu: Xuất tệp SQL Dump và phục hồi dữ liệu sau thảm họa',
+      description: 'Luyện tập kỹ năng sống còn của người quản trị CSDL: Xuất toàn bộ cấu trúc và dữ liệu ra tệp sao lưu .sql (Export database as SQL dump) và thao tác nhập phục hồi dữ liệu nguyên vẹn (Import).',
+      accentColor: 'from-emerald-600 to-teal-600',
+      keyHighlights: ['Xuất tệp sao lưu SQL dump (.sql)', 'Phục hồi CSDL (Import / Restore)', 'Quy tắc sao lưu an toàn 3-2-1']
     },
     objectives: [
       {
         id: 'obj_11_24_1',
         category: 'knowledge',
         categoryName: 'Kiến thức cốt lõi',
-        title: 'Bản chất của tệp sao lưu SQL Dump',
-        description: 'Hiểu rằng tệp sao lưu `.sql` thực chất là một tập hợp các câu lệnh SQL (CREATE TABLE, INSERT INTO) dùng để tái tạo lại toàn bộ dữ liệu.',
-        iconName: 'Archive'
+        title: 'Hiểu bản chất tệp sao lưu .sql dump',
+        description: 'Giải thích được bản chất của tệp sao lưu `.sql dump`: là tệp văn bản thuần chứa tập hợp các câu lệnh SQL (CREATE TABLE, INSERT INTO) để tái tạo lại toàn bộ dữ liệu.',
+        iconName: 'FileText'
       },
       {
         id: 'obj_11_24_2',
         category: 'skill',
         categoryName: 'Kỹ năng & Năng lực',
-        title: 'Thao tác Export và Import thành thạo',
-        description: 'Thực hiện xuất tệp sao lưu CSDL ra máy tính và nhập phục hồi thành công trên một máy tính hoặc máy chủ khác.',
+        title: 'Thực hiện xuất và nhập CSDL trên HeidiSQL',
+        description: 'Thực hiện thành thạo thao tác Export database ra tệp `.sql` và thao tác Import (Run SQL file) để phục hồi toàn bộ CSDL trên máy chủ khác.',
         iconName: 'DownloadCloud'
       },
       {
         id: 'obj_11_24_3',
         category: 'attitude',
         categoryName: 'Phẩm chất & Đạo đức',
-        title: 'Thói quen sao lưu thường xuyên',
-        description: 'Hình thành phản xạ sao lưu dữ liệu trước khi thực hiện các thay đổi lớn hoặc trước khi cài lại hệ điều hành.',
+        title: 'Thói quen sao lưu dữ liệu định kỳ',
+        description: 'Hình thành ý thức kỷ luật tự giác: luôn sao lưu dữ liệu trước khi thực hiện các thay đổi lớn và lưu trữ bản sao lưu an toàn theo quy tắc 3-2-1.',
         iconName: 'ShieldCheck'
       }
     ],
     warmup: {
-      title: 'Tình huống: Máy chủ phòng máy bị sét đánh cháy ổ cứng',
-      scenario: 'Một trận giông sét làm chập điện và cháy ổ cứng máy chủ lưu trữ toàn bộ điểm số học kỳ của học sinh. Rất may, thầy phụ trách phòng máy đã xuất một file `backup_diem_2026.sql` lưu trên Google Drive vào chiều hôm trước.',
-      pollQuestion: 'Thầy phụ trách cần làm gì trên máy tính mới để đưa hệ thống hoạt động trở lại bình thường?',
+      title: 'Tình huống: Máy chủ bị sét đánh cháy sạch ổ cứng',
+      scenario: 'Một sự cố chập điện nghiêm trọng xảy ra khiến toàn bộ ổ cứng máy chủ của công ty bị hỏng vật lý hoàn toàn. May mắn thay, người quản trị CSDL đã có thói quen xuất tệp sao lưu `.sql` lúc 23h00 đêm hôm trước và lưu trên một ổ cứng di động cất trong két sắt.',
+      pollQuestion: 'Bằng cách nào người quản trị có thể khôi phục lại toàn bộ dữ liệu của công ty trên một chiếc máy chủ mới tinh?',
       pollOptions: [
-        { id: 'p11_24_1', text: 'Tải file .sql về, mở phần mềm quản trị CSDL và chạy lệnh Import (Phục hồi) tệp script đó', votesPercent: 95, isPopular: true, insight: 'Chính xác! Tệp SQL Dump sẽ tự động chạy lại toàn bộ lệnh tạo bảng và bơm lại 100% dữ liệu nguyên vẹn.' },
-        { id: 'p11_24_2', text: 'Ngồi nhập lại điểm số của 3000 học sinh từ đầu', votesPercent: 2, insight: 'Nhập lại từ đầu tốn hàng tháng trời và dễ xảy ra sai sót.' },
-        { id: 'p11_24_3', text: 'Cho tất cả học sinh nghỉ học', votesPercent: 3, insight: 'Sao lưu dữ liệu chính là để đảm bảo hoạt động giáo dục không bị gián đoạn.' }
+        { id: 'p11_24_1', text: 'Chạy tệp sao lưu .sql (Import / Restore) để máy chủ tự động thực thi lại các lệnh tạo bảng và chèn lại toàn bộ dữ liệu', votesPercent: 96, isPopular: true, insight: 'Chính xác! Tệp .sql dump chứa toàn bộ mã nguồn tái sinh CSDL về trạng thái nguyên vẹn trong vài phút.' },
+        { id: 'p11_24_2', text: 'Ngồi gõ lại bằng tay từng bản ghi từ đầu', votesPercent: 2, insight: 'Gõ tay hàng triệu bản ghi sẽ mất hàng năm trời và không khả thi.' },
+        { id: 'p11_24_3', text: 'Bó tay không cứu được', votesPercent: 2, insight: 'Đã có bản sao lưu .sql an toàn thì việc phục hồi là hoàn toàn trong tầm tay.' }
       ],
-      reflection: 'Sao lưu dữ liệu là sự bảo hiểm sinh mệnh cho mọi hệ thống công nghệ thông tin.'
+      reflection: 'Có hai loại người dùng máy tính: người đã từng mất dữ liệu và người thường xuyên sao lưu dữ liệu.'
     },
     knowledge: [
       {
         id: 'tab_11_24_1',
-        title: '1. Quy Trình Xuất (Export) & Nhập (Import) CSDL trong HeidiSQL',
-        subtitle: 'Bảo vệ dữ liệu bằng tệp script SQL hoàn chỉnh',
-        iconName: 'FileArchive',
+        title: '1. Quy trình xuất bản sao lưu CSDL (.sql dump)',
+        subtitle: 'Đóng gói toàn bộ cấu trúc và dữ liệu thành tệp văn bản tái sinh',
+        iconName: 'UploadCloud',
         keyPoints: [
-          'Tệp sao lưu `.sql` (SQL Dump): Chứa mã nguồn DDL (tạo cấu trúc bảng) và DML (các lệnh INSERT INTO phục hồi dữ liệu).',
-          'Quy trình Xuất (Export): Nhấp chuột phải vào CSDL -> Chọn "Export database as SQL" -> Chọn thư mục lưu -> Bấm Export.',
-          'Quy trình Nhập (Import / Restore): Vào menu File -> Chọn "Run SQL file..." (hoặc mở tệp .sql trong tab Query) -> Bấm F9 để thực thi toàn bộ script.',
-          'Nguyên tắc 3-2-1 trong sao lưu: Có ít nhất 3 bản sao, trên 2 loại phương tiện khác nhau, và ít nhất 1 bản lưu ngoài địa điểm (trên đám mây).'
+          'Bản chất SQL Dump: Không phải tệp nhị phân phức tạp, mà là một tệp văn bản (Text file) đuôi `.sql` chứa các câu lệnh `DROP TABLE`, `CREATE TABLE` (tái tạo khung) và hàng ngàn câu lệnh `INSERT INTO` (nạp lại dữ liệu).',
+          'Các bước xuất sao lưu trên phần mềm HeidiSQL:',
+          '  - Bước 1: Nhấp chuột phải vào tên Cơ sở dữ liệu cần sao lưu ở cây bên trái.',
+          '  - Bước 2: Chọn mục `Export database as SQL dump`.',
+          '  - Bước 3: Tại mục Database chọn `Create`, tại Table chọn `Create`, tại Data chọn `Insert`.',
+          '  - Bước 4: Chọn vị trí lưu tệp (File name) và nhấn nút `Export`.'
         ],
         visualType: 'infographic',
         visualData: {
           nodes: [
-            { label: 'Bước 1: Export (Xuất)', desc: 'Tạo tệp backup_dulieu.sql an toàn' },
-            { label: 'Bước 2: Cất giữ an toàn', desc: 'Lưu trên Google Drive hoặc ổ cứng ngoài' },
-            { label: 'Bước 3: Import (Phục hồi)', desc: 'Tái tạo lại CSDL nguyên vẹn chỉ trong vài giây' }
+            { label: '1. Chuột phải vào CSDL', desc: 'Chọn Export database as SQL dump' },
+            { label: '2. Tùy chọn cấu trúc & Dữ liệu', desc: 'Tích chọn Create Table và Insert Data' },
+            { label: '3. Xuất tệp .sql', desc: 'Lưu tệp an toàn ra ổ đĩa hoặc đám mây' }
           ]
         },
         emCanNho: [
-          'Tệp sao lưu `.sql` chứa toàn bộ câu lệnh tái tạo cấu trúc và dữ liệu.',
-          'Dùng tính năng `Export database as SQL` để sao lưu trong HeidiSQL.',
-          'Dùng `Run SQL file...` (F9) để phục hồi lại CSDL khi gặp sự cố.'
+          'Tệp sao lưu `.sql` chứa các câu lệnh tạo bảng và chèn dữ liệu.',
+          'Có thể chọn sao lưu chỉ cấu trúc (Schema only) hoặc cả cấu trúc lẫn dữ liệu (Data & Structure).',
+          'Đặt tên tệp sao lưu kèm ngày giờ xuất (ví dụ: `backup_ql_hocsinh_2026_09_02.sql`).'
+        ]
+      },
+      {
+        id: 'tab_11_24_2',
+        title: '2. Nhập và phục hồi dữ liệu từ tệp sao lưu',
+        subtitle: 'Quy trình hồi sinh hệ thống từ tệp SQL script dự phòng',
+        iconName: 'DownloadCloud',
+        keyPoints: [
+          'Khái niệm: Nhập dữ liệu (Import / Restore) là quá trình đọc tệp `.sql` sao lưu và thực thi tuần tự các câu lệnh bên trong để tái tạo lại toàn bộ các bảng và bản ghi trên một máy chủ mới.',
+          'Các bước phục hồi dữ liệu trong HeidiSQL:',
+          '  - Bước 1: Mở phần mềm HeidiSQL và kết nối tới máy chủ.',
+          '  - Bước 2: Vào menu `File -> Load SQL file...` (hoặc bấm phím tắt `Ctrl + O`).',
+          '  - Bước 3: Tìm chọn tệp sao lưu `.sql` đã lưu trước đó.',
+          '  - Bước 4: Nhấn nút Run (F9) hoặc chọn "Run file directly" để máy chủ tự động nạp dữ liệu.',
+          'Quy tắc an toàn 3-2-1: Giữ 3 bản sao dữ liệu, lưu trên 2 loại thiết bị khác nhau, và có ít nhất 1 bản sao lưu ở địa điểm bên ngoài (Off-site / Cloud).'
+        ],
+        visualType: 'comparison-table',
+        visualData: {
+          headers: ['Bước thao tác', 'Hành động cụ thể trên HeidiSQL', 'Mục đích đạt được'],
+          rows: [
+            ['1. Mở tệp sao lưu', 'File -> Load SQL file (Ctrl + O)', 'Nạp tệp script sao lưu vào vùng nhớ'],
+            ['2. Thực thi kịch bản', 'Bấm phím F9 hoặc Run script', 'Máy chủ tự động chạy lại lệnh tạo bảng và chèn dữ liệu'],
+            ['3. Kiểm tra kết quả', 'Nhấn F5 làm mới cây CSDL', 'Xác nhận toàn bộ các bảng và dữ liệu đã hiển thị nguyên vẹn']
+          ]
+        },
+        emCanNho: [
+          'Dùng `File -> Load SQL file` để mở tệp sao lưu `.sql`.',
+          'Nhấn phím `F9` để chạy script phục hồi toàn bộ cơ sở dữ liệu.',
+          'Áp dụng quy tắc 3-2-1 để bảo vệ dữ liệu trường học và tổ chức vĩnh viễn an toàn.'
         ]
       }
     ],
     miniGame: {
       type: 'matching',
-      title: 'Ghép cặp Thao tác Sao lưu và Phục hồi',
-      instruction: 'Nối các thao tác với mục đích thực hiện trong bảo trì dữ liệu:',
+      title: 'Ghép cặp Thao Tác Sao Lưu & Phục Hồi trong HeidiSQL',
+      instruction: 'Nối thao tác với mục đích thực hiện:',
       matchingPairs: [
-        { id: 'bk1', left: 'Export database as SQL', right: 'Xuất toàn bộ CSDL thành tệp kịch bản script .sql để cất giữ' },
-        { id: 'bk2', left: 'Run SQL file (Import)', right: 'Chạy tệp sao lưu .sql để phục hồi lại dữ liệu lên máy chủ mới' },
-        { id: 'bk3', left: 'Quy tắc sao lưu 3-2-1', right: 'Chiến lược giữ 3 bản sao trên 2 phương tiện và 1 bản trên đám mây' },
-        { id: 'bk4', left: 'Sao lưu định kỳ tự động', right: 'Lên lịch hệ thống tự động backup mỗi đêm mà không cần bấm tay' }
+        { id: 'bk1', left: 'Export database as SQL dump', right: 'Xuất toàn bộ bảng và dữ liệu ra tệp văn bản script .sql' },
+        { id: 'bk2', left: 'File -> Load SQL file (Ctrl + O)', right: 'Mở tệp script sao lưu để chuẩn bị nạp phục hồi vào CSDL' },
+        { id: 'bk3', left: 'Quy tắc sao lưu 3-2-1', right: '3 bản sao, trên 2 loại thiết bị, 1 bản lưu ở nơi khác hoặc đám mây' },
+        { id: 'bk4', left: 'Tùy chọn Data: Insert trong Export', right: 'Đảm bảo tệp sao lưu chứa đầy đủ tất cả các hàng dữ liệu thực tế' }
       ]
     },
     assessment: [
       {
         id: 1,
-        question: 'Tệp sao lưu cơ sở dữ liệu thường có phần mở rộng mặc định là gì?',
-        options: ['.sql', '.mp3', '.exe', '.jpg'],
+        question: 'Tệp sao lưu cơ sở dữ liệu dạng "SQL Dump" xuất ra từ HeidiSQL/MySQL có phần mở rộng mặc định là gì?',
+        options: ['.sql', '.docx', '.mp3', '.exe'],
         correctIndex: 0,
-        explanation: 'Tệp sao lưu CSDL MySQL là tệp văn bản mã nguồn SQL thuần túy mang đuôi mở rộng `.sql`.',
+        explanation: 'Tệp sao lưu CSDL luôn mang phần đuôi mở rộng là .sql chứa các câu lệnh SQL tái tạo dữ liệu.',
         difficulty: 'Nhận biết'
       },
       {
         id: 2,
-        question: 'Bản chất thực sự bên trong của một tệp sao lưu `backup.sql` là gì?',
+        question: 'Bản chất bên trong của một tệp sao lưu `.sql` thực chất là gì?',
         options: [
-          'Là tập hợp các câu lệnh SQL (CREATE TABLE, INSERT INTO) dùng để tái tạo lại toàn bộ bảng và dữ liệu',
-          'Là một video ghi lại quá trình làm việc của học sinh',
-          'Là một bài hát ru ngủ',
-          'Là một bức ảnh chụp màn hình máy tính'
+          'Là một tệp văn bản thuần chứa tập hợp các câu lệnh SQL (CREATE TABLE, INSERT INTO) có thể mở đọc bằng Notepad',
+          'Là một bức ảnh chụp màn hình máy tính',
+          'Là một đoạn video quay lại quá trình gõ phím',
+          'Là một phần mềm độc hại'
         ],
         correctIndex: 0,
-        explanation: 'Tệp SQL dump chứa chuỗi lệnh tái tạo cấu trúc và dữ liệu khi được chạy lại.',
+        explanation: 'SQL dump là tệp script văn bản chứa toàn bộ câu lệnh DDL và DML tái sinh CSDL.',
         difficulty: 'Thông hiểu'
       },
       {
         id: 3,
-        question: 'Thời điểm nào sau đây BẮT BUỘC bạn nên thực hiện sao lưu CSDL ngay lập tức?',
+        question: 'Để phục hồi cơ sở dữ liệu từ một tệp sao lưu `.sql` trên máy tính mới bằng HeidiSQL, bạn thực hiện thao tác nào?',
         options: [
-          'Trước khi nâng cấp hệ thống, trước khi sửa đổi cấu trúc lớn hoặc định kỳ cuối mỗi ngày làm việc',
-          'Khi đang chơi game giải trí',
-          'Khi máy tính đang tắt nguồn',
-          'Không bao giờ cần sao lưu'
+          'Vào menu File -> chọn "Load SQL file..." rồi nhấn phím F9 để thực thi',
+          'Kéo tệp .sql vứt vào thùng rác Recycle Bin',
+          'Đổi đuôi tệp thành .mp4 để xem phim',
+          'Tắt mạng Internet'
         ],
         correctIndex: 0,
-        explanation: 'Sao lưu trước khi thay đổi lớn đảm bảo bạn có điểm phục hồi an toàn nếu thao tác bị lỗi.',
+        explanation: 'Load SQL file nạp kịch bản vào tab truy vấn và phím F9 thực thi toàn bộ kịch bản phục hồi.',
         difficulty: 'Thông hiểu'
       },
       {
         id: 4,
-        question: 'Quy tắc sao lưu dữ liệu "3-2-1" kinh điển khuyến nghị điều gì?',
+        question: 'Quy tắc sao lưu dữ liệu kinh điển "3-2-1" khuyên chúng ta điều gì?',
         options: [
-          'Có ít nhất 3 bản sao lưu, lưu trên 2 loại thiết bị lưu trữ khác nhau, và có 1 bản cất giữ ở nơi khác (đám mây)',
-          'Đếm từ 3 đến 1 rồi rút phích cắm điện',
-          'Lưu 3 tệp vào cùng 1 thư mục',
-          'Chia sẻ mật khẩu cho 3 người bạn'
+          'Lưu ít nhất 3 bản sao dữ liệu, trên 2 loại thiết bị lưu trữ khác nhau, và có 1 bản lưu ở nơi khác (hoặc trên đám mây)',
+          'Chỉ được dùng máy tính trong 3 giờ, nghỉ 2 giờ, ngủ 1 giờ',
+          'Mỗi tuần chỉ sao lưu vào ngày 3 tháng 2',
+          'Mỗi ngày gõ 3 câu lệnh SQL'
         ],
         correctIndex: 0,
-        explanation: 'Quy tắc 3-2-1 là tiêu chuẩn vàng quốc tế về an toàn dữ liệu và phòng chống thảm họa.',
-        difficulty: 'Vận dụng'
+        explanation: 'Quy tắc 3-2-1 là tiêu chuẩn vàng của an ninh dữ liệu chống lại thảm họa phần cứng và thiên tai.',
+        difficulty: 'Thông hiểu'
       },
       {
         id: 5,
-        question: 'Để phục hồi lại CSDL từ tệp `backup.sql` trong phần mềm HeidiSQL, bạn sử dụng thao tác nào?',
+        question: 'Tại sao khi đặt tên cho tệp sao lưu CSDL, người ta luôn đính kèm ngày tháng năm xuất tệp (ví dụ: `backup_truonghoc_2026_09_02.sql`)?',
         options: [
-          'Vào menu File -> Chọn "Run SQL file..." và chọn tệp backup.sql cần phục hồi',
-          'Xóa phần mềm HeidiSQL đi cài lại',
-          'Đổi tên tệp thành backup.docx',
-          'Kéo tệp vào thùng rác Recycle Bin'
+          'Để dễ dàng nhận biết bản sao lưu nào là mới nhất và có thể khôi phục chính xác về thời điểm mong muốn',
+          'Để máy tính không bị nhầm lẫn với file nhạc',
+          'Vì phần mềm bắt buộc tên phải có số',
+          'Để tệp có dung lượng nhẹ hơn'
         ],
         correctIndex: 0,
-        explanation: 'Run SQL file sẽ đọc và thực thi tuần tự các câu lệnh trong tệp để tái tạo dữ liệu.',
-        difficulty: 'Nhận biết'
+        explanation: 'Gắn mốc thời gian (Timestamp) giúp kiểm soát phiên bản và chọn đúng bản sao lưu khi có sự cố.',
+        difficulty: 'Vận dụng'
       }
     ],
     application: {
       project: {
-        title: 'Thực hành: Sao Lưu & Chuyển Giao CSDL sang Máy tính Khác',
-        context: 'Bạn cần mang toàn bộ CSDL bài tập thực hành từ phòng máy trường về nhà học tập.',
-        mission: 'Xuất file SQL dump của CSDL `quan_ly_hoc_sinh` và thử nghiệm phục hồi.',
+        title: 'Thực Hành: Diễn Tập Sao Lưu & Di Chuyển CSDL Sang Máy Tính Bạn Cùng Bàn',
+        context: 'Chia sẻ toàn bộ CSDL thư viện bạn đã dày công thiết kế cho bạn học cùng bàn.',
+        mission: 'Xuất tệp SQL dump, copy qua USB hoặc Google Drive sang máy bạn và nhập thành công.',
         steps: [
-          'Bước 1: Trong HeidiSQL, nhấp chuột phải vào `quan_ly_hoc_sinh` -> Chọn "Export database as SQL".',
-          'Bước 2: Chọn lưu thành tệp `backup_qlhs_2026.sql` và lưu lên Google Drive cá nhân.',
-          'Bước 3: Mở một máy tính khác, tạo CSDL mới và Import tệp `backup_qlhs_2026.sql`.',
-          'Bước 4: Kiểm tra lại các bảng và dữ liệu đã được phục hồi đầy đủ 100%.'
+          'Bước 1: Trên máy bạn: Dùng HeidiSQL xuất CSDL `thu_vien` thành tệp `thu_vien_backup.sql`.',
+          'Bước 2: Gửi tệp `thu_vien_backup.sql` qua Google Drive cho bạn cùng bàn.',
+          'Bước 3: Trên máy bạn cùng bàn: Mở HeidiSQL -> `File -> Load SQL file` -> Mở tệp vừa tải về.',
+          'Bước 4: Nhấn `F9` chạy script và nhấn `F5` kiểm tra xem toàn bộ các bảng và dữ liệu đã xuất hiện nguyên vẹn chưa.'
         ],
-        outputRequirement: 'Tệp sao lưu `.sql` hoạt động tốt và phục hồi trơn tru không bị lỗi.',
-        practicalTip: 'Khi xuất tệp, nhớ tích chọn cả 2 mục: "Structure" (Cấu trúc bảng) và "Data" (Dữ liệu bản ghi).'
+        outputRequirement: 'Máy tính thứ hai hiển thị đầy đủ CSDL và dữ liệu giống hệt máy tính ban đầu.',
+        practicalTip: 'Trong cửa sổ Export của HeidiSQL, luôn đảm bảo mục Database chọn `Create` để script tự động tạo CSDL trên máy mới.'
       },
       mindmap: {
         id: 'mm_11_24',
-        label: 'SAO LƯU DỮ LIỆU CSDL',
-        color: '#0891b2',
+        label: 'SAO LƯU & PHỤC HỒI',
+        color: '#059669',
         children: [
           {
             id: 'mm_11_24_1',
             label: 'Xuất sao lưu (Export)',
             children: [
-              { id: 'mm_11_24_1_1', label: 'Tệp kịch bản .sql dump' },
-              { id: 'mm_11_24_1_2', label: 'Bao gồm Cấu trúc & Dữ liệu' },
-              { id: 'mm_11_24_1_3', label: 'Quy tắc 3-2-1 an toàn' }
+              { id: 'mm_11_24_1_1', label: 'Export as SQL dump' },
+              { id: 'mm_11_24_1_2', label: 'Cấu trúc Table: Create' },
+              { id: 'mm_11_24_1_3', label: 'Dữ liệu Data: Insert' }
             ]
           },
           {
             id: 'mm_11_24_2',
-            label: 'Phục hồi (Import)',
+            label: 'Nhập phục hồi (Import)',
             children: [
-              { id: 'mm_11_24_2_1', label: 'Menu File -> Run SQL file' },
-              { id: 'mm_11_24_2_2', label: 'Tái tạo nguyên vẹn CSDL' }
+              { id: 'mm_11_24_2_1', label: 'File -> Load SQL file (Ctrl+O)' },
+              { id: 'mm_11_24_2_2', label: 'Phím F9 thực thi script' },
+              { id: 'mm_11_24_2_3', label: 'Quy tắc an toàn 3-2-1' }
             ]
           }
         ]
       }
     },
     completion: {
-      badgeName: 'Bậc Thầy Sao Lưu Dữ Liệu 11',
-      badgeIcon: 'Archive',
-      roleTitle: 'Chuyên Viên Quản Trị & Phục Hồi Dữ Liệu',
-      congratsMessage: 'Xuất sắc! Bạn đã hoàn thành toàn bộ chuỗi bài thực hành CSDL và nắm chắc phao cứu sinh sao lưu dữ liệu.',
-      skillsUnlocked: ['Xuất tệp SQL Dump (.sql)', 'Phục hồi CSDL bằng Import', 'Áp dụng quy tắc sao lưu 3-2-1']
+      badgeName: 'Bậc Thầy Sao Lưu CSDL 11',
+      badgeIcon: 'DownloadCloud',
+      roleTitle: 'Chuyên Viên Phục Hồi Dữ Liệu Sau Thảm Họa',
+      congratsMessage: 'Tuyệt vời! Bạn đã hoàn thành xuất sắc toàn bộ Chủ đề 6: Thực hành tạo và khai thác cơ sở dữ liệu với trọn bộ kỹ năng từ thiết kế, lập trình SQL đến sao lưu an toàn.',
+      skillsUnlocked: ['Xuất tệp SQL Dump', 'Phục hồi CSDL bằng Load SQL file', 'Chiến lược sao lưu 3-2-1']
     }
   }
 ];

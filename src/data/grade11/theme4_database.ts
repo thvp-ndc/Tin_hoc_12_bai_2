@@ -23,24 +23,24 @@ export const THEME4_LESSONS_11: Lesson[] = [
         id: 'obj_11_10_1',
         category: 'knowledge',
         categoryName: 'Kiến thức cốt lõi',
-        title: 'Hiểu bài toán quản lý trong đời sống',
-        description: 'Chỉ ra được các công việc quản lý quen thuộc: tạo lập hồ sơ, cập nhật dữ liệu và khai thác thông tin báo cáo.',
+        title: 'Hiểu bài toán quản lý & các công việc',
+        description: 'Nêu được bài toán quản lý thực tế và các công việc thường gặp: tạo lập hồ sơ, cập nhật dữ liệu và khai thác thông tin phục vụ điều hành.',
         iconName: 'Database'
       },
       {
         id: 'obj_11_10_2',
         category: 'skill',
         categoryName: 'Kỹ năng & Năng lực',
-        title: 'Phân tích bất cập lưu trữ tệp rời rạc',
-        description: 'Chỉ rõ hiện tượng dư thừa dữ liệu (Data Redundancy) và không nhất quán dữ liệu (Data Inconsistency) khi dùng tệp văn bản đơn lẻ.',
+        title: 'Phân tích bất cập của lưu trữ tệp rời rạc',
+        description: 'Chỉ ra được những hạn chế của phương pháp lưu trữ dữ liệu rời rạc (tệp phẳng): dư thừa dữ liệu (Redundancy) và không nhất quán dữ liệu (Inconsistency).',
         iconName: 'AlertTriangle'
       },
       {
         id: 'obj_11_10_3',
         category: 'attitude',
         categoryName: 'Phẩm chất & Đạo đức',
-        title: 'Tư duy tổ chức dữ liệu khoa học',
-        description: 'Hình thành nhận thức về tầm quan trọng của việc chuẩn hóa và bảo mật dữ liệu quản lý trong cơ quan, trường học.',
+        title: 'Tư duy tổ chức dữ liệu chuẩn hóa',
+        description: 'Hình thành nhận thức về tầm quan trọng của việc chuẩn hóa và quản lý tập trung dữ liệu trong mọi tổ chức kinh tế - xã hội thời đại số.',
         iconName: 'ShieldCheck'
       }
     ],
@@ -58,28 +58,86 @@ export const THEME4_LESSONS_11: Lesson[] = [
     knowledge: [
       {
         id: 'tab_11_10_1',
-        title: '1. Bài Toán Quản Lý & Nhược Điểm của Tệp Phẳng',
-        subtitle: 'Sự cần thiết của hệ thống quản lý cơ sở dữ liệu tập trung',
-        iconName: 'Table',
+        title: '1. Bài toán quản lý trong thực tế',
+        subtitle: 'Sự hiện diện của dữ liệu quản lý trong mọi lĩnh vực đời sống',
+        iconName: 'FileText',
         keyPoints: [
-          'Các thao tác quản lý cơ bản: Tạo lập dữ liệu mới, Cập nhật dữ liệu (chỉnh sửa, bổ sung, xóa bỏ) và Khai thác thông tin (tìm kiếm, sắp xếp, kết xuất báo cáo thống kê).',
-          'Nhược điểm lớn của việc lưu trữ trên các tệp rời rạc (như Word, Excel riêng lẻ):',
-          '- Dư thừa dữ liệu (Data Redundancy): Cùng một thông tin học sinh bị gõ lặp lại ở nhiều file khác nhau.',
-          '- Không nhất quán dữ liệu (Data Inconsistency): Sửa số điện thoại ở file này nhưng quên sửa ở file kia.',
-          '- Khó chia sẻ đồng thời và khó đảm bảo an toàn, phân quyền bảo mật.'
+          'Khái niệm: Bất kỳ tổ chức nào (trường học, bệnh viện, thư viện, doanh nghiệp) đều cần quản lý thông tin về các đối tượng thuộc phạm vi hoạt động của mình.',
+          'Các đối tượng quản lý quen thuộc:',
+          '  - Trường học: Quản lý học sinh, giáo viên, điểm số, học bạ, thời khóa biểu.',
+          '  - Thư viện: Quản lý sách, độc giả, phiếu mượn/trả sách.',
+          '  - Bệnh viện: Quản lý bệnh nhân, hồ sơ bệnh án, bác sĩ, phòng điều trị, viện phí.',
+          '  - Cửa hàng tiện lợi: Quản lý mặt hàng, tồn kho, hóa đơn bán hàng, khách hàng.'
         ],
         visualType: 'infographic',
         visualData: {
           nodes: [
-            { label: '1. Thu thập & Tạo lập', desc: 'Nhập hồ sơ học sinh, giáo viên, điểm số' },
-            { label: '2. Cập nhật thường xuyên', desc: 'Sửa thông tin khi có thay đổi, xóa bản ghi cũ' },
-            { label: '3. Khai thác báo cáo', desc: 'Tìm kiếm, lọc danh sách, in bảng tổng kết' }
+            { label: 'Thực thể Quản lý', desc: 'Con người, hàng hóa, tài chính, sự kiện' },
+            { label: 'Hồ sơ Dữ liệu', desc: 'Các thuộc tính: Mã, Tên, Ngày sinh, Số lượng, Giá' },
+            { label: 'Mục tiêu Quản trị', desc: 'Ra quyết định chính xác, phục vụ kịp thời' }
           ]
         },
         emCanNho: [
-          'Các công việc quản lý chính: Tạo lập hồ sơ, Cập nhật dữ liệu, Khai thác thông tin.',
+          'Bài toán quản lý xuất hiện trong mọi hoạt động kinh tế, xã hội và giáo dục.',
+          'Mỗi đối tượng quản lý đều có các thuộc tính thông tin cần thu thập và theo dõi.',
+          'Quản lý dữ liệu tốt là nền tảng để cơ quan, doanh nghiệp hoạt động hiệu quả.'
+        ]
+      },
+      {
+        id: 'tab_11_10_2',
+        title: '2. Các công việc quản lý thông tin thường gặp',
+        subtitle: 'Ba nhóm thao tác cơ bản: Tạo lập, Cập nhật và Khai thác',
+        iconName: 'ListChecks',
+        keyPoints: [
+          'Nhóm 1: Tạo lập hồ sơ (Create): Thu thập và ghi nhận thông tin ban đầu của đối tượng (ví dụ: tiếp nhận học sinh mới vào trường và tạo hồ sơ).',
+          'Nhóm 2: Cập nhật dữ liệu (Update):',
+          '  - Bổ sung (Insert): Thêm bản ghi học sinh mới chuyển đến.',
+          '  - Chỉnh sửa (Modify): Cập nhật địa chỉ nhà, số điện thoại mới.',
+          '  - Xóa bỏ (Delete): Xóa học sinh đã chuyển trường hoặc tốt nghiệp.',
+          'Nhóm 3: Khai thác thông tin (Retrieve): Tìm kiếm hồ sơ, sắp xếp danh sách, lọc dữ liệu theo điều kiện và kết xuất báo cáo thống kê.'
+        ],
+        visualType: 'comparison-table',
+        visualData: {
+          headers: ['Nhóm công việc', 'Hành động cụ thể', 'Ví dụ trong trường học'],
+          rows: [
+            ['Tạo lập hồ sơ', 'Thu nhận dữ liệu ban đầu', 'Nhập danh sách học sinh trúng tuyển vào lớp 10'],
+            ['Cập nhật dữ liệu', 'Thêm mới, chỉnh sửa, xóa bỏ', 'Sửa lại điểm số bị chấm nhầm, xóa hồ sơ đã chuyển đi'],
+            ['Khai thác thông tin', 'Tìm kiếm, lọc, lập báo cáo', 'In danh sách học sinh đạt danh hiệu Học sinh Giỏi']
+          ]
+        },
+        emCanNho: [
+          '3 nhóm công việc quản lý: Tạo lập hồ sơ, Cập nhật dữ liệu, Khai thác thông tin.',
+          'Cập nhật bao gồm: Bổ sung thông tin, Sửa đổi thông tin và Xóa bỏ thông tin lỗi thời.',
+          'Khai thác thông tin là mục đích cuối cùng phục vụ công tác ra quyết định.'
+        ]
+      },
+      {
+        id: 'tab_11_10_3',
+        title: '3. Bất cập của việc lưu trữ dữ liệu rời rạc (tệp phẳng)',
+        subtitle: 'Tại sao việc quản lý bằng các tệp Word, Excel riêng lẻ lại bộc lộ hạn chế lớn?',
+        iconName: 'AlertTriangle',
+        keyPoints: [
+          'Lưu trữ tệp phẳng (File-based): Mỗi phòng ban lưu trữ dữ liệu trong các tệp Word/Excel riêng lẻ trên máy tính của mình.',
+          'Các bất cập nghiêm trọng:',
+          '  - Dư thừa dữ liệu (Data Redundancy): Cùng một thông tin học sinh bị gõ lặp lại ở phòng Đào tạo, Đoàn thanh niên, Y tế, gây lãng phí dung lượng nhớ.',
+          '  - Không nhất quán dữ liệu (Data Inconsistency): Học sinh đổi số điện thoại chỉ báo cho giáo viên chủ nhiệm, trong khi sổ Đoàn vẫn lưu số cũ, dẫn đến mâu thuẫn dữ liệu.',
+          '  - Khó khăn trong chia sẻ đồng thời: Khi một người đang mở tệp, người khác không thể vào chỉnh sửa.',
+          '  - Kém an toàn, khó phân quyền bảo mật chi tiết.'
+        ],
+        visualType: 'comparison-table',
+        visualData: {
+          headers: ['Tiêu chí', 'Lưu trữ tệp rời rạc (Word, Excel)', 'Cơ sở dữ liệu tập trung (Database)'],
+          rows: [
+            ['Dư thừa dữ liệu', 'Rất nhiều, cùng thông tin lưu ở nhiều file', 'Tối thiểu, dữ liệu lưu tập trung một nơi duy nhất'],
+            ['Tính nhất quán', 'Dễ mâu thuẫn, sai lệch thông tin', 'Luôn đồng bộ và nhất quán tức thì'],
+            ['Chia sẻ đồng thời', 'Rất khó khăn, dễ bị khóa tệp (file lock)', 'Hàng ngàn người truy cập đồng thời trơn tru'],
+            ['Bảo mật & Phân quyền', 'Chỉ khóa được cả tệp, không phân quyền sâu', 'Phân quyền chi tiết từng bảng, từng cột, từng hàng']
+          ]
+        },
+        emCanNho: [
           'Lưu trữ tệp rời rạc gây dư thừa dữ liệu và không nhất quán thông tin.',
-          'Hệ CSDL ra đời để lưu trữ tập trung, chia sẻ dùng chung và đảm bảo tính toàn vẹn dữ liệu.'
+          'Khó chia sẻ đồng thời và không đảm bảo an toàn bảo mật.',
+          'Cơ sở dữ liệu ra đời nhằm giải quyết triệt để các bất cập của việc lưu trữ tệp phẳng.'
         ]
       }
     ],
@@ -118,84 +176,95 @@ export const THEME4_LESSONS_11: Lesson[] = [
           'Khi phần mềm chạy quá nhanh'
         ],
         correctIndex: 0,
-        explanation: 'Không nhất quán xảy ra khi sửa dữ liệu ở một file mà không đồng bộ ở các file còn lại, gây sai lệch thông tin.',
+        explanation: 'Không nhất quán là hiện tượng mâu thuẫn dữ liệu giữa các tệp lưu trữ riêng lẻ do không được đồng bộ.',
         difficulty: 'Thông hiểu'
       },
       {
         id: 3,
-        question: 'Thao tác nào sau đây thuộc nhóm "Cập nhật dữ liệu"?',
-        options: ['Sửa đổi số điện thoại của phụ huynh học sinh khi có thay đổi', 'In danh sách bảng điểm', 'Xem thời khóa biểu', 'Đếm số lượng học sinh trong trường'],
+        question: 'Lưu trữ dữ liệu phân tán trên các tệp Excel rời rạc dẫn đến nhược điểm nghiêm trọng nào sau đây?',
+        options: [
+          'Dư thừa dữ liệu và khó kiểm soát tính nhất quán của thông tin',
+          'Máy tính tự động phát nổ',
+          'Tất cả học sinh đều bị điểm 0',
+          'Màn hình máy tính chuyển sang màu hồng'
+        ],
         correctIndex: 0,
-        explanation: 'Cập nhật dữ liệu bao gồm: thêm mới bản ghi, sửa đổi dữ liệu và xóa dữ liệu.',
+        explanation: 'Dư thừa dữ liệu làm tốn bộ nhớ và khi sửa một nơi thì các nơi khác bị sai lệch, không nhất quán.',
         difficulty: 'Nhận biết'
       },
       {
         id: 4,
-        question: 'Mục đích cốt lõi của việc chuyển đổi từ sổ sách giấy sang hệ thống cơ sở dữ liệu số là gì?',
+        question: 'Thao tác nào sau đây thuộc nhóm công việc "Cập nhật dữ liệu"?',
         options: [
-          'Giúp tìm kiếm tức thì, chia sẻ dữ liệu dùng chung, loại bỏ dư thừa và tăng năng suất quản lý',
-          'Để máy tính nhanh bị hỏng',
-          'Để không ai có thể đọc được dữ liệu',
-          'Để tốn tiền mua máy tính'
+          'Bổ sung hồ sơ học sinh mới, sửa số điện thoại khi đổi số và xóa bản ghi đã chuyển trường',
+          'In danh sách học sinh ra giấy khen',
+          'Vẽ sơ đồ tư duy môn học',
+          'Tắt màn hình máy tính'
         ],
         correctIndex: 0,
-        explanation: 'Hệ thống CSDL giúp tối ưu hóa thời gian xử lý và đảm bảo dữ liệu luôn chính xác, nhất quán.',
-        difficulty: 'Vận dụng'
+        explanation: 'Cập nhật dữ liệu bao gồm 3 hành vi cơ bản: Thêm mới (Insert), Chỉnh sửa (Update) và Xóa bỏ (Delete).',
+        difficulty: 'Nhận biết'
       },
       {
         id: 5,
-        question: 'Một hệ thống thông tin quản lý trong bệnh viện cần lưu trữ đối tượng nào sau đây?',
-        options: ['Bệnh nhân, bác sĩ, bệnh án, thuốc và lịch khám', 'Thời tiết ngoài trời', 'Danh sách bài hát karaoke', 'Giá vàng thế giới'],
+        question: 'Để giải quyết triệt để vấn đề dư thừa và không nhất quán dữ liệu trong các cơ quan, giải pháp công nghệ tiêu chuẩn hiện đại là gì?',
+        options: [
+          'Xây dựng hệ thống Cơ sở dữ liệu (Database) tập trung có phần mềm quản trị chuyên dụng',
+          'Mua thêm thật nhiều giấy trắng để ghi chép tay',
+          'Mỗi nhân viên tự lưu một bản sao trên USB cá nhân',
+          'Xóa hết dữ liệu cũ không lưu trữ nữa'
+        ],
         correctIndex: 0,
-        explanation: 'Hệ thống quản lý bệnh viện phục vụ công tác điều trị, quản lý hồ sơ bệnh án và lịch trực y tế.',
-        difficulty: 'Nhận biết'
+        explanation: 'Cơ sở dữ liệu tập trung đảm bảo dữ liệu chỉ lưu một nơi duy nhất, luôn nhất quán và phân quyền an toàn.',
+        difficulty: 'Vận dụng'
       }
     ],
     application: {
       project: {
-        title: 'Khảo sát: Bài toán Quản lý Thư viện Trường THPT',
-        context: 'Phân tích các đối tượng và quy trình quản lý sách và mượn trả tại thư viện trường.',
-        mission: 'Xác định các thông tin cần quản lý và các thao tác cập nhật, khai thác cơ bản.',
+        title: 'Khảo Sát & Lập Sơ Đồ Quản Lý Thư Viện Trường Học',
+        context: 'Thư viện trường hiện đang quản lý mượn trả sách bằng sổ tay ghi chép.',
+        mission: 'Xác định các thực thể dữ liệu cần quản lý và chỉ rõ 3 nhóm công việc quản lý tương ứng.',
         steps: [
-          'Bước 1: Liệt kê các đối tượng cần quản lý: Bạn đọc (Học sinh/Giáo viên), Sách, Phiếu mượn trả.',
-          'Bước 2: Nêu 3 thao tác cập nhật thường xuyên (Thêm sách mới, Ghi nhận mượn, Ghi nhận trả).',
-          'Bước 3: Nêu 2 câu hỏi khai thác thông tin mà thủ thư cần tra cứu hàng tuần.'
+          'Xác định 3 đối tượng cần quản lý: Sách, Độc giả (học sinh), Phiếu mượn trả.',
+          'Mô tả các thao tác Tạo lập: Nhập danh mục sách mới mua về thư viện.',
+          'Mô tả thao tác Cập nhật: Đánh dấu sách đã được trả, ghi chú sách bị hỏng.',
+          'Mô tả thao tác Khai thác: Báo cáo danh sách các bạn học sinh đang mượn sách quá hạn.'
         ],
-        outputRequirement: 'Bản mô tả bài toán quản lý thư viện trường học ngắn gọn, khoa học.',
-        practicalTip: 'Mỗi cuốn sách cần có một "Mã sách" duy nhất để phân biệt, không thể chỉ quản lý bằng tên sách vì có thể có nhiều cuốn cùng tên.'
+        outputRequirement: 'Bản phân tích sơ đồ luồng dữ liệu thư viện 3 nhóm công việc rõ ràng.',
+        practicalTip: 'Việc tách riêng bảng Sách và bảng Độc giả sẽ giúp tránh phải gõ lại tên sách nhiều lần khi học sinh mượn.'
       },
       mindmap: {
         id: 'mm_11_10',
-        label: 'QUẢN LÝ DỮ LIỆU',
+        label: 'BÀI TOÁN QUẢN LÝ DỮ LIỆU',
         color: '#4f46e5',
         children: [
           {
             id: 'mm_11_10_1',
-            label: 'Nhiệm vụ quản lý',
+            label: 'Công việc quản lý',
             children: [
-              { id: 'mm_11_10_1_1', label: 'Tạo lập hồ sơ ban đầu' },
-              { id: 'mm_11_10_1_2', label: 'Cập nhật (Thêm/Sửa/Xóa)' },
-              { id: 'mm_11_10_1_3', label: 'Khai thác (Tìm/Lọc/Báo cáo)' }
+              { id: 'mm_11_10_1_1', label: '1. Tạo lập hồ sơ ban đầu' },
+              { id: 'mm_11_10_1_2', label: '2. Cập nhật (Thêm, Sửa, Xóa)' },
+              { id: 'mm_11_10_1_3', label: '3. Khai thác (Tìm kiếm, Báo cáo)' }
             ]
           },
           {
             id: 'mm_11_10_2',
-            label: 'Hạn chế của tệp phẳng',
+            label: 'Bất cập tệp phẳng',
             children: [
-              { id: 'mm_11_10_2_1', label: 'Dư thừa dữ liệu' },
-              { id: 'mm_11_10_2_2', label: 'Không nhất quán' },
-              { id: 'mm_11_10_2_3', label: 'Khó phân quyền bảo mật' }
+              { id: 'mm_11_10_2_1', label: 'Dư thừa dữ liệu (Redundancy)' },
+              { id: 'mm_11_10_2_2', label: 'Không nhất quán (Inconsistency)' },
+              { id: 'mm_11_10_2_3', label: 'Khó chia sẻ & Kém an toàn' }
             ]
           }
         ]
       }
     },
     completion: {
-      badgeName: 'Nhà Phân Tích Quản Lý 11',
+      badgeName: 'Nhà Phân Tích Dữ Liệu 11',
       badgeIcon: 'Database',
-      roleTitle: 'Chuyên Viên Phân Tích Bài Toán Quản Lý',
-      congratsMessage: 'Tuyệt vời! Bạn đã hiểu rõ bản chất bài toán quản lý và lý do cần có hệ thống CSDL tập trung.',
-      skillsUnlocked: ['Phân tích bài toán quản lý', 'Nhận diện dư thừa & không nhất quán', 'Tư duy tổ chức dữ liệu']
+      roleTitle: 'Chuyên Viên Phân Tích Nhu Cầu Quản Trị Dữ Liệu',
+      congratsMessage: 'Xuất sắc! Bạn đã hiểu rõ bài toán quản lý và sự cần thiết tất yếu của việc chuyển dịch sang Hệ cơ sở dữ liệu tập trung.',
+      skillsUnlocked: ['Phân loại 3 nhóm công việc quản lý', 'Nhận diện dư thừa & không nhất quán', 'Tư duy thiết kế CSDL']
     }
   },
 
@@ -206,14 +275,14 @@ export const THEME4_LESSONS_11: Lesson[] = [
     title: 'Cơ sở dữ liệu',
     themeId: 4,
     themeName: 'Chủ đề 4: Giới thiệu các hệ cơ sở dữ liệu',
-    topicBadge: 'Cơ sở dữ liệu',
+    topicBadge: 'Đặc trưng CSDL',
     grade: 11,
     estimatedMinutes: 45,
     xpTotal: 250,
     hero: {
-      tagline: 'Khái niệm nền tảng: Bộ sưu tập dữ liệu có cấu trúc phục vụ thời đại số',
-      description: 'Định nghĩa khoa học về Cơ sở dữ liệu (Database), các đặc tính then chốt: tính toàn vẹn, tính độc lập dữ liệu, tính nhất quán và khả năng chia sẻ đồng thời nhiều người dùng.',
-      accentColor: 'from-indigo-600 to-blue-600',
+      tagline: 'Kho báu thông tin có cấu trúc: Nền tảng của các ứng dụng chuyển đổi số',
+      description: 'Tìm hiểu định nghĩa chuẩn mực của Cơ sở dữ liệu (Database), các đặc trưng then chốt: tính toàn vẹn, tính nhất quán, tính độc lập dữ liệu và khả năng chia sẻ dùng chung an toàn.',
+      accentColor: 'from-blue-600 to-indigo-600',
       keyHighlights: ['Định nghĩa Cơ sở dữ liệu', 'Tính toàn vẹn & Nhất quán', 'Tính độc lập dữ liệu']
     },
     objectives: [
@@ -221,169 +290,202 @@ export const THEME4_LESSONS_11: Lesson[] = [
         id: 'obj_11_11_1',
         category: 'knowledge',
         categoryName: 'Kiến thức cốt lõi',
-        title: 'Khái niệm Cơ sở dữ liệu (CSDL)',
-        description: 'Phát biểu được định nghĩa CSDL là tập hợp các dữ liệu có liên quan với nhau, được tổ chức có cấu trúc và lưu trữ trên bộ nhớ máy tính.',
-        iconName: 'Database'
+        title: 'Khái niệm & đặc trưng cơ sở dữ liệu',
+        description: 'Trình bày được định nghĩa cơ sở dữ liệu (Database) và giải thích được các đặc trưng cốt lõi: tính toàn vẹn, tính nhất quán và tính độc lập dữ liệu.',
+        iconName: 'Server'
       },
       {
         id: 'obj_11_11_2',
         category: 'skill',
         categoryName: 'Kỹ năng & Năng lực',
-        title: 'Phân tích các đặc trưng của CSDL',
-        description: 'Giải thích được các đặc tính cơ bản: tính độc lập dữ liệu (logic/vật lý), tính toàn vẹn dữ liệu, tính không dư thừa và tính bảo mật.',
+        title: 'Phân tích các ràng buộc toàn vẹn dữ liệu',
+        description: 'Xác định và giải thích được các ràng buộc dữ liệu trong đời sống: miền giá trị điểm số từ 0 đến 10, ngày sinh phải hợp lệ, mã định danh không được trùng.',
         iconName: 'CheckCircle2'
       },
       {
         id: 'obj_11_11_3',
         category: 'attitude',
         categoryName: 'Phẩm chất & Đạo đức',
-        title: 'Ý thức bảo vệ tính đúng đắn của dữ liệu',
-        description: 'Tôn trọng các ràng buộc dữ liệu (ví dụ: điểm số phải từ 0 đến 10, ngày sinh phải hợp lệ).',
-        iconName: 'ShieldCheck'
+        title: 'Tôn trọng quy chuẩn dữ liệu chính xác',
+        description: 'Hình thành tác phong cẩn trọng, tôn trọng các nguyên tắc logic và tính toàn vẹn của dữ liệu trong quá trình số hóa thông tin.',
+        iconName: 'Shield'
       }
     ],
     warmup: {
-      title: 'Tình huống: Đặt vé máy bay trực tuyến cùng một lúc',
-      scenario: 'Chuyến bay chỉ còn đúng 1 chiếc ghế trống duy nhất. Cùng lúc đó, tại Hà Nội và TP.HCM có 2 hành khách đang cùng bấm nút "Xác nhận đặt vé" trên ứng dụng điện thoại.',
-      pollQuestion: 'Hệ thống Cơ sở dữ liệu xử lý tình huống này như thế nào để không bị bán trùng 1 ghế cho 2 người?',
+      title: 'Tình huống: Nhập điểm thi "15" trên thang điểm 10',
+      scenario: 'Một giáo viên khi nhập điểm thi học kỳ cho học sinh lỡ tay gõ phím số "15". Nếu dùng sổ giấy, số 15 vẫn nằm đó gây sai lệch kết quả xếp loại. Nhưng trong phần mềm CSDL trường học, hệ thống lập tức báo chuông đỏ: "Giá trị điểm phải nằm trong khoảng từ 0 đến 10!".',
+      pollQuestion: 'Đặc tính kỳ diệu nào của Cơ sở dữ liệu đã ngăn chặn giáo viên nhập số điểm vô lý này?',
       pollOptions: [
-        { id: 'p11_11_1', text: 'Sử dụng cơ chế khóa giao dịch (Transaction Lock), chỉ người bấm trước micro-giây mua được, người kia nhận thông báo hết vé', votesPercent: 91, isPopular: true, insight: 'Chính xác! Tính toàn vẹn và nhất quán của CSDL đảm bảo xử lý đồng thời an toàn tuyệt đối.' },
-        { id: 'p11_11_2', text: 'Bán vé cho cả 2 người rồi cho 2 người ngồi chung 1 ghế', votesPercent: 4, insight: 'Hàng không không bao giờ cho phép 2 hành khách ngồi chung một ghế.' },
-        { id: 'p11_11_3', text: 'Tắt máy chủ không bán cho ai', votesPercent: 5, insight: 'Hệ thống bán vé phục vụ hàng triệu người liên tục 24/7.' }
+        { id: 'p11_11_1', text: 'Tính toàn vẹn dữ liệu (Data Integrity) thông qua các quy tắc ràng buộc miền giá trị', votesPercent: 94, isPopular: true, insight: 'Chính xác! Tính toàn vẹn thiết lập các quy tắc logic tự động ngăn chặn dữ liệu sai lệch ngay từ khâu nhập liệu.' },
+        { id: 'p11_11_2', text: 'Do máy tính tự động đoán ý giáo viên', votesPercent: 3, insight: 'Máy tính không đoán mò, mà kiểm tra theo các ràng buộc (Constraints) được cài đặt trong CSDL.' },
+        { id: 'p11_11_3', text: 'Do máy tính bị đơ', votesPercent: 3, insight: 'Máy tính hoạt động chuẩn xác theo thiết kế CSDL.' }
       ],
-      reflection: 'Khả năng kiểm soát truy cập đồng thời và duy trì tính toàn vẹn là sức mạnh vượt trội của Cơ sở dữ liệu.'
+      reflection: 'Tính toàn vẹn dữ liệu đảm bảo mọi thông tin được lưu trữ trong CSDL luôn phản ánh đúng sự thật và tuân thủ các quy luật đời sống.'
     },
     knowledge: [
       {
         id: 'tab_11_11_1',
-        title: '1. Khái Niệm & Các Đặc Trưng của Cơ Sở Dữ Liệu',
-        subtitle: 'Tập hợp dữ liệu có cấu trúc và có mối liên hệ logic',
-        iconName: 'Layers',
+        title: '1. Khái niệm cơ sở dữ liệu (Database)',
+        subtitle: 'Định nghĩa khoa học và vai trò làm nền tảng số',
+        iconName: 'Database',
         keyPoints: [
-          'Định nghĩa: Cơ sở dữ liệu (Database - CSDL) là một tập hợp các dữ liệu có liên quan với nhau, được tổ chức có cấu trúc và được lưu trữ trên các thiết bị nhớ của máy tính nhằm đáp ứng nhu cầu khai thác của nhiều người dùng.',
-          'Các đặc trưng căn bản của CSDL:',
-          '- Tính không dư thừa: Giảm thiểu tối đa việc lặp lại thông tin.',
-          '- Tính toàn vẹn (Integrity): Dữ liệu phải luôn thỏa mãn các quy tắc logic (ràng buộc miền giá trị, ràng buộc liên thuộc tính).',
-          '- Tính nhất quán (Consistency): Dữ liệu luôn đồng nhất và đúng đắn sau mọi giao dịch.',
-          '- Tính độc lập dữ liệu: Thay đổi cách lưu trữ vật lý không làm thay đổi các chương trình ứng dụng.'
+          'Khái niệm: Cơ sở dữ liệu (Database - viết tắt là CSDL) là một tập hợp các dữ liệu có liên quan với nhau, được tổ chức lưu trữ có cấu trúc trên các thiết bị nhớ máy tính nhằm phục vụ nhu cầu khai thác thông tin của nhiều người sử dụng đồng thời.',
+          'Các yếu tố cấu thành định nghĩa:',
+          '  - Có liên quan với nhau: Dữ liệu mô tả một hệ thống thực thể cụ thể (ví dụ: toàn bộ dữ liệu quản lý học sinh trường THPT).',
+          '  - Có cấu trúc: Tổ chức theo quy chuẩn toán học logic (bảng, trường, bản ghi), không phải văn bản thô vô tổ chức.',
+          '  - Lưu trữ trên máy tính: Đảm bảo tốc độ truy xuất hàng triệu bản ghi trong mili-giây.',
+          '  - Chia sẻ dùng chung: Cho phép nhiều người, nhiều phần mềm cùng truy cập đồng thời an toàn.'
         ],
         visualType: 'infographic',
         visualData: {
           nodes: [
-            { label: 'Tính toàn vẹn', desc: 'Điểm số từ 0 - 10, ngày sinh không được ở tương lai' },
-            { label: 'Tính nhất quán', desc: 'Dữ liệu không mâu thuẫn giữa các bảng quan hệ' },
-            { label: 'Tính độc lập', desc: 'Tách bạch giữa lưu trữ vật lý và logic ứng dụng' }
+            { label: 'Tập hợp dữ liệu có cấu trúc', desc: 'Sắp xếp theo quy chuẩn logic chặt chẽ' },
+            { label: 'Lưu trữ trên thiết bị nhớ', desc: 'Ổ cứng SSD, máy chủ dữ liệu Server' },
+            { label: 'Chia sẻ dùng chung', desc: 'Phục vụ hàng ngàn người dùng và ứng dụng đồng thời' }
           ]
         },
         emCanNho: [
-          'CSDL là tập hợp dữ liệu có cấu trúc, có mối liên hệ và được lưu trữ trên máy tính.',
-          'CSDL đảm bảo tính toàn vẹn, tính nhất quán và khả năng dùng chung cho nhiều người.',
-          'Ràng buộc toàn vẹn giúp loại bỏ dữ liệu sai lệch hoặc vô lý ngay khi nhập.'
+          'CSDL là tập hợp dữ liệu có liên quan, được tổ chức có cấu trúc trên thiết bị nhớ máy tính.',
+          'Dữ liệu được lưu trữ tập trung nhằm phục vụ nhu cầu khai thác dùng chung của nhiều người.',
+          'CSDL là trái tim của mọi ứng dụng phần mềm trong chuyển đổi số hiện đại.'
+        ]
+      },
+      {
+        id: 'tab_11_11_2',
+        title: '2. Các đặc trưng cơ bản của CSDL (Toàn vẹn, nhất quán, độc lập)',
+        subtitle: 'Ba trụ cột bảo chứng chất lượng của một hệ thống dữ liệu số',
+        iconName: 'ShieldCheck',
+        keyPoints: [
+          '1. Tính toàn vẹn dữ liệu (Data Integrity): Dữ liệu lưu trữ phải luôn đúng đắn, phản ánh chính xác thực tế khách quan thông qua các quy tắc ràng buộc (ví dụ: Điểm $\in [0, 10]$, Ngày sinh phải nhỏ hơn ngày hiện tại, Mã học sinh không được trùng nhau).',
+          '2. Tính nhất quán dữ liệu (Data Consistency): Mọi người dùng và ứng dụng khi truy xuất cùng một mục dữ liệu tại cùng một thời điểm đều nhận được giá trị giống hệt nhau, không có sự mâu thuẫn hay sai lệch.',
+          '3. Tính độc lập dữ liệu (Data Independence):',
+          '  - Độc lập vật lý: Thay đổi phần cứng, thay ổ cứng mới hay di chuyển vị trí lưu trữ trên đĩa không làm ảnh hưởng đến cấu trúc logic của CSDL.',
+          '  - Độc lập logic: Thay đổi, bổ sung thêm một bảng hoặc một cột dữ liệu mới không làm các chương trình ứng dụng cũ đang chạy bị lỗi hay phải viết lại mã nguồn.'
+        ],
+        visualType: 'comparison-table',
+        visualData: {
+          headers: ['Đặc trưng', 'Ý nghĩa cốt lõi', 'Ví dụ bảo đảm trong thực tế'],
+          rows: [
+            ['Tính toàn vẹn (Integrity)', 'Dữ liệu luôn đúng đắn, không vi phạm quy tắc logic', 'Không cho phép nhập điểm số âm hoặc vượt quá 10'],
+            ['Tính nhất quán (Consistency)', 'Dữ liệu không mâu thuẫn giữa các nơi truy cập', 'Khi học sinh đổi tên, mọi nơi tra cứu đều thấy tên mới'],
+            ['Tính độc lập (Independence)', 'Tách biệt giữa cách lưu trữ vật lý và chương trình ứng dụng', 'Nâng cấp từ HDD sang SSD thì phần mềm quản lý vẫn chạy bình thường']
+          ]
+        },
+        emCanNho: [
+          'Tính toàn vẹn: Dữ liệu luôn đúng đắn, tuân thủ các quy tắc ràng buộc nghiệp vụ.',
+          'Tính nhất quán: Dữ liệu không bị mâu thuẫn, luôn đồng bộ trên toàn hệ thống.',
+          'Tính độc lập: Tách biệt cấu trúc dữ liệu khỏi chương trình ứng dụng và phần cứng.'
         ]
       }
     ],
     miniGame: {
       type: 'matching',
-      title: 'Ghép cặp Ràng buộc toàn vẹn và Ví dụ kiểm tra',
-      instruction: 'Nối tên loại ràng buộc toàn vẹn với ví dụ thực tế kiểm tra dữ liệu:',
+      title: 'Ghép cặp Đặc trưng CSDL và Tình huống Minh họa',
+      instruction: 'Nối đặc trưng của CSDL với tình huống thực tế tương ứng:',
       matchingPairs: [
-        { id: 'b1', left: 'Ràng buộc miền giá trị', right: 'Điểm kiểm tra phải là số thực nằm trong đoạn [0, 10]' },
-        { id: 'b2', left: 'Ràng buộc tính duy nhất', right: 'Số Căn cước công dân (CCCD) của mỗi người không được trùng nhau' },
-        { id: 'b3', left: 'Ràng buộc logic liên thuộc tính', right: 'Ngày tốt nghiệp bắt buộc phải diễn ra SAU ngày nhập học' },
-        { id: 'b4', left: 'Ràng buộc không được để trống (Not Null)', right: 'Mã số học sinh và Họ tên là thông tin bắt buộc phải nhập' }
+        { id: 'cs1', left: 'Tính toàn vẹn (Integrity)', right: 'Hệ thống báo lỗi khi nhập ngày sinh 30/02 không tồn tại' },
+        { id: 'cs2', left: 'Tính nhất quán (Consistency)', right: 'Cả giáo viên và phụ huynh đều thấy số điểm 9.0 giống hệt nhau' },
+        { id: 'cs3', left: 'Tính độc lập vật lý', right: 'Thay ổ cứng máy chủ mới không làm phần mềm quản lý bị lỗi' },
+        { id: 'cs4', left: 'Tính độc lập logic', right: 'Thêm cột Số điện thoại phụ huynh không làm hỏng chức năng tính điểm' }
       ]
     },
     assessment: [
       {
         id: 1,
-        question: 'Cơ sở dữ liệu (CSDL) trong tin học được định nghĩa là gì?',
+        question: 'Phát biểu nào sau đây định nghĩa ĐÚNG NHẤT về Cơ sở dữ liệu (Database)?',
         options: [
-          'Tập hợp các dữ liệu có liên quan với nhau, được tổ chức có cấu trúc và lưu trữ trên bộ nhớ máy tính để nhiều người dùng chung',
-          'Một trang sách in trên giấy bóng',
-          'Một chiếc đĩa DVD ca nhạc',
-          'Dây cáp cắm nguồn điện'
+          'Là một tập hợp các dữ liệu có liên quan với nhau, được tổ chức lưu trữ có cấu trúc trên máy tính nhằm phục vụ chia sẻ dùng chung',
+          'Là một phần mềm nghe nhạc trực tuyến',
+          'Là chiếc màn hình hiển thị số liệu',
+          'Là quyển sổ tay ghi chép bằng bút mực'
         ],
         correctIndex: 0,
-        explanation: 'CSDL là tập hợp dữ liệu có cấu trúc, có quan hệ logic và lưu trữ điện tử phục vụ khai thác chung.',
+        explanation: 'Định nghĩa chuẩn của CSDL nhấn mạnh tính liên quan, có cấu trúc, lưu trữ trên máy tính và chia sẻ dùng chung.',
         difficulty: 'Nhận biết'
       },
       {
         id: 2,
-        question: 'Quy tắc: "Mỗi công dân Việt Nam chỉ có MỘT số Căn cước công dân duy nhất và không ai được trùng ai" thể hiện tính chất nào của CSDL?',
-        options: ['Ràng buộc tính duy nhất (Unique / Khoá)', 'Tính chia sẻ mạng', 'Tính dễ đổi màu', 'Tính ngẫu nhiên'],
+        question: 'Ràng buộc quy định: "Mỗi học sinh chỉ có một Mã định danh duy nhất không được trùng lặp" thể hiện đặc trưng nào của CSDL?',
+        options: ['Tính toàn vẹn dữ liệu (Data Integrity)', 'Tính độc lập vật lý', 'Tính bảo mật thông tin', 'Tính thẩm mỹ giao diện'],
         correctIndex: 0,
-        explanation: 'Ràng buộc duy nhất đảm bảo mỗi cá nhân/thực thể được phân biệt chính xác trong CSDL.',
+        explanation: 'Tính toàn vẹn dữ liệu đảm bảo tính duy nhất và tính hợp lệ của các thực thể trong thế giới thực.',
         difficulty: 'Thông hiểu'
       },
       {
         id: 3,
-        question: 'Tại sao CSDL cần phải có "Tính độc lập dữ liệu"?',
+        question: 'Tính độc lập dữ liệu (Data Independence) trong CSDL mang lại lợi ích gì cho các lập trình viên?',
         options: [
-          'Để khi thay đổi cấu trúc lưu trữ trên ổ cứng thì không phải viết lại toàn bộ các chương trình ứng dụng',
-          'Để máy tính có thể tự bay được',
-          'Để không ai đọc được dữ liệu',
-          'Để người dùng không cần bật màn hình'
+          'Khi nâng cấp phần cứng hoặc thay đổi cách lưu trữ vật lý, các chương trình ứng dụng không cần phải viết lại mã nguồn',
+          'Lập trình viên không cần phải lập trình nữa',
+          'Máy tính tự động viết code thay người',
+          'Không cần cắm điện máy tính vẫn chạy'
         ],
         correctIndex: 0,
-        explanation: 'Tính độc lập dữ liệu giúp tiết kiệm chi phí bảo trì và nâng cấp hệ thống phần mềm.',
+        explanation: 'Tính độc lập giúp phân tách tầng ứng dụng khỏi tầng lưu trữ dữ liệu vật lý.',
         difficulty: 'Thông hiểu'
       },
       {
         id: 4,
-        question: 'Dữ liệu nào sau đây là KHÔNG HỢP LỆ nếu áp dụng ràng buộc toàn vẹn cho trường "Tháng sinh"?',
-        options: ['Tháng 13', 'Tháng 1', 'Tháng 6', 'Tháng 12'],
+        question: 'Ví dụ nào sau đây vi phạm TÍNH TOÀN VẸN của cơ sở dữ liệu quản lý học sinh?',
+        options: [
+          'Bản ghi có Điểm trung bình môn là 12.5 trên thang điểm 10',
+          'Bản ghi có Họ tên là Nguyễn Văn An',
+          'Bản ghi có Lớp là 11A1',
+          'Bản ghi có Ngày sinh là 15/08/2008'
+        ],
         correctIndex: 0,
-        explanation: 'Một năm chỉ có 12 tháng, giá trị 13 vi phạm ràng buộc miền giá trị của tháng.',
-        difficulty: 'Nhận biết'
+        explanation: 'Thang điểm chuẩn chỉ từ 0 đến 10, điểm 12.5 vi phạm ràng buộc miền giá trị của thuộc tính.',
+        difficulty: 'Vận dụng'
       },
       {
         id: 5,
-        question: 'Hệ thống CSDL phục vụ ứng dụng ngân hàng phải đảm bảo yêu cầu nào khắt khe nhất?',
+        question: 'Điều gì xảy ra nếu hệ thống CSDL của ngân hàng KHÔNG đảm bảo được TÍNH NHẤT QUÁN dữ liệu?',
         options: [
-          'Tính an toàn, bảo mật và toàn vẹn giao dịch tài chính tuyệt đối 24/7',
-          'Giao diện phải có nhiều hoạt hình vui nhộn',
-          'Mỗi ngày tự đổi số dư tài khoản của khách hàng',
-          'Không cho phép rút tiền'
+          'Khách hàng rút tiền ở cây ATM số dư bị trừ nhưng tra cứu trên app điện thoại số tiền vẫn giữ nguyên, gây thất thoát tài chính',
+          'Máy ATM tự động phát nhạc',
+          'Màn hình điện thoại bị vỡ',
+          'Ngân hàng phải đóng cửa vĩnh viễn trong 1 giây'
         ],
         correctIndex: 0,
-        explanation: 'CSDL ngân hàng đòi hỏi độ tin cậy và bảo mật cấp cao nhất để bảo vệ tài sản của khách hàng.',
+        explanation: 'Không nhất quán gây mâu thuẫn số liệu nghiêm trọng giữa các kênh giao dịch đồng thời.',
         difficulty: 'Vận dụng'
       }
     ],
     application: {
       project: {
-        title: 'Thiết kế Ràng buộc Toàn vẹn cho Bảng Quản lý Điểm',
-        context: 'Lập danh sách các quy tắc kiểm tra tính đúng đắn khi nhập điểm kiểm tra của trường.',
-        mission: 'Xác định ít nhất 3 ràng buộc toàn vẹn cho bảng `DIEM_SO`.',
+        title: 'Thiết Lập Các Ràng Buộc Toàn Vẹn Cho CSDL Hồ Sơ Học Sinh',
+        context: 'Xây dựng quy chuẩn nhập liệu cho hệ thống quản lý học sinh khối 11.',
+        mission: 'Đề xuất 4 ràng buộc toàn vẹn bắt buộc phải có khi thiết kế bảng HOC_SINH.',
         steps: [
-          'Quy tắc 1 (Miền giá trị): Điểm số phải >= 0 và <= 10.',
-          'Quy tắc 2 (Kiểu dữ liệu): Điểm số là số thực (Float) có tối đa 1 chữ số thập phân.',
-          'Quy tắc 3 (Ràng buộc tham chiếu): Mã học sinh trong bảng điểm bắt buộc phải tồn tại trong bảng `HOC_SINH`.'
+          'Ràng buộc 1: MaHS (Mã học sinh) là chuỗi 8 ký tự duy nhất, bắt buộc phải có (NOT NULL).',
+          'Ràng buộc 2: NgaySinh phải đảm bảo học sinh vào lớp 11 có độ tuổi từ 15 đến 18 tuổi.',
+          'Ràng buộc 3: DiemTB phải là số thực nằm trong đoạn từ 0.0 đến 10.0.',
+          'Ràng buộc 4: GioiTinh chỉ nhận một trong hai giá trị "Nam" hoặc "Nữ".'
         ],
-        outputRequirement: 'Bảng đặc tả các ràng buộc toàn vẹn bằng lời văn logic rõ ràng.',
-        practicalTip: 'Cài đặt ràng buộc chặt chẽ ngay từ đầu sẽ giúp hệ thống ngăn chặn 99% lỗi do con người gõ nhầm.'
+        outputRequirement: 'Bảng đặc tả 4 quy tắc ràng buộc toàn vẹn kèm lý do bảo vệ dữ liệu.',
+        practicalTip: 'Càng định nghĩa chặt chẽ các ràng buộc từ đầu thì dữ liệu trong CSDL càng sạch và không bao giờ bị lỗi rác.'
       },
       mindmap: {
         id: 'mm_11_11',
         label: 'CƠ SỞ DỮ LIỆU',
-        color: '#4f46e5',
+        color: '#2563eb',
         children: [
           {
             id: 'mm_11_11_1',
-            label: 'Đặc trưng cốt lõi',
+            label: 'Định nghĩa cốt lõi',
             children: [
-              { id: 'mm_11_11_1_1', label: 'Cấu trúc & Mối quan hệ' },
-              { id: 'mm_11_11_1_2', label: 'Lưu trữ trên máy tính' },
-              { id: 'mm_11_11_1_3', label: 'Chia sẻ nhiều người dùng' }
+              { id: 'mm_11_11_1_1', label: 'Dữ liệu có liên quan' },
+              { id: 'mm_11_11_1_2', label: 'Tổ chức có cấu trúc' },
+              { id: 'mm_11_11_1_3', label: 'Chia sẻ dùng chung' }
             ]
           },
           {
             id: 'mm_11_11_2',
-            label: 'Các tính chất',
+            label: '3 Đặc trưng then chốt',
             children: [
-              { id: 'mm_11_11_2_1', label: 'Tính toàn vẹn (Integrity)' },
-              { id: 'mm_11_11_2_2', label: 'Tính nhất quán (Consistency)' },
-              { id: 'mm_11_11_2_3', label: 'Tính độc lập dữ liệu' }
+              { id: 'mm_11_11_2_1', label: 'Toàn vẹn (Integrity): Luôn đúng đắn' },
+              { id: 'mm_11_11_2_2', label: 'Nhất quán (Consistency): Không mâu thuẫn' },
+              { id: 'mm_11_11_2_3', label: 'Độc lập (Independence): Vật lý & Logic' }
             ]
           }
         ]
@@ -391,10 +493,10 @@ export const THEME4_LESSONS_11: Lesson[] = [
     },
     completion: {
       badgeName: 'Kiến Trúc Sư CSDL 11',
-      badgeIcon: 'Database',
-      roleTitle: 'Chuyên Viên Thiết Kế Dữ Liệu Toàn Vẹn',
-      congratsMessage: 'Tuyệt vời! Bạn đã làm chủ các khái niệm và đặc tính cốt lõi của Cơ sở dữ liệu.',
-      skillsUnlocked: ['Định nghĩa CSDL chuẩn', 'Thiết lập ràng buộc toàn vẹn', 'Phân tích tính nhất quán']
+      badgeIcon: 'Server',
+      roleTitle: 'Chuyên Viên Thiết Kế Cơ Sở Dữ Liệu',
+      congratsMessage: 'Tuyệt vời! Bạn đã nắm vững khái niệm và 3 đặc trưng cốt lõi của CSDL, sẵn sàng khám phá Hệ quản trị CSDL ở bài học tiếp theo.',
+      skillsUnlocked: ['Định nghĩa chuẩn CSDL', 'Hiểu tính toàn vẹn, nhất quán', 'Phân tích ràng buộc dữ liệu']
     }
   },
 
@@ -405,198 +507,257 @@ export const THEME4_LESSONS_11: Lesson[] = [
     title: 'Hệ quản trị cơ sở dữ liệu và hệ cơ sở dữ liệu',
     themeId: 4,
     themeName: 'Chủ đề 4: Giới thiệu các hệ cơ sở dữ liệu',
-    topicBadge: 'Hệ QT CSDL',
+    topicBadge: 'Hệ QTCSDL (DBMS)',
     grade: 11,
     estimatedMinutes: 45,
     xpTotal: 250,
     hero: {
-      tagline: 'Phần mềm trung tâm: Hệ quản trị cơ sở dữ liệu (DBMS) và Kiến trúc Hệ CSDL',
-      description: 'Phân biệt CSDL (Dữ liệu) và Hệ quản trị CSDL (Phần mềm quản lý như MySQL, SQL Server, Oracle, Access); kiến trúc phân tầng của một Hệ CSDL hoàn chỉnh.',
-      accentColor: 'from-indigo-600 to-blue-600',
-      keyHighlights: ['Phân biệt CSDL vs Hệ QTCSDL (DBMS)', 'Các hệ DBMS phổ biến', 'Kiến trúc Hệ cơ sở dữ liệu']
+      tagline: 'Cỗ máy điều phối dữ liệu khổng lồ: Phân biệt CSDL, Hệ QTCSDL và Hệ CSDL',
+      description: 'Làm rõ sự khác biệt giữa dữ liệu tĩnh (CSDL) và phần mềm điều khiển (DBMS); khám phá kiến trúc phân tầng của Hệ CSDL và các hệ quản trị danh tiếng thế giới: MySQL, Microsoft SQL Server, Oracle.',
+      accentColor: 'from-violet-600 to-indigo-600',
+      keyHighlights: ['DBMS vs Database', 'Kiến trúc Hệ CSDL', 'Các hệ QTCSDL thông dụng']
     },
     objectives: [
       {
         id: 'obj_11_12_1',
         category: 'knowledge',
         categoryName: 'Kiến thức cốt lõi',
-        title: 'Phân biệt CSDL và Hệ QT CSDL',
-        description: 'Trình bày được sự khác nhau giữa CSDL (dữ liệu lưu trữ) và Hệ quản trị CSDL (phần mềm điều khiển CSDL).',
-        iconName: 'Server'
+        title: 'Phân biệt CSDL & Hệ quản trị CSDL',
+        description: 'Phân biệt được sự khác nhau giữa Cơ sở dữ liệu (Database) và Hệ quản trị cơ sở dữ liệu (DBMS), trình bày được kiến trúc của một Hệ cơ sở dữ liệu hoàn chỉnh.',
+        iconName: 'Layers'
       },
       {
         id: 'obj_11_12_2',
         category: 'skill',
         categoryName: 'Kỹ năng & Năng lực',
-        title: 'Nhận diện các phần mềm DBMS',
-        description: 'Kể tên và nhận biết được các hệ quản trị CSDL thông dụng trên thế giới: MySQL, Microsoft SQL Server, Oracle, PostgreSQL, Microsoft Access.',
-        iconName: 'Layers'
+        title: 'Nhận biết & phân loại các phần mềm DBMS',
+        description: 'Kể tên và phân loại được các phần mềm Hệ quản trị CSDL phổ biến: phần mềm nguồn mở (MySQL, PostgreSQL) và thương mại (Oracle, SQL Server, Microsoft Access).',
+        iconName: 'Server'
       },
       {
         id: 'obj_11_12_3',
         category: 'attitude',
         categoryName: 'Phẩm chất & Đạo đức',
-        title: 'Hiểu cấu trúc hệ thống',
-        description: 'Nắm được vai trò tương hỗ giữa người dùng, phần mềm ứng dụng, hệ QTCSDL và hệ điều hành.',
-        iconName: 'Network'
+        title: 'Đánh giá vai trò cỗ máy DBMS',
+        description: 'Ý thức được vai trò trọng yếu của DBMS trong việc bảo đảm an toàn, toàn vẹn dữ liệu và kiểm soát truy cập đồng thời của hàng triệu người dùng.',
+        iconName: 'ShieldCheck'
       }
     ],
     warmup: {
-      title: 'Tình huống: Phân biệt "Tủ sách" và "Người quản thủ thư"',
-      scenario: 'Một bạn học sinh thắc mắc: "Cơ sở dữ liệu (CSDL) và Hệ quản trị cơ sở dữ liệu (Hệ QT CSDL) có phải là một không?".',
-      pollQuestion: 'Hình ảnh so sánh nào dưới đây giúp phân biệt rõ nét và chính xác nhất hai khái niệm này?',
+      title: 'Tình huống: Sách trong thư viện và Bác thủ thư',
+      scenario: 'Một thư viện có 50.000 cuốn sách được xếp trên các kệ gỗ ngăn nắp. Khi bạn bước vào mượn sách, bạn không thể tự ý trèo lên kệ lục tung mọi thứ mà cần nhờ Bác thủ thư tra cứu mã số, ghi sổ mượn và lấy sách trao cho bạn.',
+      pollQuestion: 'Trong phép so sánh này, 50.000 cuốn sách đóng vai trò là gì, và Bác thủ thư đóng vai trò là gì?',
       pollOptions: [
-        { id: 'p11_12_1', text: 'CSDL là "Các cuốn sách được lưu", còn Hệ QTCSDL là "Phần mềm thủ thư quản lý, sắp xếp và cho mượn sách"', votesPercent: 93, isPopular: true, insight: 'Chính xác! CSDL là kho dữ liệu tĩnh, còn Hệ QT CSDL (DBMS) là phần mềm thông minh tương tác với dữ liệu đó.' },
-        { id: 'p11_12_2', text: 'Hai khái niệm này hoàn toàn giống hệt nhau', votesPercent: 3, insight: 'Sai lầm phổ biến: Một bên là Dữ liệu (Database), một bên là Phần mềm quản trị (DBMS).' },
-        { id: 'p11_12_3', text: 'CSDL là chuột máy tính, Hệ QTCSDL là bàn phím', votesPercent: 4, insight: 'Chuột và bàn phím là thiết bị ngoại vi phần cứng, không liên quan đến phần mềm CSDL.' }
+        { id: 'p11_12_1', text: '50.000 cuốn sách là "Cơ sở dữ liệu (CSDL)", còn Bác thủ thư là "Hệ quản trị CSDL (DBMS)"', votesPercent: 95, isPopular: true, insight: 'Chính xác! CSDL là nơi chứa dữ liệu, còn DBMS là cỗ máy phần mềm điều khiển, tìm kiếm, bảo vệ và phân phối dữ liệu đó.' },
+        { id: 'p11_12_2', text: 'Bác thủ thư là CSDL, còn sách là DBMS', votesPercent: 3, insight: 'Bị đảo lộn khái niệm: con người/phần mềm quản trị đóng vai trò điều hành.' },
+        { id: 'p11_12_3', text: 'Cả hai đều là máy tính', votesPercent: 2, insight: 'Sách là tài nguyên dữ liệu, thủ thư là chủ thể điều phối.' }
       ],
-      reflection: 'Phân biệt rạch ròi giữa Dữ liệu và Phần mềm quản trị là bước đầu tiên để hiểu kiến trúc phần mềm chuyên nghiệp.'
+      reflection: 'Phân biệt rạch ròi giữa dữ liệu được lưu trữ (CSDL) và phần mềm điều khiển dữ liệu (DBMS) là nền tảng cốt lõi của môn học.'
     },
     knowledge: [
       {
         id: 'tab_11_12_1',
-        title: '1. Khái Niệm Hệ Quản Trị CSDL (DBMS) & Kiến Trúc Hệ CSDL',
-        subtitle: 'Cầu nối giữa ứng dụng và kho dữ liệu vật lý',
-        iconName: 'Server',
+        title: '1. Khái niệm và chức năng của Hệ quản trị CSDL (DBMS)',
+        subtitle: 'Database Management System - Cỗ máy quản lý dữ liệu chuyên nghiệp',
+        iconName: 'Cpu',
         keyPoints: [
-          'Hệ quản trị CSDL (Database Management System - DBMS): Là phần mềm cung cấp môi trường để tạo lập, lưu trữ, cập nhật, tìm kiếm và kiểm soát an toàn cho CSDL.',
-          'Các chức năng chính của DBMS: Cung cấp ngôn ngữ định nghĩa dữ liệu (DDL), ngôn ngữ thao tác dữ liệu (DML), kiểm soát an toàn bảo mật, sao lưu và phục hồi.',
-          'Hệ cơ sở dữ liệu (Database System): Bao gồm CSDL + Hệ QTCSDL + Các phần mềm ứng dụng + Người dùng + Phần cứng máy tính.',
-          'Các DBMS nổi tiếng: MySQL (nguồn mở phổ biến nhất), Microsoft SQL Server (doanh nghiệp), Oracle (hệ thống lớn ngân hàng), PostgreSQL, Microsoft Access (cá nhân/học tập).'
+          'Khái niệm: Hệ quản trị cơ sở dữ liệu (Database Management System - DBMS) là phần mềm chuyên dụng cung cấp môi trường để người dùng và các ứng dụng có thể tạo lập, lưu trữ, cập nhật và khai thác dữ liệu từ CSDL một cách an toàn và hiệu quả.',
+          'Các chức năng cơ bản của DBMS:',
+          '  - Cung cấp ngôn ngữ định nghĩa dữ liệu (DDL): Cho phép tạo, sửa đổi cấu trúc các bảng.',
+          '  - Cung cấp ngôn ngữ thao tác dữ liệu (DML): Cho phép thêm, sửa, xóa và truy vấn dữ liệu.',
+          '  - Quản lý giao dịch và điều khiển đồng thời: Đảm bảo khi hàng ngàn người cùng rút tiền hoặc mua vé concert cùng một giây thì dữ liệu không bị xung đột.',
+          '  - Kiểm soát bảo mật và phục hồi dữ liệu: Phân quyền tài khoản và tự động khôi phục khi mất điện đột ngột.'
         ],
         visualType: 'infographic',
         visualData: {
           nodes: [
-            { label: 'Người dùng & Ứng dụng', desc: 'Web học tập, App ngân hàng, Báo cáo viên' },
-            { label: 'Hệ QT CSDL (DBMS)', desc: 'MySQL, SQL Server, Oracle (Xử lý truy vấn SQL)' },
-            { label: 'Kho CSDL (Database)', desc: 'Các tệp dữ liệu vật lý lưu trên ổ cứng SSD' }
+            { label: 'Người dùng & Ứng dụng', desc: 'Gửi câu hỏi / yêu cầu truy vấn dữ liệu' },
+            { label: 'Hệ QTCSDL (DBMS)', desc: 'Xác thực bảo mật, tối ưu câu lệnh, điều phối truy xuất' },
+            { label: 'Cơ sở dữ liệu (CSDL)', desc: 'Các tệp dữ liệu lưu trữ vật lý trên ổ đĩa SSD' }
           ]
         },
         emCanNho: [
-          'CSDL là tập hợp dữ liệu; Hệ QTCSDL (DBMS) là phần mềm để quản lý CSDL đó.',
-          'Hệ CSDL = CSDL + Hệ QTCSDL + Phần mềm ứng dụng + Con người + Phần cứng.',
-          'Các hệ QTCSDL tiêu biểu: MySQL, SQL Server, Oracle, PostgreSQL, MS Access.'
+          'CSDL là tập hợp dữ liệu; Hệ QTCSDL (DBMS) là phần mềm quản lý, khai thác dữ liệu đó.',
+          'DBMS cung cấp các ngôn ngữ: Định nghĩa dữ liệu (DDL) và Thao tác dữ liệu (DML).',
+          'DBMS đảm bảo kiểm soát truy cập đồng thời, an toàn bảo mật và phục hồi sự cố.'
+        ]
+      },
+      {
+        id: 'tab_11_12_2',
+        title: '2. Kiến trúc của một Hệ cơ sở dữ liệu hoàn chỉnh',
+        subtitle: 'Hệ CSDL = CSDL + Hệ QTCSDL + Phần mềm ứng dụng + Con người',
+        iconName: 'Layers',
+        keyPoints: [
+          'Khái niệm: Hệ cơ sở dữ liệu (Database System) là một hệ thống tổng thể bao gồm 4 thành phần gắn kết chặt chẽ với nhau:',
+          '  1. Cơ sở dữ liệu (Database): Kho dữ liệu được tổ chức có cấu trúc.',
+          '  2. Hệ quản trị CSDL (DBMS): Phần mềm điều phối và quản lý.',
+          '  3. Phần mềm ứng dụng (Application Software): Giao diện thân thiện để người dùng tương tác (ví dụ: Ứng dụng VnEdu, App Mobile Banking, Website bán hàng).',
+          '  4. Con người (Users): Gồm người quản trị CSDL (DBA), người lập trình ứng dụng và người dùng đầu cuối (End-users).'
+        ],
+        visualType: 'comparison-table',
+        visualData: {
+          headers: ['Thành phần', 'Bản chất', 'Ví dụ cụ thể trong hệ thống VnEdu'],
+          rows: [
+            ['1. CSDL (Database)', 'Nơi lưu trữ dữ liệu học sinh, điểm số', 'Tập hợp các bảng HOC_SINH, DIEM_SO trên máy chủ'],
+            ['2. Hệ QTCSDL (DBMS)', 'Phần mềm lõi quản lý dữ liệu', 'Hệ quản trị CSDL MySQL / Oracle'],
+            ['3. Phần mềm ứng dụng', 'Giao diện web/app người dùng nhìn thấy', 'Trang web vnedu.vn, App điện thoại "VnEdu Tra cứu điểm"'],
+            ['4. Con người', 'Người vận hành và người dùng', 'Giáo viên nhập điểm, Học sinh xem kết quả, Kỹ sư DBA quản trị']
+          ]
+        },
+        emCanNho: [
+          'Hệ CSDL gồm 4 thành phần: CSDL, Hệ QTCSDL, Phần mềm ứng dụng và Con người.',
+          'Người dùng thường tương tác với CSDL gián tiếp thông qua Phần mềm ứng dụng.',
+          'Người quản trị CSDL (DBA) chịu trách nhiệm cao nhất về hiệu năng và an toàn của hệ thống.'
+        ]
+      },
+      {
+        id: 'tab_11_12_3',
+        title: '3. Một số hệ QTCSDL thông dụng trên thế giới',
+        subtitle: 'Từ phần mềm máy tính cá nhân đến hệ thống máy chủ doanh nghiệp',
+        iconName: 'Server',
+        keyPoints: [
+          '1. MySQL: Hệ QTCSDL quan hệ mã nguồn mở phổ biến nhất thế giới, được sử dụng rộng rãi trên web (Facebook, YouTube, WordPress). Rất nhẹ, nhanh và miễn phí.',
+          '2. Microsoft SQL Server: Sản phẩm thương mại mạnh mẽ của Microsoft, tối ưu cho môi trường doanh nghiệp lớn và tích hợp sâu với Windows Server.',
+          '3. Oracle Database: Hệ QTCSDL thương mại hàng đầu thế giới về hiệu năng xử lý các giao dịch khổng lồ của các ngân hàng lớn và tập đoàn đa quốc gia.',
+          '4. Microsoft Access: Hệ QTCSDL cá nhân nhỏ gọn, dễ dùng, chạy trên máy tính đơn lẻ, phù hợp cho học tập và quản lý quy mô gia đình.'
+        ],
+        visualType: 'comparison-table',
+        visualData: {
+          headers: ['Tên Hệ QTCSDL', 'Mô hình bản quyền', 'Quy mô ứng dụng tiêu biểu'],
+          rows: [
+            ['MySQL', 'Mã nguồn mở (FOSS)', 'Ứng dụng Web, Mạng xã hội, Thương mại điện tử'],
+            ['MS SQL Server', 'Thương mại độc quyền', 'Hệ thống tài chính, Doanh nghiệp lớn, Bệnh viện'],
+            ['Oracle', 'Thương mại cao cấp', 'Hệ thống Ngân hàng toàn cầu, Viễn thông, Hàng không'],
+            ['MS Access', 'Thương mại cá nhân', 'Cá nhân, Cửa hàng nhỏ, Học sinh tập làm quen']
+          ]
+        },
+        emCanNho: [
+          'MySQL là hệ QTCSDL nguồn mở phổ biến nhất cho các ứng dụng web.',
+          'SQL Server và Oracle là các hệ thống thương mại cấp doanh nghiệp xử lý giao dịch lớn.',
+          'Microsoft Access phù hợp cho máy tính cá nhân và quản lý quy mô nhỏ.'
         ]
       }
     ],
     miniGame: {
       type: 'matching',
-      title: 'Ghép cặp Phần mềm DBMS và Đặc trưng',
-      instruction: 'Nối tên Hệ QTCSDL với đặc trưng tương ứng:',
+      title: 'Ghép cặp Thành phần trong Hệ Cơ sở dữ liệu',
+      instruction: 'Nối thành phần với bản chất của nó trong một Hệ CSDL:',
       matchingPairs: [
-        { id: 'db1', left: 'MySQL', right: 'Hệ QTCSDL quan hệ mã nguồn mở phổ biến nhất cho website' },
-        { id: 'db2', left: 'Microsoft SQL Server', right: 'Hệ QTCSDL mạnh mẽ của hãng Microsoft dùng cho doanh nghiệp' },
-        { id: 'db3', left: 'Oracle Database', right: 'Hệ QTCSDL thương mại cao cấp dùng cho ngân hàng và viễn thông' },
-        { id: 'db4', left: 'Microsoft Access', right: 'Hệ QTCSDL gọn nhẹ, dễ học, tích hợp sẵn trong bộ Microsoft Office' }
+        { id: 'db1', left: 'Cơ sở dữ liệu (CSDL)', right: 'Kho dữ liệu có cấu trúc lưu trữ trên thiết bị nhớ' },
+        { id: 'db2', left: 'Hệ QTCSDL (DBMS)', right: 'Phần mềm lõi quản lý, điều phối việc truy xuất dữ liệu' },
+        { id: 'db3', left: 'Phần mềm ứng dụng', right: 'Giao diện web/app thân thiện để người dùng thao tác nghiệp vụ' },
+        { id: 'db4', left: 'Người quản trị CSDL (DBA)', right: 'Chuyên gia chịu trách nhiệm vận hành, phân quyền và sao lưu CSDL' }
       ]
     },
     assessment: [
       {
         id: 1,
-        question: 'Phần mềm nào sau đây là một Hệ quản trị cơ sở dữ liệu (DBMS)?',
-        options: ['MySQL', 'Photoshop', 'Windows Media Player', 'WinRAR'],
+        question: 'Phát biểu nào sau đây phân biệt ĐÚNG NHẤT giữa CSDL và Hệ quản trị CSDL (DBMS)?',
+        options: [
+          'CSDL là tập hợp dữ liệu được lưu trữ, còn DBMS là phần mềm dùng để quản lý và điều phối việc khai thác CSDL đó',
+          'CSDL là phần mềm, còn DBMS là dữ liệu',
+          'CSDL và DBMS là một từ đồng nghĩa hoàn toàn giống nhau',
+          'CSDL là phần cứng máy tính, còn DBMS là dây mạng'
+        ],
         correctIndex: 0,
-        explanation: 'MySQL là một trong những hệ quản trị CSDL quan hệ phổ biến nhất thế giới.',
-        difficulty: 'Nhận biết'
+        explanation: 'CSDL là kho chứa dữ liệu; DBMS là chương trình phần mềm quản lý kho dữ liệu đó.',
+        difficulty: 'Thông hiểu'
       },
       {
         id: 2,
-        question: 'Sự khác biệt cốt lõi giữa CSDL (Database) và Hệ quản trị CSDL (DBMS) là gì?',
+        question: 'Một "Hệ cơ sở dữ liệu" (Database System) hoàn chỉnh bao gồm 4 thành phần nào?',
         options: [
-          'CSDL là tập hợp dữ liệu được lưu trữ, còn Hệ QTCSDL là phần mềm dùng để tương tác và quản trị dữ liệu đó',
-          'CSDL là phần cứng, còn Hệ QTCSDL là màn hình máy tính',
-          'Không có sự khác biệt nào',
-          'Hệ QTCSDL chỉ dùng để vẽ tranh'
+          'Cơ sở dữ liệu, Hệ quản trị CSDL, Phần mềm ứng dụng và Con người',
+          'Bàn phím, Chuột, Màn hình và Vỏ case',
+          'Hệ điều hành, Trình duyệt, Game và Dây sạc',
+          'Chỉ có CSDL và máy tính'
         ],
         correctIndex: 0,
-        explanation: 'CSDL là kho dữ liệu (Data), còn DBMS là công cụ phần mềm điều khiển kho dữ liệu đó.',
-        difficulty: 'Thông hiểu'
-      },
-      {
-        id: 3,
-        question: 'Một "Hệ cơ sở dữ liệu" hoàn chỉnh bao gồm những thành phần nào?',
-        options: [
-          'CSDL, Hệ quản trị CSDL, Phần mềm ứng dụng, Con người và Phần cứng máy tính',
-          'Chỉ bao gồm một chiếc ổ cứng máy tính',
-          'Chỉ bao gồm một tệp Word',
-          'Chỉ bao gồm dây cáp mạng'
-        ],
-        correctIndex: 0,
-        explanation: 'Hệ CSDL là một chỉnh thể hoàn chỉnh gồm dữ liệu, phần mềm quản lý, ứng dụng, con người và phần cứng.',
-        difficulty: 'Thông hiểu'
-      },
-      {
-        id: 4,
-        question: 'Chức năng "Ngôn ngữ định nghĩa dữ liệu" (DDL) của Hệ QTCSDL cho phép người dùng làm gì?',
-        options: [
-          'Khai báo cấu trúc các bảng, kiểu dữ liệu các trường và các ràng buộc toàn vẹn',
-          'Gửi email cho bạn bè',
-          'Nghe nhạc trực tuyến',
-          'Chơi game 3D'
-        ],
-        correctIndex: 0,
-        explanation: 'DDL (Data Definition Language) dùng để tạo lập cấu trúc CSDL và các bảng (lệnh CREATE TABLE, ALTER TABLE).',
+        explanation: 'Hệ CSDL là chỉnh thể gồm: CSDL + DBMS + Ứng dụng + Con người (DBA, lập trình viên, người dùng).',
         difficulty: 'Nhận biết'
       },
       {
-        id: 5,
-        question: 'Khi nhiều người dùng cùng truy cập và cập nhật CSDL cùng một lúc, Hệ QTCSDL đóng vai trò gì?',
+        id: 3,
+        question: 'Hệ quản trị CSDL mã nguồn mở phổ biến nhất thế giới được sử dụng rộng rãi trên các trang web và ứng dụng Internet là gì?',
+        options: ['MySQL', 'Microsoft Paint', 'Adobe Photoshop', 'Calculator'],
+        correctIndex: 0,
+        explanation: 'MySQL là hệ QTCSDL nguồn mở cực kỳ nổi tiếng, là thành phần chữ M trong bộ ngăn xếp LAMP/WAMP.',
+        difficulty: 'Nhận biết'
+      },
+      {
+        id: 4,
+        question: 'Chức năng "Kiểm soát điều khiển đồng thời" của Hệ QTCSDL phát huy tác dụng sống còn trong tình huống nào?',
         options: [
-          'Điều phối và kiểm soát truy cập đồng thời để dữ liệu không bị xung đột, sai lệch',
-          'Tự động tắt máy tính của tất cả mọi người',
-          'Xóa toàn bộ dữ liệu để giải phóng ram',
-          'Làm đơ hệ thống'
+          'Hàng ngàn người cùng đồng thời đặt mua vé một trận bóng đá lúc 9h00 sáng mà không bị bán trùng 1 ghế cho 2 người',
+          'Khi máy tính bị mất điện',
+          'Khi người dùng muốn tắt màn hình',
+          'Khi bàn phím máy tính bị kẹt phím'
         ],
         correctIndex: 0,
-        explanation: 'Khả năng kiểm soát đồng thời (Concurrency Control) giúp các giao dịch diễn ra an toàn, chính xác.',
+        explanation: 'Khóa dữ liệu (Locking) và quản lý giao dịch của DBMS đảm bảo tính đúng đắn khi nhiều người dùng truy cập cùng lúc.',
         difficulty: 'Vận dụng'
+      },
+      {
+        id: 5,
+        question: 'Người chịu trách nhiệm cao nhất về việc đảm bảo CSDL hoạt động an toàn, phân quyền tài khoản và phục hồi sau sự cố được gọi là ai?',
+        options: [
+          'Người quản trị cơ sở dữ liệu (Database Administrator - DBA)',
+          'Học sinh trực nhật',
+          'Người bán máy tính',
+          'Thợ sửa máy in'
+        ],
+        correctIndex: 0,
+        explanation: 'DBA là chức danh chuyên gia quản lý toàn bộ vòng đời và sự an toàn của hệ thống cơ sở dữ liệu.',
+        difficulty: 'Nhận biết'
       }
     ],
     application: {
       project: {
-        title: 'Khảo sát: Lựa chọn Hệ QTCSDL cho một Cửa hàng Trực tuyến',
-        context: 'Một shop thời trang muốn xây dựng website bán hàng trực tuyến có giỏ hàng và quản lý kho hàng.',
-        mission: 'So sánh và đề xuất Hệ QTCSDL phù hợp giữa MySQL và Microsoft Access.',
+        title: 'Phân Tích 4 Thành Phần Hệ CSDL Ứng Dụng Đặt Xe Công Nghệ (Grab / Be)',
+        context: 'Ứng dụng đặt xe công nghệ phục vụ hàng triệu cuốc xe mỗi ngày.',
+        mission: 'Xác định rõ 4 thành phần của Hệ CSDL trong hệ thống đặt xe này.',
         steps: [
-          'Bước 1: Phân tích ưu/nhược điểm của Microsoft Access (gọn nhẹ, nhưng chỉ hợp máy đơn lẻ ít người dùng).',
-          'Bước 2: Phân tích ưu điểm của MySQL (nguồn mở, miễn phí, hỗ trợ hàng nghìn người truy cập cùng lúc qua Web).',
-          'Bước 3: Đưa ra quyết định lựa chọn MySQL và giải thích lý do.'
+          '1. CSDL (Database): Bảng Tài xế, Khách hàng, Chuyến đi, Tọa độ GPS, Lịch sử thanh toán.',
+          '2. Hệ QTCSDL (DBMS): Hệ quản trị CSDL phân tán tốc độ cao (MySQL, PostgreSQL, MongoDB).',
+          '3. Phần mềm ứng dụng: App Grab trên điện thoại của Khách hàng và App trên máy Tài xế.',
+          '4. Con người: Khách hàng đặt xe, Tài xế nhận cuốc, Kỹ sư DBA giám sát máy chủ máy bay.'
         ],
-        outputRequirement: 'Văn bản đề xuất lựa chọn công nghệ Hệ QTCSDL cho dự án web.',
-        practicalTip: 'Đối với các hệ thống Web và App di động nhiều người dùng, luôn ưu tiên các hệ quản trị CSDL máy khách - máy chủ (Client/Server) như MySQL hoặc PostgreSQL.'
+        outputRequirement: 'Sơ đồ khối 4 thành phần kèm giải thích luồng dữ liệu đặt xe.',
+        practicalTip: 'Khi hàng ngàn khách cùng đặt xe một lúc, DBMS đảm bảo mỗi cuốc xe chỉ được gán cho duy nhất 1 tài xế gần nhất.'
       },
       mindmap: {
         id: 'mm_11_12',
-        label: 'HỆ QUẢN TRỊ CSDL (DBMS)',
-        color: '#4f46e5',
+        label: 'HỆ QUẢN TRỊ CSDL',
+        color: '#7c3aed',
         children: [
           {
             id: 'mm_11_12_1',
-            label: 'Vai trò & Chức năng',
+            label: 'Khái niệm & Chức năng',
             children: [
-              { id: 'mm_11_12_1_1', label: 'Định nghĩa dữ liệu (DDL)' },
-              { id: 'mm_11_12_1_2', label: 'Thao tác dữ liệu (DML)' },
-              { id: 'mm_11_12_1_3', label: 'Kiểm soát an toàn & bảo mật' }
+              { id: 'mm_11_12_1_1', label: 'DBMS: Phần mềm quản lý CSDL' },
+              { id: 'mm_11_12_1_2', label: 'Ngôn ngữ DDL (Cấu trúc) & DML (Dữ liệu)' },
+              { id: 'mm_11_12_1_3', label: 'Kiểm soát đồng thời & Bảo mật' }
             ]
           },
           {
             id: 'mm_11_12_2',
-            label: 'Các phần mềm phổ biến',
+            label: 'Kiến trúc Hệ CSDL',
             children: [
-              { id: 'mm_11_12_2_1', label: 'MySQL / PostgreSQL' },
-              { id: 'mm_11_12_2_2', label: 'Microsoft SQL Server' },
-              { id: 'mm_11_12_2_3', label: 'Oracle Database' }
+              { id: 'mm_11_12_2_1', label: '1. CSDL (Kho dữ liệu)' },
+              { id: 'mm_11_12_2_2', label: '2. Hệ QTCSDL (DBMS lõi)' },
+              { id: 'mm_11_12_2_3', label: '3. Phần mềm ứng dụng (Giao diện)' },
+              { id: 'mm_11_12_2_4', label: '4. Con người (DBA, Lập trình viên, User)' }
             ]
           }
         ]
       }
     },
     completion: {
-      badgeName: 'Bậc Thầy DBMS 11',
-      badgeIcon: 'Server',
-      roleTitle: 'Chuyên Viên Quản Trị Phần Mềm Cơ Sở Dữ Liệu',
-      congratsMessage: 'Tuyệt vời! Bạn đã phân biệt rõ ràng CSDL và Hệ QTCSDL cũng như cấu trúc của Hệ CSDL.',
-      skillsUnlocked: ['Phân biệt CSDL vs DBMS', 'Nhận diện các phần mềm DBMS', 'Hiểu kiến trúc Hệ CSDL']
+      badgeName: 'Bậc Thầy Hệ CSDL 11',
+      badgeIcon: 'Layers',
+      roleTitle: 'Chuyên Viên Phân Tích Hệ Thống Thông Tin',
+      congratsMessage: 'Tuyệt vời! Bạn đã phân biệt rõ ràng CSDL và DBMS, nắm trọn cấu trúc 4 thành phần của một Hệ cơ sở dữ liệu chuyên nghiệp.',
+      skillsUnlocked: ['Phân biệt CSDL vs DBMS', 'Kiến trúc 4 thành phần Hệ CSDL', 'Phân loại các DBMS nổi tiếng']
     }
   },
 
@@ -607,188 +768,255 @@ export const THEME4_LESSONS_11: Lesson[] = [
     title: 'Cơ sở dữ liệu quan hệ',
     themeId: 4,
     themeName: 'Chủ đề 4: Giới thiệu các hệ cơ sở dữ liệu',
-    topicBadge: 'CSDL Quan hệ',
+    topicBadge: 'Mô hình quan hệ',
     grade: 11,
     estimatedMinutes: 45,
     xpTotal: 250,
     hero: {
-      tagline: 'Mô hình dữ liệu thành công nhất lịch sử: Bảng, Thuộc tính và Khoá chính',
-      description: 'Làm quen với Mô hình quan hệ (Relational Model): Bảng (Table), Cột (Trường / Thuộc tính), Hàng (Bản ghi / Bộ), Khoá chính (Primary Key) và mối liên kết quan hệ giữa các bảng.',
-      accentColor: 'from-indigo-600 to-blue-600',
-      keyHighlights: ['Mô hình dữ liệu quan hệ', 'Bản ghi (Hàng) & Trường (Cột)', 'Khoá chính (Primary Key)']
+      tagline: 'Vẻ đẹp toán học bảng biểu: Khám phá mô hình CSDL quan hệ kinh điển của E. F. Codd',
+      description: 'Làm chủ các khái niệm nền tảng: Bảng dữ liệu (Quan hệ), Cột (Thuộc tính), Hàng (Bản ghi / Bộ), Khóa chính (Primary Key) định danh duy nhất và Khóa ngoài (Foreign Key) kết nối các thực thể.',
+      accentColor: 'from-blue-600 to-indigo-600',
+      keyHighlights: ['Mô hình dữ liệu quan hệ', 'Khóa chính Primary Key', 'Khóa ngoài & Mối liên kết']
     },
     objectives: [
       {
         id: 'obj_11_13_1',
         category: 'knowledge',
         categoryName: 'Kiến thức cốt lõi',
-        title: 'Các khái niệm cơ bản CSDL quan hệ',
-        description: 'Định nghĩa được quan hệ (bảng), thuộc tính (cột/trường), bộ (hàng/bản ghi) và miền giá trị của thuộc tính.',
+        title: 'Khái niệm trong mô hình quan hệ',
+        description: 'Trình bày được các khái niệm: Bảng (Quan hệ), Cột (Thuộc tính / Trường), Hàng (Bản ghi / Bộ) và vai trò của Khóa chính (Primary Key).',
         iconName: 'Table'
       },
       {
         id: 'obj_11_13_2',
         category: 'skill',
         categoryName: 'Kỹ năng & Năng lực',
-        title: 'Xác định Khoá chính (Primary Key)',
-        description: 'Chỉ định được trường khoá chính phù hợp cho từng bảng để định danh duy nhất mỗi bản ghi (như MaHS, MaSach, SoCCCD).',
+        title: 'Xác định khóa chính & khóa ngoài',
+        description: 'Chỉ định đúng trường khóa chính định danh duy nhất cho từng bảng và nhận diện được khóa ngoài thiết lập mối liên kết giữa các bảng.',
         iconName: 'Key'
       },
       {
         id: 'obj_11_13_3',
         category: 'attitude',
         categoryName: 'Phẩm chất & Đạo đức',
-        title: 'Tư duy mô hình hóa logic',
-        description: 'Phát triển tư duy trừu tượng hóa các thực thể đời sống thành các bảng dữ liệu chuẩn hóa khoa học.',
-        iconName: 'Sparkles'
+        title: 'Tư duy mô hình hóa chuẩn xác',
+        description: 'Hình thành tư duy cấu trúc logic, không cho phép dữ liệu trùng lặp và đảm bảo tính toàn vẹn tham chiếu giữa các thực thể.',
+        iconName: 'CheckCircle'
       }
     ],
     warmup: {
-      title: 'Tình huống: Hai học sinh trùng cả Họ và Tên trong cùng một lớp',
-      scenario: 'Lớp 11A1 có hai bạn cùng tên là "Nguyễn Văn Nam" và cùng sinh năm 2008. Khi nhập điểm vào hệ thống, làm sao để phần mềm không bao giờ ghi nhầm điểm của bạn này sang bạn kia?',
-      pollQuestion: 'Hệ CSDL quan hệ dùng giải pháp kỹ thuật nào để phân biệt tuyệt đối hai người này?',
+      title: 'Tình huống: Hai bạn học sinh trùng cả Họ và Tên trong cùng một lớp',
+      scenario: 'Lớp 11A1 có hai bạn cùng tên là "Nguyễn Văn Nam", cùng sinh năm 2008 và cùng học lực Giỏi. Khi giáo viên nhập điểm thi vào hệ thống, làm sao để phần mềm không bao giờ bị ghi nhầm điểm của bạn này sang bạn kia?',
+      pollQuestion: 'Giải pháp kỹ thuật bắt buộc trong Cơ sở dữ liệu quan hệ để phân biệt hai bản ghi có nội dung giống nhau là gì?',
       pollOptions: [
-        { id: 'p11_13_1', text: 'Cấp cho mỗi bạn một "Mã học sinh" (MaHS) duy nhất làm Khóa chính (Primary Key)', votesPercent: 94, isPopular: true, insight: 'Chính xác! Khóa chính (như HS01, HS02) là định danh duy nhất, đảm bảo không bao giờ bị trùng lặp.' },
-        { id: 'p11_13_2', text: 'Bắt một trong hai bạn phải đổi tên', votesPercent: 2, insight: 'Tên khai sinh của công dân không thể tùy tiện ép đổi.' },
-        { id: 'p11_13_3', text: 'Cộng gộp điểm của hai bạn chia đôi', votesPercent: 4, insight: 'Cộng chia đôi sẽ vi phạm nghiêm trọng tính chính xác và công bằng trong học tập.' }
+        { id: 'p11_13_1', text: 'Cấp cho mỗi bạn một "Mã định danh học sinh" (MaHS) duy nhất làm Khóa chính (Primary Key)', votesPercent: 96, isPopular: true, insight: 'Chính xác! Khóa chính (Primary Key) đảm bảo mỗi hàng trong bảng luôn được định danh độc nhất, không bao giờ nhầm lẫn.' },
+        { id: 'p11_13_2', text: 'Đổi tên một bạn thành tên khác', votesPercent: 2, insight: 'Tên khai sinh của học sinh không thể tùy tiện thay đổi.' },
+        { id: 'p11_13_3', text: 'Ghi thêm biệt danh vào sau tên', votesPercent: 2, insight: 'Biệt danh không phải quy chuẩn dữ liệu chính thức.' }
       ],
-      reflection: 'Khóa chính (Primary Key) là trụ cột định danh sống còn của mọi bảng dữ liệu trong CSDL quan hệ.'
+      reflection: 'Khóa chính là chiếc mỏ neo định danh duy nhất cho từng bản ghi trong thế giới Cơ sở dữ liệu quan hệ.'
     },
     knowledge: [
       {
         id: 'tab_11_13_1',
-        title: '1. Cấu Trúc Bảng Dữ Liệu & Khóa Chính trong Mô Hình Quan Hệ',
-        subtitle: 'Bảng (Table), Trường (Field), Bản ghi (Record), Khoá (Key)',
-        iconName: 'Table2',
+        title: '1. Mô hình dữ liệu quan hệ (Bảng, Cột/Trường, Hàng/Bản ghi)',
+        subtitle: 'Cấu trúc ma trận hàng và cột chuẩn mực do E. F. Codd sáng lập',
+        iconName: 'Table',
         keyPoints: [
-          'Bảng (Table / Quan hệ): Mỗi bảng biểu diễn thông tin về một đối tượng quản lý (Học sinh, Môn học, Giáo viên).',
-          'Trường (Field / Cột / Thuộc tính): Mỗi cột mô tả một đặc trưng của đối tượng (Mã HS, Họ tên, Ngày sinh, Giới tính). Mỗi trường có một kiểu dữ liệu xác định.',
-          'Bản ghi (Record / Hàng / Bộ): Mỗi dòng chứa toàn bộ thông tin của MỘT đối tượng cụ thể.',
-          'Khoá chính (Primary Key): Là một hoặc một tập hợp thuộc tính mà giá trị của nó phân biệt duy nhất từng bản ghi trong bảng (không trùng lặp và không được để trống - Not Null).'
+          'Mô hình quan hệ (Relational Model): Dữ liệu được tổ chức dưới dạng các bảng 2 chiều (gọi là Quan hệ - Relation).',
+          'Các thành phần cấu trúc của Bảng:',
+          '  - Bảng (Table / Relation): Mỗi bảng đại diện cho một thực thể độc lập (ví dụ: Bảng `HOC_SINH`, Bảng `MON_HOC`).',
+          '  - Cột (Column / Field / Attribute - Thuộc tính): Mỗi cột mô tả một đặc trưng của đối tượng (ví dụ: `MaHS`, `HoTen`, `NgaySinh`). Tất cả các giá trị trong một cột phải có cùng kiểu dữ liệu.',
+          '  - Hàng (Row / Record / Tuple - Bộ dữ liệu / Bản ghi): Mỗi hàng chứa thông tin trọn vẹn về một đối tượng cụ thể duy nhất.',
+          'Nguyên tắc bảng quan hệ: Không có hai hàng giống hệt nhau 100%; thứ tự của các hàng và các cột không có ý nghĩa toán học.'
+        ],
+        visualType: 'comparison-table',
+        visualData: {
+          headers: ['Thuật ngữ đời thường', 'Thuật ngữ Cơ sở dữ liệu', 'Thuật ngữ Toán học quan hệ'],
+          rows: [
+            ['Bảng dữ liệu', 'Bảng (Table)', 'Quan hệ (Relation)'],
+            ['Cột dữ liệu', 'Trường (Field)', 'Thuộc tính (Attribute)'],
+            ['Hàng dữ liệu', 'Bản ghi (Record)', 'Bộ dữ liệu (Tuple)'],
+            ['Tiêu đề bảng', 'Cấu trúc bảng (Schema)', 'Lược đồ quan hệ']
+          ]
+        },
+        emCanNho: [
+          'CSDL quan hệ tổ chức dữ liệu dưới dạng các bảng hai chiều gồm hàng và cột.',
+          'Cột (Trường) là các thuộc tính; Hàng (Bản ghi) là thông tin của một đối tượng cụ thể.',
+          'Các giá trị trong cùng một cột phải có cùng kiểu dữ liệu (Data Type).'
+        ]
+      },
+      {
+        id: 'tab_11_13_2',
+        title: '2. Khóa chính (Primary Key) và tính duy nhất',
+        subtitle: 'Định danh độc nhất cho từng bản ghi dữ liệu',
+        iconName: 'Key',
+        keyPoints: [
+          'Khái niệm: Khóa chính (Primary Key - PK) là một hoặc một nhóm trường dùng để phân biệt duy nhất từng bản ghi (hàng) trong bảng.',
+          'Hai quy tắc bất di bất dịch của Khóa chính:',
+          '  1. Tính duy nhất (Unique): Không bao giờ được phép có hai hàng chứa cùng một giá trị khóa chính.',
+          '  2. Không được để rỗng (NOT NULL): Giá trị khóa chính luôn phải được điền, không được để trống.',
+          'Ví dụ thực tế: Số Căn cước công dân (CCCD), Mã số định danh học sinh (MaHS), Mã số sách (MaSach), Mã biển số xe.'
         ],
         visualType: 'infographic',
         visualData: {
           nodes: [
-            { label: 'Cột (Trường / Field)', desc: 'Thuộc tính: MaHS, HoTen, NgaySinh, DiemTin' },
-            { label: 'Hàng (Bản ghi / Record)', desc: '1 học sinh: [HS01, Nguyễn Văn An, 15/08/2008, 9.0]' },
-            { label: 'Khoá chính (Primary Key)', desc: 'MaHS: Đảm bảo không bao giờ có 2 học sinh cùng mã' }
+            { label: 'Trường MaHS: "HS001"', desc: 'Định danh duy nhất bạn Nguyễn Văn An' },
+            { label: 'Trường MaHS: "HS002"', desc: 'Định danh duy nhất bạn Trần Thị Mai' },
+            { label: 'Ràng buộc Primary Key', desc: 'Từ chối tuyệt đối nếu ai đó nhập trùng "HS001"' }
           ]
         },
         emCanNho: [
-          'Trong CSDL quan hệ: Bảng = Quan hệ; Cột = Trường/Thuộc tính; Hàng = Bản ghi/Bộ.',
-          'Khoá chính (Primary Key) dùng để phân biệt duy nhất từng bản ghi trong bảng.',
-          'Giá trị của khoá chính không được trùng lặp và không bao giờ được để trống (Not Null).'
+          'Khóa chính (Primary Key) phân biệt duy nhất từng bản ghi trong bảng.',
+          'Giá trị khóa chính không được trùng lặp và không bao giờ được để rỗng (NOT NULL).',
+          'Mỗi bảng trong CSDL quan hệ luôn cần có một khóa chính xác định.'
+        ]
+      },
+      {
+        id: 'tab_11_13_3',
+        title: '3. Khóa ngoài và liên kết giữa các bảng',
+        subtitle: 'Kết nối dữ liệu đa bảng, xóa bỏ dư thừa thông tin',
+        iconName: 'Link',
+        keyPoints: [
+          'Khái niệm: Khóa ngoài (Foreign Key - FK) là một trường ở bảng này (bảng con) tham chiếu trực tiếp đến Khóa chính của bảng khác (bảng cha).',
+          'Tác dụng của Khóa ngoài:',
+          '  - Thiết lập mối liên kết logic giữa các bảng với nhau.',
+          '  - Đảm bảo tính toàn vẹn tham chiếu (Referential Integrity): Không thể nhập một bản ghi điểm số cho một Mã học sinh chưa hề tồn tại trong bảng Học sinh.',
+          'Ví dụ: Bảng `KET_QUA_HOC_TAP` có trường `MaHS` đóng vai trò là Khóa ngoài tham chiếu tới trường `MaHS` là Khóa chính của bảng `HOC_SINH`.'
+        ],
+        visualType: 'infographic',
+        visualData: {
+          nodes: [
+            { label: 'Bảng HOC_SINH (Bảng cha)', desc: 'Khóa chính: [MaHS], HoTen, NgaySinh' },
+            { label: 'Liên kết Khóa ngoài (FK)', desc: 'MaHS trong bảng Điểm tham chiếu tới MaHS bảng Học sinh' },
+            { label: 'Bảng DIEM_SO (Bảng con)', desc: 'Khóa chính: [MaDiem], Khóa ngoài: (MaHS), MaMon, Diem' }
+          ]
+        },
+        emCanNho: [
+          'Khóa ngoài (Foreign Key) tham chiếu đến khóa chính của bảng khác để liên kết dữ liệu.',
+          'Khóa ngoài ngăn chặn việc tạo ra các dữ liệu "mồ côi" không có nguồn gốc tham chiếu.',
+          'Liên kết bảng giúp loại bỏ triệt để dư thừa dữ liệu mà vẫn bảo đảm đầy đủ thông tin.'
         ]
       }
     ],
     miniGame: {
       type: 'matching',
-      title: 'Ghép cặp Khái niệm Mô hình Quan hệ',
-      instruction: 'Nối thuật ngữ CSDL quan hệ với khái niệm tương đương trong bảng:',
+      title: 'Ghép cặp Khái niệm Mô hình Quan hệ và Định nghĩa',
+      instruction: 'Nối khái niệm CSDL quan hệ với định nghĩa chính xác:',
       matchingPairs: [
-        { id: 'r1', left: 'Quan hệ (Relation)', right: 'Bảng dữ liệu hai chiều (Table)' },
-        { id: 'r2', left: 'Thuộc tính (Attribute)', right: 'Cột của bảng (Field/Trường)' },
-        { id: 'r3', left: 'Bộ (Tuple)', right: 'Hàng của bảng (Record/Bản ghi)' },
-        { id: 'r4', left: 'Khoá chính (Primary Key)', right: 'Trường định danh duy nhất phân biệt từng hàng' }
+        { id: 'rel1', left: 'Khóa chính (Primary Key)', right: 'Trường định danh duy nhất cho từng hàng, không được trùng, không rỗng' },
+        { id: 'rel2', left: 'Khóa ngoài (Foreign Key)', right: 'Trường ở bảng con tham chiếu đến khóa chính ở bảng cha để kết nối' },
+        { id: 'rel3', left: 'Bản ghi (Record / Tuple)', right: 'Một hàng dữ liệu chứa đầy đủ thông tin về một đối tượng cụ thể' },
+        { id: 'rel4', left: 'Trường (Field / Attribute)', right: 'Một cột dữ liệu mô tả một đặc trưng có cùng kiểu dữ liệu' }
       ]
     },
     assessment: [
       {
         id: 1,
-        question: 'Trong mô hình cơ sở dữ liệu quan hệ, một "Bản ghi" (Record) tương ứng với thành phần nào của bảng?',
-        options: ['Một hàng (dòng) của bảng', 'Một cột của bảng', 'Tên của bảng', 'Màu sắc của bảng'],
+        question: 'Trong mô hình cơ sở dữ liệu quan hệ, dữ liệu được tổ chức dưới dạng cấu trúc nào?',
+        options: [
+          'Các bảng hai chiều gồm các hàng (bản ghi) và các cột (thuộc tính)',
+          'Một bức tranh vẽ trên giấy',
+          'Một danh sách nhạc MP3',
+          'Các dòng lệnh văn bản không có tiêu đề'
+        ],
         correctIndex: 0,
-        explanation: 'Mỗi hàng (dòng) trong bảng chứa thông tin của một đối tượng cụ thể, gọi là một bản ghi (bộ).',
+        explanation: 'Mô hình quan hệ do E.F.Codd phát minh biểu diễn toàn bộ dữ liệu dưới dạng các bảng 2 chiều.',
         difficulty: 'Nhận biết'
       },
       {
         id: 2,
-        question: 'Điều kiện BẮT BUỘC đối với giá trị của trường được chọn làm Khoá chính (Primary Key) là gì?',
+        question: 'Khóa chính (Primary Key) của một bảng dữ liệu BẮT BUỘC phải thỏa mãn hai điều kiện nào sau đây?',
         options: [
-          'Không được trùng lặp giữa các bản ghi và không được để trống (Not Null)',
-          'Phải luôn là chữ in hoa',
-          'Phải là số chẵn',
-          'Phải có màu đỏ'
+          'Các giá trị không được trùng nhau (duy nhất) và không được để trống (NOT NULL)',
+          'Phải là số chẵn và viết bằng chữ màu đỏ',
+          'Phải dài trên 50 ký tự',
+          'Phải thay đổi sau mỗi 5 phút'
         ],
         correctIndex: 0,
-        explanation: 'Khóa chính dùng để định danh duy nhất nên bắt buộc phải duy nhất và không được phép để rỗng.',
+        explanation: 'Tính duy nhất và tính bắt buộc có giá trị (NOT NULL) là hai nguyên lý nền tảng của khóa chính.',
         difficulty: 'Thông hiểu'
       },
       {
         id: 3,
-        question: 'Trong bảng `HOC_SINH` gồm các cột: `MaHS`, `HoTen`, `NgaySinh`, `DiaChi`. Cột nào thích hợp nhất để làm Khoá chính?',
-        options: ['MaHS (Mã học sinh)', 'HoTen (Họ tên)', 'NgaySinh (Ngày sinh)', 'DiaChi (Địa chỉ)'],
+        question: 'Trong bảng HOC_SINH gồm các trường: MaHS, HoTen, NgaySinh, QueQuan, trường nào sau đây NÊN ĐƯỢC CHỌN làm Khóa chính?',
+        options: ['MaHS (Mã học sinh)', 'HoTen (vì có thể trùng nhau)', 'QueQuan (vì nhiều bạn cùng quê)', 'NgaySinh'],
         correctIndex: 0,
-        explanation: 'Họ tên, ngày sinh và địa chỉ đều có thể bị trùng nhau, chỉ có MaHS là được cấp phát duy nhất cho mỗi em.',
+        explanation: 'Chỉ có MaHS là mã định danh duy nhất được nhà trường cấp riêng cho từng bạn, không bao giờ trùng nhau.',
         difficulty: 'Vận dụng'
       },
       {
         id: 4,
-        question: 'Một bảng dữ liệu trong CSDL quan hệ có bao nhiêu khoá chính?',
-        options: ['Chỉ có duy nhất 1 khoá chính (khoá chính có thể gồm 1 hoặc nhiều trường gộp lại)', 'Có 10 khoá chính', 'Không được phép có khoá chính', 'Bao nhiêu cũng được'],
+        question: 'Vai trò cốt lõi của Khóa ngoài (Foreign Key) trong cơ sở dữ liệu quan hệ là gì?',
+        options: [
+          'Thiết lập mối liên kết giữa các bảng và bảo đảm tính toàn vẹn tham chiếu dữ liệu',
+          'Khóa màn hình máy tính',
+          'Tăng tốc độ gõ bàn phím',
+          'Đổi màu giao diện phần mềm'
+        ],
         correctIndex: 0,
-        explanation: 'Mỗi bảng quan hệ chỉ có duy nhất 1 khóa chính (Primary Key), dù khóa đó có thể là khóa đơn hoặc khóa phức hợp.',
+        explanation: 'Khóa ngoài liên kết bảng con với bảng cha, ngăn chặn nhập mã tham chiếu không tồn tại.',
         difficulty: 'Thông hiểu'
       },
       {
         id: 5,
-        question: 'Mối liên kết giữa các bảng trong CSDL quan hệ được thiết lập thông qua yếu tố nào?',
+        question: 'Hiện tượng gì sẽ xảy ra nếu bạn cố gắng nhập một bản ghi điểm số với MaHS = "HS999" vào bảng Điểm, trong khi bảng HOC_SINH chưa hề có học sinh nào mang mã "HS999"?',
         options: [
-          'Thông qua mối quan hệ giữa Khoá chính của bảng này và Khoá ngoài (Foreign Key) của bảng kia',
-          'Bằng cách dán băng dính máy tính',
-          'Bằng dây cáp USB',
-          'Tự động nối ngẫu nhiên'
+          'Hệ QTCSDL sẽ từ chối lệnh thêm và báo lỗi vi phạm ràng buộc khóa ngoài (Foreign Key Constraint Fail)',
+          'Hệ thống tự động tạo ra một học sinh mới',
+          'Máy tính bị tắt nguồn',
+          'Không có lỗi gì xảy ra'
         ],
         correctIndex: 0,
-        explanation: 'Liên kết bảng được thiết lập dựa trên sự tương ứng giữa khóa chính và khóa ngoài.',
-        difficulty: 'Thông hiểu'
+        explanation: 'Ràng buộc toàn vẹn tham chiếu của khóa ngoài bảo vệ CSDL không bị sinh ra các dữ liệu rác không rõ nguồn gốc.',
+        difficulty: 'Vận dụng'
       }
     ],
     application: {
       project: {
-        title: 'Thiết kế Bảng Quản lý Xe Đạp gửi tại Trường học',
-        context: 'Nhà trường cần quản lý việc gửi xe đạp/xe điện của học sinh.',
-        mission: 'Xác định các trường (thuộc tính) và chọn Khoá chính cho bảng `VE_XE`.',
+        title: 'Thiết Kế Lược Đồ Bảng Cho Hệ Thống Bán Hàng Trực Tuyến',
+        context: 'Xây dựng cấu trúc CSDL quản lý đơn hàng cho một cửa hàng sách online.',
+        mission: 'Thiết kế 2 bảng KHACH_HANG và DON_HANG, chỉ rõ khóa chính và khóa ngoài.',
         steps: [
-          'Bước 1: Xác định các cột: `MaVeXe`, `BienSoXe`, `LoaiXe`, `MaHS_ChuXe`, `NgayGui`.',
-          'Bước 2: Chọn `MaVeXe` làm Khoá chính.',
-          'Bước 3: Giải thích vì sao không thể chọn `LoaiXe` làm khoá chính.'
+          'Bảng 1: KHACH_HANG (MaKH, HoTen, SoDienThoai, DiaChi) -> Khóa chính: MaKH.',
+          'Bảng 2: DON_HANG (MaDH, NgayDat, TongTien, MaKH) -> Khóa chính: MaDH.',
+          'Chỉ ra Khóa ngoài: Trường MaKH trong bảng DON_HANG là khóa ngoài tham chiếu tới MaKH của bảng KHACH_HANG.',
+          'Giải thích ý nghĩa: Một khách hàng có thể đặt nhiều đơn hàng khác nhau (Quan hệ 1 - Nhiều).'
         ],
-        outputRequirement: 'Bảng cấu trúc dữ liệu gồm Tên trường, Kiểu dữ liệu và chỉ định Khoá chính.',
-        practicalTip: 'Tên trường nên viết hoa không dấu, ngăn cách bằng dấu gạch dưới (VD: `Ma_Ve_Xe`) để chuẩn hóa khi đưa vào SQL.'
+        outputRequirement: 'Sơ đồ liên kết ERD giữa 2 bảng với đường nối khóa chính - khóa ngoài.',
+        practicalTip: 'Khóa ngoài ở bảng con luôn phải cùng kiểu dữ liệu (ví dụ cùng là INT hoặc VARCHAR) với khóa chính ở bảng cha.'
       },
       mindmap: {
         id: 'mm_11_13',
         label: 'CSDL QUAN HỆ',
-        color: '#4f46e5',
+        color: '#2563eb',
         children: [
           {
             id: 'mm_11_13_1',
-            label: 'Cấu trúc thành phần',
+            label: 'Cấu trúc ma trận',
             children: [
-              { id: 'mm_11_13_1_1', label: 'Bảng (Quan hệ)' },
-              { id: 'mm_11_13_1_2', label: 'Trường (Cột / Thuộc tính)' },
-              { id: 'mm_11_13_1_3', label: 'Bản ghi (Hàng / Bộ)' }
+              { id: 'mm_11_13_1_1', label: 'Bảng (Quan hệ - Relation)' },
+              { id: 'mm_11_13_1_2', label: 'Cột (Thuộc tính - Attribute)' },
+              { id: 'mm_11_13_1_3', label: 'Hàng (Bản ghi - Tuple)' }
             ]
           },
           {
             id: 'mm_11_13_2',
-            label: 'Khoá & Ràng buộc',
+            label: 'Khóa & Liên kết',
             children: [
-              { id: 'mm_11_13_2_1', label: 'Khoá chính (Primary Key)' },
-              { id: 'mm_11_13_2_2', label: 'Tính duy nhất & Not Null' },
-              { id: 'mm_11_13_2_3', label: 'Liên kết khoá ngoài' }
+              { id: 'mm_11_13_2_1', label: 'Khóa chính (PK): Duy nhất, NOT NULL' },
+              { id: 'mm_11_13_2_2', label: 'Khóa ngoài (FK): Tham chiếu bảng cha' },
+              { id: 'mm_11_13_2_3', label: 'Toàn vẹn tham chiếu' }
             ]
           }
         ]
       }
     },
     completion: {
-      badgeName: 'Chuyên Gia Mô Hình Quan Hệ 11',
+      badgeName: 'Chuyên Gia Quan Hệ Dữ Liệu 11',
       badgeIcon: 'Table',
-      roleTitle: 'Chuyên Viên Chuẩn Hóa CSDL Quan Hệ',
-      congratsMessage: 'Tuyệt vời! Bạn đã làm chủ cấu trúc bảng, bản ghi, trường và khoá chính trong mô hình quan hệ.',
-      skillsUnlocked: ['Xác định Khoá chính', 'Phân biệt Bảng/Trường/Bản ghi', 'Chuẩn hóa cấu trúc CSDL']
+      roleTitle: 'Chuyên Viên Mô Hình Hóa Dữ Liệu Quan Hệ',
+      congratsMessage: 'Tuyệt vời! Bạn đã làm chủ các khái niệm Bảng, Khóa chính và Khóa ngoài - sẵn sàng bước vào ngôn ngữ truy vấn dữ liệu SQL!',
+      skillsUnlocked: ['Hiểu mô hình CSDL quan hệ', 'Xác định khóa chính Primary Key', 'Thiết lập khóa ngoài Foreign Key']
     }
   },
 
@@ -804,189 +1032,216 @@ export const THEME4_LESSONS_11: Lesson[] = [
     estimatedMinutes: 45,
     xpTotal: 250,
     hero: {
-      tagline: 'Chiếc chìa khóa vạn năng trích xuất tri thức từ kho dữ liệu số',
-      description: 'Làm quen với ngôn ngữ tiêu chuẩn quốc tế SQL: viết các câu truy vấn SELECT, lọc dữ liệu với WHERE, sắp xếp kết quả với ORDER BY để khai thác thông tin chính xác từ hàng triệu bản ghi.',
-      accentColor: 'from-indigo-600 to-blue-600',
-      keyHighlights: ['Mệnh đề SELECT & FROM', 'Lọc điều kiện WHERE', 'Sắp xếp ORDER BY (ASC/DESC)']
+      tagline: 'Tiếng nói của dữ liệu: Khám phá ngôn ngữ chuẩn quốc tế giao tiếp với mọi CSDL',
+      description: 'Làm quen với ngôn ngữ SQL (Structured Query Language), các nhóm lệnh DDL, DML, DQL và luyện viết câu lệnh truy vấn dữ liệu kinh điển SELECT ... FROM ... WHERE ... ORDER BY trong sandbox tương tác.',
+      accentColor: 'from-blue-600 to-cyan-500',
+      keyHighlights: ['Ngôn ngữ SQL chuẩn hóa', 'Cú pháp câu lệnh SELECT', 'Interactive SQL Sandbox']
     },
     objectives: [
       {
         id: 'obj_11_14_1',
         category: 'knowledge',
         categoryName: 'Kiến thức cốt lõi',
-        title: 'Cú pháp câu lệnh truy vấn SQL',
-        description: 'Trình bày được vai trò của SQL và cú pháp câu lệnh truy vấn cơ bản: SELECT <cột> FROM <bảng> WHERE <điều kiện>.',
+        title: 'Hiểu vai trò & các nhóm lệnh SQL',
+        description: 'Trình bày được vai trò của SQL trong CSDL quan hệ và phân biệt được các nhóm lệnh chính: DDL (định nghĩa dữ liệu), DML (thao tác dữ liệu) và DQL (truy vấn dữ liệu).',
         iconName: 'Code'
       },
       {
         id: 'obj_11_14_2',
         category: 'skill',
         categoryName: 'Kỹ năng & Năng lực',
-        title: 'Viết câu lệnh SQL truy xuất dữ liệu',
-        description: 'Tự viết được các câu truy vấn để tìm kiếm học sinh theo lớp, tính điểm trung bình hoặc lọc danh sách sản phẩm.',
+        title: 'Viết câu lệnh truy vấn SELECT chuẩn',
+        description: 'Viết và thực thi thành thạo câu lệnh truy vấn dữ liệu có điều kiện lọc và sắp xếp bằng cú pháp `SELECT ... FROM ... WHERE ... ORDER BY` trên môi trường thực hành.',
         iconName: 'Play'
       },
       {
         id: 'obj_11_14_3',
         category: 'attitude',
         categoryName: 'Phẩm chất & Đạo đức',
-        title: 'Bảo mật và toàn vẹn dữ liệu',
-        description: 'Ý thức cẩn trọng khi thực thi các câu lệnh thay đổi dữ liệu và tuân thủ an toàn thông tin.',
-        iconName: 'ShieldCheck'
+        title: 'Tư duy truy xuất dữ liệu tối ưu',
+        description: 'Hình thành thói quen chỉ truy vấn các cột cần thiết (thay vì lạm dụng SELECT *) để tiết kiệm băng thông và tài nguyên máy chủ.',
+        iconName: 'CheckCircle'
       }
     ],
     warmup: {
-      title: 'Tình huống: Tìm kiếm học sinh giỏi trong 3000 em',
-      scenario: 'Thầy Tổng phụ trách cần tìm danh sách tất cả học sinh Khối 11 đạt điểm tổng kết môn Tin học từ 9.0 trở lên. Nếu tìm thủ công bằng mắt sẽ mất nhiều ngày.',
-      pollQuestion: 'Ngôn ngữ tiêu chuẩn nào được toàn thế giới sử dụng để máy tính trích xuất dữ liệu trong chớp mắt?',
+      title: 'Tình huống: Làm sao để "nói chuyện" với Cơ sở dữ liệu?',
+      scenario: 'Cơ sở dữ liệu chứa hàng triệu bản ghi học sinh. Để bảo máy tính: "Hãy cho tôi danh sách các học sinh Lớp 11A1 có điểm trung bình từ 8.0 trở lên và xếp điểm từ cao xuống thấp", chúng ta dùng ngôn ngữ nào?',
+      pollQuestion: 'Ngôn ngữ tiêu chuẩn quốc tế được sinh ra để con người ra lệnh truy vấn cho máy chủ CSDL là gì?',
       pollOptions: [
-        { id: 'p11_14_1', text: 'SQL (Structured Query Language)', votesPercent: 91, isPopular: true, insight: 'Chính xác! SQL là ngôn ngữ tiêu chuẩn quốc tế để truy vấn và thao tác trên cơ sở dữ liệu quan hệ.' },
-        { id: 'p11_14_2', text: 'HTML', votesPercent: 5, insight: 'HTML chỉ dùng để định dạng hiển thị trang web.' },
-        { id: 'p11_14_3', text: 'Photoshop', votesPercent: 4, insight: 'Photoshop dùng để xử lý hình ảnh raster.' }
+        { id: 'p11_14_1', text: 'Ngôn ngữ truy vấn có cấu trúc SQL (Structured Query Language)', votesPercent: 95, isPopular: true, insight: 'Chính xác! SQL là ngôn ngữ chuẩn mực ANSI/ISO được hỗ trợ bởi tất cả các hệ QTCSDL lớn trên thế giới.' },
+        { id: 'p11_14_2', text: 'Ngôn ngữ Tiếng Việt gõ có dấu', votesPercent: 3, insight: 'Máy chủ CSDL không hiểu ngôn ngữ tự nhiên trực tiếp nếu không qua trình biên dịch SQL.' },
+        { id: 'p11_14_3', text: 'Mã nhị phân 0 và 1', votesPercent: 2, insight: 'Con người không thể nhớ nổi hàng triệu bit nhị phân để truy vấn dữ liệu hàng ngày.' }
       ],
-      reflection: 'SQL là kỹ năng công nghệ được săn đón hàng đầu trong mọi lĩnh vực phân tích dữ liệu, trí tuệ nhân tạo và lập trình phần mềm.'
+      reflection: 'SQL là kỹ năng công nghệ số 1 được các nhà tuyển dụng IT và khoa học dữ liệu tìm kiếm nhiều nhất trên thế giới.'
     },
     knowledge: [
       {
         id: 'tab_11_14_1',
-        title: '1. Cú Pháp Câu Lệnh Truy Vấn SELECT',
-        subtitle: 'Trích xuất dữ liệu có điều kiện từ các bảng',
-        iconName: 'Code2',
+        title: '1. Giới thiệu ngôn ngữ SQL và các nhóm lệnh',
+        subtitle: 'Ngôn ngữ chuẩn quốc tế cho cơ sở dữ liệu quan hệ',
+        iconName: 'Code',
         keyPoints: [
-          'Cú pháp chuẩn: `SELECT <Danh sách cột> FROM <Tên bảng> WHERE <Điều kiện lọc> ORDER BY <Cột sắp xếp> [ASC|DESC];`',
-          '`SELECT *`: Chọn tất cả các cột dữ liệu trong bảng.',
-          'Mệnh đề `WHERE`: Sử dụng các phép so sánh (=, >, <, >=, <=, <>) và toán tử logic (AND, OR, NOT) để lọc dữ liệu chính xác.',
-          'Mệnh đề `ORDER BY`: Sắp xếp kết quả tăng dần (ASC - mặc định) hoặc giảm dần (DESC).'
+          'SQL (Structured Query Language): Ngôn ngữ truy vấn mang tính khai báo (Declarative) - người dùng chỉ cần chỉ ra "Dữ liệu nào tôi muốn lấy" thay vì phải lập trình từng bước cách lấy dữ liệu.',
+          'Các nhóm lệnh chính trong SQL:',
+          '  - DDL (Data Definition Language - Định nghĩa dữ liệu): Các lệnh tạo lập, thay đổi cấu trúc bảng (`CREATE`, `ALTER`, `DROP`).',
+          '  - DML (Data Manipulation Language - Thao tác dữ liệu): Các lệnh thêm, sửa, xóa bản ghi (`INSERT`, `UPDATE`, `DELETE`).',
+          '  - DQL (Data Query Language - Truy vấn dữ liệu): Lệnh trích xuất thông tin phục vụ người dùng (`SELECT`).',
+          '  - DCL (Data Control Language - Điều khiển dữ liệu): Phân quyền bảo mật (`GRANT`, `REVOKE`).'
+        ],
+        visualType: 'comparison-table',
+        visualData: {
+          headers: ['Nhóm lệnh SQL', 'Từ khóa tiêu biểu', 'Mục đích sử dụng'],
+          rows: [
+            ['DQL (Truy vấn dữ liệu)', 'SELECT ... FROM ... WHERE', 'Tìm kiếm, lọc và trích xuất dữ liệu từ bảng'],
+            ['DML (Thao tác dữ liệu)', 'INSERT INTO, UPDATE, DELETE', 'Thêm bản ghi mới, sửa đổi hoặc xóa dữ liệu'],
+            ['DDL (Định nghĩa cấu trúc)', 'CREATE, ALTER, DROP', 'Tạo mới bảng, sửa đổi cột hoặc xóa hẳn một bảng'],
+            ['DCL (Phân quyền bảo mật)', 'GRANT, REVOKE', 'Cấp hoặc thu hồi quyền truy cập của người dùng']
+          ]
+        },
+        emCanNho: [
+          'SQL là ngôn ngữ chuẩn quốc tế để giao tiếp với các hệ CSDL quan hệ.',
+          'Gồm 4 nhóm lệnh chính: DQL (Truy vấn), DML (Thao tác), DDL (Định nghĩa), DCL (Phân quyền).',
+          'SQL là ngôn ngữ khai báo: ta chỉ cần nói ta muốn dữ liệu gì, máy tính tự tối ưu cách lấy.'
+        ]
+      },
+      {
+        id: 'tab_11_14_2',
+        title: '2. Cú pháp câu lệnh truy vấn SELECT ... FROM ... WHERE ... ORDER BY',
+        subtitle: 'Bộ tứ quyền lực trích xuất thông tin có điều kiện và sắp xếp',
+        iconName: 'Play',
+        keyPoints: [
+          'Cú pháp chuẩn của câu truy vấn dữ liệu:',
+          '  `SELECT <Danh sách các cột cần lấy>`',
+          '  `FROM <Tên bảng chứa dữ liệu>`',
+          '  `WHERE <Điều kiện lọc dữ liệu>`',
+          '  `ORDER BY <Tên cột cần sắp xếp> [ASC | DESC];`',
+          'Giải thích các mệnh đề:',
+          '  - `SELECT *`: Lấy tất cả các cột trong bảng.',
+          '  - `SELECT MaHS, HoTen`: Chỉ lấy 2 cột MaHS và HoTen (tối ưu bộ nhớ).',
+          '  - `WHERE DiemTB >= 8.0 AND Lop = \'11A1\'`: Điều kiện lọc kết hợp toán tử logic.',
+          '  - `ORDER BY DiemTB DESC`: Sắp xếp theo điểm trung bình giảm dần (DESC: lớn về bé; ASC: bé đến lớn mặc định).'
         ],
         visualType: 'interactive-sql',
         visualData: {
-          defaultSql: 'SELECT HoTen, Lop, DiemTin FROM HOC_SINH WHERE DiemTin >= 8.5 ORDER BY DiemTin DESC;',
-          sampleTable: {
-            columns: ['MaHS', 'HoTen', 'Lop', 'DiemTin'],
-            rows: [
-              ['HS01', 'Nguyễn Văn An', '11A1', '9.5'],
-              ['HS04', 'Phạm Minh Đức', '11A3', '9.0'],
-              ['HS02', 'Trần Thị Bình', '11A2', '8.8'],
-              ['HS03', 'Lê Hoàng Cúc', '11A1', '7.5']
-            ]
-          }
+          initialSql: 'SELECT MaHS, HoTen, Lop, DiemTB\nFROM HOC_SINH\nWHERE DiemTB >= 8.5\nORDER BY DiemTB DESC;'
         },
         emCanNho: [
-          'SQL là ngôn ngữ truy vấn có cấu trúc chuẩn mực trong giao tiếp với CSDL quan hệ.',
-          'Cú pháp cơ bản: `SELECT <cột> FROM <bảng> WHERE <điều kiện> ORDER BY <cột> [ASC/DESC]`.',
-          'Ký tự `*` đại diện cho việc lấy tất cả các cột của bảng dữ liệu.'
+          'Cấu trúc cơ bản: SELECT (chọn cột) -> FROM (chọn bảng) -> WHERE (lọc hàng) -> ORDER BY (sắp xếp).',
+          'Dùng `WHERE` với các toán tử so sánh (=, >, <, >=, <=, <>) và toán tử logic (AND, OR, NOT).',
+          'Mệnh đề `ORDER BY` dùng `DESC` để sắp xếp giảm dần, `ASC` để sắp xếp tăng dần.'
         ]
       }
     ],
     miniGame: {
       type: 'matching',
-      title: 'Ghép cặp Từ khóa SQL và Chức năng',
-      instruction: 'Nối từ khóa câu lệnh SQL với chức năng tương ứng:',
+      title: 'Ghép cặp Mệnh đề SQL và Chức năng Tương ứng',
+      instruction: 'Nối mệnh đề câu lệnh SQL với chức năng đúng:',
       matchingPairs: [
-        { id: 'sql_1', left: 'SELECT HoTen, Lop', right: 'Chỉ định các cột dữ liệu cần lấy ra' },
-        { id: 'sql_2', left: 'FROM HOC_SINH', right: 'Chỉ định bảng nguồn chứa dữ liệu' },
-        { id: 'sql_3', left: 'WHERE DiemTin >= 8.0', right: 'Điều kiện lọc chỉ lấy học sinh đạt từ 8 điểm trở lên' },
-        { id: 'sql_4', left: 'ORDER BY DiemTin DESC', right: 'Sắp xếp điểm số giảm dần từ cao xuống thấp' }
+        { id: 'sql1', left: 'SELECT HoTen, DiemTB', right: 'Chỉ định các cột thông tin cần hiển thị kết quả' },
+        { id: 'sql2', left: 'FROM HOC_SINH', right: 'Chỉ định bảng dữ liệu gốc cần truy xuất' },
+        { id: 'sql3', left: 'WHERE DiemTB >= 8.0', right: 'Thiết lập điều kiện lọc các bản ghi thỏa mãn' },
+        { id: 'sql4', left: 'ORDER BY DiemTB DESC', right: 'Sắp xếp danh sách kết quả theo điểm từ cao xuống thấp' }
       ]
     },
     assessment: [
       {
         id: 1,
-        question: 'Từ viết tắt SQL là viết tắt của cụm từ tiếng Anh nào?',
-        options: ['Structured Query Language', 'Simple Question Language', 'Standard Quality List', 'System Quick Link'],
+        question: 'Trong câu lệnh SQL, mệnh đề nào sau đây dùng để lọc các hàng thỏa mãn điều kiện nhất định?',
+        options: ['WHERE', 'FROM', 'SELECT', 'ORDER BY'],
         correctIndex: 0,
-        explanation: 'SQL là viết tắt của Structured Query Language (Ngôn ngữ truy vấn có cấu trúc).',
+        explanation: 'Mệnh đề WHERE lọc và chỉ giữ lại những hàng dữ liệu thỏa mãn điều kiện logic.',
         difficulty: 'Nhận biết'
       },
       {
         id: 2,
-        question: 'Để lấy TẤT CẢ các cột và tất cả các dòng từ bảng `NHAN_VIEN`, câu lệnh SQL nào ĐÚNG?',
-        options: ['SELECT * FROM NHAN_VIEN;', 'GET ALL FROM NHAN_VIEN;', 'FIND TABLE NHAN_VIEN;', 'FETCH ALL IN NHAN_VIEN;'],
+        question: 'Để lấy TẤT CẢ các cột dữ liệu trong bảng HOC_SINH, ký hiệu nào sau đây được sử dụng ngay sau từ khóa SELECT?',
+        options: ['Dấu sao (*)', 'Dấu cộng (+)', 'Dấu chấm hỏi (?)', 'Dấu thăng (#)'],
         correctIndex: 0,
-        explanation: 'Dấu sao (*) trong mệnh đề SELECT mang ý nghĩa lấy toàn bộ các trường (cột) dữ liệu.',
-        difficulty: 'Thông hiểu'
-      },
-      {
-        id: 3,
-        question: 'Muốn sắp xếp danh sách kết quả theo thứ tự từ CAO XUỐNG THẤP (giảm dần), ta dùng từ khóa nào sau ORDER BY?',
-        options: ['DESC', 'ASC', 'DOWN', 'TOP'],
-        correctIndex: 0,
-        explanation: 'DESC (Descending) sắp xếp giảm dần, còn ASC (Ascending) sắp xếp tăng dần.',
+        explanation: 'Cú pháp SELECT * đại diện cho việc trích xuất toàn bộ tất cả các cột có trong bảng.',
         difficulty: 'Nhận biết'
       },
       {
-        id: 4,
-        question: 'Trong câu lệnh SQL: SELECT * FROM SAN_PHAM WHERE GiaTien < 50000; Mệnh đề WHERE có vai trò gì?',
+        id: 3,
+        question: 'Câu lệnh SQL nào sau đây viết ĐÚNG CÚ PHÁP để tìm các học sinh có điểm trung bình từ 8.0 trở lên trong bảng HOC_SINH?',
         options: [
-          'Lọc ra những sản phẩm có giá tiền nhỏ hơn 50,000 đồng',
-          'Xóa toàn bộ sản phẩm khỏi kho',
-          'Tăng giá sản phẩm lên 50,000 đồng',
-          'Đổi tên sản phẩm'
+          'SELECT * FROM HOC_SINH WHERE DiemTB >= 8.0;',
+          'FIND HOC_SINH WITH DiemTB >= 8.0;',
+          'GET ALL FROM DiemTB >= 8.0 WHERE HOC_SINH;',
+          'SELECT WHERE DiemTB >= 8.0 FROM *;'
         ],
         correctIndex: 0,
-        explanation: 'Mệnh đề WHERE áp dụng điều kiện lọc logic, chỉ các bản ghi thỏa mãn điều kiện mới được trả về.',
+        explanation: 'Thứ tự chuẩn là: SELECT (cột) FROM (bảng) WHERE (điều kiện); kết thúc bằng dấu chấm phẩy.',
+        difficulty: 'Thông hiểu'
+      },
+      {
+        id: 4,
+        question: 'Muốn danh sách học sinh được sắp xếp theo Ngày sinh từ người lớn tuổi nhất đến người nhỏ tuổi nhất (Ngày sinh tăng dần), bạn sử dụng từ khóa nào sau ORDER BY NgaySinh?',
+        options: ['ASC (Ascending - Tăng dần)', 'DESC (Descending)', 'UP', 'DOWN'],
+        correctIndex: 0,
+        explanation: 'ASC sắp xếp tăng dần theo giá trị (từ bé đến lớn, ngày xa xưa đến ngày gần đây).',
         difficulty: 'Thông hiểu'
       },
       {
         id: 5,
-        question: 'Muốn tìm học sinh thuộc lớp "11A1" VÀ có điểm môn Tin lớn hơn hoặc bằng 8.0, toán tử logic nào được sử dụng trong WHERE?',
-        options: ['AND', 'OR', 'NOT', 'XOR'],
+        question: 'Điều gì xảy ra nếu bạn thực hiện một câu truy vấn SELECT trên bảng có 10 triệu bản ghi nhưng quên viết mệnh đề WHERE?',
+        options: [
+          'Máy chủ sẽ quét và tải toàn bộ 10 triệu bản ghi ra màn hình, gây nghẽn mạng và đơ hệ thống',
+          'Máy chủ tự động tắt',
+          'Không có dữ liệu nào được trả về',
+          'Máy tính tự động xóa bảng'
+        ],
         correctIndex: 0,
-        explanation: 'Toán tử AND yêu cầu cả hai điều kiện cùng phải đúng (Lop = \'11A1\' AND DiemTin >= 8.0).',
+        explanation: 'Không có WHERE nghĩa là lấy toàn bộ bảng (Full Table Scan), gây lãng phí bộ nhớ và CPU nghiêm trọng.',
         difficulty: 'Vận dụng'
       }
     ],
     application: {
       project: {
-        title: 'Viết Câu lệnh SQL Quản lý Thư viện Trường học',
-        context: 'Cơ sở dữ liệu thư viện có bảng `SACH` gồm các trường: `MaSach`, `TenSach`, `TacGia`, `NamXuatBan`, `SoLuong`.',
-        mission: 'Soạn thảo 3 câu truy vấn SQL đáp ứng các yêu cầu tìm kiếm của cán bộ thư viện.',
+        title: 'Truy Vấn Quản Trị: Lọc Danh Sách Học Bổng Học Kỳ 1',
+        context: 'Trường học trao 20 suất học bổng cho học sinh có điểm cao nhất.',
+        mission: 'Viết câu lệnh SQL truy vấn danh sách học sinh đạt tiêu chuẩn nhận học bổng.',
         steps: [
-          'Câu 1: Lấy danh sách toàn bộ sách xuất bản từ năm 2020 trở lại đây: `SELECT * FROM SACH WHERE NamXuatBan >= 2020;`.',
-          'Câu 2: Tìm những cuốn sách của tác giả "Nguyễn Nhật Ánh": `SELECT TenSach, SoLuong FROM SACH WHERE TacGia = \'Nguyễn Nhật Ánh\';`.',
-          'Câu 3: Sắp xếp toàn bộ sách theo số lượng tồn kho giảm dần: `SELECT * FROM SACH ORDER BY SoLuong DESC;`.'
+          'Yêu cầu 1: Chỉ lấy các cột: `MaHS`, `HoTen`, `Lop`, `DiemTB`.',
+          'Yêu cầu 2: Chỉ xét những bạn có hạnh kiểm Tốt (`HanhKiem = \'Tot\'`) và `DiemTB >= 9.0`.',
+          'Yêu cầu 3: Sắp xếp theo điểm trung bình giảm dần (`ORDER BY DiemTB DESC`).',
+          'Cú pháp hoàn chỉnh: `SELECT MaHS, HoTen, Lop, DiemTB FROM HOC_SINH WHERE HanhKiem = \'Tot\' AND DiemTB >= 9.0 ORDER BY DiemTB DESC;`'
         ],
-        outputRequirement: 'Viết đúng 3 câu lệnh SQL có dấu chấm phẩy kết thúc chuẩn cú pháp.',
-        practicalTip: 'Chuỗi ký tự trong SQL luôn được đặt trong cặp dấu nháy đơn hoặc nháy kép (VD: \'Nguyễn Nhật Ánh\').'
+        outputRequirement: 'Câu lệnh SQL chính xác và kết quả bảng dữ liệu được lọc trơn tru.',
+        practicalTip: 'Chuỗi văn bản trong SQL luôn phải đặt bên trong dấu nháy đơn, ví dụ: `\'Tot\'`.'
       },
       mindmap: {
         id: 'mm_11_14',
-        label: 'NGÔN NGỮ TRUY VẤN SQL',
-        color: '#4f46e5',
+        label: 'NGÔN NGỮ SQL',
+        color: '#0284c7',
         children: [
           {
             id: 'mm_11_14_1',
-            label: 'Cấu trúc câu lệnh',
+            label: 'Phân loại nhóm lệnh',
             children: [
-              { id: 'mm_11_14_1_1', label: 'SELECT <cột>' },
-              { id: 'mm_11_14_1_2', label: 'FROM <bảng>' }
+              { id: 'mm_11_14_1_1', label: 'DQL: SELECT (Truy vấn)' },
+              { id: 'mm_11_14_1_2', label: 'DML: INSERT, UPDATE, DELETE' },
+              { id: 'mm_11_14_1_3', label: 'DDL: CREATE, ALTER, DROP' }
             ]
           },
           {
             id: 'mm_11_14_2',
-            label: 'Mệnh đề lọc WHERE',
+            label: 'Cú pháp SELECT chuẩn',
             children: [
-              { id: 'mm_11_14_2_1', label: 'Toán tử so sánh (=, >, <)' },
-              { id: 'mm_11_14_2_2', label: 'Toán tử logic (AND, OR, NOT)' }
-            ]
-          },
-          {
-            id: 'mm_11_14_3',
-            label: 'Sắp xếp ORDER BY',
-            children: [
-              { id: 'mm_11_14_3_1', label: 'ASC (Tăng dần)' },
-              { id: 'mm_11_14_3_2', label: 'DESC (Giảm dần)' }
+              { id: 'mm_11_14_2_1', label: 'SELECT (Danh sách cột)' },
+              { id: 'mm_11_14_2_2', label: 'FROM (Tên bảng)' },
+              { id: 'mm_11_14_2_3', label: 'WHERE (Điều kiện lọc)' },
+              { id: 'mm_11_14_2_4', label: 'ORDER BY (ASC / DESC)' }
             ]
           }
         ]
       }
     },
     completion: {
-      badgeName: 'Bậc Thầy Truy Vấn SQL 11',
-      badgeIcon: 'Database',
-      roleTitle: 'Chuyên Viên Khai Thác Cơ Sở Dữ Liệu',
-      congratsMessage: 'Xuất sắc! Bạn đã làm chủ câu lệnh truy vấn SQL để khai thác dữ liệu lớn hiệu quả.',
-      skillsUnlocked: ['Viết câu lệnh SELECT', 'Lọc điều kiện với WHERE', 'Sắp xếp kết quả với ORDER BY']
+      badgeName: 'Hiệp Sĩ Truy Vấn SQL 11',
+      badgeIcon: 'Code',
+      roleTitle: 'Chuyên Viên Truy Vấn Dữ Liệu SQL',
+      congratsMessage: 'Xuất sắc! Bạn đã làm chủ câu lệnh SELECT và bắt đầu tự tay truy vấn thông tin trên cơ sở dữ liệu chuyên nghiệp.',
+      skillsUnlocked: ['Phân biệt các nhóm lệnh SQL', 'Cú pháp SELECT FROM WHERE', 'Sắp xếp dữ liệu ORDER BY']
     }
   },
 
@@ -997,198 +1252,257 @@ export const THEME4_LESSONS_11: Lesson[] = [
     title: 'Bảo mật và an toàn hệ cơ sở dữ liệu',
     themeId: 4,
     themeName: 'Chủ đề 4: Giới thiệu các hệ cơ sở dữ liệu',
-    topicBadge: 'Bảo mật CSDL',
+    topicBadge: 'An toàn CSDL',
     grade: 11,
     estimatedMinutes: 45,
     xpTotal: 250,
     hero: {
-      tagline: 'Lá chắn thép bảo vệ tài sản số quý giá của tổ chức',
-      description: 'Tìm hiểu các giải pháp bảo vệ dữ liệu: xác thực người dùng (Authentication), phân quyền truy cập chi tiết (Authorization), mã hóa dữ liệu nhạy cảm và cơ chế sao lưu (Backup) phục hồi sau sự cố.',
-      accentColor: 'from-indigo-600 to-blue-600',
-      keyHighlights: ['Xác thực & Phân quyền', 'Mã hóa dữ liệu nhạy cảm', 'Chiến lược sao lưu dự phòng']
+      tagline: 'Pháo đài dữ liệu số: Bảo vệ tài sản tri thức trước nguy cơ rò rỉ và tấn công mạng',
+      description: 'Khám phá 3 trụ cột an toàn thông tin CIA (Bí mật, Toàn vẹn, Sẵn sàng); kỹ thuật phân quyền người dùng với lệnh GRANT/REVOKE, mã hóa dữ liệu nhạy cảm và chiến lược sao lưu phục hồi dữ liệu định kỳ.',
+      accentColor: 'from-emerald-600 to-teal-600',
+      keyHighlights: ['Mô hình an toàn CIA', 'Phân quyền GRANT / REVOKE', 'Mã hóa & Sao lưu dự phòng']
     },
     objectives: [
       {
         id: 'obj_11_15_1',
         category: 'knowledge',
         categoryName: 'Kiến thức cốt lõi',
-        title: 'Các nguyên tắc bảo mật CSDL',
-        description: 'Trình bày được 3 mục tiêu cốt lõi của an toàn thông tin: Tính bí mật (Confidentiality), Tính toàn vẹn (Integrity) và Tính sẵn sàng (Availability).',
-        iconName: 'ShieldCheck'
+        title: 'Hiểu các nguyên tắc an toàn CSDL',
+        description: 'Trình bày được 3 mục tiêu an toàn thông tin (Bí mật - Confidentiality, Toàn vẹn - Integrity, Sẵn sàng - Availability) và các nguy cơ mất an toàn CSDL.',
+        iconName: 'ShieldAlert'
       },
       {
         id: 'obj_11_15_2',
         category: 'skill',
         categoryName: 'Kỹ năng & Năng lực',
-        title: 'Phân quyền tài khoản người dùng',
-        description: 'Hiểu cơ chế cấp quyền (GRANT) và thu hồi quyền (REVOKE) cho từng nhóm người dùng: Quản trị viên, Nhân viên, Khách hàng.',
-        iconName: 'UserCheck'
+        title: 'Thiết kế phân quyền & kế hoạch sao lưu',
+        description: 'Thiết kế được ma trận phân quyền tài khoản (phân quyền xem, sửa theo vai trò người dùng bằng GRANT/REVOKE) và xây dựng được lịch sao lưu phục hồi dữ liệu.',
+        iconName: 'Lock'
       },
       {
         id: 'obj_11_15_3',
         category: 'attitude',
         categoryName: 'Phẩm chất & Đạo đức',
-        title: 'Tuân thủ pháp luật về dữ liệu cá nhân',
-        description: 'Ý thức chấp hành nghiêm chỉnh Nghị định bảo vệ dữ liệu cá nhân và đạo đức bảo vệ thông tin người dùng.',
-        iconName: 'Lock'
+        title: 'Ý thức tuân thủ pháp luật an ninh mạng',
+        description: 'Có thái độ nghiêm túc bảo vệ dữ liệu bí mật cá nhân, tuân thủ Luật An ninh mạng và kiên quyết không đánh cắp hoặc phát tán dữ liệu người khác.',
+        iconName: 'ShieldCheck'
       }
     ],
     warmup: {
-      title: 'Tình huống: Rò rỉ thông tin cá nhân của hàng triệu khách hàng',
-      scenario: 'Một trang web thương mại điện tử bị tin tặc tấn công do không mã hóa mật khẩu và phân quyền quản trị lỏng lẻo. Toàn bộ số điện thoại, địa chỉ và mật khẩu của khách hàng bị rao bán trên mạng.',
-      pollQuestion: 'Biện pháp kỹ thuật nào trong Hệ QTCSDL giúp bảo vệ mật khẩu ngay cả khi tin tặc lấy được tệp CSDL?',
+      title: 'Tình huống: Dữ liệu điểm thi bị lộ trước ngày công bố',
+      scenario: 'Một tuần trước kỳ thi tốt nghiệp THPT, danh sách đề thi và đáp án chính thức bị rao bán trên mạng xã hội do một máy tính của phòng Khảo thí bị tin tặc xâm nhập qua tài khoản dùng chung có mật khẩu mặc định "admin123".',
+      pollQuestion: 'Nguyên tắc an toàn dữ liệu cơ bản nào đã bị vi phạm nghiêm trọng trong tình huống này?',
       pollOptions: [
-        { id: 'p11_15_1', text: 'Mã hóa một chiều (Băm - Hashing) mật khẩu trước khi lưu vào CSDL', votesPercent: 93, isPopular: true, insight: 'Chính xác! Mã hóa băm biến mật khẩu thành chuỗi ký tự ngẫu nhiên không thể dịch ngược, bảo vệ người dùng an toàn.' },
-        { id: 'p11_15_2', text: 'Viết mật khẩu ra tờ giấy dán lên màn hình', votesPercent: 3, insight: 'Dán mật khẩu lên màn hình vi phạm an ninh nghiêm trọng.' },
-        { id: 'p11_15_3', text: 'Không đặt mật khẩu cho ai cả', votesPercent: 4, insight: 'Không đặt mật khẩu khiến bất kỳ ai cũng có thể vào phá hoại hệ thống.' }
+        { id: 'p11_15_1', text: 'Tính bảo mật (Confidentiality) bị phá vỡ do mật khẩu yếu và không phân quyền chặt chẽ', votesPercent: 94, isPopular: true, insight: 'Chính xác! Tính bảo mật đòi hỏi thông tin chỉ được phép truy cập bởi những người được cấp quyền hợp lệ.' },
+        { id: 'p11_15_2', text: 'Do máy tính để bàn bị bụi bẩn', votesPercent: 3, insight: 'Bụi bẩn vật lý không làm lộ dữ liệu mật ra ngoài mạng.' },
+        { id: 'p11_15_3', text: 'Do đường truyền cáp quang bị ẩm', votesPercent: 3, insight: 'Đường truyền ẩm không gây rò rỉ mật khẩu quản trị.' }
       ],
-      reflection: 'Bảo mật CSDL là trách nhiệm pháp lý và đạo đức bắt buộc của mọi kỹ sư công nghệ thông tin.'
+      reflection: 'Dữ liệu là tài sản quý giá nhất của tổ chức; mất dữ liệu hoặc lộ thông tin mật có thể gây thiệt hại khôn lường về uy tín và pháp lý.'
     },
     knowledge: [
       {
         id: 'tab_11_15_1',
-        title: '1. Các Biện Pháp An Toàn & Bảo Mật CSDL',
-        subtitle: 'Xác thực, phân quyền, mã hóa và sao lưu dữ liệu',
-        iconName: 'ShieldAlert',
+        title: '1. Các nguyên tắc an toàn CSDL (Bí mật, toàn vẹn, sẵn sàng)',
+        subtitle: 'Tam giác an toàn thông tin kinh điển CIA Triad',
+        iconName: 'Shield',
         keyPoints: [
-          'Xác thực người dùng (Authentication): Nhận diện người đăng nhập thông qua tên tài khoản, mật khẩu mạnh, mã OTP hoặc sinh trắc học.',
-          'Phân quyền truy cập (Authorization): Mỗi tài khoản chỉ được xem/sửa những dữ liệu phù hợp với vai trò của mình (nguyên tắc đặc quyền tối thiểu).',
-          'Mã hóa dữ liệu (Encryption): Mã hóa dữ liệu khi lưu trữ (Data at rest) và khi truyền trên đường truyền mạng (Data in transit - SSL/TLS).',
-          'Sao lưu định kỳ (Backup & Recovery): Lưu trữ các bản sao dự phòng ra nơi an toàn để phục hồi dữ liệu khi ổ cứng bị cháy nổ hoặc nhiễm virus.'
+          'Mô hình tam giác bảo mật CIA:',
+          '  - Tính bí mật (Confidentiality): Đảm bảo thông tin chỉ được tiếp cận bởi những người hoặc tiến trình được cấp quyền hợp lệ. Ngăn chặn việc xem trộm số dư tài khoản, mật khẩu.',
+          '  - Tính toàn vẹn (Integrity): Đảm bảo dữ liệu không bị sửa đổi trái phép, không bị giả mạo hoặc làm sai lệch trong quá trình lưu trữ và truyền tải.',
+          '  - Tính sẵn sàng (Availability): Đảm bảo hệ thống luôn hoạt động trơn tru, sẵn sàng phục vụ người dùng hợp pháp bất kỳ lúc nào cần truy cập.',
+          'Các mối đe dọa an toàn CSDL: Tấn công tiêm mã độc SQL (SQL Injection), phần mềm gián điệp đánh cắp tài khoản quản trị, nhân viên nội bộ bán dữ liệu và thảm họa thiên tai hỏng hóc máy chủ.'
         ],
         visualType: 'infographic',
         visualData: {
           nodes: [
-            { label: 'Lớp 1: Xác thực (Ai đang vào?)', desc: 'Tên đăng nhập, mật khẩu phức tạp, OTP' },
-            { label: 'Lớp 2: Phân quyền (Được làm gì?)', desc: 'Chỉ đọc, được sửa hay toàn quyền quản trị' },
-            { label: 'Lớp 3: Sao lưu (Nếu gặp sự cố?)', desc: 'Phục hồi dữ liệu từ bản backup gần nhất' }
+            { label: '1. Tính Bí Mật (Confidentiality)', desc: 'Chỉ người được cấp quyền mới được xem' },
+            { label: '2. Tính Toàn Vẹn (Integrity)', desc: 'Dữ liệu không bị chỉnh sửa trái phép' },
+            { label: '3. Tính Sẵn Sàng (Availability)', desc: 'Hệ thống luôn chạy 24/7 không bị sập' }
           ]
         },
         emCanNho: [
-          '3 trụ cột an toàn CSDL: Tính bí mật, tính toàn vẹn và tính sẵn sàng.',
-          'Phân quyền chặt chẽ: Chỉ cấp quyền vừa đủ cho từng vị trí công việc.',
-          'Luôn mã hóa dữ liệu nhạy cảm và thực hiện sao lưu dự phòng định kỳ.'
+          '3 nguyên tắc an toàn CSDL (CIA): Tính bí mật, Tính toàn vẹn và Tính sẵn sàng.',
+          'Bí mật: Không bị xem trộm; Toàn vẹn: Không bị sửa bậy; Sẵn sàng: Không bị sập hệ thống.',
+          'Bảo mật CSDL kết hợp cả biện pháp kỹ thuật phần mềm và quy chế con người.'
+        ]
+      },
+      {
+        id: 'tab_11_15_2',
+        title: '2. Xác thực và phân quyền truy cập (GRANT, REVOKE)',
+        subtitle: 'Cấp quyền đúng người, đúng việc theo nguyên tắc đặc quyền tối thiểu',
+        iconName: 'UserCheck',
+        keyPoints: [
+          'Xác thực người dùng (Authentication): Xác minh danh tính qua Tên đăng nhập (Username), Mật khẩu (Password), Vân tay hoặc mã OTP.',
+          'Phân quyền người dùng (Authorization): Giới hạn những hành vi cụ thể mà tài khoản đó được phép làm trên CSDL:',
+          '  - Quyền SELECT: Chỉ được xem dữ liệu.',
+          '  - Quyền INSERT/UPDATE: Được phép thêm mới hoặc chỉnh sửa dữ liệu.',
+          '  - Quyền DELETE/DROP: Quyền cực kỳ nguy hiểm, chỉ cấp cho người quản trị cấp cao.',
+          'Lệnh quản trị quyền trong SQL:',
+          '  - `GRANT <Quyền> ON <Bảng> TO <Người_dùng>;`: Cấp quyền truy cập.',
+          '  - `REVOKE <Quyền> ON <Bảng> FROM <Người_dùng>;`: Thu hồi quyền đã cấp.',
+          'Nguyên tắc đặc quyền tối thiểu (Least Privilege): Chỉ cấp vừa đủ các quyền cần thiết để người dùng hoàn thành công việc, không cấp thừa quyền.'
+        ],
+        visualType: 'comparison-table',
+        visualData: {
+          headers: ['Vai trò người dùng', 'Quyền được cấp trên bảng DIEM', 'Lệnh SQL tương ứng'],
+          rows: [
+            ['Học sinh / Phụ huynh', 'Chỉ được xem điểm cá nhân (SELECT)', 'GRANT SELECT ON DIEM TO hocsinh;'],
+            ['Giáo viên bộ môn', 'Được xem và nhập sửa điểm môn mình dạy', 'GRANT SELECT, UPDATE ON DIEM TO giaovien;'],
+            ['Người quản trị (DBA)', 'Toàn quyền cấu hình, xóa bảng', 'GRANT ALL PRIVILEGES ON *.* TO admin;']
+          ]
+        },
+        emCanNho: [
+          'Xác thực nhận diện danh tính; Phân quyền kiểm soát hành vi được phép làm.',
+          'Dùng lệnh `GRANT` để cấp quyền và `REVOKE` để thu hồi quyền truy cập.',
+          'Áp dụng nguyên tắc đặc quyền tối thiểu để giảm thiểu tối đa rủi ro bảo mật.'
+        ]
+      },
+      {
+        id: 'tab_11_15_3',
+        title: '3. Mã hóa dữ liệu và sao lưu phục hồi',
+        subtitle: 'Lớp khiên mã hóa và phao cứu sinh sao lưu định kỳ',
+        iconName: 'Lock',
+        keyPoints: [
+          'Mã hóa dữ liệu (Encryption): Chuyển đổi dữ liệu từ dạng đọc được (Plaintext) sang dạng mật mã xáo trộn vô nghĩa (Ciphertext). Kẻ xấu dù có lấy trộm được tệp CSDL cũng không thể đọc được nếu không có chìa khóa giải mã. Áp dụng bắt buộc cho: Mật khẩu (băm một chiều Bcrypt/SHA-256), Số thẻ tín dụng, Số CCCD.',
+          'Sao lưu dữ liệu định kỳ (Data Backup):',
+          '  - Sao lưu toàn phần (Full Backup): Sao chép toàn bộ CSDL tại một thời điểm.',
+          '  - Sao lưu vi sai (Differential) hoặc Gia tăng (Incremental): Chỉ sao lưu phần dữ liệu mới thay đổi kể từ lần sao lưu trước để tiết kiệm dung lượng.',
+          'Phục hồi dữ liệu (Data Recovery): Khôi phục lại trạng thái CSDL nguyên vẹn từ các bản sao lưu sau khi gặp sự cố phần cứng, cháy nổ hoặc bị mã độc tấn công.'
+        ],
+        visualType: 'infographic',
+        visualData: {
+          nodes: [
+            { label: 'Dữ liệu gốc: "123456"', desc: 'Mật khẩu người dùng nhập vào' },
+            { label: 'Thuật toán băm mã hóa', desc: 'Mã hóa một chiều không thể dịch ngược' },
+            { label: 'Lưu trong CSDL: "e10adc3949ba59abbe56e057f20f883e"', desc: 'Kẻ trộm vào xem cũng không biết mật khẩu thật' }
+          ]
+        },
+        emCanNho: [
+          'Mã hóa dữ liệu biến thông tin nhạy cảm thành mật mã, chống lộ lọt khi bị đánh cắp.',
+          'Mật khẩu người dùng phải luôn được băm mã hóa (Hash) một chiều trước khi lưu vào CSDL.',
+          'Thực hiện sao lưu dữ liệu định kỳ (Backup) là phao cứu sinh bắt buộc của mọi hệ thống CSDL.'
         ]
       }
     ],
     miniGame: {
       type: 'matching',
-      title: 'Ghép cặp Giải pháp Bảo mật và Mục đích',
-      instruction: 'Nối biện pháp bảo mật CSDL với mục tiêu bảo vệ tương ứng:',
+      title: 'Ghép cặp Trụ cột An toàn Thông tin và Hành vi Vi phạm',
+      instruction: 'Nối trụ cột an toàn với hành vi vi phạm tương ứng:',
       matchingPairs: [
-        { id: 'sec1', left: 'Phân quyền truy cập (GRANT/REVOKE)', right: 'Ngăn nhân viên sửa nhầm hoặc xem lén dữ liệu ngoài thẩm quyền' },
-        { id: 'sec2', left: 'Mã hóa dữ liệu (Encryption)', right: 'Biến dữ liệu thành mã bí mật, kẻ trộm lấy được cũng không đọc được' },
-        { id: 'sec3', left: 'Sao lưu dự phòng (Backup)', right: 'Đảm bảo khôi phục lại dữ liệu nguyên vẹn khi máy chủ gặp sự cố' },
-        { id: 'sec4', left: 'Ghi nhật ký hệ thống (Audit Log)', right: 'Lưu lại vết tích ai đã truy cập, sửa hoặc xóa dữ liệu lúc mấy giờ' }
+        { id: 'sec1', left: 'Vi phạm Tính Bí Mật (Confidentiality)', right: 'Tin tặc đánh cắp danh sách số điện thoại và số dư tài khoản khách hàng' },
+        { id: 'sec2', left: 'Vi phạm Tính Toàn Vẹn (Integrity)', right: 'Học sinh sửa điểm từ 5.0 thành 10.0 trong cơ sở dữ liệu nhà trường' },
+        { id: 'sec3', left: 'Vi phạm Tính Sẵn Sàng (Availability)', right: 'Tin tặc tấn công từ chối dịch vụ (DDoS) làm sập cổng xem điểm thi' },
+        { id: 'sec4', left: 'Biện pháp Sao Lưu Dự Phòng (Backup)', right: 'Khôi phục lại dữ liệu nguyên vẹn sau khi máy chủ bị cháy ổ cứng' }
       ]
     },
     assessment: [
       {
         id: 1,
-        question: 'Nguyên tắc "Đặc quyền tối thiểu" trong phân quyền bảo mật CSDL có nghĩa là gì?',
+        question: 'Ba trụ cột then chốt trong mô hình an toàn thông tin CSDL (CIA Triad) là gì?',
         options: [
-          'Chỉ cấp cho người dùng những quyền hạn vừa đủ để họ thực hiện công việc của mình, không cấp thừa quyền',
-          'Cho tất cả mọi người quyền Quản trị viên cao nhất',
-          'Cấm tất cả mọi người sử dụng CSDL',
-          'Chỉ cho phép giám đốc sử dụng máy tính'
+          'Tính bí mật (Confidentiality), Tính toàn vẹn (Integrity) và Tính sẵn sàng (Availability)',
+          'Tốc độ cao, Giá rẻ và Màn hình đẹp',
+          'Chuột quang, Bàn phím cơ và Tai nghe',
+          'Chỉ cần bí mật, không cần toàn vẹn'
         ],
         correctIndex: 0,
-        explanation: 'Đặc quyền tối thiểu giúp hạn chế tối đa rủi ro nếu một tài khoản bị lộ lọt hoặc thao tác nhầm.',
-        difficulty: 'Thông hiểu'
+        explanation: 'Tam giác CIA là tiêu chuẩn vàng của an toàn thông tin toàn cầu.',
+        difficulty: 'Nhận biết'
       },
       {
         id: 2,
-        question: 'Trong trường học, tài khoản của một bạn HỌC SINH khi đăng nhập vào CSDL quản lý điểm của trường nên được cấp quyền gì?',
-        options: [
-          'Chỉ được xem điểm của chính mình (Quyền SELECT)',
-          'Được sửa toàn bộ điểm số của cả lớp thành 10 (Quyền UPDATE)',
-          'Được xóa danh mục môn học (Quyền DROP)',
-          'Được tạo thêm lớp học mới'
-        ],
+        question: 'Câu lệnh SQL nào sau đây được dùng để CẤP QUYỀN truy cập dữ liệu cho một người dùng?',
+        options: ['GRANT', 'REVOKE', 'GIVE', 'ALLOW'],
         correctIndex: 0,
-        explanation: 'Học sinh chỉ được cấp quyền xem điểm của mình để đảm bảo tính toàn vẹn dữ liệu.',
-        difficulty: 'Vận dụng'
+        explanation: 'Lệnh GRANT trong nhóm DCL dùng để cấp quyền thao tác trên bảng cho tài khoản.',
+        difficulty: 'Nhận biết'
       },
       {
         id: 3,
-        question: 'Nhật ký hệ thống (Audit Log) của Hệ QTCSDL có tác dụng gì quan trọng nhất?',
+        question: 'Tại sao trong các hệ thống CSDL chuẩn chuyên nghiệp, mật khẩu người dùng KHÔNG BAO GIỜ được lưu trữ dưới dạng chữ viết thông thường (Plaintext)?',
         options: [
-          'Ghi lại lịch sử chi tiết mọi thao tác (Ai đã truy cập, sửa, xóa bản ghi nào vào thời gian nào) để truy cứu trách nhiệm khi có sự cố',
-          'Lưu các bài thơ hay của nhân viên',
-          'Tự động tăng lương cho lập trình viên',
-          'Làm đẹp giao diện'
+          'Để nếu kẻ xấu hoặc nhân viên quản trị có vào xem CSDL cũng không thể biết được mật khẩu thật của người dùng',
+          'Vì máy tính không biết đọc chữ cái',
+          'Vì mật khẩu thường quá dài',
+          'Để máy tính chạy nhanh hơn'
         ],
         correctIndex: 0,
-        explanation: 'Nhật ký hệ thống là bằng chứng điều tra số giúp phát hiện gian lận và sự cố bảo mật.',
+        explanation: 'Mã hóa băm mật khẩu một chiều bảo vệ tài khoản người dùng ngay cả khi tệp CSDL bị rò rỉ ra ngoài.',
         difficulty: 'Thông hiểu'
       },
       {
         id: 4,
-        question: 'Tại sao cần sao lưu dữ liệu CSDL ra ổ cứng bên ngoài hoặc máy chủ ở vị trí địa lý khác?',
+        question: 'Nguyên tắc "Đặc quyền tối thiểu" (Least Privilege) trong phân quyền CSDL có nghĩa là gì?',
         options: [
-          'Để phòng ngừa sự cố thảm họa (cháy nổ, ngập lụt, sét đánh) làm hư hỏng toàn bộ máy chủ chính',
-          'Để máy chủ chính chạy nhẹ hơn',
-          'Để nhân viên có việc làm thêm',
-          'Không có lý do gì'
+          'Chỉ cấp cho người dùng những quyền tối thiểu vừa đủ để làm việc, không cấp thừa quyền dư thừa',
+          'Không cho ai dùng máy tính',
+          'Cấp quyền toàn quyền Admin cho tất cả nhân viên',
+          'Mỗi người chỉ được dùng 5 phút mỗi ngày'
         ],
         correctIndex: 0,
-        explanation: 'Sao lưu ngoài địa điểm (Offsite / Cloud Backup) là nguyên tắc sống còn chống thảm họa phần cứng.',
+        explanation: 'Đặc quyền tối thiểu giúp hạn chế rủi ro phá hoại hoặc thao tác nhầm khi tài khoản bị xâm nhập.',
         difficulty: 'Thông hiểu'
       },
       {
         id: 5,
-        question: 'Lệnh SQL nào sau đây dùng để THU HỒI quyền truy cập dữ liệu của một tài khoản người dùng?',
-        options: ['REVOKE', 'GRANT', 'SELECT', 'DELETE'],
+        question: 'Hành động nào sau đây là giải pháp tốt nhất để phòng chống việc mất sạch dữ liệu khi máy chủ bị sét đánh hỏng hoàn toàn ổ cứng vật lý?',
+        options: [
+          'Lập lịch tự động sao lưu dữ liệu (Backup) hàng ngày và lưu bản sao lưu ở một địa điểm vật lý khác hoặc trên đám mây',
+          'Bọc nilon quanh case máy tính',
+          'Tắt điều hòa phòng máy',
+          'Cài đặt hình nền màu đen'
+        ],
         correctIndex: 0,
-        explanation: 'Lệnh REVOKE dùng để thu hồi quyền, còn lệnh GRANT dùng để cấp quyền.',
-        difficulty: 'Nhận biết'
+        explanation: 'Sao lưu phân tán ngoại vi (Off-site Backup) đảm bảo dữ liệu luôn hồi sinh sau mọi thảm họa vật lý.',
+        difficulty: 'Vận dụng'
       }
     ],
     application: {
       project: {
-        title: 'Thiết kế Ma trận Phân quyền cho Ứng dụng Sổ Liên Lạc Điện Tử',
-        context: 'Xây dựng ma trận phân quyền cho 3 nhóm người dùng: Giáo viên chủ nhiệm, Phụ huynh và Học sinh.',
-        mission: 'Xác định quyền hạn (Xem, Thêm, Sửa, Xóa) cho từng đối tượng trên bảng `DIEM_SO` và `HANH_KIEM`.',
+        title: 'Thiết Kế Ma Trận Phân Quyền An Toàn Cho Hệ Thống Sổ Điểm Điện Tử',
+        context: 'Trường học triển khai phần mềm quản lý điểm trực tuyến cho 100 giáo viên và 2000 học sinh.',
+        mission: 'Thiết lập bảng phân quyền chi tiết cho 3 nhóm đối tượng: Học sinh, Giáo viên và Ban giám hiệu.',
         steps: [
-          'Bước 1: Giáo viên chủ nhiệm: Quyền Xem, Thêm, Sửa điểm và hạnh kiểm của lớp mình.',
-          'Bước 2: Phụ huynh: Chỉ có quyền Xem điểm và nhận xét hạnh kiểm của con em mình.',
-          'Bước 3: Học sinh: Chỉ có quyền Xem điểm của chính mình.'
+          '1. Nhóm Học sinh: Quyền `SELECT` trên bảng `DIEM` (chỉ xem bản ghi của chính mình). Tuyệt đối không có quyền `UPDATE`, `INSERT`, `DELETE`.',
+          '2. Nhóm Giáo viên bộ môn: Quyền `SELECT`, `UPDATE`, `INSERT` điểm của môn mình phụ trách. Không có quyền xóa bảng `DROP TABLE`.',
+          '3. Nhóm Ban giám hiệu: Quyền `SELECT` toàn trường, duyệt khóa sổ điểm cuối kỳ.',
+          '4. Viết lệnh mẫu: `GRANT SELECT ON DIEM_11 TO \'hocsinh\';`'
         ],
-        outputRequirement: 'Một bảng ma trận phân quyền rõ ràng, khoa học.',
-        practicalTip: 'Ma trận phân quyền chặt chẽ là cơ sở để các lập trình viên backend viết mã bảo mật cho ứng dụng.'
+        outputRequirement: 'Ma trận phân quyền dạng bảng chữ X rõ ràng kèm lệnh GRANT tương ứng.',
+        practicalTip: 'Không bao giờ dùng tài khoản `root` hoặc `sa` để kết nối ứng dụng web thường ngày.'
       },
       mindmap: {
         id: 'mm_11_15',
-        label: 'BẢO MẬT CƠ SỞ DỮ LIỆU',
-        color: '#4f46e5',
+        label: 'AN TOÀN CSDL',
+        color: '#059669',
         children: [
           {
             id: 'mm_11_15_1',
-            label: 'Kiểm soát truy cập',
+            label: 'Mô hình CIA',
             children: [
-              { id: 'mm_11_15_1_1', label: 'Xác thực tài khoản & 2FA' },
-              { id: 'mm_11_15_1_2', label: 'Phân quyền GRANT / REVOKE' },
-              { id: 'mm_11_15_1_3', label: 'Ghi nhật ký Audit Log' }
+              { id: 'mm_11_15_1_1', label: 'Bí mật (Confidentiality)' },
+              { id: 'mm_11_15_1_2', label: 'Toàn vẹn (Integrity)' },
+              { id: 'mm_11_15_1_3', label: 'Sẵn sàng (Availability)' }
             ]
           },
           {
             id: 'mm_11_15_2',
-            label: 'Bảo vệ dữ liệu',
+            label: 'Giải pháp kỹ thuật',
             children: [
-              { id: 'mm_11_15_2_1', label: 'Mã hóa khi lưu & truyền' },
-              { id: 'mm_11_15_2_2', label: 'Sao lưu định kỳ (Backup)' },
-              { id: 'mm_11_15_2_3', label: 'Kế hoạch phục hồi sự cố' }
+              { id: 'mm_11_15_2_1', label: 'Xác thực & Lệnh GRANT / REVOKE' },
+              { id: 'mm_11_15_2_2', label: 'Mã hóa băm mật khẩu một chiều' },
+              { id: 'mm_11_15_2_3', label: 'Chiến lược sao lưu định kỳ Backup' }
             ]
           }
         ]
       }
     },
     completion: {
-      badgeName: 'Chuyên Gia An Toàn Dữ Liệu 11',
+      badgeName: 'Vệ Sĩ Dữ Liệu 11',
       badgeIcon: 'ShieldCheck',
-      roleTitle: 'Chuyên Viên Bảo Mật Cơ Sở Dữ Liệu',
-      congratsMessage: 'Tuyệt vời! Bạn đã nắm vững các nguyên tắc phân quyền, mã hóa và bảo vệ an toàn cho CSDL.',
-      skillsUnlocked: ['Thiết kế ma trận phân quyền', 'Hiểu lệnh GRANT/REVOKE', 'Chiến lược sao lưu dự phòng']
+      roleTitle: 'Chuyên Viên An Toàn & Bảo Mật Cơ Sở Dữ Liệu',
+      congratsMessage: 'Tuyệt vời! Bạn đã hoàn thành xuất sắc toàn bộ Chủ đề 4: Giới thiệu các hệ cơ sở dữ liệu và làm chủ các nguyên tắc an toàn thông tin tối thượng.',
+      skillsUnlocked: ['Mô hình an toàn CIA Triad', 'Lệnh phân quyền GRANT & REVOKE', 'Mã hóa và sao lưu phục hồi CSDL']
     }
   }
 ];

@@ -23,16 +23,16 @@ export const THEME6_LESSONS_PART2_11: Lesson[] = [
         id: 'obj_11_19_1',
         category: 'knowledge',
         categoryName: 'Kiến thức cốt lõi',
-        title: 'Cú pháp tạo CSDL và Bảng',
-        description: 'Nắm vững cú pháp: CREATE DATABASE <tên_csdl>; và CREATE TABLE <tên_bảng> (tên_cột kiểu_dữ_liệu ràng_buộc, ...).',
+        title: 'Cú pháp tạo CSDL và Bảng SQL',
+        description: 'Nắm vững cú pháp chuẩn: `CREATE DATABASE <tên_csdl>;`, `USE <tên_csdl>;` và `CREATE TABLE <tên_bảng> (tên_cột kiểu_dữ_liệu ràng_buộc, PRIMARY KEY (khóa));`.',
         iconName: 'Code'
       },
       {
         id: 'obj_11_19_2',
         category: 'skill',
         categoryName: 'Kỹ năng & Năng lực',
-        title: 'Thao tác tạo bảng trên phần mềm',
-        description: 'Tự tay gõ câu lệnh SQL hoặc dùng giao diện đồ hoạ để tạo bảng `HOC_SINH` và bảng `LOP` không bị lỗi cú pháp.',
+        title: 'Tự tay viết script tạo bảng trên HeidiSQL',
+        description: 'Soạn thảo và thực thi thành công script SQL tạo các bảng `HOC_SINH`, `LOP` trên HeidiSQL không gặp lỗi cú pháp.',
         iconName: 'Play'
       },
       {
@@ -40,7 +40,7 @@ export const THEME6_LESSONS_PART2_11: Lesson[] = [
         category: 'attitude',
         categoryName: 'Phẩm chất & Đạo đức',
         title: 'Chuẩn hóa quy ước đặt tên',
-        description: 'Tuân thủ quy ước đặt tên bảng và cột bằng chữ không dấu, viết hoa hoặc gạch dưới (snake_case), dễ đọc, dễ hiểu.',
+        description: 'Tuân thủ quy ước đặt tên bảng và cột bằng chữ không dấu, dùng dấu gạch dưới (snake_case), dễ đọc và dễ bảo trì.',
         iconName: 'CheckCircle'
       }
     ],
@@ -58,145 +58,174 @@ export const THEME6_LESSONS_PART2_11: Lesson[] = [
     knowledge: [
       {
         id: 'tab_11_19_1',
-        title: '1. Cú Pháp Câu Lệnh Tạo CSDL & Tạo Bảng SQL',
-        subtitle: 'Khởi tạo cấu trúc bảng với các ràng buộc chuẩn',
-        iconName: 'Code2',
+        title: '1. Lệnh tạo CSDL (CREATE DATABASE, USE)',
+        subtitle: 'Khởi tạo không gian lưu trữ và chọn vùng làm việc hiện hành',
+        iconName: 'Database',
         keyPoints: [
-          'Tạo CSDL: `CREATE DATABASE <Tên_CSDL> CHARACTER SET utf8mb4;`',
-          'Chọn CSDL làm việc: `USE <Tên_CSDL>;`',
-          'Tạo Bảng: `CREATE TABLE <Tên_Bảng> ( TenCot KieuDuLieu RangBuoc, ... , PRIMARY KEY (CotKhoaChinh) );`',
-          'Xóa bảng (nếu cần làm lại): `DROP TABLE IF EXISTS <Tên_Bảng>;`'
+          'Lệnh tạo cơ sở dữ liệu mới: `CREATE DATABASE <Ten_CSDL> CHARACTER SET utf8mb4;`',
+          '  - Bảng mã `utf8mb4`: Hỗ trợ lưu trữ tiếng Việt có dấu đầy đủ và các ký tự emoji hiện đại.',
+          'Lệnh chọn CSDL hiện hành để thao tác: `USE <Ten_CSDL>;`',
+          '  - Phải dùng lệnh USE trước khi tạo bảng để các bảng được đặt đúng vào cơ sở dữ liệu mong muốn.',
+          'Lệnh xóa CSDL (nếu cần làm lại từ đầu): `DROP DATABASE IF EXISTS <Ten_CSDL>;`'
         ],
         visualType: 'interactive-sql',
         visualData: {
-          defaultSql: '-- 1. Tạo cơ sở dữ liệu\nCREATE DATABASE IF NOT EXISTS quan_ly_hoc_sinh;\nUSE quan_ly_hoc_sinh;\n\n-- 2. Tạo bảng LỚP\nCREATE TABLE LOP (\n  MaLop VARCHAR(10) PRIMARY KEY,\n  TenLop VARCHAR(50) NOT NULL,\n  GiaoVienChuNhiem VARCHAR(50)\n);\n\n-- 3. Tạo bảng HỌC SINH\nCREATE TABLE HOC_SINH (\n  MaHS VARCHAR(10) PRIMARY KEY,\n  HoTen VARCHAR(50) NOT NULL,\n  NgaySinh DATE,\n  MaLop VARCHAR(10)\n);'
+          initialSql: '-- Tạo CSDL trường học\nCREATE DATABASE IF NOT EXISTS ql_truong_hoc\nCHARACTER SET utf8mb4;\n\n-- Chọn CSDL vừa tạo\nUSE ql_truong_hoc;'
         },
         emCanNho: [
-          'Lệnh tạo CSDL: `CREATE DATABASE <tên_csdl>;`',
-          'Lệnh chọn CSDL: `USE <tên_csdl>;`',
-          'Lệnh tạo bảng: `CREATE TABLE <tên_bảng> (...);` kèm định nghĩa `PRIMARY KEY`.'
+          'Cú pháp tạo CSDL: `CREATE DATABASE <Tên_CSDL>;`.',
+          'Cú pháp chọn CSDL làm việc: `USE <Tên_CSDL>;`.',
+          'Luôn thêm `CHARACTER SET utf8mb4` để hiển thị tiếng Việt không bị lỗi font.'
+        ]
+      },
+      {
+        id: 'tab_11_19_2',
+        title: '2. Lệnh tạo bảng dữ liệu (CREATE TABLE) kèm PRIMARY KEY',
+        subtitle: 'Định nghĩa các cột thuộc tính và chỉ định khóa chính cho bảng',
+        iconName: 'Table',
+        keyPoints: [
+          'Cú pháp tạo bảng chuẩn:',
+          '  `CREATE TABLE <Ten_Bang> (`',
+          '    `TenCot1 KieuDuLieu RangBuoc,`',
+          '    `TenCot2 KieuDuLieu RangBuoc,`',
+          '    `... ,`',
+          '    `PRIMARY KEY (CotKhoaChinh)`',
+          '  `);`',
+          'Ví dụ tạo bảng HOC_SINH:',
+          '  `CREATE TABLE HOC_SINH (`',
+          '    `MaHS VARCHAR(10) NOT NULL,`',
+          '    `HoTen VARCHAR(50) NOT NULL,`',
+          '    `NgaySinh DATE,`',
+          '    `GioiTinh VARCHAR(5),`',
+          '    `DiemTB DECIMAL(4, 2),`',
+          '    `PRIMARY KEY (MaHS)`',
+          '  `);`'
+        ],
+        visualType: 'interactive-sql',
+        visualData: {
+          initialSql: 'CREATE TABLE HOC_SINH (\n    MaHS VARCHAR(10) NOT NULL,\n    HoTen VARCHAR(50) NOT NULL,\n    NgaySinh DATE,\n    DiemTB DECIMAL(4, 2),\n    PRIMARY KEY (MaHS)\n);'
+        },
+        emCanNho: [
+          'Cú pháp tạo bảng: `CREATE TABLE <Tên_Bảng> (các_cột, PRIMARY KEY (cột_khóa));`.',
+          'Khóa chính luôn đi kèm ràng buộc `NOT NULL`.',
+          'Mỗi cột cách nhau dấu phẩy `,`, kết thúc câu lệnh bằng dấu chấm phẩy `;`.'
         ]
       }
     ],
     miniGame: {
       type: 'matching',
-      title: 'Ghép cặp Câu lệnh SQL và Ý nghĩa',
-      instruction: 'Nối câu lệnh DDL với hành động tương ứng trên máy chủ:',
+      title: 'Ghép cặp Câu Lệnh DDL và Ý Nghĩa Thực Thi',
+      instruction: 'Nối câu lệnh SQL với hành động tương ứng:',
       matchingPairs: [
-        { id: 'c1', left: 'CREATE DATABASE truong_hoc;', right: 'Tạo một cơ sở dữ liệu mới mang tên truong_hoc' },
-        { id: 'c2', left: 'USE truong_hoc;', right: 'Kích hoạt CSDL truong_hoc để bắt đầu làm việc' },
-        { id: 'c3', left: 'CREATE TABLE LOP (...);', right: 'Khởi tạo bảng mới mang tên LOP kèm các trường định nghĩa' },
-        { id: 'c4', left: 'DROP TABLE IF EXISTS LOP;', right: 'Xóa hoàn toàn bảng LOP khỏi CSDL nếu bảng đó đã tồn tại' }
+        { id: 'ddl1', left: 'CREATE DATABASE ql_hocsinh;', right: 'Khởi tạo một cơ sở dữ liệu mới trên máy chủ' },
+        { id: 'ddl2', left: 'USE ql_hocsinh;', right: 'Kích hoạt cơ sở dữ liệu này làm vùng làm việc hiện tại' },
+        { id: 'ddl3', left: 'PRIMARY KEY (MaHS)', right: 'Chỉ định trường MaHS làm khóa chính định danh cho bảng' },
+        { id: 'ddl4', left: 'DROP TABLE IF EXISTS LOP;', right: 'Xóa bảng LOP nếu bảng này đã tồn tại trong CSDL' }
       ]
     },
     assessment: [
       {
         id: 1,
-        question: 'Để kích hoạt và bắt đầu làm việc với một Cơ sở dữ liệu đã có trong MySQL, ta dùng lệnh nào?',
-        options: ['USE <ten_csdl>;', 'OPEN <ten_csdl>;', 'START <ten_csdl>;', 'LOAD <ten_csdl>;'],
+        question: 'Câu lệnh SQL nào sau đây dùng để TẠO MỚI một cơ sở dữ liệu có tên là `quan_ly_sach`?',
+        options: [
+          'CREATE DATABASE quan_ly_sach;',
+          'MAKE DATABASE quan_ly_sach;',
+          'NEW DATABASE quan_ly_sach;',
+          'INSERT DATABASE quan_ly_sach;'
+        ],
         correctIndex: 0,
-        explanation: 'Lệnh USE là lệnh tiêu chuẩn chuyển phiên làm việc hiện tại vào CSDL mong muốn.',
+        explanation: 'CREATE DATABASE là cú pháp chuẩn của chuẩn SQL quốc tế.',
         difficulty: 'Nhận biết'
       },
       {
         id: 2,
-        question: 'Câu lệnh SQL nào sau đây viết ĐÚNG cú pháp để tạo một bảng có tên là `HOC_SINH`?',
-        options: [
-          'CREATE TABLE HOC_SINH (MaHS VARCHAR(10) PRIMARY KEY, HoTen VARCHAR(50) NOT NULL);',
-          'MAKE TABLE HOC_SINH (MaHS, HoTen);',
-          'NEW TABLE HOC_SINH;',
-          'BUILD TABLE HOC_SINH;'
-        ],
+        question: 'Sau khi tạo CSDL, câu lệnh nào BẮT BUỘC phải thực hiện để chỉ định CSDL đó làm vùng làm việc hiện hành trước khi tạo bảng?',
+        options: ['USE <Tên_CSDL>;', 'OPEN <Tên_CSDL>;', 'SELECT <Tên_CSDL>;', 'GO TO <Tên_CSDL>;'],
         correctIndex: 0,
-        explanation: 'CREATE TABLE kèm danh sách các trường trong ngoặc đơn và kiểu dữ liệu là cú pháp chuẩn của SQL.',
-        difficulty: 'Thông hiểu'
+        explanation: 'Lệnh USE kích hoạt ngữ cảnh cơ sở dữ liệu hiện hành.',
+        difficulty: 'Nhận biết'
       },
       {
         id: 3,
-        question: 'Tại sao khi tạo CSDL nên bổ sung cấu hình `CHARACTER SET utf8mb4`?',
-        options: [
-          'Để CSDL hỗ trợ lưu trữ và hiển thị chuẩn xác tiếng Việt có dấu và các biểu tượng ký tự quốc tế',
-          'Để chữ trong CSDL to gấp đôi',
-          'Để máy tính không bị nóng',
-          'Để tự động đổi màu nền'
-        ],
+        question: 'Trong câu lệnh CREATE TABLE, mệnh đề nào dùng để thiết lập trường khóa chính?',
+        options: ['PRIMARY KEY (tên_trường)', 'MAIN KEY (tên_trường)', 'KEY FIRST (tên_trường)', 'MASTER KEY (tên_trường)'],
         correctIndex: 0,
-        explanation: 'utf8mb4 là bảng mã chuẩn hỗ trợ đầy đủ tiếng Việt có dấu và toàn bộ ký tự Unicode.',
-        difficulty: 'Thông hiểu'
+        explanation: 'Từ khóa PRIMARY KEY xác định trường định danh duy nhất cho bảng.',
+        difficulty: 'Nhận biết'
       },
       {
         id: 4,
-        question: 'Nếu trong lệnh CREATE TABLE bạn không chỉ định trường nào làm PRIMARY KEY, điều gì sẽ xảy ra?',
+        question: 'Khi tạo bảng HOC_SINH trong MySQL, tham số `CHARACTER SET utf8mb4` có tác dụng gì?',
         options: [
-          'Bảng vẫn được tạo nhưng không có khóa chính, vi phạm nguyên tắc chuẩn hóa và gây khó khăn khi liên kết bảng',
-          'Máy tính sẽ tắt nguồn ngay',
-          'Phần mềm tự xóa ổ cứng',
-          'Câu lệnh tự động biến thành file Word'
+          'Hỗ trợ lưu trữ tiếng Việt có dấu đầy đủ và chính xác không bị lỗi hiển thị',
+          'Giúp máy tính chạy mát hơn',
+          'Khóa bảng không cho ai xem',
+          'Tự động dịch sang tiếng Anh'
         ],
         correctIndex: 0,
-        explanation: 'Bảng không có khóa chính sẽ không thể đảm bảo tính duy nhất của các bản ghi và không thể tạo khóa ngoại tham chiếu.',
-        difficulty: 'Vận dụng'
+        explanation: 'Bảng mã utf8mb4 là chuẩn Unicode hoàn chỉnh nhất hỗ trợ tiếng Việt trên MySQL.',
+        difficulty: 'Thông hiểu'
       },
       {
         id: 5,
-        question: 'Lệnh `DROP TABLE IF EXISTS SAN_PHAM;` mang lại lợi ích gì so với lệnh `DROP TABLE SAN_PHAM;` thông thường?',
+        question: 'Điều gì xảy ra nếu bạn cố gắng thực hiện lệnh CREATE TABLE cho một bảng đã tồn tại sẵn trong CSDL mà không có mệnh đề IF NOT EXISTS?',
         options: [
-          'Không bị báo lỗi dừng chương trình nếu bảng SAN_PHAM chưa tồn tại trên máy chủ',
-          'Xóa vĩnh viễn không khôi phục được',
-          'Tự động sao lưu trước khi xóa',
-          'Làm máy tính chạy êm hơn'
+          'Hệ QTCSDL sẽ báo lỗi "Table already exists" và dừng thực thi lệnh',
+          'Hệ thống tự động xóa bảng cũ đi ghi đè bảng mới',
+          'Máy tính tự khởi động lại',
+          'Tự động đổi tên bảng thành bảng số 2'
         ],
         correctIndex: 0,
-        explanation: 'Mệnh đề IF EXISTS giúp script SQL thực thi trơn tru mà không bị lỗi gián đoạn nếu bảng chưa được tạo.',
-        difficulty: 'Thông hiểu'
+        explanation: 'MySQL không cho phép tạo hai bảng cùng tên trong cùng một cơ sở dữ liệu.',
+        difficulty: 'Vận dụng'
       }
     ],
     application: {
       project: {
-        title: 'Thực hành: Viết Mã SQL Tạo Lập Hệ Thống Quản Lý Thư Viện',
-        context: 'Tạo lập CSDL hoàn chỉnh cho thư viện trường gồm 2 bảng: `DANH_MUC` và `SACH`.',
-        mission: 'Soạn thảo tệp script `tao_csdl_thuvien.sql` và thực thi trên HeidiSQL.',
+        title: 'Script Tự Động Hóa: Tạo Lập CSDL "QuanLyThuVien"',
+        context: 'Xây dựng kịch bản SQL hoàn chỉnh khởi tạo hệ thống thư viện.',
+        mission: 'Soạn tệp `tao_lap_csdl.sql` thực thi trọn vẹn từ tạo CSDL đến tạo bảng.',
         steps: [
-          'Bước 1: Viết lệnh tạo CSDL: `CREATE DATABASE ql_thuvien; USE ql_thuvien;`.',
-          'Bước 2: Tạo bảng `DANH_MUC` gồm: `MaDanhMuc` (Khoá chính), `TenDanhMuc`.',
-          'Bước 3: Tạo bảng `SACH` gồm: `MaSach` (Khoá chính), `TenSach`, `TacGia`, `NamXB`, `MaDanhMuc`.',
-          'Bước 4: Bấm F9 chạy script và kiểm tra kết quả trong cây điều hướng.'
+          'Dòng 1: `CREATE DATABASE IF NOT EXISTS thu_vien CHARACTER SET utf8mb4;`',
+          'Dòng 2: `USE thu_vien;`',
+          'Dòng 3: Tạo bảng `DOC_GIA` gồm `MaDG` (PK), `HoTen`, `Lop`, `NgaySinh`.',
+          'Dòng 4: Chạy toàn bộ script bằng phím F9 trong HeidiSQL và kiểm tra danh sách bảng.'
         ],
-        outputRequirement: 'Hai bảng `DANH_MUC` và `SACH` được tạo thành công trên máy chủ MySQL.',
-        practicalTip: 'Tạo bảng độc lập (`DANH_MUC`) trước, sau đó mới tạo bảng phụ thuộc (`SACH`).'
+        outputRequirement: 'Tệp mã nguồn SQL chạy trơn tru, bảng được tạo thành công trên máy chủ cục bộ.',
+        practicalTip: 'Viết hoa các từ khóa SQL (CREATE, TABLE, PRIMARY KEY) giúp mã nguồn sáng sủa và dễ đọc hơn.'
       },
       mindmap: {
         id: 'mm_11_19',
-        label: 'TẠO LẬP CSDL VÀ BẢNG',
+        label: 'TẠO CSDL & BẢNG',
         color: '#0891b2',
         children: [
           {
             id: 'mm_11_19_1',
-            label: 'Quản lý CSDL',
+            label: 'Lệnh cấp Database',
             children: [
-              { id: 'mm_11_19_1_1', label: 'CREATE DATABASE' },
-              { id: 'mm_11_19_1_2', label: 'USE <csdl>' },
+              { id: 'mm_11_19_1_1', label: 'CREATE DATABASE <tên>' },
+              { id: 'mm_11_19_1_2', label: 'USE <tên_csdl>' },
               { id: 'mm_11_19_1_3', label: 'CHARACTER SET utf8mb4' }
             ]
           },
           {
             id: 'mm_11_19_2',
-            label: 'Quản lý Bảng',
+            label: 'Lệnh cấp Bảng',
             children: [
-              { id: 'mm_11_19_2_1', label: 'CREATE TABLE' },
-              { id: 'mm_11_19_2_2', label: 'PRIMARY KEY' },
-              { id: 'mm_11_19_2_3', label: 'DROP TABLE IF EXISTS' }
+              { id: 'mm_11_19_2_1', label: 'CREATE TABLE <tên>' },
+              { id: 'mm_11_19_2_2', label: 'Định nghĩa các cột' },
+              { id: 'mm_11_19_2_3', label: 'PRIMARY KEY (cột_khóa)' }
             ]
           }
         ]
       }
     },
     completion: {
-      badgeName: 'Bậc Thầy Tạo Lập Bảng 11',
-      badgeIcon: 'Code2',
-      roleTitle: 'Chuyên Viên Tạo Lập CSDL SQL',
-      congratsMessage: 'Tuyệt vời! Bạn đã viết thành công câu lệnh CREATE DATABASE và CREATE TABLE tạo lập cấu trúc CSDL.',
-      skillsUnlocked: ['Viết lệnh CREATE DATABASE', 'Định nghĩa CREATE TABLE', 'Thiết lập PRIMARY KEY']
+      badgeName: 'Nhà Kiến Tạo DDL 11',
+      badgeIcon: 'Code',
+      roleTitle: 'Chuyên Viên Lập Trình Định Nghĩa Dữ Liệu',
+      congratsMessage: 'Tuyệt vời! Bạn đã tự tay viết script tạo lập CSDL và bảng dữ liệu đầu tiên trên máy chủ thực tế.',
+      skillsUnlocked: ['Lệnh CREATE DATABASE & USE', 'Cú pháp CREATE TABLE', 'Thiết lập PRIMARY KEY']
     }
   },
 
@@ -207,198 +236,227 @@ export const THEME6_LESSONS_PART2_11: Lesson[] = [
     title: 'Thực hành tạo lập các bảng có khoá ngoài',
     themeId: 6,
     themeName: 'Chủ đề 6: Thực hành tạo và khai thác cơ sở dữ liệu',
-    topicBadge: 'Khoá ngoài & Ràng buộc',
+    topicBadge: 'Khóa ngoài FOREIGN KEY',
     grade: 11,
     estimatedMinutes: 45,
     xpTotal: 250,
     hero: {
-      tagline: 'Kết nối các thực thể: Thiết lập Khóa ngoài và Ràng buộc toàn vẹn tham chiếu',
-      description: 'Làm chủ khái niệm Khóa ngoài (Foreign Key), mệnh đề CONSTRAINT ... FOREIGN KEY ... REFERENCES, và quy tắc đảm bảo toàn vẹn dữ liệu quan hệ giữa các bảng.',
-      accentColor: 'from-cyan-600 to-blue-600',
-      keyHighlights: ['Khái niệm Khóa ngoài (Foreign Key)', 'Mệnh đề FOREIGN KEY REFERENCES', 'Ràng buộc toàn vẹn tham chiếu']
+      tagline: 'Kết nối đa chiều: Thiết lập các sợi dây liên kết giữa bảng cha và bảng con',
+      description: 'Luyện tập kỹ năng xác định quan hệ cha - con giữa các bảng và khai báo ràng buộc khóa ngoài chuẩn xác bằng câu lệnh FOREIGN KEY ... REFERENCES.',
+      accentColor: 'from-blue-600 to-indigo-600',
+      keyHighlights: ['Quan hệ Bảng cha - Bảng con', 'Cú pháp FOREIGN KEY REFERENCES', 'Toàn vẹn tham chiếu']
     },
     objectives: [
       {
         id: 'obj_11_20_1',
         category: 'knowledge',
         categoryName: 'Kiến thức cốt lõi',
-        title: 'Bản chất của Khóa ngoài',
-        description: 'Trình bày được định nghĩa Khóa ngoài là trường trong bảng này nhưng tham chiếu đến Khóa chính của bảng khác.',
-        iconName: 'Link2'
+        title: 'Hiểu quan hệ Bảng cha & Bảng con',
+        description: 'Xác định được vai trò của bảng cha (chứa khóa chính) và bảng con (chứa khóa ngoài tham chiếu tới bảng cha).',
+        iconName: 'Link'
       },
       {
         id: 'obj_11_20_2',
         category: 'skill',
         categoryName: 'Kỹ năng & Năng lực',
-        title: 'Khai báo FOREIGN KEY trong SQL',
-        description: 'Viết thành thạo cú pháp: `FOREIGN KEY (MaLop) REFERENCES LOP(MaLop)` trong câu lệnh tạo bảng.',
+        title: 'Viết cú pháp khai báo khóa ngoài',
+        description: 'Viết được mệnh đề `FOREIGN KEY (CotNgoai) REFERENCES BangCha(CotChinh)` khi tạo bảng phụ thuộc không bị lỗi quan hệ.',
         iconName: 'Code'
       },
       {
         id: 'obj_11_20_3',
         category: 'attitude',
         categoryName: 'Phẩm chất & Đạo đức',
-        title: 'Tôn trọng quan hệ dữ liệu',
-        description: 'Nhận thức được việc không thể tùy tiện nhập mã một lớp học không tồn tại trong bảng danh mục Lớp.',
-        iconName: 'ShieldCheck'
+        title: 'Tôn trọng trật tự tạo bảng logic',
+        description: 'Hình thành tư duy trình tự: Bắt buộc phải tạo bảng cha trước rồi mới tạo được bảng con chứa khóa ngoài.',
+        iconName: 'CheckCircle'
       }
     ],
     warmup: {
-      title: 'Tình huống: Học sinh được xếp vào lớp học... "ma"',
-      scenario: 'Trường học chỉ có các lớp 11A1, 11A2, 11A3. Khi nhập hồ sơ học sinh mới, nhân viên văn phòng vô tình gõ nhầm mã lớp thành "11Z9" (lớp không hề tồn tại).',
-      pollQuestion: 'Cơ chế nào trong Hệ CSDL quan hệ sẽ lập tức báo lỗi và chặn đứng hành vi nhập nhầm lớp này?',
+      title: 'Tình huống: Tạo bảng con trước bảng cha và nhận thông báo lỗi đỏ',
+      scenario: 'Một bạn học sinh viết script tạo bảng `PHIEU_MUON` tham chiếu đến `MaSach` trong bảng `SACH`. Khi chạy lệnh, MySQL báo lỗi nghiêm trọng: "Cannot add foreign key constraint (1215)" vì bảng `SACH` lúc đó thậm chí còn chưa được tạo!',
+      pollQuestion: 'Nguyên tắc vàng về thứ tự khi viết script tạo các bảng có liên kết khóa ngoài là gì?',
       pollOptions: [
-        { id: 'p11_20_1', text: 'Ràng buộc Khóa ngoài (FOREIGN KEY ... REFERENCES LOP(MaLop))', votesPercent: 94, isPopular: true, insight: 'Chính xác! Ràng buộc khóa ngoài đảm bảo mọi giá trị nhập vào bắt buộc phải tồn tại trong bảng cha.' },
-        { id: 'p11_20_2', text: 'Tự động mở thêm một lớp mới tên 11Z9', votesPercent: 3, insight: 'Phần mềm không thể tự tiện thành lập lớp học mới trong trường.' },
-        { id: 'p11_20_3', text: 'Tắt máy tính', votesPercent: 3, insight: 'Hệ CSDL được thiết kế để kiểm soát lỗi thông minh, không gây sập máy.' }
+        { id: 'p11_20_1', text: 'BẮT BUỘC phải tạo bảng cha (chứa khóa chính) trước, sau đó mới tạo bảng con (chứa khóa ngoài)', votesPercent: 96, isPopular: true, insight: 'Chính xác! Khóa ngoài cần có mục tiêu để tham chiếu đến, nên bảng cha phải tồn tại trước.' },
+        { id: 'p11_20_2', text: 'Tạo bảng nào trước cũng được, MySQL tự đoán', votesPercent: 2, insight: 'Hệ QTCSDL đòi hỏi tính xác định chặt chẽ, không thể tham chiếu vào bảng chưa tồn tại.' },
+        { id: 'p11_20_3', text: 'Xóa hết khóa ngoài đi cho đỡ lỗi', votesPercent: 2, insight: 'Xóa khóa ngoài sẽ làm mất liên kết dữ liệu và mất tính toàn vẹn tham chiếu.' }
       ],
-      reflection: 'Khóa ngoài chính là sợi dây liên kết tạo nên sức mạnh "Quan hệ" (Relational) của CSDL.'
+      reflection: 'Thứ tự logic là nguyên tắc kỷ luật cao nhất của lập trình viên cơ sở dữ liệu.'
     },
     knowledge: [
       {
         id: 'tab_11_20_1',
-        title: '1. Cú Pháp Khai Báo Khóa Ngoài trong SQL',
-        subtitle: 'Bảng cha (Bảng tham chiếu) và Bảng con (Bảng chứa khóa ngoài)',
-        iconName: 'Link',
+        title: '1. Xác định quan hệ bảng cha - bảng con',
+        subtitle: 'Nhận diện đối tượng độc lập và đối tượng phụ thuộc tham chiếu',
+        iconName: 'Layers',
         keyPoints: [
-          'Khóa ngoài (Foreign Key): Là trường trong bảng con dùng để liên kết đến trường Khóa chính của bảng cha.',
-          'Nguyên tắc toàn vẹn tham chiếu: Giá trị của khóa ngoài phải tồn tại trong cột khóa chính của bảng cha (hoặc mang giá trị NULL).',
-          'Cú pháp khai báo trong CREATE TABLE: `CONSTRAINT fk_ten_khoa FOREIGN KEY (CotKhoaNgoai) REFERENCES BangCha(CotKhoaChinh);`',
-          'Quy tắc tạo bảng: Bắt buộc phải tạo bảng cha (bảng có khóa chính) TRƯỚC, rồi mới tạo bảng con (bảng có khóa ngoài).'
+          'Bảng cha (Parent Table): Bảng chứa thực thể độc lập, trường được tham chiếu tới là Khóa chính của bảng này. Ví dụ: Bảng `LOP_HOC` (Mã lớp), Bảng `SACH` (Mã sách).',
+          'Bảng con (Child Table): Bảng phụ thuộc, chứa trường khóa ngoài trỏ về khóa chính của bảng cha. Ví dụ: Bảng `HOC_SINH` thuộc về một `LOP_HOC`, Bảng `PHIEU_MUON` chứa `MaSach` mượn.',
+          'Nguyên tắc toàn vẹn tham chiếu: Giá trị của khóa ngoài ở bảng con hoặc là rỗng (NULL), hoặc bắt buộc phải xuất hiện trong tập các giá trị khóa chính của bảng cha.'
+        ],
+        visualType: 'infographic',
+        visualData: {
+          nodes: [
+            { label: 'Bảng cha: LOP_HOC', desc: 'Khóa chính: [MaLop] (Phải tạo trước)' },
+            { label: 'Sợi dây liên kết', desc: 'Ràng buộc toàn vẹn tham chiếu Foreign Key' },
+            { label: 'Bảng con: HOC_SINH', desc: 'Khóa ngoài: (MaLop) tham chiếu tới LOP_HOC' }
+          ]
+        },
+        emCanNho: [
+          'Bảng cha chứa khóa chính được tham chiếu; Bảng con chứa khóa ngoài.',
+          'Bảng cha luôn phải được tạo trước bảng con.',
+          'Khóa ngoài ngăn chặn việc nhập dữ liệu liên kết không tồn tại ở bảng cha.'
+        ]
+      },
+      {
+        id: 'tab_11_20_2',
+        title: '2. Khai báo khóa ngoài FOREIGN KEY ... REFERENCES',
+        subtitle: 'Cú pháp câu lệnh thiết lập ràng buộc khóa ngoài trong CREATE TABLE',
+        iconName: 'Code',
+        keyPoints: [
+          'Cú pháp chuẩn khai báo khóa ngoài trong lệnh CREATE TABLE:',
+          '  `CONSTRAINT <Ten_Rang_Buoc>`',
+          '  `FOREIGN KEY (<Cot_Khoa_Ngoai>)`',
+          '  `REFERENCES <Bang_Cha>(<Cot_Khoa_Chinh_Bang_Cha>);`',
+          'Ví dụ tạo bảng HOC_SINH liên kết với bảng LOP_HOC:',
+          '  `CREATE TABLE HOC_SINH (`',
+          '    `MaHS VARCHAR(10) NOT NULL,`',
+          '    `HoTen VARCHAR(50) NOT NULL,`',
+          '    `MaLop VARCHAR(10),`',
+          '    `PRIMARY KEY (MaHS),`',
+          '    `FOREIGN KEY (MaLop) REFERENCES LOP_HOC(MaLop)`',
+          '  `);`'
         ],
         visualType: 'interactive-sql',
         visualData: {
-          defaultSql: '-- 1. Bảng cha: LOP\nCREATE TABLE LOP (\n  MaLop VARCHAR(10) PRIMARY KEY,\n  TenLop VARCHAR(50) NOT NULL\n);\n\n-- 2. Bảng con: HOC_SINH (chứa khóa ngoài MaLop tham chiếu đến LOP)\nCREATE TABLE HOC_SINH (\n  MaHS VARCHAR(10) PRIMARY KEY,\n  HoTen VARCHAR(50) NOT NULL,\n  MaLop VARCHAR(10),\n  CONSTRAINT fk_hocsinh_lop FOREIGN KEY (MaLop) REFERENCES LOP(MaLop)\n);'
+          initialSql: '-- 1. Tạo bảng cha trước\nCREATE TABLE LOP_HOC (\n    MaLop VARCHAR(10) NOT NULL,\n    TenLop VARCHAR(50) NOT NULL,\n    PRIMARY KEY (MaLop)\n);\n\n-- 2. Tạo bảng con có khóa ngoài\nCREATE TABLE HOC_SINH (\n    MaHS VARCHAR(10) NOT NULL,\n    HoTen VARCHAR(50) NOT NULL,\n    MaLop VARCHAR(10),\n    PRIMARY KEY (MaHS),\n    FOREIGN KEY (MaLop) REFERENCES LOP_HOC(MaLop)\n);'
         },
         emCanNho: [
-          'Khóa ngoài (Foreign Key) tạo liên kết giữa bảng con và bảng cha.',
-          'Cú pháp: `FOREIGN KEY (CotNgoai) REFERENCES BangCha(CotChinh)`.',
-          'Bảng cha phải được tạo trước bảng con; khi xóa bảng thì xóa bảng con trước.'
+          'Cú pháp: `FOREIGN KEY (cot_ngoai) REFERENCES BangCha(cot_chinh)`.',
+          'Kiểu dữ liệu của khóa ngoài phải giống hệt kiểu dữ liệu của khóa chính bảng cha.',
+          'Nếu muốn xóa bảng, phải xóa bảng con trước rồi mới xóa được bảng cha.'
         ]
       }
     ],
     miniGame: {
       type: 'matching',
-      title: 'Ghép cặp Bảng cha và Bảng con trong liên kết Khóa ngoài',
-      instruction: 'Nối đúng cặp bảng cha (chứa khóa chính) và bảng con (chứa khóa ngoài):',
+      title: 'Ghép cặp Mối Quan Hệ Bảng Cha và Bảng Con',
+      instruction: 'Nối bảng cha với bảng con phụ thuộc tương ứng:',
       matchingPairs: [
-        { id: 'fk1', left: 'Bảng LOP (MaLop làm PK)', right: 'Bảng HOC_SINH (MaLop làm FK tham chiếu đến LOP)' },
-        { id: 'fk2', left: 'Bảng TAC_GIA (MaTacGia làm PK)', right: 'Bảng SACH (MaTacGia làm FK tham chiếu đến TAC_GIA)' },
-        { id: 'fk3', left: 'Bảng KHACH_HANG (MaKH làm PK)', right: 'Bảng HOA_DON (MaKH làm FK tham chiếu đến KHACH_HANG)' },
-        { id: 'fk4', left: 'Bảng KHOA_HOC (MaKhoaHoc làm PK)', right: 'Bảng DANG_KY (MaKhoaHoc làm FK tham chiếu KHOA_HOC)' }
+        { id: 'fk1', left: 'Bảng cha: KHOA_HOC', right: 'Bảng con: LOP_HOC (chứa khóa ngoài MaKhoa)' },
+        { id: 'fk2', left: 'Bảng cha: DOC_GIA', right: 'Bảng con: PHIEU_MUON (chứa khóa ngoài MaDG)' },
+        { id: 'fk3', left: 'Bảng cha: TAC_GIA', right: 'Bảng con: SACH (chứa khóa ngoài MaTacGia)' },
+        { id: 'fk4', left: 'Thứ tự xóa bảng có liên kết', right: 'Bắt buộc xóa bảng con trước, sau đó mới xóa bảng cha' }
       ]
     },
     assessment: [
       {
         id: 1,
-        question: 'Khóa ngoài (Foreign Key) trong cơ sở dữ liệu quan hệ dùng để làm gì?',
-        options: [
-          'Tạo mối liên kết giữa hai bảng và đảm bảo tính toàn vẹn tham chiếu dữ liệu',
-          'Khóa máy tính lại khi người dùng đi ra ngoài',
-          'Tăng tốc độ kết nối Wi-Fi',
-          'Đổi mật khẩu cho người dùng'
-        ],
+        question: 'Từ khóa nào trong SQL được dùng để thiết lập mối liên kết giữa khóa ngoài và khóa chính của bảng khác?',
+        options: ['REFERENCES', 'CONNECT TO', 'LINK WITH', 'JOIN ON'],
         correctIndex: 0,
-        explanation: 'Khóa ngoài là công cụ kỹ thuật để thiết lập mối quan hệ giữa các bảng và kiểm soát tính đúng đắn của dữ liệu.',
-        difficulty: 'Thông hiểu'
-      },
-      {
-        id: 2,
-        question: 'Trong câu lệnh SQL: `CONSTRAINT fk_hs FOREIGN KEY (MaLop) REFERENCES LOP(MaLop);` Từ khóa REFERENCES dùng để làm gì?',
-        options: [
-          'Chỉ định bảng cha và cột khóa chính mà khóa ngoài đang tham chiếu tới',
-          'Xóa bảng LOP',
-          'Nhập điểm cho học sinh',
-          'Tắt máy chủ CSDL'
-        ],
-        correctIndex: 0,
-        explanation: 'REFERENCES (tham chiếu đến) xác định nguồn gốc của khóa chính trong bảng cha.',
+        explanation: 'Từ khóa REFERENCES (tham chiếu tới) chỉ định bảng cha và cột đích được kết nối.',
         difficulty: 'Nhận biết'
       },
       {
-        id: 3,
-        question: 'Khi thiết lập quan hệ giữa bảng `KHOA` (Khoa đào tạo) và bảng `SINH_VIEN`, bạn bắt buộc phải tạo bảng nào trước?',
+        id: 2,
+        question: 'Khi thiết kế hai bảng LOP (bảng cha) và HOC_SINH (bảng con), thứ tự thực thi các lệnh tạo bảng nào sau đây là ĐÚNG?',
         options: [
-          'Bắt buộc tạo bảng KHOA trước vì bảng SINH_VIEN chứa khóa ngoài tham chiếu đến KHOA',
-          'Tạo bảng SINH_VIEN trước',
-          'Tạo bảng nào trước cũng được, không quan trọng',
-          'Không được tạo bảng nào cả'
+          'Tạo bảng LOP trước, sau đó tạo bảng HOC_SINH',
+          'Tạo bảng HOC_SINH trước, sau đó tạo bảng LOP',
+          'Tạo cả hai bảng cùng lúc trên một dòng',
+          'Thứ tự nào cũng được'
         ],
         correctIndex: 0,
-        explanation: 'Bảng cha phải tồn tại trước thì bảng con mới có đối tượng để tham chiếu khóa ngoại.',
+        explanation: 'Bảng cha phải tồn tại trước thì bảng con mới có mục tiêu để tham chiếu khóa ngoài.',
+        difficulty: 'Thông hiểu'
+      },
+      {
+        id: 3,
+        question: 'Điều kiện BẮT BUỘC về kiểu dữ liệu giữa cột Khóa ngoài và cột Khóa chính được tham chiếu là gì?',
+        options: [
+          'Phải có cùng kiểu dữ liệu và tương thích về kích thước độ dài',
+          'Khóa ngoài bắt buộc phải là số, còn khóa chính là chữ',
+          'Khóa ngoài phải có độ dài gấp đôi khóa chính',
+          'Không có bất kỳ ràng buộc nào'
+        ],
+        correctIndex: 0,
+        explanation: 'Cùng kiểu dữ liệu (ví dụ cùng VARCHAR(10)) là yêu cầu bắt buộc để máy chủ so khớp liên kết.',
         difficulty: 'Thông hiểu'
       },
       {
         id: 4,
-        question: 'Điều gì xảy ra nếu bạn cố gắng nhập một bản ghi vào bảng con với giá trị khóa ngoài KHÔNG TỒN TẠI trong bảng cha?',
+        question: 'Nếu bảng HOC_SINH đang tham chiếu đến bảng LOP, điều gì xảy ra nếu bạn chạy lệnh: `DROP TABLE LOP;`?',
         options: [
-          'Hệ QTCSDL sẽ lập tức từ chối và báo lỗi vi phạm toàn vẹn tham chiếu (Foreign Key Constraint Fails)',
-          'Hệ QTCSDL tự động tắt',
-          'Hệ QTCSDL tự động xóa bảng cha',
-          'Dữ liệu vẫn được lưu bình thường'
+          'MySQL sẽ báo lỗi và ngăn cản việc xóa vì bảng LOP đang bị bảng khác tham chiếu (Foreign Key Constraint)',
+          'Toàn bộ bảng HOC_SINH cũng tự động bị xóa theo',
+          'Máy tính bị đơ',
+          'Hệ thống tự động xóa hết học sinh'
         ],
         correctIndex: 0,
-        explanation: 'Hệ QTCSDL kiểm tra nghiêm ngặt tính toàn vẹn tham chiếu và ngăn chặn dữ liệu rác.',
+        explanation: 'Ràng buộc khóa ngoài bảo vệ bảng cha không bị xóa khi vẫn còn các bản ghi con phụ thuộc.',
         difficulty: 'Vận dụng'
       },
       {
         id: 5,
-        question: 'Kiểu dữ liệu của trường Khóa ngoài và trường Khóa chính được tham chiếu đến phải thỏa mãn điều kiện gì?',
+        question: 'Lợi ích lớn nhất của việc thiết lập khóa ngoài (Foreign Key) thay vì chỉ tạo cột bình thường là gì?',
         options: [
-          'Phải có cùng kiểu dữ liệu và tương thích về kích thước',
-          'Một bên là số, một bên là ngày tháng',
-          'Không cần cùng kiểu dữ liệu',
-          'Một bên là ảnh, một bên là âm thanh'
+          'Hệ QTCSDL sẽ tự động kiểm tra và ngăn chặn việc nhập dữ liệu tham chiếu sai lệch, không tồn tại',
+          'Làm giao diện phần mềm có thêm màu sắc',
+          'Tăng dung lượng ổ cứng gấp đôi',
+          'Tự động in báo cáo ra máy in'
         ],
         correctIndex: 0,
-        explanation: 'Khóa ngoài và khóa chính bắt buộc phải tương thích về kiểu dữ liệu (ví dụ cùng là VARCHAR(10) hoặc INT) để có thể so khớp.',
+        explanation: 'Khóa ngoài tự động bảo vệ tính toàn vẹn tham chiếu dữ liệu ở cấp độ máy chủ CSDL.',
         difficulty: 'Thông hiểu'
       }
     ],
     application: {
       project: {
-        title: 'Thiết lập Liên kết Khóa ngoài cho Hệ thống Quản lý Bán hàng',
-        context: 'Hệ thống gồm 2 bảng: `KHACH_HANG` (bảng cha) và `DON_HANG` (bảng con).',
-        mission: 'Viết mã SQL tạo 2 bảng kèm ràng buộc khóa ngoài kết nối `MaKH`.',
+        title: 'Thực Hành: Thiết Lập Liên Kết Khóa Ngoài Giữa Sách và Thể Loại',
+        context: 'Phân loại các đầu sách trong thư viện theo từng thể loại văn học, khoa học.',
+        mission: 'Viết script SQL tạo 2 bảng THE_LOAI và SACH có ràng buộc khóa ngoài chuẩn.',
         steps: [
-          'Bước 1: Tạo bảng `KHACH_HANG` gồm: `MaKH` (PK), `HoTen`, `SoDienThoai`.',
-          'Bước 2: Tạo bảng `DON_HANG` gồm: `MaDonHang` (PK), `NgayDat`, `TongTien`, `MaKH` (FK).',
-          'Bước 3: Thêm mệnh đề `CONSTRAINT fk_donhang_kh FOREIGN KEY (MaKH) REFERENCES KHACH_HANG(MaKH)`.'
+          'Bước 1: Tạo bảng cha `THE_LOAI` gồm `MaTL VARCHAR(10) PRIMARY KEY`, `TenTL VARCHAR(50)`.',
+          'Bước 2: Tạo bảng con `SACH` gồm `MaSach VARCHAR(10) PRIMARY KEY`, `TenSach VARCHAR(100)`, `MaTL VARCHAR(10)`.',
+          'Bước 3: Khai báo `FOREIGN KEY (MaTL) REFERENCES THE_LOAI(MaTL)`.',
+          'Bước 4: Chạy script và dùng HeidiSQL kiểm tra thẻ Foreign keys của bảng SACH.'
         ],
-        outputRequirement: 'Hai bảng được tạo thành công với đường liên kết quan hệ hiển thị trên sơ đồ ERD.',
-        practicalTip: 'Trong HeidiSQL, sau khi tạo bảng, bạn có thể xem biểu đồ quan hệ trực quan để thấy đường nối giữa 2 bảng.'
+        outputRequirement: 'Script SQL hoàn chỉnh không lỗi cú pháp, mối liên kết hiển thị trên HeidiSQL.',
+        practicalTip: 'Đặt tên cho ràng buộc khóa ngoài theo mẫu `fk_bangcon_bangcha` (ví dụ: `fk_sach_theloai`) để dễ quản lý.'
       },
       mindmap: {
         id: 'mm_11_20',
-        label: 'KHÓA NGOÀI VÀ LIÊN KẾT',
-        color: '#0891b2',
+        label: 'KHÓA NGOÀI FOREIGN KEY',
+        color: '#2563eb',
         children: [
           {
             id: 'mm_11_20_1',
-            label: 'Đặc tính Khóa ngoài',
+            label: 'Nguyên tắc quan hệ',
             children: [
-              { id: 'mm_11_20_1_1', label: 'Liên kết bảng con với bảng cha' },
-              { id: 'mm_11_20_1_2', label: 'Bảo vệ toàn vẹn tham chiếu' },
-              { id: 'mm_11_20_1_3', label: 'Cùng kiểu dữ liệu với PK' }
+              { id: 'mm_11_20_1_1', label: 'Bảng cha chứa Khóa chính (PK)' },
+              { id: 'mm_11_20_1_2', label: 'Bảng con chứa Khóa ngoài (FK)' },
+              { id: 'mm_11_20_1_3', label: 'Tạo bảng cha trước bảng con' }
             ]
           },
           {
             id: 'mm_11_20_2',
-            label: 'Cú pháp SQL',
+            label: 'Cú pháp FOREIGN KEY',
             children: [
-              { id: 'mm_11_20_2_1', label: 'FOREIGN KEY (cột_ngoài)' },
-              { id: 'mm_11_20_2_2', label: 'REFERENCES BangCha(cột_chính)' }
+              { id: 'mm_11_20_2_1', label: 'FOREIGN KEY (cot_con)' },
+              { id: 'mm_11_20_2_2', label: 'REFERENCES BangCha(cot_chinh)' },
+              { id: 'mm_11_20_2_3', label: 'Bảo vệ toàn vẹn tham chiếu' }
             ]
           }
         ]
       }
     },
     completion: {
-      badgeName: 'Bậc Thầy Khóa Ngoài 11',
-      badgeIcon: 'Link2',
-      roleTitle: 'Chuyên Viên Thiết Kế Quan Hệ CSDL',
-      congratsMessage: 'Tuyệt vời! Bạn đã làm chủ kỹ thuật thiết lập Khóa ngoài (FOREIGN KEY) kết nối các thực thể dữ liệu.',
-      skillsUnlocked: ['Viết lệnh FOREIGN KEY REFERENCES', 'Phân biệt Bảng cha vs Bảng con', 'Bảo vệ toàn vẹn tham chiếu']
+      badgeName: 'Bậc Thầy Liên Kết Dữ Liệu 11',
+      badgeIcon: 'Link',
+      roleTitle: 'Chuyên Viên Thiết Kế Mối Quan Hệ CSDL',
+      congratsMessage: 'Tuyệt vời! Bạn đã làm chủ kỹ thuật khai báo khóa ngoài, bảo đảm tính toàn vẹn tham chiếu giữa các bảng dữ liệu.',
+      skillsUnlocked: ['Phân biệt bảng cha vs con', 'Cú pháp FOREIGN KEY REFERENCES', 'Trật tự tạo và xóa bảng quan hệ']
     }
   },
 
@@ -409,184 +467,249 @@ export const THEME6_LESSONS_PART2_11: Lesson[] = [
     title: 'Thực hành cập nhật và truy xuất dữ liệu các bảng',
     themeId: 6,
     themeName: 'Chủ đề 6: Thực hành tạo và khai thác cơ sở dữ liệu',
-    topicBadge: 'Thao tác dữ liệu CRUD',
+    topicBadge: 'Bộ lệnh CRUD',
     grade: 11,
     estimatedMinutes: 45,
     xpTotal: 250,
     hero: {
-      tagline: 'Vận hành dòng chảy dữ liệu: Thêm, Sửa, Xóa và Truy vấn thông tin',
-      description: 'Thực hành thành thạo bộ 4 câu lệnh thao tác dữ liệu kinh điển (CRUD): INSERT INTO (thêm bản ghi mới), UPDATE (cập nhật thông tin), DELETE (xóa dữ liệu) và SELECT (truy xuất báo cáo).',
-      accentColor: 'from-cyan-600 to-blue-600',
-      keyHighlights: ['Thêm dữ liệu INSERT INTO', 'Cập nhật với UPDATE ... SET', 'Xóa an toàn với DELETE WHERE']
+      tagline: 'Vận hành dữ liệu thực tế: Trọn bộ 4 thao tác kinh điển INSERT, UPDATE, DELETE, SELECT',
+      description: 'Thực hành thao tác với dữ liệu bên trong bảng: Thêm bản ghi mới bằng INSERT INTO, chỉnh sửa dữ liệu bằng UPDATE, xóa dữ liệu an toàn bằng DELETE và truy xuất chọn lọc bằng SELECT.',
+      accentColor: 'from-blue-600 to-indigo-600',
+      keyHighlights: ['Thêm dữ liệu INSERT INTO', 'Chỉnh sửa dữ liệu UPDATE', 'Xóa an toàn DELETE với WHERE']
     },
     objectives: [
       {
         id: 'obj_11_21_1',
         category: 'knowledge',
         categoryName: 'Kiến thức cốt lõi',
-        title: 'Cú pháp bộ lệnh CRUD',
-        description: 'Nắm vững cú pháp lệnh INSERT INTO VALUES, UPDATE SET WHERE, DELETE FROM WHERE và SELECT FROM WHERE.',
-        iconName: 'Database'
+        title: 'Nắm vững cú pháp bộ lệnh CRUD',
+        description: 'Trình bày được cú pháp chuẩn của 3 lệnh thay đổi dữ liệu: INSERT INTO (Thêm), UPDATE SET WHERE (Sửa), DELETE FROM WHERE (Xóa).',
+        iconName: 'Edit3'
       },
       {
         id: 'obj_11_21_2',
         category: 'skill',
         categoryName: 'Kỹ năng & Năng lực',
-        title: 'Thao tác dữ liệu không bị lỗi',
-        description: 'Thực hiện được việc chèn nhiều bản ghi có dấu tiếng Việt, sửa thông tin học sinh và xóa bản ghi thỏa mãn điều kiện.',
-        iconName: 'Edit3'
+        title: 'Thao tác dữ liệu an toàn có điều kiện',
+        description: 'Thực hiện được việc chèn nhiều bản ghi, cập nhật chính xác một trường và xóa đúng bản ghi chỉ định bằng mệnh đề WHERE mà không làm hỏng dữ liệu khác.',
+        iconName: 'Play'
       },
       {
         id: 'obj_11_21_3',
         category: 'attitude',
         categoryName: 'Phẩm chất & Đạo đức',
-        title: 'Cẩn trọng với lệnh UPDATE và DELETE',
-        description: 'Luôn ghi nhớ nguyên tắc vàng: Phải luôn có mệnh đề WHERE khi UPDATE hoặc DELETE để tránh làm mất sạch dữ liệu của cả bảng.',
+        title: 'Kỷ luật an toàn dữ liệu tuyệt đối',
+        description: 'Khắc sâu thói quen luôn kiểm tra kỹ mệnh đề WHERE trước khi chạy lệnh UPDATE hoặc DELETE để tránh thảm họa xóa sạch dữ liệu toàn bảng.',
         iconName: 'AlertTriangle'
       }
     ],
     warmup: {
-      title: 'Tình huống: Thảm họa xóa nhầm toàn bộ dữ liệu công ty',
-      scenario: 'Một nhân viên thử việc muốn xóa tài khoản của bạn học sinh "HS99" đã chuyển trường. Thay vì gõ `DELETE FROM HOC_SINH WHERE MaHS = \'HS99\';`, bạn ấy lại gõ nhầm: `DELETE FROM HOC_SINH;` và bấm Enter.',
-      pollQuestion: 'Điều gì tồi tệ sẽ xảy ra khi thực hiện lệnh DELETE mà không có mệnh đề WHERE?',
+      title: 'Tình huống: Câu chuyện kinh hoàng "UPDATE quên WHERE"',
+      scenario: 'Một nhân viên thử việc cần cập nhật địa chỉ cho học sinh có mã "HS005". Do vội vàng, nhân viên này chỉ gõ: `UPDATE HOC_SINH SET DiaChi = \'Hà Nội\';` và bấm phím F9.',
+      pollQuestion: 'Hậu quả gì đã xảy ra ngay sau khi câu lệnh trên được thực thi trên cơ sở dữ liệu?',
       pollOptions: [
-        { id: 'p11_21_1', text: 'Toàn bộ tất cả học sinh trong trường bị xóa sạch không còn một ai!', votesPercent: 95, isPopular: true, insight: 'Chính xác! Lệnh DELETE không có WHERE sẽ quét sạch toàn bộ các bản ghi trong bảng dữ liệu.' },
-        { id: 'p11_21_2', text: 'Máy tính tự động hỏi lại 10 lần', votesPercent: 3, insight: 'Trong môi trường dòng lệnh SQL, hệ thống thực thi ngay lập tức chỉ thị mà không hỏi lại.' },
-        { id: 'p11_21_3', text: 'Chỉ xóa ngẫu nhiên 1 học sinh', votesPercent: 2, insight: 'SQL thực hiện triệt để theo cú pháp bạn đã ra lệnh.' }
+        { id: 'p11_21_1', text: 'Toàn bộ 3000 học sinh trong trường đều bị đổi địa chỉ thành "Hà Nội" do thiếu mệnh đề WHERE lọc MaHS = \'HS005\'', votesPercent: 95, isPopular: true, insight: 'Chính xác! Lệnh UPDATE hoặc DELETE nếu không có WHERE sẽ tự động áp dụng lên TOÀN BỘ tất cả các hàng trong bảng.' },
+        { id: 'p11_21_2', text: 'Chỉ có bạn HS005 bị đổi địa chỉ', votesPercent: 3, insight: 'Máy chủ không thể biết bạn muốn đổi cho ai nếu bạn không chỉ định WHERE MaHS = \'HS005\'.' },
+        { id: 'p11_21_3', text: 'Máy tính tự động từ chối chạy lệnh', votesPercent: 2, insight: 'Cú pháp đó hoàn toàn hợp lệ về mặt ngữ pháp nên MySQL sẽ chạy ngay lập tức.' }
       ],
-      reflection: 'Ghi nhớ sống còn của mọi kỹ sư dữ liệu: Luôn kiểm tra mệnh đề WHERE trước khi chạy lệnh UPDATE hoặc DELETE.'
+      reflection: 'Quy tắc sống còn của mọi lập trình viên CSDL: "Trước khi bấm chạy lệnh UPDATE hoặc DELETE, hãy soi lại mệnh đề WHERE ít nhất 3 lần!".'
     },
     knowledge: [
       {
         id: 'tab_11_21_1',
-        title: '1. Cú Pháp Thêm, Sửa, Xóa Dữ Liệu SQL',
-        subtitle: 'INSERT INTO, UPDATE SET và DELETE FROM',
-        iconName: 'Edit',
+        title: '1. Thao tác thêm dữ liệu (INSERT INTO)',
+        subtitle: 'Bổ sung các bản ghi mới vào bảng',
+        iconName: 'PlusCircle',
         keyPoints: [
-          'Thêm dữ liệu: `INSERT INTO <Tên_Bảng> (Cột1, Cột2, ...) VALUES (GiaTri1, GiaTri2, ...);`',
-          'Sửa dữ liệu: `UPDATE <Tên_Bảng> SET Cột1 = GiaTriMoi, Cột2 = GiaTriMoi WHERE <Điều_Kiện>;`',
-          'Xóa dữ liệu: `DELETE FROM <Tên_Bảng> WHERE <Điều_Kiện>;`',
-          'Quy tắc an toàn: Luôn sử dụng lệnh SELECT để xem trước các dòng thỏa mãn điều kiện trước khi quyết định DELETE.'
+          'Cú pháp chèn 1 bản ghi:',
+          '  `INSERT INTO <Ten_Bang> (Cot1, Cot2, ...)`',
+          '  `VALUES (GiaTri1, GiaTri2, ...);`',
+          'Cú pháp chèn nhiều bản ghi đồng thời:',
+          '  `INSERT INTO HOC_SINH (MaHS, HoTen, NgaySinh, DiemTB) VALUES`',
+          '  `(\'HS01\', \'Nguyễn An\', \'2008-01-15\', 8.5),`',
+          '  `(\'HS02\', \'Trần Bình\', \'2008-05-20\', 9.0);`',
+          'Quy tắc dữ liệu: Chuỗi ký tự và Ngày tháng phải đặt trong dấu nháy đơn `\' \'`; Số không cần dấu nháy; Thứ tự giá trị phải khớp đúng với danh sách cột.'
         ],
         visualType: 'interactive-sql',
         visualData: {
-          defaultSql: '-- 1. Thêm bản ghi mới\nINSERT INTO HOC_SINH (MaHS, HoTen, NgaySinh, MaLop)\nVALUES (\'HS05\', \'Hoàng Văn Nam\', \'2008-11-20\', \'11A1\');\n\n-- 2. Cập nhật ngày sinh cho học sinh HS05\nUPDATE HOC_SINH\nSET NgaySinh = \'2008-11-22\'\nWHERE MaHS = \'HS05\';\n\n-- 3. Xem lại dữ liệu sau khi cập nhật\nSELECT * FROM HOC_SINH WHERE MaLop = \'11A1\';'
+          initialSql: 'INSERT INTO HOC_SINH (MaHS, HoTen, NgaySinh, DiemTB)\nVALUES (\'HS01\', \'Nguyễn Văn An\', \'2008-01-15\', 8.5);\n\nSELECT * FROM HOC_SINH;'
         },
         emCanNho: [
-          'Thêm dữ liệu: `INSERT INTO <table> VALUES (...);`',
-          'Cập nhật: `UPDATE <table> SET <cột> = <giá_trị> WHERE <điều_kiện>;`',
-          'Xóa bản ghi: `DELETE FROM <table> WHERE <điều_kiện>;` (Bắt buộc phải có WHERE).'
+          'Cú pháp thêm dữ liệu: `INSERT INTO TenBang (danh_sach_cot) VALUES (danh_sach_gia_tri);`.',
+          'Chuỗi ký tự và Ngày tháng bắt buộc đặt trong cặp dấu nháy đơn `\' \'`.',
+          'Có thể chèn nhiều dòng một lúc bằng cách ngăn cách các bộ giá trị bằng dấu phẩy `,`.'
+        ]
+      },
+      {
+        id: 'tab_11_21_2',
+        title: '2. Thao tác sửa dữ liệu (UPDATE ... SET ... WHERE)',
+        subtitle: 'Cập nhật giá trị các trường dữ liệu hiện có',
+        iconName: 'Edit3',
+        keyPoints: [
+          'Cú pháp câu lệnh sửa dữ liệu:',
+          '  `UPDATE <Ten_Bang>`',
+          '  `SET Cot1 = GiaTriMoi1, Cot2 = GiaTriMoi2`',
+          '  `WHERE <Dieu_Kien_Loc>;`',
+          'Ví dụ sửa điểm cho học sinh HS01:',
+          '  `UPDATE HOC_SINH`',
+          '  `SET DiemTB = 9.5`',
+          '  `WHERE MaHS = \'HS01\';`',
+          'CẢNH BÁO NGUY HIỂM: Nếu bỏ quên mệnh đề `WHERE`, toàn bộ tất cả các hàng trong bảng sẽ bị sửa sang giá trị mới!'
+        ],
+        visualType: 'interactive-sql',
+        visualData: {
+          initialSql: 'UPDATE HOC_SINH\nSET DiemTB = 9.5\nWHERE MaHS = \'HS01\';\n\nSELECT * FROM HOC_SINH WHERE MaHS = \'HS01\';'
+        },
+        emCanNho: [
+          'Cú pháp sửa dữ liệu: `UPDATE TenBang SET cot = gia_tri_moi WHERE dieu_kien;`.',
+          'Mệnh đề `WHERE` chỉ định chính xác bản ghi nào cần cập nhật.',
+          'Tuyệt đối không bỏ quên mệnh đề `WHERE` khi cập nhật dữ liệu.'
+        ]
+      },
+      {
+        id: 'tab_11_21_3',
+        title: '3. Thao tác xóa dữ liệu (DELETE FROM ... WHERE)',
+        subtitle: 'Loại bỏ các bản ghi không còn giá trị sử dụng',
+        iconName: 'Trash2',
+        keyPoints: [
+          'Cú pháp câu lệnh xóa dữ liệu:',
+          '  `DELETE FROM <Ten_Bang>`',
+          '  `WHERE <Dieu_Kien_Loc>;`',
+          'Ví dụ xóa một học sinh có mã HS02:',
+          '  `DELETE FROM HOC_SINH`',
+          '  `WHERE MaHS = \'HS02\';`',
+          'CẢNH BÁO ĐỎ: `DELETE FROM HOC_SINH;` (không có WHERE) sẽ xóa sạch sành sanh mọi dữ liệu trong bảng mà không thể hoàn tác!'
+        ],
+        visualType: 'interactive-sql',
+        visualData: {
+          initialSql: 'DELETE FROM HOC_SINH\nWHERE MaHS = \'HS02\';\n\nSELECT * FROM HOC_SINH;'
+        },
+        emCanNho: [
+          'Cú pháp xóa: `DELETE FROM TenBang WHERE dieu_kien;`.',
+          '`DELETE` chỉ xóa các dòng dữ liệu, cấu trúc bảng vẫn còn nguyên vẹn.',
+          'Luôn viết và kiểm tra điều kiện `WHERE` trước khi nhấn thực thi lệnh xóa.'
         ]
       }
     ],
     miniGame: {
       type: 'matching',
-      title: 'Ghép cặp Câu lệnh DML và Thao tác tương ứng',
-      instruction: 'Nối câu lệnh SQL với hành động tương ứng trên dữ liệu:',
+      title: 'Ghép cặp Câu Lệnh CRUD và Ý Nghĩa Thao Tác',
+      instruction: 'Nối câu lệnh SQL với thao tác nghiệp vụ tương ứng:',
       matchingPairs: [
-        { id: 'crud1', left: 'INSERT INTO LOP VALUES (\'11A1\', \'Lớp 11A1\');', right: 'Thêm mới một lớp học có mã 11A1 vào danh mục' },
-        { id: 'crud2', left: 'UPDATE HOC_SINH SET DiemTin = 10 WHERE MaHS = \'HS01\';', right: 'Cập nhật điểm Tin học thành 10 cho học sinh có mã HS01' },
-        { id: 'crud3', left: 'DELETE FROM HOC_SINH WHERE MaHS = \'HS05\';', right: 'Xóa hồ sơ của học sinh có mã HS05 khỏi danh sách' },
-        { id: 'crud4', left: 'SELECT * FROM HOC_SINH WHERE DiemTin >= 8.0;', right: 'Truy vấn hiển thị danh sách học sinh đạt điểm từ 8 trở lên' }
+        { id: 'cr1', left: 'INSERT INTO LOP VALUES (\'11A1\', \'Lớp 11A1\');', right: 'Thêm một lớp học mới vào cơ sở dữ liệu' },
+        { id: 'cr2', left: 'UPDATE HOC_SINH SET DiemTB = 10.0 WHERE MaHS = \'HS01\';', right: 'Sửa điểm cho duy nhất học sinh có mã HS01' },
+        { id: 'cr3', left: 'DELETE FROM HOC_SINH WHERE MaHS = \'HS09\';', right: 'Xóa hồ sơ học sinh HS09 ra khỏi bảng' },
+        { id: 'cr4', left: 'SELECT * FROM HOC_SINH WHERE DiemTB >= 8.0;', right: 'Truy xuất danh sách học sinh đạt điểm giỏi' }
       ]
     },
     assessment: [
       {
         id: 1,
-        question: 'Câu lệnh SQL nào sau đây dùng để THÊM một dòng dữ liệu mới vào bảng?',
-        options: ['INSERT INTO', 'ADD ROW', 'NEW RECORD', 'CREATE DATA'],
+        question: 'Câu lệnh SQL nào sau đây dùng để THÊM MỚI một bản ghi vào bảng dữ liệu?',
+        options: ['INSERT INTO', 'ADD ROW', 'NEW RECORD', 'PUT DATA'],
         correctIndex: 0,
-        explanation: 'INSERT INTO là câu lệnh chuẩn trong SQL để chèn các bản ghi mới vào bảng.',
+        explanation: 'INSERT INTO là câu lệnh thao tác dữ liệu chuẩn để chèn hàng mới.',
         difficulty: 'Nhận biết'
       },
       {
         id: 2,
-        question: 'Để sửa đổi thông tin điểm số của học sinh trong CSDL, ta dùng câu lệnh nào?',
-        options: ['UPDATE ... SET ... WHERE', 'ALTER TABLE', 'MODIFY ROW', 'CHANGE DATA'],
+        question: 'Cú pháp câu lệnh UPDATE dùng để chỉnh sửa dữ liệu có cấu trúc từ khóa theo thứ tự nào?',
+        options: [
+          'UPDATE <Bảng> SET <Cột = Giá trị mới> WHERE <Điều kiện>;',
+          'UPDATE <Bảng> WHERE <Điều kiện> SET <Cột = Giá trị>;',
+          'MODIFY <Bảng> VALUE <Giá trị> IF <Điều kiện>;',
+          'CHANGE <Bảng> SET <Cột> WHERE <Điều kiện>;'
+        ],
         correctIndex: 0,
-        explanation: 'UPDATE ... SET dùng để sửa đổi giá trị dữ liệu bên trong các bản ghi hiện có.',
-        difficulty: 'Nhận biết'
+        explanation: 'Thứ tự chuẩn là: UPDATE tên_bảng SET cột = giá_trị WHERE điều_kiện.',
+        difficulty: 'Thông hiểu'
       },
       {
         id: 3,
-        question: 'Hậu quả gì xảy ra khi bạn thực thi lệnh: `UPDATE SAN_PHAM SET GiaTien = 0;`?',
+        question: 'Nếu thực hiện câu lệnh: `DELETE FROM HOC_SINH;` (không có mệnh đề WHERE), điều gì sẽ xảy ra?',
         options: [
-          'Toàn bộ tất cả sản phẩm trong cửa hàng đều bị đổi giá tiền về 0 đồng do thiếu mệnh đề WHERE',
-          'Chỉ sản phẩm đầu tiên đổi về 0 đồng',
-          'Phần mềm báo lỗi cú pháp',
-          'Không có sản phẩm nào bị ảnh hưởng'
+          'Toàn bộ tất cả các hàng dữ liệu trong bảng HOC_SINH sẽ bị xóa sạch, bảng trở nên rỗng',
+          'Hệ thống tự động xóa học sinh đầu tiên',
+          'MySQL báo lỗi cú pháp',
+          'Bảng HOC_SINH bị xóa hẳn cấu trúc khỏi CSDL'
         ],
         correctIndex: 0,
-        explanation: 'Khi thiếu mệnh đề WHERE, lệnh UPDATE sẽ áp dụng giá trị mới lên 100% các dòng trong bảng.',
+        explanation: 'DELETE không có WHERE sẽ xóa tất cả các hàng dữ liệu (nhưng khung cấu trúc bảng vẫn còn).',
         difficulty: 'Thông hiểu'
       },
       {
         id: 4,
-        question: 'Muốn xóa những học sinh có điểm rèn luyện dưới 50 điểm trong bảng `DANH_GIA`, câu lệnh nào ĐÚNG?',
+        question: 'Khi chèn dữ liệu kiểu Ngày tháng hoặc Chuỗi ký tự trong câu lệnh INSERT, quy tắc viết nào sau đây là BẮT BUỘC?',
         options: [
-          'DELETE FROM DANH_GIA WHERE DiemRenLuyen < 50;',
-          'REMOVE FROM DANH_GIA < 50;',
-          'DROP DANH_GIA WHERE DiemRenLuyen < 50;',
-          'CLEAR DATA < 50;'
+          'Phải đặt giá trị bên trong cặp dấu nháy đơn, ví dụ: \'Nguyễn Văn An\', \'2008-11-20\'',
+          'Phải viết bằng chữ in hoa',
+          'Phải đặt bên trong dấu ngoặc vuông [ ]',
+          'Không được có dấu cách'
         ],
         correctIndex: 0,
-        explanation: 'DELETE FROM kết hợp với điều kiện lọc WHERE xóa chính xác các bản ghi thỏa mãn.',
-        difficulty: 'Vận dụng'
+        explanation: 'Chuỗi ký tự (string literal) và ngày tháng (date literal) trong SQL luôn bắt buộc dùng nháy đơn.',
+        difficulty: 'Nhận biết'
       },
       {
         id: 5,
-        question: 'Trong câu lệnh INSERT INTO, giá trị dạng chuỗi (ký tự văn bản) hoặc ngày tháng phải được đặt trong cặp dấu nào?',
-        options: ['Cặp dấu nháy đơn \'...\' (hoặc nháy kép "...")', 'Cặp dấu ngoặc vuông [...]', 'Cặp dấu thăng #...#', 'Không cần đặt trong dấu nào'],
+        question: 'Để tăng điểm trung bình thêm 0.5 điểm cho tất cả học sinh lớp \'11A1\', câu lệnh SQL nào sau đây viết CHUẨN XÁC NHẤT?',
+        options: [
+          'UPDATE HOC_SINH SET DiemTB = DiemTB + 0.5 WHERE Lop = \'11A1\';',
+          'UPDATE DiemTB = DiemTB + 0.5 FROM HOC_SINH WHERE Lop = \'11A1\';',
+          'SET HOC_SINH DiemTB = 0.5 WHERE Lop = \'11A1\';',
+          'INCREASE DiemTB BY 0.5 IN HOC_SINH;'
+        ],
         correctIndex: 0,
-        explanation: 'Chuỗi ký tự và ngày tháng trong SQL bắt buộc phải được bao bọc trong dấu nháy.',
-        difficulty: 'Nhận biết'
+        explanation: 'Biểu thức `DiemTB = DiemTB + 0.5` kết hợp với `WHERE Lop = \'11A1\'` cập nhật chính xác cho toàn bộ lớp 11A1.',
+        difficulty: 'Vận dụng'
       }
     ],
     application: {
       project: {
-        title: 'Thực hành: Cập nhật Hồ sơ Đội Viên và Điểm số Học tập',
-        context: 'Lớp học có sự thay đổi thông tin học sinh cần được cập nhật vào CSDL.',
-        mission: 'Soạn thảo chuỗi lệnh SQL thực hiện 3 thao tác liên hoàn.',
+        title: 'Thực Hành: Vận Hành Dữ Liệu Độc Giả Thư Viện',
+        context: 'Cập nhật danh sách bạn đọc nhân dịp năm học mới.',
+        mission: 'Thực hiện chuỗi 3 thao tác: Thêm 2 độc giả mới, Cập nhật lớp học và Xóa độc giả chuyển trường.',
         steps: [
-          'Bước 1: Chèn 3 bạn học sinh mới vào bảng `HOC_SINH` bằng lệnh `INSERT INTO`.',
-          'Bước 2: Cập nhật địa chỉ của bạn "HS02" chuyển sang "Số 10 Đường Lê Duẩn" bằng lệnh `UPDATE`.',
-          'Bước 3: Xóa một bạn có mã "HS99" đã chuyển trường bằng lệnh `DELETE FROM ... WHERE`.',
-          'Bước 4: Chạy lệnh `SELECT * FROM HOC_SINH;` để kiểm tra kết quả.'
+          'Thao tác 1 (INSERT): Thêm 2 bạn: `(\'DG01\', \'Trần Văn Nam\', \'11A1\')`, `(\'DG02\', \'Lê Thu Hà\', \'11A2\')`.',
+          'Thao tác 2 (UPDATE): Bạn DG01 chuyển từ lớp 11A1 sang 11A3: `UPDATE DOC_GIA SET Lop = \'11A3\' WHERE MaDG = \'DG01\';`.',
+          'Thao tác 3 (DELETE): Bạn DG02 chuyển trường: `DELETE FROM DOC_GIA WHERE MaDG = \'DG02\';`.',
+          'Thao tác 4 (SELECT): `SELECT * FROM DOC_GIA;` kiểm tra kết quả cuối cùng.'
         ],
-        outputRequirement: 'Dữ liệu trong bảng được cập nhật chính xác, không còn bản ghi cũ.',
-        practicalTip: 'Nên viết lệnh vào tab Query và bấm F9 từng dòng một để quan sát thông báo thành công từ máy chủ.'
+        outputRequirement: 'Toàn bộ script SQL 4 bước chạy mượt mà trên HeidiSQL kèm bảng kết quả.',
+        practicalTip: 'Nên chạy câu `SELECT * FROM ... WHERE ...` trước để nhìn thấy bản ghi cần sửa trước khi thực thi lệnh UPDATE/DELETE.'
       },
       mindmap: {
         id: 'mm_11_21',
-        label: 'THAO TÁC DỮ LIỆU CRUD',
-        color: '#0891b2',
+        label: 'BỘ LỆNH CRUD',
+        color: '#4f46e5',
         children: [
           {
             id: 'mm_11_21_1',
-            label: 'Thêm & Đọc',
+            label: 'INSERT INTO (Thêm)',
             children: [
-              { id: 'mm_11_21_1_1', label: 'INSERT INTO ... VALUES' },
-              { id: 'mm_11_21_1_2', label: 'SELECT ... FROM ... WHERE' }
+              { id: 'mm_11_21_1_1', label: 'VALUES (giá_trị_1, giá_trị_2)' },
+              { id: 'mm_11_21_1_2', label: 'Chuỗi & Ngày dùng nháy đơn' },
+              { id: 'mm_11_21_1_3', label: 'Thêm nhiều dòng bằng dấu phẩy' }
             ]
           },
           {
             id: 'mm_11_21_2',
-            label: 'Sửa & Xóa an toàn',
+            label: 'UPDATE & DELETE',
             children: [
-              { id: 'mm_11_21_2_1', label: 'UPDATE ... SET ... WHERE' },
-              { id: 'mm_11_21_2_2', label: 'DELETE FROM ... WHERE' },
-              { id: 'mm_11_21_2_3', label: 'Cảnh báo mất WHERE' }
+              { id: 'mm_11_21_2_1', label: 'UPDATE SET cot = gia_tri' },
+              { id: 'mm_11_21_2_2', label: 'DELETE FROM TenBang' },
+              { id: 'mm_11_21_2_3', label: 'BẮT BUỘC PHẢI CÓ WHERE' }
             ]
           }
         ]
       }
     },
     completion: {
-      badgeName: 'Chuyên Viên Dữ Liệu CRUD 11',
-      badgeIcon: 'Database',
-      roleTitle: 'Chuyên Viên Thao Tác Dữ Liệu Thực Chiến',
-      congratsMessage: 'Xuất sắc! Bạn đã làm chủ 4 câu lệnh thao tác dữ liệu cốt lõi INSERT, UPDATE, DELETE, SELECT.',
-      skillsUnlocked: ['Thêm dữ liệu INSERT INTO', 'Cập nhật UPDATE có WHERE', 'Xóa an toàn DELETE']
+      badgeName: 'Bậc Thầy Thao Tác Dữ Liệu 11',
+      badgeIcon: 'Edit3',
+      roleTitle: 'Chuyên Viên Thao Tác & Quản Lý Dữ Liệu SQL',
+      congratsMessage: 'Tuyệt vời! Bạn đã thành thạo trọn bộ 4 thao tác CRUD kinh điển và hiểu sâu sắc nguyên tắc an toàn dữ liệu.',
+      skillsUnlocked: ['Lệnh chèn dữ liệu INSERT INTO', 'Cập nhật dữ liệu UPDATE SET', 'Xóa an toàn DELETE FROM với WHERE']
     }
   }
 ];
