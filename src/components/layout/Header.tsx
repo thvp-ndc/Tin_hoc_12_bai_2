@@ -8,10 +8,13 @@ import {
   Minimize2, 
   Menu, 
   GraduationCap,
-  Network
+  Network,
+  ShieldCheck
 } from 'lucide-react';
 
 import { Lesson } from '../../types/lesson';
+import { StudentUser } from '../../types/auth';
+import { UserMenu } from '../auth/UserMenu';
 import { sounds } from '../../utils/soundEffects';
 
 interface HeaderProps {
@@ -29,7 +32,12 @@ interface HeaderProps {
   onOpenDrawer: () => void;
   onStepSelect: (step: number) => void;
   onOpenCurriculumMindmap?: () => void;
+  currentUser: StudentUser | null;
+  onOpenAuth: (mode?: 'login' | 'register') => void;
+  onOpenProfile: () => void;
+  onOpenAdmin: () => void;
 }
+
 
 export const Header: React.FC<HeaderProps> = ({
   currentLesson,
@@ -46,7 +54,12 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenDrawer,
   onStepSelect,
   onOpenCurriculumMindmap,
+  currentUser,
+  onOpenAuth,
+  onOpenProfile,
+  onOpenAdmin,
 }) => {
+
 
   const [isFullscreen, setIsFullscreen] = React.useState(false);
 
@@ -148,7 +161,27 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Right: Gamification & Controls */}
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          {/* Student Auth & Profile */}
+          <UserMenu
+            currentUser={currentUser}
+            onOpenAuth={onOpenAuth}
+            onOpenProfile={onOpenProfile}
+          />
+
+          {/* Teacher Admin Dashboard Button */}
+          <button
+            onClick={() => {
+              sounds.playClick();
+              onOpenAdmin();
+            }}
+            className="p-2 rounded-xl bg-slate-800 hover:bg-amber-500/20 text-slate-300 hover:text-amber-400 border border-slate-700 hover:border-amber-500/40 transition-all cursor-pointer"
+            title="Cổng Quản trị giáo viên (Theo dõi học sinh & xuất báo cáo)"
+          >
+            <ShieldCheck className="w-4 h-4" />
+          </button>
+
           {/* Master Curriculum Mindmap Button */}
+
           {onOpenCurriculumMindmap && (
             <button
               onClick={() => {

@@ -14,10 +14,32 @@ import { CertificateModal } from './components/ui/CertificateModal';
 import { SmartboardControls } from './components/ui/SmartboardControls';
 import { CurriculumMindmapModal } from './components/ui/CurriculumMindmapModal';
 
+import { AuthModal } from './components/auth/AuthModal';
+import { UserProfileModal } from './components/auth/UserProfileModal';
+import { AdminLoginModal } from './components/admin/AdminLoginModal';
+import { AdminDashboardModal } from './components/admin/AdminDashboardModal';
+import { StudentUser } from './types/auth';
+import { getCurrentStudent, logoutStudent } from './services/authService';
+import { 
+  getCompletedLessonIds, 
+  saveLessonProgress, 
+  markLessonComplete, 
+  calculateStudentStats, 
+  saveCertificate 
+} from './services/progressService';
+
 import { getLesson, getTotalLessons } from './data/curriculumManager';
 import { sounds } from './utils/soundEffects';
 
 export function App() {
+  // Authentication & Profile state
+  const [currentUser, setCurrentUser] = useState<StudentUser | null>(() => getCurrentStudent());
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [authModalMode, setAuthModalMode] = useState<'login' | 'register'>('register');
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
+  const [isAdminLoginOpen, setIsAdminLoginOpen] = useState(false);
+  const [isAdminDashboardOpen, setIsAdminDashboardOpen] = useState(false);
+
   // Multi-grade state: 10 | 11 | 12
   const [currentGrade, setCurrentGrade] = useState<10 | 11 | 12>(() => {
     const saved = localStorage.getItem('tin_current_grade');
@@ -40,8 +62,10 @@ export function App() {
   const [isCompletionOpen, setIsCompletionOpen] = useState<boolean>(false);
   const [isCertificateOpen, setIsCertificateOpen] = useState<boolean>(false);
   const [isCurriculumMindmapOpen, setIsCurriculumMindmapOpen] = useState<boolean>(false);
-  const [studentName, setStudentName] = useState<string>('Nguyễn Văn An');
-
+  const [studentName, setStudentName] = useState<string>(() => {
+    const student = getCurrentStudent();
+    return student ? student.fullName : 'Nguyễn Văn An';
+  });
 
   // Track user interactions per lesson
   const [completedObjectives, setCompletedObjectives] = useState<string[]>([]);
@@ -54,6 +78,14 @@ export function App() {
 
   // Completed lessons map by grade
   const [completedLessonsByGrade, setCompletedLessonsByGrade] = useState<Record<number, number[]>>(() => {
+    const student = getCurrentStudent();
+    if (student) {
+      return {
+        10: getCompletedLessonIds(student.id, 10),
+        11: getCompletedLessonIds(student.id, 11),
+        12: getCompletedLessonIds(student.id, 12)
+      };
+    }
     const saved = localStorage.getItem('tin_completed_lessons');
     if (saved) {
       try {
@@ -64,6 +96,23 @@ export function App() {
     }
     return { 10: [1], 11: [1], 12: [1] };
   });
+
+  // Khi học sinh đăng nhập / đổi tài khoản -> Đồng bộ lại tiến độ và tên
+  useEffect(() => {
+    if (currentUser) {
+      setStudentName(currentUser.fullName);
+      const stats = calculateStudentStats(currentUser.id);
+      if (stats.totalXp > 0) setXp(stats.totalXp);
+      setCompletedLessonsByGrade({
+        10: getCompletedLessonIds(currentUser.id, 10),
+        11: getCompletedLessonIds(currentUser.id, 11),
+        12: getCompletedLessonIds(currentUser.id, 12)
+      });
+    } else {
+      setStudentName('Nguyễn Văn An');
+    }
+  }, [currentUser]);
+
 
   const totalLessonsInGrade = getTotalLessons(currentGrade);
   const currentLesson = getLesson(currentGrade, currentLessonId);
@@ -158,8 +207,8 @@ export function App() {
     const percent = Math.round((score / total) * 100);
     setQuizScorePercent(percent);
     handleGainXp(xpGain);
-
     setCompletedLessonsByGrade(prev => {
+
       const currentList = prev[currentGrade] || [];
       if (!currentList.includes(currentLessonId)) {
         return {
@@ -169,6 +218,19 @@ export function App() {
       }
       return prev;
     });
+
+    // Tự động lưu tiến độ và điểm số vào tài khoản học sinh
+    if (currentUser) {
+      markLessonComplete(currentUser.id, currentGrade, currentLessonId, xpGain, percent);
+      if (percent >= 80) {
+        saveCertificate(currentUser.id, {
+          grade: currentGrade,
+          lessonId: currentLessonId,
+          lessonTitle: currentLesson.title,
+          scorePercent: percent
+        });
+      }
+    }
   };
 
   // Keyboard navigation for Smartboard/Presentation
@@ -178,13 +240,9 @@ export function App() {
         return;
       }
       if (e.key === 'ArrowRight' || e.key === 'PageDown') {
-        if (activeStep < 8) {
-          scrollToStep(activeStep + 1);
-        }
+        scrollToStep(Math.min(8, activeStep + 1));
       } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
-        if (activeStep > 1) {
-          scrollToStep(activeStep - 1);
-        }
+        scrollToStep(Math.max(1, activeStep - 1));
       }
     };
 
@@ -212,6 +270,13 @@ export function App() {
         onOpenDrawer={() => setIsDrawerOpen(true)}
         onStepSelect={scrollToStep}
         onOpenCurriculumMindmap={() => setIsCurriculumMindmapOpen(true)}
+        currentUser={currentUser}
+        onOpenAuth={(mode = 'register') => {
+          setAuthModalMode(mode);
+          setIsAuthModalOpen(true);
+        }}
+        onOpenProfile={() => setIsProfileModalOpen(true)}
+        onOpenAdmin={() => setIsAdminLoginOpen(true)}
       />
 
 
@@ -361,8 +426,46 @@ export function App() {
         onSelectLesson={handleSelectLesson}
       />
 
+      {/* Student Auth Modal (Register / Login) */}
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+        defaultMode={authModalMode}
+        onSuccess={(user) => {
+          setCurrentUser(user);
+          setStudentName(user.fullName);
+        }}
+      />
+
+      {/* Student Profile Modal */}
+      {currentUser && (
+        <UserProfileModal
+          isOpen={isProfileModalOpen}
+          onClose={() => setIsProfileModalOpen(false)}
+          user={currentUser}
+          onLogout={() => {
+            logoutStudent();
+            setCurrentUser(null);
+          }}
+        />
+      )}
+
+      {/* Teacher Admin Login Modal */}
+      <AdminLoginModal
+        isOpen={isAdminLoginOpen}
+        onClose={() => setIsAdminLoginOpen(false)}
+        onSuccess={() => setIsAdminDashboardOpen(true)}
+      />
+
+      {/* Teacher Admin Dashboard Modal */}
+      <AdminDashboardModal
+        isOpen={isAdminDashboardOpen}
+        onClose={() => setIsAdminDashboardOpen(false)}
+      />
+
       {/* Footer */}
       <Footer />
+
 
     </div>
   );

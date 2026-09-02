@@ -103,7 +103,12 @@ class SoundController {
     } catch (e) {}
   }
 
+  public playError() {
+    this.playIncorrect();
+  }
+
   public playWin() {
+
     const ctx = this.getContext();
     if (!ctx) return;
 
