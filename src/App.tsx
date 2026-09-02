@@ -19,7 +19,8 @@ import { UserProfileModal } from './components/auth/UserProfileModal';
 import { AdminLoginModal } from './components/admin/AdminLoginModal';
 import { AdminDashboardModal } from './components/admin/AdminDashboardModal';
 import { StudentUser } from './types/auth';
-import { getCurrentStudent, logoutStudent } from './services/authService';
+import { getCurrentStudent, logoutStudent, refreshStudentsFromCloud } from './services/authService';
+
 import { 
   getCompletedLessonIds, 
   saveLessonProgress, 
@@ -122,7 +123,14 @@ export function App() {
     }
   }, [currentUser]);
 
+  // Tự động kéo dữ liệu học sinh mới nhất từ Cloud khi mở ứng dụng
+  useEffect(() => {
+    refreshStudentsFromCloud().catch(() => {});
+  }, []);
+
+
   const totalLessonsInGrade = getTotalLessons(currentGrade);
+
   const currentLesson = getLesson(currentGrade, currentLessonId);
   const currentCompletedLessons = completedLessonsByGrade[currentGrade] || [];
 
