@@ -24,11 +24,13 @@ export const UserMenu: React.FC<UserMenuProps> = ({
         className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs shadow-glow-primary hover:scale-105 active:scale-95 transition-all cursor-pointer"
         title="Đăng ký hoặc đăng nhập tài khoản học sinh để lưu tiến độ"
       >
-        <LogIn className="w-3.5 h-3.5" />
-        <span>Đăng Ký Học</span>
+        <LogIn className="w-3.5 h-3.5 shrink-0" />
+        <span className="hidden sm:inline">Đăng Ký Học</span>
+        <span className="sm:hidden text-[11px]">Đăng ký</span>
       </button>
     );
   }
+
 
   return (
     <button
