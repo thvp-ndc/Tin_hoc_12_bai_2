@@ -35,46 +35,47 @@ export const WarmUpScenario: React.FC<WarmUpScenarioProps> = ({
   const selectedOption = lesson.warmup.pollOptions.find(o => o.id === selectedOptionId);
 
   return (
-    <section className="space-y-6">
+    <section className="space-y-4 sm:space-y-6">
       {/* Section Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-2xl bg-gradient-to-tr from-amber-500 to-orange-600 text-white shadow-floating">
-            <Compass className="w-6 h-6" />
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex items-center gap-2.5 sm:gap-3">
+          <div className="p-2 sm:p-2.5 rounded-2xl bg-gradient-to-tr from-amber-500 to-orange-600 text-white shadow-floating shrink-0">
+            <Compass className="w-5 h-5 sm:w-6 sm:h-6" />
           </div>
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-amber-400">Bước 3 / 8</span>
-            <h2 className="text-2xl sm:text-3xl font-black text-white">Khởi Động & Tình Huống Thực Tế</h2>
+            <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-amber-400">Bước 3 / 8</span>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white">Khởi Động & Tình Huống Thực Tế</h2>
           </div>
         </div>
-        <div className="flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">
+        <div className="flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">
           <Sparkles className="w-3.5 h-3.5 text-amber-400" />
           +20 XP
         </div>
       </div>
 
       {/* Main Scenario Box */}
-      <div className="rounded-3xl bg-gradient-to-br from-slate-900 to-slate-850 border border-slate-700/80 p-6 sm:p-8 shadow-floating-lg space-y-6">
+      <div className="rounded-2xl sm:rounded-3xl bg-gradient-to-br from-slate-900 to-slate-850 border border-slate-700/80 p-4 sm:p-8 shadow-floating-lg space-y-5 sm:space-y-6">
         {/* Story Paragraph */}
-        <div className="space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30">
-            <Lightbulb className="w-4 h-4 text-amber-400" />
+        <div className="space-y-2.5 sm:space-y-3">
+          <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30">
+            <Lightbulb className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400" />
             Tình huống gợi mở
           </div>
-          <h3 className="text-xl sm:text-2xl font-bold text-white leading-snug">
+          <h3 className="text-lg sm:text-2xl font-bold text-white leading-snug">
             {lesson.warmup.title}
           </h3>
-          <p className="text-slate-300 text-base sm:text-lg leading-relaxed bg-slate-800/40 p-4 rounded-2xl border border-slate-700/60">
+          <p className="text-slate-300 text-xs sm:text-base md:text-lg leading-relaxed bg-slate-800/40 p-3.5 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-700/60">
             {lesson.warmup.scenario}
           </p>
         </div>
 
         {/* Quick Poll Widget */}
-        <div className="space-y-4 pt-2">
-          <div className="flex items-center gap-2 text-slate-200 font-bold text-base sm:text-lg">
-            <HelpCircle className="w-5 h-5 text-cyan-400 shrink-0" />
+        <div className="space-y-3.5 sm:space-y-4 pt-1 sm:pt-2">
+          <div className="flex items-start sm:items-center gap-2 text-slate-200 font-bold text-sm sm:text-lg">
+            <HelpCircle className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400 shrink-0 mt-0.5 sm:mt-0" />
             <span>{lesson.warmup.pollQuestion}</span>
           </div>
+
 
           {/* Options List */}
           <div className="space-y-3">

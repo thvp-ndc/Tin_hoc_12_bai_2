@@ -24,7 +24,7 @@ export const SmartboardControls: React.FC<SmartboardControlsProps> = ({
   onOpenCompletion
 }) => {
   return (
-    <div className="fixed bottom-6 right-6 z-40 flex items-center gap-2 p-2 rounded-2xl bg-slate-900/95 border border-cyan-500/50 shadow-2xl backdrop-blur-md animate-in slide-in-from-bottom">
+    <div className="fixed bottom-3 right-3 sm:bottom-6 sm:right-6 z-40 flex items-center gap-1.5 sm:gap-2 p-1.5 sm:p-2 rounded-2xl bg-slate-900/95 border border-cyan-500/50 shadow-2xl backdrop-blur-md animate-in slide-in-from-bottom">
       {/* Teacher/Smartboard Indicator */}
       <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-cyan-950/80 text-cyan-300 border border-cyan-500/30 text-xs font-bold">
         <Tv className="w-4 h-4 text-cyan-400" />
@@ -38,10 +38,10 @@ export const SmartboardControls: React.FC<SmartboardControlsProps> = ({
           sounds.playClick();
           onStepChange(activeStep - 1);
         }}
-        className="p-3 rounded-xl bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold transition-all"
+        className="p-2 sm:p-3 rounded-xl bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold transition-all"
         title="Bước trước (Phím mũi tên trái)"
       >
-        <ChevronLeft className="w-5 h-5" />
+        <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
       </button>
 
       {/* Next Step Button */}
@@ -51,11 +51,11 @@ export const SmartboardControls: React.FC<SmartboardControlsProps> = ({
           sounds.playClick();
           onStepChange(activeStep + 1);
         }}
-        className="px-4 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-black transition-all flex items-center gap-1.5 shadow-glow-cyan"
+        className="px-3 py-2 sm:px-4 sm:py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-black transition-all flex items-center gap-1 sm:gap-1.5 shadow-glow-cyan text-xs sm:text-sm"
         title="Bước tiếp theo (Phím mũi tên phải)"
       >
-        <span>Bước tiếp</span>
-        <ChevronRight className="w-5 h-5" />
+        <span className="hidden xs:inline sm:inline">Bước tiếp</span>
+        <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
       </button>
 
       {/* Trigger Step 8 Victory Modal */}
@@ -64,10 +64,10 @@ export const SmartboardControls: React.FC<SmartboardControlsProps> = ({
           sounds.playWin();
           onOpenCompletion();
         }}
-        className="p-3 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-400 border border-amber-500/40 transition-all"
+        className="p-2 sm:p-3 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-400 border border-amber-500/40 transition-all"
         title="Mở màn hình vinh danh hoàn thành bài học"
       >
-        <Award className="w-5 h-5" />
+        <Award className="w-4 h-4 sm:w-5 sm:h-5" />
       </button>
 
       {/* Scroll to Top */}
@@ -76,11 +76,12 @@ export const SmartboardControls: React.FC<SmartboardControlsProps> = ({
           sounds.playClick();
           onScrollToTop();
         }}
-        className="p-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition-all"
+        className="p-2 sm:p-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition-all"
         title="Cuộn lên đầu trang"
       >
-        <ArrowUp className="w-5 h-5" />
+        <ArrowUp className="w-4 h-4 sm:w-5 sm:h-5" />
       </button>
     </div>
+
   );
 };

@@ -53,29 +53,29 @@ export const ObjectiveCards: React.FC<ObjectiveCardsProps> = ({
   };
 
   return (
-    <section className="space-y-6">
+    <section className="space-y-4 sm:space-y-6">
       {/* Step Section Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-2xl bg-gradient-to-tr from-cyan-600 to-blue-600 text-white shadow-glow-cyan">
-            <Target className="w-6 h-6" />
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex items-center gap-2.5 sm:gap-3">
+          <div className="p-2 sm:p-2.5 rounded-2xl bg-gradient-to-tr from-cyan-600 to-blue-600 text-white shadow-glow-cyan shrink-0">
+            <Target className="w-5 h-5 sm:w-6 sm:h-6" />
           </div>
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-cyan-400">Bước 2 / 8</span>
-            <h2 className="text-2xl sm:text-3xl font-black text-white">Mục Tiêu Bài Học</h2>
+            <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-cyan-400">Bước 2 / 8</span>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white">Mục Tiêu Bài Học</h2>
           </div>
         </div>
-        <div className="text-xs font-semibold px-3 py-1.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700">
+        <div className="text-[11px] sm:text-xs font-semibold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700">
           Đã đạt {completedObjectives.length}/{lesson.objectives.length} mục tiêu
         </div>
       </div>
 
-      <p className="text-slate-300 text-sm sm:text-base">
+      <p className="text-slate-300 text-xs sm:text-sm md:text-base leading-relaxed">
         Sau khi học xong bài này, học sinh sẽ làm chủ 3 chuẩn năng lực cốt lõi theo khung GDPT 2018. Hãy tích chọn khi bạn đã tự tin nắm vững từng phần:
       </p>
 
       {/* 3 Objective Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-5">
         {lesson.objectives.map((obj) => {
           const theme = getCategoryTheme(obj.category);
           const isDone = completedObjectives.includes(obj.id);
@@ -87,12 +87,13 @@ export const ObjectiveCards: React.FC<ObjectiveCardsProps> = ({
                 sounds.playCorrect();
                 onToggleObjective(obj.id);
               }}
-              className={`relative rounded-2xl border p-6 flex flex-col justify-between transition-all duration-300 cursor-pointer group bg-gradient-to-b ${theme.bgGradient} ${
+              className={`relative rounded-2xl border p-4 sm:p-6 flex flex-col justify-between transition-all duration-300 cursor-pointer group bg-gradient-to-b ${theme.bgGradient} ${
                 isDone
                   ? 'border-emerald-500 shadow-glow-primary bg-slate-900/90'
                   : `${theme.borderColor} hover:border-slate-500 bg-slate-900/60 hover:-translate-y-1 shadow-floating`
               }`}
             >
+
               {/* Card Top */}
               <div className="space-y-4">
                 <div className="flex items-center justify-between">

@@ -66,26 +66,26 @@ export const AssessmentQuiz: React.FC<AssessmentQuizProps> = ({
   const scorePercent = Math.round((correctCount / questions.length) * 100);
 
   return (
-    <section className="space-y-6">
+    <section className="space-y-4 sm:space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-2xl bg-gradient-to-tr from-rose-500 to-pink-600 text-white shadow-floating">
-            <CheckSquare className="w-6 h-6" />
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex items-center gap-2.5 sm:gap-3">
+          <div className="p-2 sm:p-2.5 rounded-2xl bg-gradient-to-tr from-rose-500 to-pink-600 text-white shadow-floating shrink-0">
+            <CheckSquare className="w-5 h-5 sm:w-6 sm:h-6" />
           </div>
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-rose-400">Bước 6 / 8</span>
-            <h2 className="text-2xl sm:text-3xl font-black text-white">Tự Đánh Giá & Phản Hồi Trắc Nghiệm</h2>
+            <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-rose-400">Bước 6 / 8</span>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white">Tự Đánh Giá & Phản Hồi Trắc Nghiệm</h2>
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30">
+          <div className="flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30">
             <Sparkles className="w-3.5 h-3.5 text-rose-400" />
             +100 XP
           </div>
           <button
             onClick={handleResetQuiz}
-            className="p-2 rounded-xl bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 transition-all"
+            className="p-1.5 sm:p-2 rounded-xl bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 transition-all"
             title="Làm lại bài kiểm tra"
           >
             <RotateCcw className="w-4 h-4" />
@@ -94,10 +94,10 @@ export const AssessmentQuiz: React.FC<AssessmentQuizProps> = ({
       </div>
 
       {/* Main Quiz Card */}
-      <div className="rounded-3xl bg-slate-900 border border-slate-700/80 p-6 sm:p-8 shadow-floating-lg space-y-6 text-white">
+      <div className="rounded-2xl sm:rounded-3xl bg-slate-900 border border-slate-700/80 p-4 sm:p-8 shadow-floating-lg space-y-5 sm:space-y-6 text-white">
         {/* Question Selector Dots / Progress */}
-        <div className="flex items-center justify-between gap-4 pb-4 border-b border-slate-800">
-          <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center justify-between gap-3 pb-3 sm:pb-4 border-b border-slate-800">
+          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar py-1">
             {questions.map((q, idx) => {
               const isAnswered = userAnswers[q.id] !== undefined;
               const isCorrect = userAnswers[q.id] === q.correctIndex;
@@ -110,9 +110,9 @@ export const AssessmentQuiz: React.FC<AssessmentQuizProps> = ({
                     sounds.playClick();
                     setCurrentQIndex(idx);
                   }}
-                  className={`w-8 h-8 rounded-xl font-bold text-xs transition-all flex items-center justify-center border ${
+                  className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl font-bold text-xs transition-all flex items-center justify-center border shrink-0 ${
                     isCurrent
-                      ? 'border-cyan-400 bg-cyan-500 text-slate-950 shadow-glow-cyan scale-110'
+                      ? 'border-cyan-400 bg-cyan-500 text-slate-950 shadow-glow-cyan scale-105 sm:scale-110'
                       : isAnswered
                       ? isCorrect
                         ? 'border-emerald-500/40 bg-emerald-950/40 text-emerald-400'
@@ -126,23 +126,24 @@ export const AssessmentQuiz: React.FC<AssessmentQuizProps> = ({
             })}
           </div>
 
-          <div className="text-xs text-slate-400">
+          <div className="text-[11px] sm:text-xs text-slate-400">
             Đã làm: <span className="font-bold text-white">{totalAnswered}/{questions.length} câu</span>
           </div>
         </div>
 
         {/* Current Question View */}
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           <div className="space-y-2">
             <div className="flex items-center gap-2">
               <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30">
                 Câu {currentQIndex + 1} / {questions.length} • {currentQ.difficulty}
               </span>
             </div>
-            <h3 className="text-lg sm:text-xl font-bold text-white leading-relaxed">
+            <h3 className="text-base sm:text-xl font-bold text-white leading-relaxed">
               {currentQ.question}
             </h3>
           </div>
+
 
           {/* Options List */}
           <div className="space-y-3">
@@ -167,10 +168,10 @@ export const AssessmentQuiz: React.FC<AssessmentQuizProps> = ({
                 <div
                   key={optIdx}
                   onClick={() => handleSelectOption(currentQ.id, optIdx)}
-                  className={`p-4 rounded-2xl border transition-all duration-200 cursor-pointer flex items-center justify-between gap-4 ${styleClasses}`}
+                  className={`p-3 sm:p-4 rounded-xl sm:rounded-2xl border transition-all duration-200 cursor-pointer flex items-center justify-between gap-3 ${styleClasses}`}
                 >
-                  <div className="flex items-center gap-3">
-                    <div className={`w-7 h-7 rounded-xl flex items-center justify-center font-bold text-xs shrink-0 border ${
+                  <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+                    <div className={`w-6 h-6 sm:w-7 sm:h-7 rounded-lg sm:rounded-xl flex items-center justify-center font-bold text-xs shrink-0 border ${
                       hasAnsweredCurrent && isCorrectAnswer
                         ? 'bg-emerald-500 text-slate-950 border-emerald-300'
                         : hasAnsweredCurrent && isSelected
@@ -179,8 +180,9 @@ export const AssessmentQuiz: React.FC<AssessmentQuizProps> = ({
                     }`}>
                       {String.fromCharCode(65 + optIdx)}
                     </div>
-                    <span className="text-sm sm:text-base">{optionText}</span>
+                    <span className="text-xs sm:text-base leading-relaxed">{optionText}</span>
                   </div>
+
 
                   {hasAnsweredCurrent && (
                     <div className="shrink-0">

@@ -61,42 +61,43 @@ export const CompletionModal: React.FC<CompletionModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md animate-in fade-in">
-      <div className="relative w-full max-w-lg bg-slate-900 border border-slate-700 rounded-3xl p-6 sm:p-8 text-white shadow-2xl text-center space-y-6">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/85 backdrop-blur-md animate-in fade-in">
+      <div className="relative w-full max-w-lg bg-slate-900 border border-slate-700 rounded-2xl sm:rounded-3xl p-4 sm:p-8 text-white shadow-2xl text-center space-y-4 sm:space-y-6 max-h-[92vh] overflow-y-auto">
         {/* Close Button */}
         <button
           onClick={() => {
             sounds.playClick();
             onClose();
           }}
-          className="absolute top-4 right-4 p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
         >
           <X className="w-5 h-5" />
         </button>
 
         {/* Central Floating Trophy Graphic */}
-        <div className="relative mx-auto w-24 h-24 rounded-3xl bg-gradient-to-tr from-amber-500 to-yellow-300 p-0.5 shadow-glow-cyan animate-bounce flex items-center justify-center">
-          <div className="w-full h-full rounded-[22px] bg-slate-950/80 flex items-center justify-center">
-            <Trophy className="w-12 h-12 text-amber-400" />
+        <div className="relative mx-auto w-16 h-16 sm:w-24 sm:h-24 rounded-2xl sm:rounded-3xl bg-gradient-to-tr from-amber-500 to-yellow-300 p-0.5 shadow-glow-cyan animate-bounce flex items-center justify-center">
+          <div className="w-full h-full rounded-[14px] sm:rounded-[22px] bg-slate-950/80 flex items-center justify-center">
+            <Trophy className="w-8 h-8 sm:w-12 sm:h-12 text-amber-400" />
           </div>
         </div>
 
         {/* Congratulations Title */}
-        <div className="space-y-1.5">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-amber-500/20 text-amber-300 border border-amber-500/30">
-            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+        <div className="space-y-1 sm:space-y-1.5">
+          <div className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs font-black uppercase tracking-wider bg-amber-500/20 text-amber-300 border border-amber-500/30">
+            <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-400" />
             HOÀN THÀNH BÀI HỌC 8 BƯỚC
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-white">
+          <h2 className="text-xl sm:text-3xl font-black text-white">
             CHÚC MỪNG BẠN!
           </h2>
-          <p className="text-slate-300 text-sm">
+          <p className="text-slate-300 text-xs sm:text-sm">
             {lesson.completion.congratsMessage}
           </p>
         </div>
 
         {/* Reward Badges & XP summary card */}
-        <div className="p-4 rounded-2xl bg-slate-800/80 border border-slate-700/80 grid grid-cols-2 gap-3">
+        <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-800/80 border border-slate-700/80 grid grid-cols-2 gap-2 sm:gap-3">
+
           <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-700 text-center space-y-1">
             <span className="text-[10px] uppercase font-bold text-slate-400">Điểm kinh nghiệm</span>
             <div className="text-xl font-black text-amber-300">+{xpEarned} XP</div>
