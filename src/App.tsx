@@ -125,8 +125,20 @@ export function App() {
 
   // Tự động kéo dữ liệu học sinh mới nhất từ Cloud khi mở ứng dụng
   useEffect(() => {
-    refreshStudentsFromCloud().catch(() => {});
+    refreshStudentsFromCloud().then(() => {
+      const cur = getCurrentStudent();
+      if (cur) {
+        const stats = calculateStudentStats(cur.id);
+        setXp(stats.totalXp);
+        setCompletedLessonsByGrade({
+          10: getCompletedLessonIds(cur.id, 10),
+          11: getCompletedLessonIds(cur.id, 11),
+          12: getCompletedLessonIds(cur.id, 12)
+        });
+      }
+    }).catch(() => {});
   }, []);
+
 
 
   const totalLessonsInGrade = getTotalLessons(currentGrade);
