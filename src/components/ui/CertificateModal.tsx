@@ -4,9 +4,7 @@ import {
   Download, 
   Printer, 
   X, 
-  Sparkles, 
-  CheckCircle,
-  GraduationCap
+  CheckCircle
 } from 'lucide-react';
 import { Lesson } from '../../types/lesson';
 import { sounds } from '../../utils/soundEffects';
@@ -46,7 +44,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
         quality: 1
       });
       const link = document.createElement('a');
-      link.download = `Chung_Nhan_Tin_Hoc_12_${lesson.code}_${studentName || 'Hoc_Sinh'}.png`;
+      link.download = `Chung_Nhan_Tin_Hoc_${lesson.grade}_${lesson.code}_${studentName || 'Hoc_Sinh'}.png`;
       link.href = dataUrl;
       link.click();
     } catch (err) {
@@ -96,7 +94,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
             type="text"
             value={studentName}
             onChange={(e) => onUpdateStudentName(e.target.value)}
-            placeholder="Ví dụ: Nguyễn Văn An - Lớp 12A1"
+            placeholder={`Ví dụ: Nguyễn Văn An - Lớp ${lesson.grade}A1`}
             className="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-sm font-semibold text-cyan-300 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500"
           />
         </div>
@@ -116,14 +114,16 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
             <h2 className="text-xl sm:text-2xl font-black text-amber-900 tracking-tight pt-2 uppercase">
               CHỨNG NHẬN HOÀN THÀNH BÀI HỌC
             </h2>
-            <p className="text-xs text-slate-600 font-medium">Chương trình GDPT 2018 môn Tin học 12</p>
+            <p className="text-xs text-slate-600 font-medium">
+              Chương trình GDPT 2018 môn Tin học {lesson.grade} {lesson.grade >= 11 ? '(Định hướng Tin học Ứng dụng)' : ''}
+            </p>
           </div>
 
           {/* Student Name */}
           <div className="py-2 space-y-1">
             <p className="text-xs text-slate-600 italic">Chứng nhận em:</p>
             <div className="text-2xl sm:text-3xl font-black text-blue-900 font-serif tracking-wide border-b-2 border-amber-400/60 pb-1 inline-block min-w-[200px]">
-              {studentName || 'HỌC SINH LỚP 12'}
+              {studentName || `HỌC SINH LỚP ${lesson.grade}`}
             </div>
           </div>
 
@@ -152,9 +152,9 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
             <div className="text-left space-y-1">
               <div className="flex items-center gap-1 text-[10px] font-bold text-slate-600">
                 <CheckCircle className="w-3.5 h-3.5 text-emerald-600" />
-                <span>Nền tảng EdTech Tin học 12</span>
+                <span>Nền tảng EdTech Tin học {lesson.grade}</span>
               </div>
-              <div className="text-[9px] text-slate-500">Mã số: TH12-KNTT-{lesson.id}</div>
+              <div className="text-[9px] text-slate-500">Mã số: TH{lesson.grade}-KNTT-{lesson.id}</div>
             </div>
 
             <div className="text-right space-y-1">

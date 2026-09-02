@@ -13,11 +13,24 @@ import { CompletionModal } from './components/steps/CompletionModal';
 import { CertificateModal } from './components/ui/CertificateModal';
 import { SmartboardControls } from './components/ui/SmartboardControls';
 
-import { getLessonById } from './data/lessonsData';
+import { getLesson, getTotalLessons } from './data/curriculumManager';
 import { sounds } from './utils/soundEffects';
 
 export function App() {
-  const [currentLessonId, setCurrentLessonId] = useState<number>(1);
+  // Multi-grade state: 10 | 11 | 12
+  const [currentGrade, setCurrentGrade] = useState<10 | 11 | 12>(() => {
+    const saved = localStorage.getItem('tin_current_grade');
+    if (saved === '10' || saved === '11' || saved === '12') {
+      return parseInt(saved) as 10 | 11 | 12;
+    }
+    return 11; // Default to Grade 11 Applied Informatics as requested
+  });
+
+  const [currentLessonId, setCurrentLessonId] = useState<number>(() => {
+    const saved = localStorage.getItem(`tin_${currentGrade}_lesson_id`);
+    return saved ? parseInt(saved) : 1;
+  });
+
   const [activeStep, setActiveStep] = useState<number>(1);
   const [xp, setXp] = useState<number>(150);
   const [soundEnabled, setSoundEnabled] = useState<boolean>(true);
@@ -36,10 +49,32 @@ export function App() {
   const [hasDownloadedMindmap, setHasDownloadedMindmap] = useState<boolean>(false);
   const [quizScorePercent, setQuizScorePercent] = useState<number>(100);
 
-  // Global completed lessons list
-  const [completedLessons, setCompletedLessons] = useState<number[]>([1]);
+  // Completed lessons map by grade
+  const [completedLessonsByGrade, setCompletedLessonsByGrade] = useState<Record<number, number[]>>(() => {
+    const saved = localStorage.getItem('tin_completed_lessons');
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch {
+        // Fallback
+      }
+    }
+    return { 10: [1], 11: [1], 12: [1] };
+  });
 
-  const currentLesson = getLessonById(currentLessonId);
+  const totalLessonsInGrade = getTotalLessons(currentGrade);
+  const currentLesson = getLesson(currentGrade, currentLessonId);
+  const currentCompletedLessons = completedLessonsByGrade[currentGrade] || [1];
+
+  // Save current grade & lesson to localStorage
+  useEffect(() => {
+    localStorage.setItem('tin_current_grade', currentGrade.toString());
+    localStorage.setItem(`tin_${currentGrade}_lesson_id`, currentLessonId.toString());
+  }, [currentGrade, currentLessonId]);
+
+  useEffect(() => {
+    localStorage.setItem('tin_completed_lessons', JSON.stringify(completedLessonsByGrade));
+  }, [completedLessonsByGrade]);
 
   // References for step scrolling
   const stepRefs = {
@@ -75,8 +110,7 @@ export function App() {
     setSmartboardMode(prev => !prev);
   };
 
-  const handleSelectLesson = (id: number) => {
-    setCurrentLessonId(id);
+  const resetLessonState = () => {
     setActiveStep(1);
     setCompletedObjectives([]);
     setHasAnsweredPoll(false);
@@ -85,6 +119,20 @@ export function App() {
     setHasCompletedQuiz(false);
     setHasDownloadedMindmap(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleSelectGrade = (newGrade: 10 | 11 | 12) => {
+    if (newGrade === currentGrade) return;
+    setCurrentGrade(newGrade);
+    const savedLesson = localStorage.getItem(`tin_${newGrade}_lesson_id`);
+    const targetLessonId = savedLesson ? Math.min(parseInt(savedLesson), getTotalLessons(newGrade)) : 1;
+    setCurrentLessonId(targetLessonId);
+    resetLessonState();
+  };
+
+  const handleSelectLesson = (id: number) => {
+    setCurrentLessonId(id);
+    resetLessonState();
   };
 
   const handleGainXp = (amount: number) => {
@@ -108,9 +156,16 @@ export function App() {
     setQuizScorePercent(percent);
     handleGainXp(xpGain);
 
-    if (!completedLessons.includes(currentLessonId)) {
-      setCompletedLessons(prev => [...prev, currentLessonId]);
-    }
+    setCompletedLessonsByGrade(prev => {
+      const currentList = prev[currentGrade] || [];
+      if (!currentList.includes(currentLessonId)) {
+        return {
+          ...prev,
+          [currentGrade]: [...currentList, currentLessonId]
+        };
+      }
+      return prev;
+    });
   };
 
   // Keyboard navigation for Smartboard/Presentation
@@ -138,9 +193,12 @@ export function App() {
     <div className={`min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-cyan-500 selection:text-white ${
       smartboardMode ? 'smartboard-mode' : ''
     }`}>
-      {/* Top Fixed Header */}
+      {/* Top Fixed Header with Grade Switcher */}
       <Header
         currentLesson={currentLesson}
+        currentGrade={currentGrade}
+        totalLessonsInGrade={totalLessonsInGrade}
+        onSelectGrade={handleSelectGrade}
         activeStep={activeStep}
         totalSteps={8}
         xp={xp}
@@ -161,9 +219,9 @@ export function App() {
             xp={xp}
             onStartLearning={() => scrollToStep(2)}
             onPrevLesson={() => handleSelectLesson(Math.max(1, currentLessonId - 1))}
-            onNextLesson={() => handleSelectLesson(Math.min(28, currentLessonId + 1))}
+            onNextLesson={() => handleSelectLesson(Math.min(totalLessonsInGrade, currentLessonId + 1))}
             hasPrev={currentLessonId > 1}
-            hasNext={currentLessonId < 28}
+            hasNext={currentLessonId < totalLessonsInGrade}
           />
         </div>
 
@@ -200,7 +258,7 @@ export function App() {
           />
         </div>
 
-        {/* Step 5: Interactive Game (Mini-game Thử thách Tin học 12) */}
+        {/* Step 5: Interactive Game (Mini-game Thử thách Tin học) */}
         <div ref={stepRefs[5]} id="step-5" className="scroll-mt-24">
           <InteractiveGame
             lesson={currentLesson}
@@ -259,11 +317,11 @@ export function App() {
         }}
         onNextLesson={() => {
           setIsCompletionOpen(false);
-          if (currentLessonId < 28) {
+          if (currentLessonId < totalLessonsInGrade) {
             handleSelectLesson(currentLessonId + 1);
           }
         }}
-        hasNextLesson={currentLessonId < 28}
+        hasNextLesson={currentLessonId < totalLessonsInGrade}
       />
 
       {/* Digital Certificate Generator Modal */}
@@ -276,13 +334,15 @@ export function App() {
         scorePercent={quizScorePercent}
       />
 
-      {/* Lesson Drawer (28 Lessons Index) */}
+      {/* Lesson Drawer (Full Grade Index) */}
       <LessonDrawer
         isOpen={isDrawerOpen}
         onClose={() => setIsDrawerOpen(false)}
+        currentGrade={currentGrade}
+        onSelectGrade={handleSelectGrade}
         currentLessonId={currentLessonId}
         onSelectLesson={handleSelectLesson}
-        completedLessons={completedLessons}
+        completedLessons={currentCompletedLessons}
       />
 
       {/* Footer */}

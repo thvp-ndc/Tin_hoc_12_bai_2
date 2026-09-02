@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   BookOpen, 
   Code2, 
@@ -9,7 +9,9 @@ import {
   Layers, 
   CheckCircle,
   Eye,
-  Info
+  Terminal,
+  Database,
+  Table
 } from 'lucide-react';
 import { Lesson, KnowledgeTab } from '../../types/lesson';
 import { sounds } from '../../utils/soundEffects';
@@ -26,21 +28,51 @@ export const KnowledgeHub: React.FC<KnowledgeHubProps> = ({
   hasExplored
 }) => {
   const [activeTabIdx, setActiveTabIdx] = useState(0);
-  const [interactiveCode, setInteractiveCode] = useState<string>(
-    lesson.knowledge[0]?.visualData?.defaultCode || '<h1>Xin chào Tin học 12!</h1>'
-  );
-
   const activeTab: KnowledgeTab = lesson.knowledge[activeTabIdx] || lesson.knowledge[0];
+
+  // Sandbox states
+  const [interactiveCode, setInteractiveCode] = useState<string>('');
+  const [pythonOutput, setPythonOutput] = useState<string>('');
+  const [sqlExecuted, setSqlExecuted] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (activeTab.visualType === 'interactive-code') {
+      setInteractiveCode(activeTab.visualData?.defaultCode || '<h1>Xin chào!</h1>');
+    } else if (activeTab.visualType === 'interactive-python') {
+      setInteractiveCode(activeTab.visualData?.defaultCode || 'print("Xin chào Python!")');
+      setPythonOutput(activeTab.visualData?.simulatedOutput || 'Xin chào Python!');
+    } else if (activeTab.visualType === 'interactive-sql') {
+      setInteractiveCode(activeTab.visualData?.defaultSql || 'SELECT * FROM DU_LIEU;');
+      setSqlExecuted(false);
+    }
+  }, [activeTab]);
 
   const handleTabChange = (idx: number) => {
     sounds.playClick();
     setActiveTabIdx(idx);
-    if (lesson.knowledge[idx]?.visualData?.defaultCode) {
-      setInteractiveCode(lesson.knowledge[idx].visualData.defaultCode);
-    }
     if (!hasExplored) {
       onExploreCompleted(30);
     }
+  };
+
+  const handleRunPython = () => {
+    sounds.playCorrect();
+    // Simple client-side simulation for print statements
+    let output = '';
+    const lines = interactiveCode.split('\n');
+    for (const line of lines) {
+      const trimmed = line.trim();
+      if (trimmed.startsWith('print(') && trimmed.endsWith(')')) {
+        const inside = trimmed.slice(6, -1);
+            output += inside.replace(/^["']|["']$/g, '') + '\n';
+      }
+    }
+    setPythonOutput(output.trim() || activeTab.visualData?.simulatedOutput || 'Chương trình thực thi thành công (Mã thoát: 0)');
+  };
+
+  const handleRunSql = () => {
+    sounds.playCorrect();
+    setSqlExecuted(true);
   };
 
   return (
@@ -112,15 +144,18 @@ export const KnowledgeHub: React.FC<KnowledgeHubProps> = ({
             <div className="flex items-center gap-2 text-sm font-bold text-slate-200">
               <Eye className="w-4 h-4 text-cyan-400" />
               <span>
-                {activeTab.visualType === 'interactive-code' ? 'Trình soạn thảo mã nguồn Live Playground' : 'Sơ đồ Infographic Trực quan'}
+                {activeTab.visualType === 'interactive-code' && 'Trình soạn thảo mã nguồn Live HTML/CSS'}
+                {activeTab.visualType === 'interactive-python' && 'Trình mô phỏng Lập trình Python (Interactive Shell)'}
+                {activeTab.visualType === 'interactive-sql' && 'Trình mô phỏng Truy vấn SQL (SQL Runner)'}
+                {activeTab.visualType === 'infographic' && 'Sơ đồ Infographic Trực quan'}
+                {activeTab.visualType === 'comparison-table' && 'Bảng So Sánh Đối Chiếu'}
               </span>
             </div>
           </div>
 
-          {/* Type 1: Live Interactive Code Playground */}
+          {/* Type 1: Live Interactive HTML/CSS Playground */}
           {activeTab.visualType === 'interactive-code' && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 rounded-2xl overflow-hidden border border-slate-700 bg-slate-950">
-              {/* Code Editor Column */}
               <div className="p-4 flex flex-col space-y-2 border-b lg:border-b-0 lg:border-r border-slate-800">
                 <div className="flex items-center justify-between text-xs text-slate-400 font-mono">
                   <span className="flex items-center gap-1.5 text-cyan-400 font-bold">
@@ -134,30 +169,21 @@ export const KnowledgeHub: React.FC<KnowledgeHubProps> = ({
                       }
                     }}
                     className="flex items-center gap-1 text-slate-400 hover:text-white transition-colors"
-                    title="Khôi phục mã ban đầu"
                   >
                     <RotateCcw className="w-3.5 h-3.5" /> Khôi phục
                   </button>
                 </div>
-
                 <textarea
                   value={interactiveCode}
                   onChange={(e) => setInteractiveCode(e.target.value)}
                   rows={8}
                   className="w-full font-mono text-xs sm:text-sm bg-slate-900 text-cyan-300 p-3 rounded-xl border border-slate-700 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 resize-none leading-relaxed"
-                  placeholder="Gõ mã HTML/CSS tại đây..."
                 />
-                <span className="text-[11px] text-slate-400 italic">
-                  💡 Bạn có thể trực tiếp sửa mã trên để xem trang web cập nhật tức thì bên cạnh!
-                </span>
               </div>
-
-              {/* Live Rendered Output Column */}
               <div className="p-4 flex flex-col space-y-2 bg-slate-900/60">
                 <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-400 font-mono">
                   <Play className="w-3.5 h-3.5" /> Kết quả hiển thị Trình duyệt (Live Preview):
                 </div>
-
                 <div className="flex-1 min-h-[160px] bg-white text-slate-900 p-4 rounded-xl shadow-inner overflow-auto border border-slate-300">
                   <div dangerouslySetInnerHTML={{ __html: interactiveCode }} />
                 </div>
@@ -165,7 +191,95 @@ export const KnowledgeHub: React.FC<KnowledgeHubProps> = ({
             </div>
           )}
 
-          {/* Type 2: Infographic Flow Nodes */}
+          {/* Type 2: Interactive Python Playground (for Grade 10) */}
+          {activeTab.visualType === 'interactive-python' && (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 rounded-2xl overflow-hidden border border-slate-700 bg-slate-950">
+              <div className="p-4 flex flex-col space-y-2 border-b lg:border-b-0 lg:border-r border-slate-800">
+                <div className="flex items-center justify-between text-xs text-slate-400 font-mono">
+                  <span className="flex items-center gap-1.5 text-amber-400 font-bold">
+                    <Terminal className="w-4 h-4" /> main.py (Python 3.11)
+                  </span>
+                  <button
+                    onClick={handleRunPython}
+                    className="px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1 shadow-glow-primary transition-all"
+                  >
+                    <Play className="w-3.5 h-3.5" /> Chạy mã (Run)
+                  </button>
+                </div>
+                <textarea
+                  value={interactiveCode}
+                  onChange={(e) => setInteractiveCode(e.target.value)}
+                  rows={8}
+                  className="w-full font-mono text-xs sm:text-sm bg-slate-900 text-amber-200 p-3 rounded-xl border border-slate-700 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 resize-none leading-relaxed"
+                  placeholder="Nhập mã lệnh Python tại đây..."
+                />
+              </div>
+              <div className="p-4 flex flex-col space-y-2 bg-slate-900/60 font-mono">
+                <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-400">
+                  <Terminal className="w-3.5 h-3.5" /> Cửa sổ Console Đầu ra (Terminal Output):
+                </div>
+                <pre className="flex-1 min-h-[160px] bg-slate-950 text-emerald-300 p-4 rounded-xl shadow-inner overflow-auto border border-slate-800 text-xs whitespace-pre-wrap leading-relaxed">
+                  {pythonOutput || '>>> Bấm nút [Chạy mã (Run)] để thực thi...'}
+                </pre>
+              </div>
+            </div>
+          )}
+
+          {/* Type 3: Interactive SQL Playground (for Grade 11) */}
+          {activeTab.visualType === 'interactive-sql' && (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 rounded-2xl overflow-hidden border border-slate-700 bg-slate-950">
+              <div className="p-4 flex flex-col space-y-2 border-b lg:border-b-0 lg:border-r border-slate-800">
+                <div className="flex items-center justify-between text-xs text-slate-400 font-mono">
+                  <span className="flex items-center gap-1.5 text-cyan-400 font-bold">
+                    <Database className="w-4 h-4" /> query.sql
+                  </span>
+                  <button
+                    onClick={handleRunSql}
+                    className="px-3 py-1 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-black text-xs flex items-center gap-1 shadow-glow-cyan transition-all"
+                  >
+                    <Play className="w-3.5 h-3.5" /> Thực thi SQL
+                  </button>
+                </div>
+                <textarea
+                  value={interactiveCode}
+                  onChange={(e) => setInteractiveCode(e.target.value)}
+                  rows={8}
+                  className="w-full font-mono text-xs sm:text-sm bg-slate-900 text-cyan-300 p-3 rounded-xl border border-slate-700 focus:outline-none focus:border-cyan-500 resize-none leading-relaxed"
+                  placeholder="Nhập câu lệnh SQL tại đây..."
+                />
+              </div>
+              <div className="p-4 flex flex-col space-y-2 bg-slate-900/60 font-mono">
+                <div className="flex items-center gap-1.5 text-xs font-bold text-cyan-400">
+                  <Table className="w-3.5 h-3.5" /> Bảng kết quả truy vấn (Query Result):
+                </div>
+                <div className="flex-1 min-h-[160px] bg-slate-950 text-slate-200 p-3 rounded-xl overflow-auto border border-slate-800 text-xs">
+                  {sqlExecuted ? (
+                    <table className="w-full text-left border-collapse">
+                      <thead>
+                        <tr className="border-b border-slate-700 text-cyan-300 font-bold">
+                          <th className="p-2">MaHS</th>
+                          <th className="p-2">HoTen</th>
+                          <th className="p-2">Lop</th>
+                          <th className="p-2">DiemTin</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-800">
+                        <tr><td className="p-2">HS01</td><td className="p-2">Nguyễn Văn An</td><td className="p-2">11A1</td><td className="p-2 text-emerald-400 font-bold">9.5</td></tr>
+                        <tr><td className="p-2">HS04</td><td className="p-2">Phạm Minh Đức</td><td className="p-2">11A3</td><td className="p-2 text-emerald-400 font-bold">9.0</td></tr>
+                        <tr><td className="p-2">HS02</td><td className="p-2">Trần Thị Bình</td><td className="p-2">11A2</td><td className="p-2 text-emerald-400 font-bold">8.8</td></tr>
+                      </tbody>
+                    </table>
+                  ) : (
+                    <div className="text-slate-500 italic p-6 text-center">
+                      Nhấn [Thực thi SQL] để chạy câu lệnh và xem bảng kết quả...
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Type 4: Infographic Flow Nodes */}
           {activeTab.visualType === 'infographic' && activeTab.visualData?.nodes && (
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 p-4 rounded-2xl bg-slate-800/40 border border-slate-700/60">
               {activeTab.visualData.nodes.map((node: any, nIdx: number) => (
@@ -180,7 +294,7 @@ export const KnowledgeHub: React.FC<KnowledgeHubProps> = ({
             </div>
           )}
 
-          {/* Type 3: Comparison Table */}
+          {/* Type 5: Comparison Table */}
           {activeTab.visualType === 'comparison-table' && activeTab.visualData && (
             <div className="overflow-x-auto rounded-2xl border border-slate-700 bg-slate-950/60">
               <table className="w-full text-left text-xs sm:text-sm">
@@ -207,7 +321,7 @@ export const KnowledgeHub: React.FC<KnowledgeHubProps> = ({
           )}
         </div>
 
-        {/* 🌟 Highlight Box "Em cần nhớ" (Gradient Glowing border, <= 3 bullet points) */}
+        {/* 🌟 Highlight Box "Em cần nhớ" */}
         <div className="relative rounded-2xl p-0.5 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 shadow-glow-cyan">
           <div className="rounded-[15px] bg-slate-950 p-5 sm:p-6 space-y-3">
             <div className="flex items-center gap-2">

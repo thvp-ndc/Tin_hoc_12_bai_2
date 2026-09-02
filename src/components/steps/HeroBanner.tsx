@@ -44,8 +44,14 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
         <div className="lg:col-span-7 space-y-6">
           {/* Top Badges */}
           <div className="flex flex-wrap items-center gap-2">
-            <span className="px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-glow-cyan">
-              KHỐI 12 • GDPT 2018
+            <span className={`px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider text-white shadow-md ${
+              lesson.grade === 10
+                ? 'bg-gradient-to-r from-emerald-600 to-teal-500 shadow-glow-primary'
+                : lesson.grade === 11
+                ? 'bg-gradient-to-r from-purple-600 to-indigo-600 shadow-glow-purple'
+                : 'bg-gradient-to-r from-blue-600 to-cyan-500 shadow-glow-cyan'
+            }`}>
+              KHỐI {lesson.grade} • {lesson.grade >= 11 ? 'TIN HỌC ỨNG DỤNG' : 'GDPT 2018'}
             </span>
             <span className="px-3 py-1 rounded-full text-xs font-semibold bg-slate-800/90 text-cyan-300 border border-slate-700">
               {lesson.topicBadge}

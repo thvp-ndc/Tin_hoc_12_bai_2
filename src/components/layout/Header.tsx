@@ -1,6 +1,5 @@
 import React from 'react';
 import { 
-  BookOpen, 
   Sparkles, 
   Volume2, 
   VolumeX, 
@@ -8,14 +7,16 @@ import {
   Maximize2, 
   Minimize2, 
   Menu, 
-  Award,
-  ChevronRight
+  GraduationCap
 } from 'lucide-react';
 import { Lesson } from '../../types/lesson';
 import { sounds } from '../../utils/soundEffects';
 
 interface HeaderProps {
   currentLesson: Lesson;
+  currentGrade: 10 | 11 | 12;
+  totalLessonsInGrade: number;
+  onSelectGrade: (grade: 10 | 11 | 12) => void;
   activeStep: number;
   totalSteps: number;
   xp: number;
@@ -29,6 +30,9 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({
   currentLesson,
+  currentGrade,
+  totalLessonsInGrade,
+  onSelectGrade,
   activeStep,
   totalSteps,
   xp,
@@ -68,35 +72,70 @@ export const Header: React.FC<HeaderProps> = ({
   ];
 
   return (
-    <header className="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 text-white shadow-floating">
+    <header className="sticky top-0 z-40 bg-slate-900/95 backdrop-blur-md border-b border-slate-800 text-white shadow-floating">
       {/* Top Navbar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
-        {/* Left: Brand & Lesson Selector */}
+        {/* Left: Grade Switcher & Brand & Lesson Selector */}
         <div className="flex items-center gap-3 min-w-0">
+          {/* Grade Switcher Pill */}
+          <div className="flex items-center bg-slate-950/80 p-1 rounded-2xl border border-slate-800 shrink-0">
+            {([10, 11, 12] as const).map(g => (
+              <button
+                key={g}
+                onClick={() => {
+                  sounds.playClick();
+                  onSelectGrade(g);
+                }}
+                className={`px-2.5 py-1 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                  currentGrade === g
+                    ? g === 10
+                      ? 'bg-emerald-500 text-slate-950 shadow-glow-primary'
+                      : g === 11
+                      ? 'bg-purple-500 text-slate-950 shadow-glow-purple'
+                      : 'bg-cyan-500 text-slate-950 shadow-glow-cyan'
+                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
+                }`}
+                title={`Chuyển sang Sách giáo khoa Tin học Lớp ${g}`}
+              >
+                Lớp {g}
+              </button>
+            ))}
+          </div>
+
           <button
             onClick={() => {
               sounds.playClick();
               onOpenDrawer();
             }}
-            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-400 hover:text-white transition-all flex items-center gap-2 border border-slate-700 hover:border-cyan-500 shadow-sm group"
-            title="Mở danh mục 28 bài học SGK"
+            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-750 text-cyan-400 hover:text-white transition-all flex items-center gap-2 border border-slate-700 hover:border-cyan-500 shadow-sm group shrink-0"
+            title={`Mục lục bài học Lớp ${currentGrade}`}
           >
             <Menu className="w-5 h-5 group-hover:scale-110 transition-transform" />
-            <span className="hidden sm:inline text-xs font-semibold uppercase tracking-wider text-slate-200">
-              Danh mục bài ({currentLesson.id}/28)
+            <span className="hidden md:inline text-xs font-semibold uppercase tracking-wider text-slate-200">
+              Bài {currentLesson.id}/{totalLessonsInGrade}
             </span>
           </button>
 
           <div className="flex flex-col min-w-0">
             <div className="flex items-center gap-2">
-              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-500/20 text-blue-400 border border-blue-500/30">
-                TIN HỌC 12 • ỨNG DỤNG
+              <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold border ${
+                currentGrade === 10
+                  ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30'
+                  : currentGrade === 11
+                  ? 'bg-purple-500/20 text-purple-300 border-purple-500/30'
+                  : 'bg-blue-500/20 text-blue-300 border-blue-500/30'
+              }`}>
+                TIN {currentGrade} {currentGrade >= 11 ? '• ỨNG DỤNG' : '• NỀN TẢNG'}
               </span>
-              <span className="hidden md:inline text-slate-400 text-xs truncate">
+              <span className="hidden lg:inline text-slate-400 text-xs truncate">
                 {currentLesson.themeName}
               </span>
             </div>
-            <h1 className="text-sm sm:text-base font-bold text-slate-100 truncate hover:text-cyan-300 cursor-pointer" onClick={onOpenDrawer}>
+            <h1 
+              className="text-sm sm:text-base font-bold text-slate-100 truncate hover:text-cyan-300 cursor-pointer" 
+              onClick={onOpenDrawer}
+              title={`Bài ${currentLesson.id}: ${currentLesson.title}`}
+            >
               Bài {currentLesson.id}: {currentLesson.title}
             </h1>
           </div>
@@ -188,7 +227,7 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
       </div>
 
-      {/* Thin Progress Bar Line */}
+      {/* Progress Bar Line */}
       <div className="w-full bg-slate-800 h-1">
         <div 
           className="bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 h-1 transition-all duration-500 ease-out"

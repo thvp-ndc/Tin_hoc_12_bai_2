@@ -2,21 +2,18 @@ import React, { useState } from 'react';
 import { 
   X, 
   Search, 
-  BookOpen, 
   CheckCircle2, 
-  Layers, 
-  Sparkles, 
   ChevronRight,
-  Filter,
   GraduationCap
 } from 'lucide-react';
-import { THEME_GROUPS } from '../../data/themesData';
-import { getLessonById } from '../../data/lessonsData';
+import { getAllLessons, getThemeGroups, getTotalLessons } from '../../data/curriculumManager';
 import { sounds } from '../../utils/soundEffects';
 
 interface LessonDrawerProps {
   isOpen: boolean;
   onClose: () => void;
+  currentGrade: 10 | 11 | 12;
+  onSelectGrade: (grade: 10 | 11 | 12) => void;
   currentLessonId: number;
   onSelectLesson: (id: number) => void;
   completedLessons: number[];
@@ -25,6 +22,8 @@ interface LessonDrawerProps {
 export const LessonDrawer: React.FC<LessonDrawerProps> = ({
   isOpen,
   onClose,
+  currentGrade,
+  onSelectGrade,
   currentLessonId,
   onSelectLesson,
   completedLessons
@@ -34,8 +33,9 @@ export const LessonDrawer: React.FC<LessonDrawerProps> = ({
 
   if (!isOpen) return null;
 
-  // Generate list of all 28 lessons
-  const allLessons = Array.from({ length: 28 }, (_, i) => getLessonById(i + 1));
+  const allLessons = getAllLessons(currentGrade);
+  const themeGroups = getThemeGroups(currentGrade);
+  const totalLessons = getTotalLessons(currentGrade);
 
   const filteredLessons = allLessons.filter(lesson => {
     const matchesSearch = 
@@ -48,7 +48,7 @@ export const LessonDrawer: React.FC<LessonDrawerProps> = ({
     return matchesSearch && matchesTheme;
   });
 
-  const completionPercentage = Math.round((completedLessons.length / 28) * 100);
+  const completionPercentage = Math.round((completedLessons.length / totalLessons) * 100);
 
   return (
     <div className="fixed inset-0 z-50 flex">
@@ -66,12 +66,20 @@ export const LessonDrawer: React.FC<LessonDrawerProps> = ({
         {/* Header */}
         <div className="p-4 sm:p-6 border-b border-slate-800 flex items-center justify-between bg-slate-950/50">
           <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-2xl bg-gradient-to-tr from-cyan-600 to-blue-600 text-white shadow-glow-cyan">
+            <div className={`p-2.5 rounded-2xl text-white shadow-lg ${
+              currentGrade === 10
+                ? 'bg-gradient-to-tr from-emerald-600 to-teal-600 shadow-glow-primary'
+                : currentGrade === 11
+                ? 'bg-gradient-to-tr from-purple-600 to-indigo-600 shadow-glow-purple'
+                : 'bg-gradient-to-tr from-cyan-600 to-blue-600 shadow-glow-cyan'
+            }`}>
               <GraduationCap className="w-6 h-6" />
             </div>
             <div>
               <h2 className="text-lg font-bold text-slate-100">Mục Lục Sách Giáo Khoa</h2>
-              <p className="text-xs text-slate-400">Tin học 12 • Định hướng Tin học Ứng dụng</p>
+              <p className="text-xs text-slate-400">
+                Tin học {currentGrade} • {currentGrade >= 11 ? 'Định hướng Tin học Ứng dụng' : 'Chương trình GDPT 2018'}
+              </p>
             </div>
           </div>
           <button
@@ -85,11 +93,38 @@ export const LessonDrawer: React.FC<LessonDrawerProps> = ({
           </button>
         </div>
 
+        {/* Grade Selector Tabs inside Drawer */}
+        <div className="px-4 pt-4">
+          <div className="grid grid-cols-3 gap-2 p-1.5 rounded-2xl bg-slate-950 border border-slate-800">
+            {([10, 11, 12] as const).map(g => (
+              <button
+                key={g}
+                onClick={() => {
+                  sounds.playClick();
+                  onSelectGrade(g);
+                  setSelectedThemeId(null);
+                }}
+                className={`py-2 rounded-xl text-xs font-bold transition-all ${
+                  currentGrade === g
+                    ? g === 10
+                      ? 'bg-emerald-500 text-slate-950 shadow-glow-primary'
+                      : g === 11
+                      ? 'bg-purple-500 text-slate-950 shadow-glow-purple'
+                      : 'bg-cyan-500 text-slate-950 shadow-glow-cyan'
+                    : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                }`}
+              >
+                Lớp {g} ({getTotalLessons(g)} bài)
+              </button>
+            ))}
+          </div>
+        </div>
+
         {/* Course Progress Card */}
-        <div className="p-4 bg-slate-800/40 border-b border-slate-800 mx-4 mt-4 rounded-2xl">
+        <div className="p-4 bg-slate-800/40 border-b border-slate-800 mx-4 mt-3 rounded-2xl">
           <div className="flex items-center justify-between text-xs mb-2">
-            <span className="font-semibold text-slate-300">Tiến độ hoàn thành môn học:</span>
-            <span className="font-bold text-cyan-400">{completedLessons.length}/28 Bài ({completionPercentage}%)</span>
+            <span className="font-semibold text-slate-300">Tiến độ hoàn thành Lớp {currentGrade}:</span>
+            <span className="font-bold text-cyan-400">{completedLessons.length}/{totalLessons} Bài ({completionPercentage}%)</span>
           </div>
           <div className="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
             <div 
@@ -105,7 +140,7 @@ export const LessonDrawer: React.FC<LessonDrawerProps> = ({
             <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
             <input
               type="text"
-              placeholder="Tìm kiếm theo tên bài, chủ đề..."
+              placeholder={`Tìm bài học Lớp ${currentGrade}...`}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-10 pr-4 py-2 bg-slate-800/80 border border-slate-700 rounded-xl text-sm text-slate-200 placeholder-slate-400 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all"
@@ -125,9 +160,9 @@ export const LessonDrawer: React.FC<LessonDrawerProps> = ({
                   : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
               }`}
             >
-              Tất cả (28)
+              Tất cả ({totalLessons})
             </button>
-            {THEME_GROUPS.map(theme => (
+            {themeGroups.map(theme => (
               <button
                 key={theme.id}
                 onClick={() => {
@@ -149,12 +184,12 @@ export const LessonDrawer: React.FC<LessonDrawerProps> = ({
         {/* Lessons List */}
         <div className="flex-1 overflow-y-auto px-4 pb-6 space-y-2.5">
           {filteredLessons.map(lesson => {
-            const isSelected = lesson.id === currentLessonId;
+            const isSelected = lesson.id === currentLessonId && lesson.grade === currentGrade;
             const isCompleted = completedLessons.includes(lesson.id);
 
             return (
               <div
-                key={lesson.id}
+                key={`${lesson.grade}_${lesson.id}`}
                 onClick={() => {
                   sounds.playClick();
                   onSelectLesson(lesson.id);

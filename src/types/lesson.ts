@@ -33,7 +33,7 @@ export interface KnowledgeTab {
   iconName: string;
   contentHtml?: string;
   keyPoints: string[];
-  visualType: 'infographic' | 'interactive-code' | 'interactive-simulator' | 'comparison-table' | 'interactive-diagram';
+  visualType: 'infographic' | 'interactive-code' | 'interactive-python' | 'interactive-sql' | 'interactive-simulator' | 'comparison-table' | 'interactive-diagram';
   visualData?: any;
   emCanNho: string[]; // Maximum 3 key highlight bullets as per prompt requirement
 }
@@ -93,7 +93,7 @@ export interface Lesson {
   themeId: number;
   themeName: string;
   topicBadge: string;
-  grade: number;
+  grade: 10 | 11 | 12;
   estimatedMinutes: number;
   xpTotal: number;
   
@@ -129,4 +129,13 @@ export interface ThemeGroup {
   iconName: string;
   color: string;
   lessons: number[]; // Array of lesson IDs
+}
+
+export interface GradeInfo {
+  grade: 10 | 11 | 12;
+  title: string;
+  shortTitle: string;
+  curriculum: string;
+  totalLessons: number;
+  badgeColor: string;
 }
