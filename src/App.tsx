@@ -12,6 +12,7 @@ import { ApplicationMindmap } from './components/steps/ApplicationMindmap';
 import { CompletionModal } from './components/steps/CompletionModal';
 import { CertificateModal } from './components/ui/CertificateModal';
 import { SmartboardControls } from './components/ui/SmartboardControls';
+import { CurriculumMindmapModal } from './components/ui/CurriculumMindmapModal';
 
 import { getLesson, getTotalLessons } from './data/curriculumManager';
 import { sounds } from './utils/soundEffects';
@@ -38,7 +39,9 @@ export function App() {
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
   const [isCompletionOpen, setIsCompletionOpen] = useState<boolean>(false);
   const [isCertificateOpen, setIsCertificateOpen] = useState<boolean>(false);
+  const [isCurriculumMindmapOpen, setIsCurriculumMindmapOpen] = useState<boolean>(false);
   const [studentName, setStudentName] = useState<string>('Nguyễn Văn An');
+
 
   // Track user interactions per lesson
   const [completedObjectives, setCompletedObjectives] = useState<string[]>([]);
@@ -208,7 +211,9 @@ export function App() {
         onToggleSmartboard={handleToggleSmartboard}
         onOpenDrawer={() => setIsDrawerOpen(true)}
         onStepSelect={scrollToStep}
+        onOpenCurriculumMindmap={() => setIsCurriculumMindmapOpen(true)}
       />
+
 
       {/* Main 8-Step Learning Container */}
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16">
@@ -288,6 +293,7 @@ export function App() {
               handleGainXp(gain);
             }}
             hasDownloaded={hasDownloadedMindmap}
+            onOpenCurriculumMindmap={() => setIsCurriculumMindmapOpen(true)}
           />
         </div>
       </main>
@@ -343,10 +349,21 @@ export function App() {
         currentLessonId={currentLessonId}
         onSelectLesson={handleSelectLesson}
         completedLessons={currentCompletedLessons}
+        onOpenCurriculumMindmap={() => setIsCurriculumMindmapOpen(true)}
+      />
+
+      {/* Master Curriculum Mindmap Modal */}
+      <CurriculumMindmapModal
+        isOpen={isCurriculumMindmapOpen}
+        onClose={() => setIsCurriculumMindmapOpen(false)}
+        currentGrade={currentGrade}
+        onSelectGrade={handleSelectGrade}
+        onSelectLesson={handleSelectLesson}
       />
 
       {/* Footer */}
       <Footer />
+
     </div>
   );
 }

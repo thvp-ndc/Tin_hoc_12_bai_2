@@ -7,8 +7,10 @@ import {
   Maximize2, 
   Minimize2, 
   Menu, 
-  GraduationCap
+  GraduationCap,
+  Network
 } from 'lucide-react';
+
 import { Lesson } from '../../types/lesson';
 import { sounds } from '../../utils/soundEffects';
 
@@ -26,6 +28,7 @@ interface HeaderProps {
   onToggleSmartboard: () => void;
   onOpenDrawer: () => void;
   onStepSelect: (step: number) => void;
+  onOpenCurriculumMindmap?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -42,7 +45,9 @@ export const Header: React.FC<HeaderProps> = ({
   onToggleSmartboard,
   onOpenDrawer,
   onStepSelect,
+  onOpenCurriculumMindmap,
 }) => {
+
   const [isFullscreen, setIsFullscreen] = React.useState(false);
 
   const toggleFullscreen = () => {
@@ -143,8 +148,24 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Right: Gamification & Controls */}
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          {/* Master Curriculum Mindmap Button */}
+          {onOpenCurriculumMindmap && (
+            <button
+              onClick={() => {
+                sounds.playClick();
+                onOpenCurriculumMindmap();
+              }}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-indigo-600/80 to-blue-600/80 hover:from-indigo-500 hover:to-blue-500 text-white border border-indigo-400/30 text-xs font-bold transition-all shadow-sm cursor-pointer hover:scale-105 active:scale-95"
+              title="Xem Sơ đồ tư duy tổng quát toàn bộ các bài học trong năm học"
+            >
+              <Network className="w-4 h-4 text-cyan-300" />
+              <span className="hidden sm:inline">Sơ đồ tổng quát</span>
+            </button>
+          )}
+
           {/* XP Counter */}
           <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-500/20 to-yellow-500/20 border border-amber-500/30 text-amber-300 shadow-inner">
+
             <Sparkles className="w-4 h-4 text-amber-400 animate-pulse" />
             <div className="flex flex-col">
               <span className="text-[10px] uppercase font-bold text-amber-400/80 leading-none">Kinh nghiệm</span>

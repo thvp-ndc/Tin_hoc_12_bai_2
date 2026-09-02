@@ -5,18 +5,25 @@ import { THEME_GROUPS_10 } from './themesData10';
 import { getLessonById as getLesson12ById } from './lessonsData';
 import { getLesson11ById } from './lessonsData11';
 import { getLesson10ById } from './lessonsData10';
+import { ensureRobustMindmap } from '../utils/mindmapGenerator';
 
 export function getLesson(grade: 10 | 11 | 12, id: number): Lesson {
+  let lesson: Lesson;
   switch (grade) {
     case 10:
-      return getLesson10ById(id);
+      lesson = getLesson10ById(id);
+      break;
     case 11:
-      return getLesson11ById(id);
+      lesson = getLesson11ById(id);
+      break;
     case 12:
     default:
-      return getLesson12ById(id);
+      lesson = getLesson12ById(id);
+      break;
   }
+  return ensureRobustMindmap(lesson);
 }
+
 
 export function getThemeGroups(grade: 10 | 11 | 12): ThemeGroup[] {
   switch (grade) {

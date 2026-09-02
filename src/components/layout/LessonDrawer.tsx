@@ -4,7 +4,8 @@ import {
   Search, 
   CheckCircle2, 
   ChevronRight,
-  GraduationCap
+  GraduationCap,
+  Network
 } from 'lucide-react';
 import { getAllLessons, getThemeGroups, getTotalLessons } from '../../data/curriculumManager';
 import { sounds } from '../../utils/soundEffects';
@@ -17,6 +18,7 @@ interface LessonDrawerProps {
   currentLessonId: number;
   onSelectLesson: (id: number) => void;
   completedLessons: number[];
+  onOpenCurriculumMindmap?: () => void;
 }
 
 export const LessonDrawer: React.FC<LessonDrawerProps> = ({
@@ -26,8 +28,10 @@ export const LessonDrawer: React.FC<LessonDrawerProps> = ({
   onSelectGrade,
   currentLessonId,
   onSelectLesson,
-  completedLessons
+  completedLessons,
+  onOpenCurriculumMindmap
 }) => {
+
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedThemeId, setSelectedThemeId] = useState<number | null>(null);
 
@@ -118,10 +122,26 @@ export const LessonDrawer: React.FC<LessonDrawerProps> = ({
               </button>
             ))}
           </div>
+
+          {/* Master Mindmap Quick Action */}
+          {onOpenCurriculumMindmap && (
+            <button
+              onClick={() => {
+                sounds.playClick();
+                onClose();
+                onOpenCurriculumMindmap();
+              }}
+              className="w-full mt-3 py-2 px-3.5 rounded-xl bg-gradient-to-r from-indigo-600/90 to-blue-600/90 hover:from-indigo-500 hover:to-blue-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-sm cursor-pointer transition-all border border-indigo-400/30"
+            >
+              <Network className="w-4 h-4 text-cyan-300" />
+              <span>Sơ Đồ Tư Duy Tổng Quát Lớp {currentGrade}</span>
+            </button>
+          )}
         </div>
 
         {/* Course Progress Card */}
         <div className="p-4 bg-slate-800/40 border-b border-slate-800 mx-4 mt-3 rounded-2xl">
+
           <div className="flex items-center justify-between text-xs mb-2">
             <span className="font-semibold text-slate-300">Tiến độ hoàn thành Lớp {currentGrade}:</span>
             <span className="font-bold text-cyan-400">{completedLessons.length}/{totalLessons} Bài ({completionPercentage}%)</span>

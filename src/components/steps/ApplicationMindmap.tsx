@@ -19,12 +19,14 @@ interface ApplicationMindmapProps {
   lesson: Lesson;
   onMindmapDownloaded: (xpGain: number) => void;
   hasDownloaded: boolean;
+  onOpenCurriculumMindmap?: () => void;
 }
 
 export const ApplicationMindmap: React.FC<ApplicationMindmapProps> = ({
   lesson,
   onMindmapDownloaded,
-  hasDownloaded
+  hasDownloaded,
+  onOpenCurriculumMindmap
 }) => {
   const mindmapRef = useRef<HTMLDivElement>(null);
   const [zoomLevel, setZoomLevel] = useState<number>(1);
@@ -46,9 +48,10 @@ export const ApplicationMindmap: React.FC<ApplicationMindmapProps> = ({
       });
 
       const link = document.createElement('a');
-      link.download = `So_Do_Tu_Duy_Bai_${lesson.id}_Tin_Hoc_12.png`;
+      link.download = `So_Do_Tu_Duy_Bai_${lesson.id}_Tin_Hoc_${lesson.grade || 12}.png`;
       link.href = dataUrl;
       link.click();
+
 
       if (!hasDownloaded) {
         onMindmapDownloaded(50);
@@ -145,6 +148,22 @@ export const ApplicationMindmap: React.FC<ApplicationMindmapProps> = ({
               <ZoomIn className="w-4 h-4" />
             </button>
 
+            {/* Open Curriculum Master Mindmap */}
+            {onOpenCurriculumMindmap && (
+              <button
+                onClick={() => {
+                  sounds.playClick();
+                  onOpenCurriculumMindmap();
+                }}
+                className="px-3.5 py-2.5 rounded-2xl bg-indigo-600/80 hover:bg-indigo-500 text-white font-bold text-xs sm:text-sm border border-indigo-400/40 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-1.5 cursor-pointer shadow-sm"
+                title="Xem sơ đồ tư duy tổng quát toàn bộ các bài học trong năm học"
+              >
+                <Network className="w-4 h-4 text-cyan-300" />
+                <span className="hidden md:inline">Sơ đồ tổng quát Lớp {lesson.grade || 12}</span>
+                <span className="md:hidden">Sơ đồ khối</span>
+              </button>
+            )}
+
             <button
               disabled={isExporting}
               onClick={handleDownloadPng}
@@ -173,26 +192,28 @@ export const ApplicationMindmap: React.FC<ApplicationMindmapProps> = ({
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
                 {rootNode.children?.map((branch, bIdx) => (
                   <div 
-                    key={branch.id} 
-                    className="p-5 rounded-2xl bg-slate-900/90 border border-cyan-500/40 shadow-floating space-y-3 text-left relative before:content-[''] before:absolute before:-top-4 before:left-1/2 before:w-0.5 before:h-4 before:bg-cyan-500/40"
+                    key={branch.id || `branch_${bIdx}`} 
+                    className="p-5 rounded-2xl bg-slate-900/90 border border-cyan-500/40 shadow-floating space-y-3 text-left relative before:content-[''] before:absolute before:-top-4 before:left-1/2 before:w-0.5 before:h-4 before:bg-cyan-500/40 flex flex-col justify-between"
                   >
-                    <div className="flex items-center justify-between">
-                      <h4 className="font-bold text-cyan-300 text-base">{branch.label}</h4>
-                      {branch.badge && (
-                        <span className="text-[10px] px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">
-                          {branch.badge}
-                        </span>
-                      )}
-                    </div>
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <h4 className="font-bold text-cyan-300 text-base">{branch.label}</h4>
+                        {branch.badge && (
+                          <span className="text-[10px] px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 font-semibold">
+                            {branch.badge}
+                          </span>
+                        )}
+                      </div>
 
-                    {/* Sub Nodes */}
-                    <div className="space-y-2 pt-2 border-t border-slate-800">
-                      {branch.children?.map((sub) => (
-                        <div key={sub.id} className="flex items-center gap-2 text-xs sm:text-sm text-slate-300">
-                          <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
-                          <span>{sub.label}</span>
-                        </div>
-                      ))}
+                      {/* Sub Nodes */}
+                      <div className="space-y-2 pt-2 border-t border-slate-800">
+                        {branch.children?.map((sub, sIdx) => (
+                          <div key={sub.id || `sub_${sIdx}`} className="flex items-start gap-2 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                            <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0 mt-1.5" />
+                            <span>{sub.label}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -201,8 +222,8 @@ export const ApplicationMindmap: React.FC<ApplicationMindmapProps> = ({
 
             {/* Mindmap Watermark */}
             <div className="mt-8 pt-4 border-t border-slate-800/60 flex items-center justify-between text-[11px] text-slate-500">
-              <span>Tin học 12 • GDPT 2018 (NXB Giáo Dục Việt Nam)</span>
-              <span>Website Học Tập Tương Tác</span>
+              <span>Tin học {lesson.grade || 12} • GDPT 2018 (NXB Giáo Dục Việt Nam)</span>
+              <span>Website Học Tập Tương Tác Tin Học THPT</span>
             </div>
           </div>
         </div>
@@ -210,3 +231,4 @@ export const ApplicationMindmap: React.FC<ApplicationMindmapProps> = ({
     </section>
   );
 };
+
