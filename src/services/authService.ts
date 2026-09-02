@@ -1,4 +1,9 @@
 import { StudentUser } from '../types/auth';
+import { 
+  syncStudentToCloud, 
+  fetchStudentDataFromCloud, 
+  fetchStudentsFromCloud 
+} from './cloudSyncService';
 
 const STORAGE_KEY_STUDENTS = 'tin_thpt_students_db';
 const STORAGE_KEY_CURRENT_USER = 'tin_thpt_current_student_id';
@@ -13,7 +18,7 @@ function getRandomAvatar(): string {
 }
 
 /**
- * Lấy danh sách tất cả học sinh đã đăng ký
+ * Lấy danh sách tất cả học sinh đã đăng ký trên máy
  */
 export function getAllStudents(): StudentUser[] {
   try {
@@ -23,6 +28,33 @@ export function getAllStudents(): StudentUser[] {
   } catch (err) {
     console.error('Lỗi khi nạp danh sách học sinh:', err);
     return [];
+  }
+}
+
+/**
+ * Tải danh sách học sinh mới nhất từ Cloud và gộp vào máy
+ */
+export async function refreshStudentsFromCloud(): Promise<StudentUser[]> {
+  try {
+    const cloudStudents = await fetchStudentsFromCloud();
+    if (cloudStudents.length === 0) return getAllStudents();
+
+    const localStudents = getAllStudents();
+    cloudStudents.forEach(cs => {
+      const idx = localStudents.findIndex(
+        ls => ls.id === cs.id || ls.username.toLowerCase() === cs.username.toLowerCase()
+      );
+      if (idx >= 0) {
+        localStudents[idx] = { ...localStudents[idx], ...cs };
+      } else {
+        localStudents.push(cs);
+      }
+    });
+
+    saveAllStudents(localStudents);
+    return localStudents;
+  } catch {
+    return getAllStudents();
   }
 }
 
@@ -103,18 +135,40 @@ export function registerStudent(input: {
   // Tự động đăng nhập luôn sau khi đăng ký thành công
   localStorage.setItem(STORAGE_KEY_CURRENT_USER, newUser.id);
 
+  // Đồng bộ lên Cloud Database trong nền (không làm nghẽn giao diện)
+  syncStudentToCloud(newUser);
+
   return { success: true, user: newUser };
 }
 
 /**
- * Đăng nhập học sinh
+ * Đăng nhập học sinh (Hỗ trợ đăng nhập đa máy tính thông qua Cloud)
  */
-export function loginStudent(username: string, password: string): { success: boolean; error?: string; user?: StudentUser } {
+export async function loginStudent(
+  username: string, 
+  password: string
+): Promise<{ success: boolean; error?: string; user?: StudentUser }> {
   const usernameClean = username.trim().toLowerCase();
   const passwordClean = password.trim();
 
   const students = getAllStudents();
-  const user = students.find(s => s.username.toLowerCase() === usernameClean);
+  let user = students.find(s => s.username.toLowerCase() === usernameClean);
+
+  // Nếu không thấy tài khoản trên máy này, tự động tìm kiếm trên Cloud Database
+  if (!user) {
+    const cloudResult = await fetchStudentDataFromCloud(usernameClean, passwordClean);
+    if (cloudResult) {
+      user = cloudResult.student;
+      students.push(user);
+      saveAllStudents(students);
+      if (cloudResult.progress) {
+        localStorage.setItem(`tin_progress_${user.id}`, JSON.stringify(cloudResult.progress));
+      }
+      if (cloudResult.certificates && cloudResult.certificates.length > 0) {
+        localStorage.setItem(`tin_certs_${user.id}`, JSON.stringify(cloudResult.certificates));
+      }
+    }
+  }
 
   if (!user) {
     return { success: false, error: 'Tài khoản không tồn tại. Vui lòng kiểm tra lại hoặc bấm Đăng Ký!' };
@@ -129,8 +183,12 @@ export function loginStudent(username: string, password: string): { success: boo
   saveAllStudents(students);
   localStorage.setItem(STORAGE_KEY_CURRENT_USER, user.id);
 
+  // Đồng bộ trạng thái mới lên Cloud
+  syncStudentToCloud(user);
+
   return { success: true, user };
 }
+
 
 /**
  * Đăng xuất học sinh

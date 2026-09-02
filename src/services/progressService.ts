@@ -1,6 +1,8 @@
 import { StudentProgressMap, LessonProgress, AdminAnalytics } from '../types/auth';
 import { getAllStudents, touchLastActive } from './authService';
 import { getTotalLessons } from '../data/curriculumManager';
+import { syncProgressToCloud, syncCertificateToCloud } from './cloudSyncService';
+
 
 function getProgressStorageKey(studentId: string): string {
   return `tin_progress_${studentId}`;
@@ -63,12 +65,15 @@ export function saveLessonProgress(
   try {
     localStorage.setItem(getProgressStorageKey(studentId), JSON.stringify(allProgress));
     touchLastActive(studentId);
+    // Đồng bộ lên Cloud trong nền
+    syncProgressToCloud(studentId, grade, lessonId, updated);
   } catch (err) {
     console.error('Lỗi khi lưu tiến độ học sinh:', err);
   }
 
   return updated;
 }
+
 
 /**
  * Đánh dấu bài học đã hoàn thành xuất sắc
@@ -183,10 +188,14 @@ export function saveCertificate(
       quizScorePercent: cert.scorePercent,
       completedAt: new Date().toISOString()
     });
+
+    // Đồng bộ chứng chỉ lên Cloud trong nền
+    syncCertificateToCloud(studentId, cert);
   } catch (err) {
     console.error('Lỗi khi lưu giấy chứng nhận:', err);
   }
 }
+
 
 /**
  * Lấy danh sách giấy chứng nhận của học sinh

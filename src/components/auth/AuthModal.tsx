@@ -40,49 +40,57 @@ export const AuthModal: React.FC<AuthModalProps> = ({
   const [schoolName, setSchoolName] = useState('');
   const [province, setProvince] = useState('');
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage(null);
+    setIsSubmitting(true);
 
-    if (mode === 'register') {
-      const res = registerStudent({
-        username,
-        password,
-        fullName,
-        className,
-        schoolName,
-        province
-      });
+    try {
+      if (mode === 'register') {
+        const res = registerStudent({
+          username,
+          password,
+          fullName,
+          className,
+          schoolName,
+          province
+        });
 
-      if (!res.success) {
-        sounds.playError();
-        setErrorMessage(res.error || 'Đăng ký không thành công. Vui lòng kiểm tra lại!');
-        return;
+        if (!res.success) {
+          sounds.playError();
+          setErrorMessage(res.error || 'Đăng ký không thành công. Vui lòng kiểm tra lại!');
+          return;
+        }
+
+        sounds.playWin();
+        if (res.user) {
+          onSuccess(res.user);
+          onClose();
+        }
+      } else {
+        const res = await loginStudent(username, password);
+
+        if (!res.success) {
+          sounds.playError();
+          setErrorMessage(res.error || 'Đăng nhập không thành công!');
+          return;
+        }
+
+        sounds.playCorrect();
+        if (res.user) {
+          onSuccess(res.user);
+          onClose();
+        }
       }
-
-      sounds.playWin();
-      if (res.user) {
-        onSuccess(res.user);
-        onClose();
-      }
-    } else {
-      const res = loginStudent(username, password);
-
-      if (!res.success) {
-        sounds.playError();
-        setErrorMessage(res.error || 'Đăng nhập không thành công!');
-        return;
-      }
-
-      sounds.playCorrect();
-      if (res.user) {
-        onSuccess(res.user);
-        onClose();
-      }
+    } finally {
+      setIsSubmitting(false);
     }
   };
+
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/80 backdrop-blur-md animate-fade-in">
@@ -278,12 +286,20 @@ export const AuthModal: React.FC<AuthModalProps> = ({
           <div className="pt-2">
             <button
               type="submit"
-              className="w-full py-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-black text-sm shadow-glow-cyan hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer"
+              disabled={isSubmitting}
+              className={`w-full py-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-black text-sm shadow-glow-cyan hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer ${
+                isSubmitting ? 'opacity-60 cursor-not-allowed' : ''
+              }`}
             >
               <Sparkles className="w-4 h-4" />
-              <span>{mode === 'register' ? 'Hoàn Tất Đăng Ký & Vào Học' : 'Đăng Nhập Vào Học'}</span>
+              <span>
+                {isSubmitting 
+                  ? 'Đang kết nối hệ thống...' 
+                  : (mode === 'register' ? 'Hoàn Tất Đăng Ký & Vào Học' : 'Đăng Nhập Vào Học')}
+              </span>
             </button>
           </div>
+
         </form>
 
         {/* Footer Note */}

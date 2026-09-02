@@ -20,6 +20,9 @@ import { StudentUser, AdminAnalytics } from '../../types/auth';
 import { AnalyticsOverview } from './AnalyticsOverview';
 import { StudentRosterTable } from './StudentRosterTable';
 import { StudentDetailView } from './StudentDetailView';
+import { CloudConfigPanel } from './CloudConfigPanel';
+import { getCloudConfig } from '../../services/cloudSyncService';
+import { refreshStudentsFromCloud } from '../../services/authService';
 import { sounds } from '../../utils/soundEffects';
 
 interface AdminDashboardModalProps {
@@ -41,7 +44,8 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({
   const [pinChangeMessage, setPinChangeMessage] = useState<string | null>(null);
 
   // Load Data
-  const reloadData = () => {
+  const reloadData = async () => {
+    await refreshStudentsFromCloud();
     const stds = getAllStudents();
     setStudents(stds);
     setAnalytics(getAdminAnalytics());
@@ -53,6 +57,7 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({
       setSelectedStudent(null);
     }
   }, [isOpen]);
+
 
   if (!isOpen || !analytics) return null;
 
@@ -106,7 +111,14 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({
               <div className="flex items-center gap-2">
                 <span className="text-xs font-bold uppercase tracking-wider text-amber-400">Bảng Điều Khiển Giáo Viên</span>
                 <span className="text-[11px] px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">
-                  {students.length} học sinh đăng ký
+                  {students.length} học sinh
+                </span>
+                <span className={`text-[11px] px-2 py-0.5 rounded-full border ${
+                  getCloudConfig().isEnabled 
+                    ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30 font-bold'
+                    : 'bg-slate-800 text-slate-400 border-slate-700'
+                }`}>
+                  {getCloudConfig().isEnabled ? '☁️ Đám Mây: Đang Bật' : '💾 Lưu Cục Bộ'}
                 </span>
               </div>
               <h2 className="text-xl sm:text-2xl font-black text-white">
@@ -114,6 +126,7 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({
               </h2>
             </div>
           </div>
+
 
           {/* Navigation Tabs */}
           <div className="flex items-center gap-1.5 p-1 rounded-2xl bg-slate-950 border border-slate-800">
@@ -299,51 +312,58 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({
           )}
 
           {activeTab === 'settings' && (
-            <div className="max-w-md mx-auto space-y-6 animate-fade-in">
-              <div className="space-y-2">
-                <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                  <Settings className="w-6 h-6 text-amber-400" />
-                  Cài Đặt Mật Khẩu Quản Trị
-                </h3>
-                <p className="text-slate-400 text-xs">
-                  Thay đổi mã PIN bảo vệ trang quản trị dành riêng cho Thầy/Cô.
-                </p>
-              </div>
+            <div className="max-w-4xl mx-auto space-y-8 animate-fade-in">
+              {/* 1. Cấu hình Đồng Bộ Đám Mây Supabase */}
+              <CloudConfigPanel onSyncComplete={reloadData} />
 
-              <form onSubmit={handleChangePin} className="p-6 rounded-3xl bg-slate-950/70 border border-slate-800 space-y-4">
-                {pinChangeMessage && (
-                  <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                    <span>{pinChangeMessage}</span>
-                  </div>
-                )}
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-300 mb-1.5">
-                    Mật khẩu quản trị mới (tối thiểu 6 ký tự)
-                  </label>
-                  <div className="relative">
-                    <Key className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
-                    <input
-                      type="password"
-                      required
-                      value={newAdminPin}
-                      onChange={e => setNewAdminPin(e.target.value)}
-                      placeholder="Nhập mật khẩu quản trị mới..."
-                      className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm placeholder-slate-500 focus:outline-none focus:border-amber-500"
-                    />
-                  </div>
+              {/* 2. Cài Đặt Mật Khẩu Quản Trị */}
+              <div className="p-6 rounded-3xl bg-slate-950/70 border border-slate-800 space-y-4 max-w-md">
+                <div className="space-y-1">
+                  <h3 className="text-base font-bold text-white flex items-center gap-2">
+                    <Key className="w-5 h-5 text-amber-400" />
+                    Đổi Mật Khẩu Quản Trị Giáo Viên
+                  </h3>
+                  <p className="text-slate-400 text-xs">
+                    Thay đổi mã PIN bảo vệ trang quản trị dành riêng cho Thầy/Cô.
+                  </p>
                 </div>
 
-                <button
-                  type="submit"
-                  className="w-full py-2.5 rounded-2xl bg-gradient-to-r from-amber-500 to-rose-600 hover:from-amber-400 hover:to-rose-500 text-white font-bold text-xs shadow-glow-primary transition-all cursor-pointer"
-                >
-                  Cập Nhật Mật Khẩu
-                </button>
-              </form>
+                <form onSubmit={handleChangePin} className="space-y-4">
+                  {pinChangeMessage && (
+                    <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                      <span>{pinChangeMessage}</span>
+                    </div>
+                  )}
+
+                  <div>
+                    <label className="block text-xs font-bold text-slate-300 mb-1.5">
+                      Mật khẩu quản trị mới (tối thiểu 6 ký tự)
+                    </label>
+                    <div className="relative">
+                      <Key className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                      <input
+                        type="password"
+                        required
+                        value={newAdminPin}
+                        onChange={e => setNewAdminPin(e.target.value)}
+                        placeholder="Nhập mật khẩu quản trị mới..."
+                        className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm placeholder-slate-500 focus:outline-none focus:border-amber-500"
+                      />
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full py-2.5 rounded-2xl bg-gradient-to-r from-amber-500 to-rose-600 hover:from-amber-400 hover:to-rose-500 text-white font-bold text-xs shadow-glow-primary transition-all cursor-pointer"
+                  >
+                    Cập Nhật Mật Khẩu
+                  </button>
+                </form>
+              </div>
             </div>
           )}
+
         </div>
 
       </div>
