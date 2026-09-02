@@ -1,414 +1,24 @@
 import { Lesson } from '../types/lesson';
-
-export const LESSONS_DATA_11: Lesson[] = [
-  // Bài 1: Hệ điều hành
-  {
-    id: 1,
-    code: 'TIN11_B01',
-    title: 'Hệ điều hành',
-    themeId: 1,
-    themeName: 'Chủ đề 1: Máy tính và xã hội tri thức',
-    topicBadge: 'Hệ điều hành & Phần cứng',
-    grade: 11,
-    estimatedMinutes: 45,
-    xpTotal: 250,
-    hero: {
-      tagline: 'Bộ não điều phối toàn bộ tài nguyên phần cứng và phần mềm máy tính',
-      description: 'Khám phá lịch sử phát triển, vai trò trung gian và các chức năng then chốt của Hệ điều hành (Windows, Linux, macOS, Android, iOS).',
-      accentColor: 'from-purple-600 to-indigo-600',
-      keyHighlights: ['Quản lý tài nguyên phần cứng', 'Giao diện người dùng GUI', 'Hệ điều hành máy tính vs di động']
-    },
-    objectives: [
-      {
-        id: 'obj_11_1_1',
-        category: 'knowledge',
-        categoryName: 'Kiến thức cốt lõi',
-        title: 'Hiểu vai trò của Hệ điều hành',
-        description: 'Trình bày được khái niệm và các chức năng cơ bản của hệ điều hành trong quản lý thiết bị, tệp tin và tiến trình.',
-        iconName: 'Cpu'
-      },
-      {
-        id: 'obj_11_1_2',
-        category: 'skill',
-        categoryName: 'Kỹ năng & Năng lực',
-        title: 'Phân loại các hệ điều hành',
-        description: 'Phân biệt được hệ điều hành cho máy tính cá nhân (Windows, Linux, macOS) và thiết bị di động (Android, iOS).',
-        iconName: 'Layers'
-      },
-      {
-        id: 'obj_11_1_3',
-        category: 'attitude',
-        categoryName: 'Phẩm chất & Đạo đức',
-        title: 'Sử dụng hệ điều hành có bản quyền',
-        description: 'Nhận thức được tầm quan trọng của việc cập nhật bản vá bảo mật và tôn trọng bản quyền hệ điều hành.',
-        iconName: 'ShieldCheck'
-      }
-    ],
-    warmup: {
-      title: 'Tình huống: Chiếc máy tính không có Hệ điều hành',
-      scenario: 'Một chiếc máy tính cấu hình khủng gồm chip Core i9 và card đồ họa RTX 4090 vừa được lắp ráp nhưng chưa cài bất kỳ phần mềm nào. Khi bấm nút nguồn, máy tính có chạy được các phần mềm học tập không?',
-      pollQuestion: 'Hệ điều hành đóng vai trò gì giúp người dùng có thể sử dụng được phần cứng máy tính?',
-      pollOptions: [
-        { id: 'p11_1', text: 'Là môi trường trung gian kết nối và điều khiển tài nguyên phần cứng cho các ứng dụng hoạt động', votesPercent: 88, isPopular: true, insight: 'Chính xác! Không có hệ điều hành, người dùng không thể giao tiếp và điều khiển phần cứng máy tính.' },
-        { id: 'p11_2', text: 'Chỉ có tác dụng làm hình nền máy tính đẹp hơn', votesPercent: 4, insight: 'Hình nền chỉ là giao diện trực quan nhỏ, chức năng cốt lõi là quản lý tài nguyên.' },
-        { id: 'p11_3', text: 'Chỉ để kết nối Wi-Fi', votesPercent: 8, insight: 'Kết nối mạng chỉ là một trong rất nhiều dịch vụ do hệ điều hành quản lý.' }
-      ],
-      reflection: 'Hệ điều hành là phần mềm quan trọng nhất trên mọi thiết bị số, cung cấp nền tảng để mọi ứng dụng khác có thể thực thi.'
-    },
-    knowledge: [
-      {
-        id: 'tab_11_1_1',
-        title: '1. Khái niệm & Chức năng của Hệ điều hành',
-        subtitle: 'Cầu nối giữa phần cứng, phần mềm và người dùng',
-        iconName: 'Server',
-        keyPoints: [
-          'Hệ điều hành (Operating System - OS) là tập hợp các chương trình quản lý, điều phối tài nguyên phần cứng và cung cấp môi trường cho các phần mềm ứng dụng hoạt động.',
-          'Các chức năng cơ bản: Quản lý bộ nhớ (RAM), quản lý bộ vi xử lý (CPU), quản lý thiết bị ngoại vi (I/O), quản lý hệ thống tệp và cung cấp giao diện người dùng (GUI/CLI).',
-          'Sự phát triển: Từ giao diện dòng lệnh (MS-DOS, Unix CLI) đến giao diện đồ họa trực quan (Windows GUI, macOS) và giao diện cảm ứng đa điểm (iOS, Android).'
-        ],
-        visualType: 'infographic',
-        visualData: {
-          nodes: [
-            { label: 'Người dùng & Ứng dụng', desc: 'Trình duyệt, Office, Game, Zalo' },
-            { label: 'Hệ điều hành (OS)', desc: 'Windows, Linux, macOS, Android' },
-            { label: 'Phần cứng (Hardware)', desc: 'CPU, RAM, Ổ cứng SSD, Màn hình, Chuột' }
-          ]
-        },
-        emCanNho: [
-          'Hệ điều hành là phần mềm hệ thống điều khiển và quản lý toàn bộ tài nguyên máy tính.',
-          'Hệ điều hành cung cấp giao tiếp trực quan giữa người dùng với thiết bị.',
-          'Hệ điều hành máy tính tiêu biểu: Windows, macOS, Linux; Di động: Android, iOS.'
-        ]
-      }
-    ],
-    miniGame: {
-      type: 'drag-drop',
-      title: 'Phân loại Hệ điều hành Máy tính & Thiết bị di động',
-      instruction: 'Hãy kéo các hệ điều hành vào đúng nhóm thiết bị tương ứng:',
-      categories: [
-        { id: 'pc_os', title: 'Hệ điều hành cho Máy tính (PC / Laptop)', color: 'border-blue-500 bg-blue-950/40 text-blue-300' },
-        { id: 'mobile_os', title: 'Hệ điều hành cho Thiết bị di động', color: 'border-purple-500 bg-purple-950/40 text-purple-300' }
-      ],
-      dragItems: [
-        { id: 'os_1', text: 'Microsoft Windows 11', category: 'pc_os', explanation: 'Hệ điều hành phổ biến nhất trên máy tính cá nhân.' },
-        { id: 'os_2', text: 'Google Android 14', category: 'mobile_os', explanation: 'Hệ điều hành mã nguồn mở phổ biến cho smartphone/tablet.' },
-        { id: 'os_3', text: 'Apple macOS Sonoma', category: 'pc_os', explanation: 'Hệ điều hành độc quyền cho máy tính Mac của Apple.' },
-        { id: 'os_4', text: 'Apple iOS 17', category: 'mobile_os', explanation: 'Hệ điều hành cho iPhone và iPad.' },
-        { id: 'os_5', text: 'Ubuntu Linux Desktop', category: 'pc_os', explanation: 'Hệ điều hành mã nguồn mở mạnh mẽ và an toàn cho PC/Server.' }
-      ]
-    },
-    assessment: [
-      {
-        id: 1,
-        question: 'Chức năng nào sau đây KHÔNG PHẢI là chức năng chính của hệ điều hành?',
-        options: [
-          'Tự động soạn thảo bài văn nghị luận xã hội thay học sinh',
-          'Quản lý và cấp phát bộ nhớ trong (RAM) cho các tiến trình',
-          'Tổ chức lưu trữ và quản lý tệp trên đĩa',
-          'Cung cấp giao diện tương tác giữa người dùng và máy tính'
-        ],
-        correctIndex: 0,
-        explanation: 'Soạn thảo văn bản là nhiệm vụ của phần mềm ứng dụng (như Word) hoặc trí tuệ con người, không phải chức năng của hệ điều hành.',
-        difficulty: 'Thông hiểu'
-      },
-      {
-        id: 2,
-        question: 'Giao diện đồ họa người dùng viết tắt là gì trong thuật ngữ tin học?',
-        options: ['GUI (Graphical User Interface)', 'CLI (Command Line Interface)', 'API (Application Interface)', 'CPU (Central Processing)'],
-        correctIndex: 0,
-        explanation: 'GUI (Graphical User Interface) là giao diện trực quan sử dụng cửa sổ, biểu tượng icon, chuột và menu.',
-        difficulty: 'Nhận biết'
-      },
-      {
-        id: 3,
-        question: 'Hệ điều hành Android trên các dòng điện thoại thông minh hiện nay được phát triển dựa trên nhân (kernel) của hệ điều hành nào?',
-        options: ['Linux', 'Windows XP', 'MS-DOS', 'macOS'],
-        correctIndex: 0,
-        explanation: 'Android được Google phát triển dựa trên nền tảng nhân mã nguồn mở Linux.',
-        difficulty: 'Nhận biết'
-      },
-      {
-        id: 4,
-        question: 'Thao tác nào sau đây giúp hệ điều hành duy trì khả năng bảo mật và vận hành ổn định nhất?',
-        options: [
-          'Thường xuyên cập nhật các bản vá lỗi bảo mật (Windows Update / System Update)',
-          'Tắt hoàn toàn tường lửa và phần mềm diệt virus',
-          'Cài đặt các phần mềm bẻ khóa không rõ nguồn gốc',
-          'Rút phích cắm máy tính khi đang làm việc'
-        ],
-        correctIndex: 0,
-        explanation: 'Cập nhật hệ điều hành thường xuyên giúp vá các lỗ hổng bảo mật mà tin tặc có thể khai thác.',
-        difficulty: 'Vận dụng'
-      },
-      {
-        id: 5,
-        question: 'Chương trình quản lý tiến trình Task Manager trên hệ điều hành Windows dùng để làm gì?',
-        options: [
-          'Theo dõi hiệu suất phần cứng (CPU, RAM, Disk) và tắt các ứng dụng bị treo (Not Responding)',
-          'Đổi màu sắc của chuột quang',
-          'In ấn tài liệu tự động',
-          'Dịch văn bản sang tiếng Anh'
-        ],
-        correctIndex: 0,
-        explanation: 'Task Manager hiển thị chi tiết mức sử dụng tài nguyên của từng tiến trình và cho phép dừng các chương trình bị lỗi.',
-        difficulty: 'Thông hiểu'
-      }
-    ],
-    application: {
-      project: {
-        title: 'Tối ưu hóa và Dọn dẹp Hiệu suất Hệ điều hành Máy tính',
-        context: 'Sau một thời gian sử dụng, máy tính của phòng thực hành hoặc máy tính cá nhân bị chậm do nhiều tệp rác và chương trình khởi động cùng Windows.',
-        mission: 'Sử dụng các công cụ có sẵn trong hệ điều hành để kiểm tra tài nguyên và dọn dẹp hệ thống an toàn.',
-        steps: [
-          'Bước 1: Mở Task Manager (Ctrl + Shift + Esc) và kiểm tra thẻ Performance để xem % chiếm dụng CPU, RAM.',
-          'Bước 2: Vào thẻ Startup Apps và tắt các ứng dụng không cần thiết khởi động cùng máy.',
-          'Bước 3: Sử dụng công cụ Disk Cleanup để xóa các tệp tạm (Temporary files).'
-        ],
-        outputRequirement: 'Ghi lại % RAM trước và sau khi tối ưu hóa hệ điều hành.',
-        practicalTip: 'Không nên tắt các tiến trình hệ thống mang tên "Windows Explorer" hay "System" trong Task Manager.'
-      },
-      mindmap: {
-        id: 'mm_11_1',
-        label: 'HỆ ĐIỀU HÀNH (OPERATING SYSTEM)',
-        color: '#7c3aed',
-        children: [
-          {
-            id: 'mm_11_1_1',
-            label: 'Vai trò & Bản chất',
-            children: [
-              { id: 'mm_11_1_1_1', label: 'Cầu nối phần cứng - phần mềm' },
-              { id: 'mm_11_1_1_2', label: 'Quản lý tài nguyên hệ thống' }
-            ]
-          },
-          {
-            id: 'mm_11_1_2',
-            label: 'Các chức năng cốt lõi',
-            children: [
-              { id: 'mm_11_1_2_1', label: 'Quản lý CPU & Bộ nhớ RAM' },
-              { id: 'mm_11_1_2_2', label: 'Quản lý tập tin & Thư mục' },
-              { id: 'mm_11_1_2_3', label: 'Giao diện người dùng (GUI/CLI)' }
-            ]
-          },
-          {
-            id: 'mm_11_1_3',
-            label: 'Phân loại phổ biến',
-            children: [
-              { id: 'mm_11_1_3_1', label: 'Máy tính: Windows, Linux, macOS' },
-              { id: 'mm_11_1_3_2', label: 'Di động: Android, iOS' }
-            ]
-          }
-        ]
-      }
-    },
-    completion: {
-      badgeName: 'Chuyên Viên Hệ Điều Hành 11',
-      badgeIcon: 'Cpu',
-      roleTitle: 'Quản Trị Viên Hệ Điều Hành Cơ Bản',
-      congratsMessage: 'Tuyệt vời! Bạn đã làm chủ kiến thức về Hệ điều hành theo chuẩn SGK Tin học 11 GDPT 2018.',
-      skillsUnlocked: ['Hiểu kiến trúc OS', 'Quản lý tài nguyên qua Task Manager', 'Tối ưu hóa hệ thống']
-    }
-  },
-
-  // Bài 14: SQL – Ngôn ngữ truy vấn có cấu trúc (Trọng tâm CSDL 11)
-  {
-    id: 14,
-    code: 'TIN11_B14',
-    title: 'SQL – Ngôn ngữ truy vấn có cấu trúc',
-    themeId: 4,
-    themeName: 'Chủ đề 4: Giới thiệu các hệ cơ sở dữ liệu',
-    topicBadge: 'Hệ CSDL & SQL',
-    grade: 11,
-    estimatedMinutes: 45,
-    xpTotal: 250,
-    hero: {
-      tagline: 'Làm chủ chiếc chìa khóa vạn năng khai thác dữ liệu số: Ngôn ngữ SQL',
-      description: 'Làm quen với các câu lệnh truy vấn dữ liệu chuẩn mực (SELECT, FROM, WHERE, ORDER BY) để trích xuất thông tin nhanh chóng từ hàng triệu bản ghi.',
-      accentColor: 'from-indigo-600 to-cyan-500',
-      keyHighlights: ['Mệnh đề SELECT và FROM', 'Lọc điều kiện với WHERE', 'Sắp xếp kết quả với ORDER BY']
-    },
-    objectives: [
-      {
-        id: 'obj_11_14_1',
-        category: 'knowledge',
-        categoryName: 'Kiến thức cốt lõi',
-        title: 'Cú pháp câu lệnh truy vấn SQL',
-        description: 'Trình bày được vai trò của SQL và cú pháp câu lệnh truy vấn cơ bản: SELECT <danh sách cột> FROM <bảng> WHERE <điều kiện>.',
-        iconName: 'Database'
-      },
-      {
-        id: 'obj_11_14_2',
-        category: 'skill',
-        categoryName: 'Kỹ năng & Năng lực',
-        title: 'Viết câu lệnh SQL truy xuất dữ liệu',
-        description: 'Tự viết được các câu truy vấn để tìm kiếm học sinh theo lớp, tính điểm trung bình hoặc lọc danh sách sản phẩm.',
-        iconName: 'Code2'
-      },
-      {
-        id: 'obj_11_14_3',
-        category: 'attitude',
-        categoryName: 'Phẩm chất & Đạo đức',
-        title: 'Bảo mật và toàn vẹn dữ liệu',
-        description: 'Ý thức cẩn trọng khi thực thi các câu lệnh thay đổi dữ liệu và tuân thủ an toàn thông tin.',
-        iconName: 'ShieldCheck'
-      }
-    ],
-    warmup: {
-      title: 'Tình huống: Tìm kiếm hồ sơ học sinh trong 3000 em',
-      scenario: 'Thầy Tổng phụ trách cần tìm danh sách tất cả học sinh Khối 11 đạt điểm tổng kết môn Tin học từ 9.0 trở lên trong cơ sở dữ liệu toàn trường. Nếu tìm thủ công bằng mắt sẽ mất nhiều ngày.',
-      pollQuestion: 'Ngôn ngữ tiêu chuẩn nào được toàn thế giới sử dụng để máy tính trích xuất dữ liệu trong chớp mắt?',
-      pollOptions: [
-        { id: 'p11_14_1', text: 'SQL (Structured Query Language)', votesPercent: 91, isPopular: true, insight: 'Chính xác! SQL là ngôn ngữ tiêu chuẩn quốc tế để truy vấn và thao tác trên cơ sở dữ liệu quan hệ.' },
-        { id: 'p11_14_2', text: 'HTML', votesPercent: 5, insight: 'HTML chỉ dùng để định dạng hiển thị trang web.' },
-        { id: 'p11_14_3', text: 'Photoshop', votesPercent: 4, insight: 'Photoshop dùng để xử lý hình ảnh raster.' }
-      ],
-      reflection: 'SQL là kỹ năng công nghệ được săn đón hàng đầu trong mọi lĩnh vực phân tích dữ liệu, trí tuệ nhân tạo và lập trình phần mềm.'
-    },
-    knowledge: [
-      {
-        id: 'tab_11_14_1',
-        title: '1. Cú pháp cơ bản của câu lệnh SELECT',
-        subtitle: 'Trích xuất dữ liệu có điều kiện',
-        iconName: 'Code',
-        keyPoints: [
-          'Cú pháp chuẩn: `SELECT <Danh sách cột> FROM <Tên bảng> WHERE <Điều kiện lọc> ORDER BY <Cột sắp xếp> [ASC|DESC];`',
-          '`SELECT *`: Chọn tất cả các cột dữ liệu trong bảng.',
-          'Mệnh đề `WHERE`: Sử dụng các phép so sánh (=, >, <, >=, <=, <>) và toán tử logic (AND, OR, NOT) để lọc dữ liệu chính xác.',
-          'Mệnh đề `ORDER BY`: Sắp xếp kết quả tăng dần (ASC - mặc định) hoặc giảm dần (DESC).'
-        ],
-        visualType: 'interactive-sql',
-        visualData: {
-          defaultSql: 'SELECT HoTen, Lop, DiemTin FROM HOC_SINH WHERE DiemTin >= 8.5 ORDER BY DiemTin DESC;',
-          sampleTable: {
-            columns: ['MaHS', 'HoTen', 'Lop', 'DiemTin'],
-            rows: [
-              ['HS01', 'Nguyễn Văn An', '11A1', '9.5'],
-              ['HS02', 'Trần Thị Bình', '11A2', '8.8'],
-              ['HS03', 'Lê Hoàng Cúc', '11A1', '7.5'],
-              ['HS04', 'Phạm Minh Đức', '11A3', '9.0']
-            ]
-          }
-        },
-        emCanNho: [
-          'SQL là ngôn ngữ truy vấn có cấu trúc dùng để giao tiếp với hệ quản trị CSDL quan hệ.',
-          'Cấu trúc cơ bản nhất: `SELECT ... FROM ... WHERE ...`',
-          'Dấu `*` đại diện cho việc lấy tất cả các cột dữ liệu của bảng.'
-        ]
-      }
-    ],
-    miniGame: {
-      type: 'matching',
-      title: 'Ghép cặp từ khóa SQL và Ý nghĩa',
-      instruction: 'Nối từ khóa câu lệnh SQL với chức năng tương ứng:',
-      matchingPairs: [
-        { id: 'sql_1', left: 'SELECT HoTen, Lop', right: 'Chỉ định các cột dữ liệu cần lấy ra' },
-        { id: 'sql_2', left: 'FROM HOC_SINH', right: 'Chỉ định bảng nguồn chứa dữ liệu' },
-        { id: 'sql_3', left: 'WHERE DiemTin >= 8.0', right: 'Điều kiện lọc chỉ lấy học sinh đạt từ 8 điểm' },
-        { id: 'sql_4', left: 'ORDER BY DiemTin DESC', right: 'Sắp xếp điểm số giảm dần từ cao xuống thấp' }
-      ]
-    },
-    assessment: [
-      {
-        id: 1,
-        question: 'Từ viết tắt SQL là viết tắt của cụm từ tiếng Anh nào?',
-        options: ['Structured Query Language', 'Simple Question Language', 'Standard Quality List', 'System Quick Link'],
-        correctIndex: 0,
-        explanation: 'SQL là viết tắt của Structured Query Language (Ngôn ngữ truy vấn có cấu trúc).',
-        difficulty: 'Nhận biết'
-      },
-      {
-        id: 2,
-        question: 'Để lấy TẤT CẢ các cột và tất cả các dòng từ bảng "NHAN_VIEN", câu lệnh SQL nào đúng?',
-        options: ['SELECT * FROM NHAN_VIEN;', 'GET ALL FROM NHAN_VIEN;', 'FIND TABLE NHAN_VIEN;', 'FETCH ALL IN NHAN_VIEN;'],
-        correctIndex: 0,
-        explanation: 'Ký tự sao (*) trong mệnh đề SELECT mang ý nghĩa lấy toàn bộ các trường (cột) dữ liệu.',
-        difficulty: 'Thông hiểu'
-      },
-      {
-        id: 3,
-        question: 'Muốn sắp xếp danh sách kết quả theo thứ tự từ CAO XUỐNG THẤP (giảm dần), ta dùng từ khóa nào sau ORDER BY?',
-        options: ['DESC', 'ASC', 'DOWN', 'TOP'],
-        correctIndex: 0,
-        explanation: 'DESC (Descending) sắp xếp giảm dần, còn ASC (Ascending) sắp xếp tăng dần.',
-        difficulty: 'Nhận biết'
-      },
-      {
-        id: 4,
-        question: 'Trong câu lệnh SQL: SELECT * FROM SAN_PHAM WHERE GiaTien < 50000; Mệnh đề WHERE có vai trò gì?',
-        options: [
-          'Lọc ra những sản phẩm có giá tiền nhỏ hơn 50,000 đồng',
-          'Xóa toàn bộ sản phẩm khỏi kho',
-          'Tăng giá sản phẩm lên 50,000 đồng',
-          'Đổi tên sản phẩm'
-        ],
-        correctIndex: 0,
-        explanation: 'Mệnh đề WHERE áp dụng điều kiện lọc logic, chỉ các bản ghi thỏa mãn điều kiện mới được trả về.',
-        difficulty: 'Thông hiểu'
-      },
-      {
-        id: 5,
-        question: 'Muốn tìm học sinh thuộc lớp "11A1" VÀ có điểm môn Tin lớn hơn hoặc bằng 8.0, toán tử logic nào được sử dụng?',
-        options: ['AND', 'OR', 'NOT', 'XOR'],
-        correctIndex: 0,
-        explanation: 'Toán tử AND yêu cầu cả hai điều kiện cùng phải đúng (Lop = "11A1" AND DiemTin >= 8.0).',
-        difficulty: 'Vận dụng'
-      }
-    ],
-    application: {
-      project: {
-        title: 'Viết Câu lệnh SQL Quản lý Thư viện Trường học',
-        context: 'Cơ sở dữ liệu thư viện có bảng `SACH` gồm các trường: `MaSach`, `TenSach`, `TacGia`, `NamXuatBan`, `SoLuong`.',
-        mission: 'Soạn thảo 3 câu truy vấn SQL đáp ứng các yêu cầu tìm kiếm của cán bộ thư viện.',
-        steps: [
-          'Câu 1: Lấy danh sách toàn bộ sách xuất bản từ năm 2020 trở lại đây.',
-          'Câu 2: Tìm những cuốn sách của tác giả "Nguyễn Nhật Ánh".',
-          'Câu 3: Sắp xếp toàn bộ sách theo số lượng tồn kho giảm dần.'
-        ],
-        outputRequirement: 'Viết đúng 3 câu lệnh SQL có chấm phẩy kết thúc chuẩn cú pháp.',
-        practicalTip: 'Chuỗi ký tự trong SQL luôn được đặt trong cặp dấu nháy đơn hoặc nháy kép (VD: \'Nguyễn Nhật Ánh\').'
-      },
-      mindmap: {
-        id: 'mm_11_14',
-        label: 'NGÔN NGỮ TRUY VẤN SQL',
-        color: '#4f46e5',
-        children: [
-          {
-            id: 'mm_11_14_1',
-            label: 'Cấu trúc câu lệnh',
-            children: [
-              { id: 'mm_11_14_1_1', label: 'SELECT <cột>' },
-              { id: 'mm_11_14_1_2', label: 'FROM <bảng>' }
-            ]
-          },
-          {
-            id: 'mm_11_14_2',
-            label: 'Mệnh đề lọc WHERE',
-            children: [
-              { id: 'mm_11_14_2_1', label: 'Toán tử so sánh (=, >, <)' },
-              { id: 'mm_11_14_2_2', label: 'Toán tử logic (AND, OR, NOT)' }
-            ]
-          },
-          {
-            id: 'mm_11_14_3',
-            label: 'Sắp xếp ORDER BY',
-            children: [
-              { id: 'mm_11_14_3_1', label: 'ASC (Tăng dần)' },
-              { id: 'mm_11_14_3_2', label: 'DESC (Giảm dần)' }
-            ]
-          }
-        ]
-      }
-    },
-    completion: {
-      badgeName: 'Bậc Thầy Truy Vấn SQL 11',
-      badgeIcon: 'Database',
-      roleTitle: 'Chuyên Viên Khai Thác Cơ Sở Dữ Liệu',
-      congratsMessage: 'Xuất sắc! Bạn đã làm chủ câu lệnh truy vấn SQL để khai thác dữ liệu lớn hiệu quả.',
-      skillsUnlocked: ['Viết câu lệnh SELECT', 'Lọc điều kiện với WHERE', 'Sắp xếp kết quả với ORDER BY']
-    }
-  }
-];
+import { THEME1_LESSONS_11 } from './grade11/theme1_os';
+import { THEME2_LESSONS_11 } from './grade11/theme2_info';
+import { THEME3_LESSONS_11 } from './grade11/theme3_ethics';
+import { THEME4_LESSONS_11 } from './grade11/theme4_database';
+import { THEME5_LESSONS_11 } from './grade11/theme5_career';
+import { THEME6_LESSONS_11 } from './grade11/theme6_db_practice';
+import { THEME7_LESSONS_11 } from './grade11/theme7_multimedia';
 
 // Complete 31 lessons of Grade 11 Applied Informatics from taphuan.nxbgd.vn
+export const LESSONS_DATA_11: Lesson[] = [
+  ...THEME1_LESSONS_11,
+  ...THEME2_LESSONS_11,
+  ...THEME3_LESSONS_11,
+  ...THEME4_LESSONS_11,
+  ...THEME5_LESSONS_11,
+  ...THEME6_LESSONS_11,
+  ...THEME7_LESSONS_11
+];
+
+// Complete 31 lesson metadata of Grade 11 Applied Informatics from taphuan.nxbgd.vn
 export const LESSON_TITLES_11: Record<number, { title: string; themeId: number; themeName: string; badge: string; desc: string }> = {
   1: { title: 'Hệ điều hành', themeId: 1, themeName: 'Chủ đề 1: Máy tính và xã hội tri thức', badge: 'Hệ điều hành', desc: 'Khái niệm, lịch sử phát triển và các chức năng cốt lõi của hệ điều hành máy tính và di động.' },
   2: { title: 'Thực hành sử dụng hệ điều hành', themeId: 1, themeName: 'Chủ đề 1: Máy tính và xã hội tri thức', badge: 'Thực hành OS', desc: 'Thực hành thiết lập cấu hình hệ thống, quản lý tài khoản người dùng và quản lý tiến trình với Task Manager.' },
@@ -468,16 +78,16 @@ export function getLesson11ById(id: number): Lesson {
     hero: {
       tagline: `Chinh phục chuẩn kiến thức và kỹ năng thực hành: ${meta.title}`,
       description: meta.desc,
-      accentColor: 'from-purple-600 to-indigo-600',
-      keyHighlights: ['Bám sát chuẩn SGK GDPT 2018 taphuan.nxbgd.vn', 'Trải nghiệm học tập tương tác', 'Thực hành ứng dụng thực tế']
+      accentColor: 'from-blue-600 to-indigo-600',
+      keyHighlights: ['Chuẩn SGK Kết nối tri thức', 'Định hướng Tin học ứng dụng', '8 bước tự học EdTech']
     },
     objectives: [
       {
         id: `obj_11_${id}_1`,
         category: 'knowledge',
         categoryName: 'Kiến thức cốt lõi',
-        title: `Nắm vững lý thuyết ${meta.title}`,
-        description: `Hiểu rõ các khái niệm, quy trình và kỹ thuật chuẩn được trình bày trong ${meta.title}.`,
+        title: `Nắm vững nội dung ${meta.title}`,
+        description: `Trình bày và giải thích được các khái niệm trọng tâm của ${meta.title} theo SGK GDPT 2018.`,
         iconName: 'BookOpen'
       },
       {
@@ -485,146 +95,145 @@ export function getLesson11ById(id: number): Lesson {
         category: 'skill',
         categoryName: 'Kỹ năng & Năng lực',
         title: 'Kỹ năng thực hành ứng dụng',
-        description: 'Vận dụng kiến thức bài học để giải quyết bài toán quản trị CSDL, xử lý hình ảnh hoặc biên tập video.',
-        iconName: 'Wrench'
+        description: `Thực hiện thành thạo các thao tác thực hành tin học, CSDL hoặc phần mềm ứng dụng của ${meta.title}.`,
+        iconName: 'Play'
       },
       {
         id: `obj_11_${id}_3`,
         category: 'attitude',
         categoryName: 'Phẩm chất & Đạo đức',
-        title: 'Tác phong chuyên nghiệp & An toàn số',
-        description: 'Hình thành thói quen sao lưu dữ liệu, bảo mật thông tin và tôn trọng quyền tác giả trong môi trường số.',
+        title: 'Thái độ & Trách nhiệm số',
+        description: 'Vận dụng kiến thức khoa học, tuân thủ pháp luật và an toàn thông tin trong môi trường số.',
         iconName: 'ShieldCheck'
       }
     ],
     warmup: {
-      title: `Tình huống mở đầu: ${meta.title}`,
-      scenario: `Trong thực tiễn công việc văn phòng và sản xuất số, chúng ta thường xuyên gặp các bài toán liên quan đến ${meta.title} cần được xử lý nhanh chóng và khoa học.`,
-      pollQuestion: `Theo bạn, yếu tố quan trọng nhất giúp làm chủ ${meta.title} là gì?`,
+      title: `Tình huống thực tiễn: Khởi động bài học ${meta.title}`,
+      scenario: `Trong bối cảnh chuyển đổi số và ứng dụng tin học vào công việc thực tế, nội dung của "${meta.title}" đóng vai trò thiết yếu giúp tối ưu hóa hiệu quả làm việc.`,
+      pollQuestion: `Mục tiêu quan trọng nhất bạn muốn đạt được khi học ${meta.title} là gì?`,
       pollOptions: [
-        { id: `p11_${id}_1`, text: 'Hiểu bản chất lý thuyết kết hợp thao tác thực hành thường xuyên', votesPercent: 88, isPopular: true, insight: 'Chính xác! Thực hành liên tục trên phần mềm là chìa khóa làm chủ Tin học ứng dụng.' },
-        { id: `p11_${id}_2`, text: 'Chỉ học thuộc lòng định nghĩa trong sách', votesPercent: 5, insight: 'Học vẹt lý thuyết không thể phát triển kỹ năng thao tác máy tính.' },
-        { id: `p11_${id}_3`, text: 'Xem qua một lần rồi không luyện tập', votesPercent: 7, insight: 'Không luyện tập sẽ nhanh chóng quên các bước kỹ thuật.' }
+        { id: `p11_${id}_1`, text: 'Làm chủ lý thuyết và thực hành thành thạo các công cụ trên máy tính', votesPercent: 88, isPopular: true, insight: 'Chính xác! Học đi đôi với hành là phương châm hàng đầu của Tin học ứng dụng.' },
+        { id: `p11_${id}_2`, text: 'Đạt điểm tối đa trong các bài kiểm tra đánh giá định kỳ', votesPercent: 8, insight: 'Điểm số cao là kết quả tự nhiên khi bạn đã nắm chắc kiến thức và kỹ năng.' },
+        { id: `p11_${id}_3`, text: 'Áp dụng vào các dự án công nghệ và nghề nghiệp tương lai', votesPercent: 4, insight: 'Tầm nhìn thực tế giúp bạn có động lực học tập chuyên sâu.' }
       ],
-      reflection: `Kiên trì rèn luyện kỹ năng với ${meta.title} sẽ giúp bạn tự tin ứng dụng vào học tập và công việc sau này.`
+      reflection: 'Thực hành thường xuyên trên máy tính là chìa khóa vàng để làm chủ môn Tin học 11.'
     },
     knowledge: [
       {
         id: `tab_11_${id}_1`,
-        title: `1. Nội dung trọng tâm ${meta.title}`,
-        subtitle: 'Kiến thức chuẩn SGK Tin học 11 - Định hướng Tin học ứng dụng',
+        title: `1. Trọng Tâm Kiến Thức: ${meta.title}`,
+        subtitle: meta.themeName,
         iconName: 'Layers',
         keyPoints: [
-          `Nắm vững các thuật ngữ và khái niệm then chốt trong ${meta.title}.`,
-          'Thao tác đúng quy trình kỹ thuật chuẩn xác theo từng bước hướng dẫn.',
-          'Kết hợp linh hoạt các công cụ để hoàn thành sản phẩm số chất lượng.'
+          `Nội dung ${meta.title} bám sát cấu trúc chương trình GDPT 2018 - Bộ sách Kết nối tri thức với cuộc sống.`,
+          `${meta.desc}`,
+          'Vận dụng công cụ phần mềm hiện đại và phương pháp tư duy giải quyết vấn đề bằng công nghệ.'
         ],
-        visualType: id >= 10 && id <= 24 ? 'interactive-sql' : 'infographic',
-        visualData: id >= 10 && id <= 24 ? {
-          defaultSql: `-- Truy vấn mẫu cho ${meta.title}\nSELECT * FROM DU_LIEU_11 WHERE TrangThai = 1;`
-        } : {
+        visualType: 'infographic',
+        visualData: {
           nodes: [
-            { label: 'Bước 1: Chuẩn bị', desc: 'Xác định mục tiêu và dữ liệu nguồn' },
-            { label: 'Bước 2: Xử lý kỹ thuật', desc: 'Thao tác công cụ theo chuẩn SGK' },
-            { label: 'Bước 3: Xuất bản & Lưu trữ', desc: 'Lưu tệp an toàn và kiểm tra chất lượng' }
+            { label: 'Kiến thức cốt lõi', desc: `Trọng tâm lý thuyết của ${meta.title}` },
+            { label: 'Thực hành thao tác', desc: 'Rèn luyện kỹ năng thực chiến trên máy tính' },
+            { label: 'Vận dụng thực tế', desc: 'Giải quyết bài toán học tập và đời sống' }
           ]
         },
         emCanNho: [
-          `Nắm vững nguyên lý và các bước thao tác cốt lõi của ${meta.title}.`,
-          'Luôn sao lưu dữ liệu và kiểm tra kết quả cẩn thận.',
-          'Tuân thủ các quy tắc an toàn và bản quyền số.'
+          `Nắm chắc định nghĩa và quy trình cốt lõi trong ${meta.title}.`,
+          'Luôn thực hành trực tiếp trên máy tính để ghi nhớ sâu các thao tác kỹ thuật.',
+          'Tuân thủ các nguyên tắc an toàn, bảo mật dữ liệu và bản quyền phần mềm.'
         ]
       }
     ],
     miniGame: {
       type: 'matching',
-      title: `Thử thách ghép cặp: ${meta.title}`,
-      instruction: 'Nối đúng khái niệm với chức năng hoặc cú pháp tương ứng:',
+      title: `Thử Thách Nhanh: ${meta.title}`,
+      instruction: 'Ghép cặp khái niệm đúng với định nghĩa/mục tiêu tương ứng:',
       matchingPairs: [
-        { id: `pair_11_${id}_1`, left: 'Khái niệm chuẩn SGK 11', right: 'Định nghĩa chính xác theo chuẩn taphuan.nxbgd.vn' },
-        { id: `pair_11_${id}_2`, left: 'Quy trình kỹ thuật', right: 'Các bước thao tác khoa học và chuẩn xác' },
-        { id: `pair_11_${id}_3`, left: 'Ứng dụng thực tế', right: 'Giải quyết bài toán CSDL và đồ hoạ truyền thông' }
+        { id: 'm1', left: `${meta.title} - Trọng tâm`, right: 'Chuẩn kiến thức SGK Tin học 11 Kết nối tri thức' },
+        { id: 'm2', left: 'Kỹ năng thực hành', right: 'Thao tác chính xác, tối ưu thời gian xử lý trên máy tính' },
+        { id: 'm3', left: 'Ứng dụng thực tế', right: 'Giải quyết bài toán quản lý dữ liệu và sản xuất truyền thông' },
+        { id: 'm4', left: 'An toàn & Pháp luật số', right: 'Bảo vệ dữ liệu cá nhân và tuân thủ bản quyền phần mềm' }
       ]
     },
     assessment: [
       {
         id: 1,
-        question: `Mục tiêu cơ bản nhất khi học bài "${meta.title}" là gì?`,
-        options: [
-          `Nắm vững kiến thức và kỹ năng thực hành chuẩn của ${meta.title}`,
-          'Chỉ để xem phim giải trí',
-          'Tắt máy tính đi ngủ',
-          'Không có ý nghĩa gì'
-        ],
+        question: `Nội dung cốt lõi của bài học "${meta.title}" thuộc chủ đề nào trong chương trình Tin học 11?`,
+        options: [meta.themeName, 'Chủ đề không có trong chương trình', 'Môn học khác', 'Kiến thức tự do'],
         correctIndex: 0,
-        explanation: 'Bài học giúp học sinh trang bị đầy đủ năng lực lý thuyết và thực hành theo chương trình GDPT 2018.',
+        explanation: `Bài học thuộc ${meta.themeName} theo chương trình GDPT 2018.`,
         difficulty: 'Nhận biết'
       },
       {
         id: 2,
-        question: `Trong quá trình thực hành "${meta.title}", thói quen nào sau đây giúp phòng tránh mất mát dữ liệu?`,
+        question: `Mục tiêu kỹ năng thực hành quan trọng nhất của bài học "${meta.title}" là gì?`,
         options: [
-          'Thường xuyên lưu tệp (Ctrl + S) và sao lưu dữ liệu định kỳ',
-          'Xóa hết các tệp quan trọng trong thư mục',
-          'Rút nguồn điện máy tính đột ngột',
-          'Không bao giờ đặt mật khẩu'
+          'Thao tác thành thạo trên phần mềm máy tính và áp dụng giải quyết bài toán thực tế',
+          'Chỉ cần học thuộc lòng lý thuyết trong sách',
+          'Không cần sử dụng máy tính',
+          'Chỉ làm bài tập trắc nghiệm'
         ],
         correctIndex: 0,
-        explanation: 'Lưu tệp liên tục và sao lưu định kỳ là nguyên tắc an toàn dữ liệu hàng đầu.',
+        explanation: 'Định hướng Tin học ứng dụng đề cao kỹ năng thực hành và giải quyết vấn đề thực tế.',
         difficulty: 'Thông hiểu'
       },
       {
         id: 3,
-        question: `Bài học "${meta.title}" thuộc chủ đề nào trong SGK Tin học 11?`,
-        options: [meta.themeName, 'Địa lý tự nhiên', 'Văn học dân gian', 'Vật lý hạt nhân'],
+        question: 'Khi thực hiện các thao tác trên cơ sở dữ liệu hoặc phần mềm đồ họa, nguyên tắc an toàn nào luôn được ưu tiên hàng đầu?',
+        options: [
+          'Sao lưu dữ liệu định kỳ và lưu tệp dự án cẩn thận trước khi thay đổi lớn',
+          'Tắt máy tính đột ngột',
+          'Xóa toàn bộ các tệp gốc',
+          'Không cần lưu tệp'
+        ],
         correctIndex: 0,
-        explanation: `Nội dung bài học nằm trong ${meta.themeName} theo chương trình GDPT 2018.`,
-        difficulty: 'Nhận biết'
+        explanation: 'Sao lưu và bảo toàn dữ liệu gốc là nguyên tắc làm việc sống còn của người làm công nghệ.',
+        difficulty: 'Thông hiểu'
       },
       {
         id: 4,
-        question: `Kỹ năng thu được từ "${meta.title}" giúp học sinh phát triển năng lực gì?`,
+        question: 'Định hướng Tin học ứng dụng trong chương trình Tin học 11 tập trung phát triển năng lực nào cho học sinh?',
         options: [
-          'Năng lực ứng dụng tin học, khai thác cơ sở dữ liệu và sáng tạo sản phẩm số',
-          'Năng lực chơi game thâu đêm',
-          'Làm hỏng bàn phím máy tính',
-          'Quên các lệnh đã học'
+          'Năng lực sử dụng và quản trị CSDL, phần mềm xử lý đa phương tiện (ảnh, video) phục vụ học tập và nghề nghiệp',
+          'Chỉ học lý thuyết lịch sử máy tính cổ đại',
+          'Chỉ chơi trò chơi điện tử',
+          'Học sửa chữa cơ khí'
         ],
         correctIndex: 0,
-        explanation: 'Kỹ năng tin học ứng dụng giúp học sinh tự tin làm chủ công cụ số trong thời đại chuyển đổi số.',
+        explanation: 'Tin học ứng dụng 11 trang bị kỹ năng thực tế về CSDL và biên tập đa phương tiện.',
         difficulty: 'Vận dụng'
       },
       {
         id: 5,
-        question: `Để kiểm tra lại kết quả thực hành sau khi hoàn thành "${meta.title}", bạn nên làm gì?`,
+        question: `Thái độ học tập đúng đắn nhất đối với bài học "${meta.title}" là gì?`,
         options: [
-          'Đối chiếu với các tiêu chí chuẩn trong SGK và làm bài tập đánh giá',
-          'Xóa toàn bộ sản phẩm vừa tạo',
-          'Không bao giờ mở lại máy tính',
-          'Tắt nguồn ngay lập tức'
+          'Chủ động tìm tòi, tích cực thực hành trên máy và tôn trọng bản quyền số',
+          'Chép bài của bạn khác',
+          'Bỏ qua các giờ thực hành',
+          'Sử dụng phần mềm bẻ khóa độc hại'
         ],
         correctIndex: 0,
-        explanation: 'Đối chiếu tiêu chuẩn và làm bài tự đánh giá giúp củng cố kiến thức vững chắc.',
-        difficulty: 'Thông hiểu'
+        explanation: 'Thái độ chủ động, trung thực và tuân thủ đạo đức số là phẩm chất của công dân số mẫu mực.',
+        difficulty: 'Nhận biết'
       }
     ],
     application: {
       project: {
-        title: `Dự án Vận dụng Thực tiễn: ${meta.title}`,
-        context: 'Ứng dụng kỹ năng bài học vào các tình huống thực tế của học sinh lớp 11.',
-        mission: `Thực hiện dự án nhỏ áp dụng kiến thức của ${meta.title} để tạo ra sản phẩm hoàn chỉnh.`,
+        title: `Dự án thực tế: Ứng dụng ${meta.title} trong học đường`,
+        context: `Áp dụng các kiến thức và kỹ năng của ${meta.title} vào hoạt động học tập và sinh hoạt tại trường THPT.`,
+        mission: `Thực hiện một bài tập thực hành hoặc sản phẩm số minh họa cho nội dung ${meta.title}.`,
         steps: [
-          'Bước 1: Lên ý tưởng và xác định yêu cầu sản phẩm.',
-          'Bước 2: Mở phần mềm và thao tác từng bước theo quy trình.',
-          'Bước 3: Đánh giá chất lượng và chia sẻ sản phẩm với bạn bè, thầy cô.'
+          `Bước 1: Nghiên cứu kỹ yêu cầu và các bước thao tác chuẩn của ${meta.title}.`,
+          'Bước 2: Thực hành trực tiếp trên máy tính tại phòng máy hoặc máy tính cá nhân.',
+          'Bước 3: Kiểm tra, hoàn thiện sản phẩm và xuất kết quả theo định dạng chuẩn.'
         ],
-        outputRequirement: 'Một sản phẩm số hoàn chỉnh đạt chuẩn kỹ thuật theo yêu cầu.',
-        practicalTip: 'Đừng ngại thử nghiệm các tính năng mới để nâng cao tính sáng tạo của sản phẩm!'
+        outputRequirement: `Sản phẩm thực hành hoàn chỉnh đáp ứng đầy đủ tiêu chí của bài học ${meta.title}.`,
+        practicalTip: 'Luôn ghi chú lại các phím tắt và lỗi thường gặp để xử lý nhanh hơn trong các lần sau.'
       },
       mindmap: {
         id: `mm_11_${id}`,
         label: meta.title.toUpperCase(),
-        color: '#7c3aed',
+        color: '#4f46e5',
         children: [
           {
             id: `mm_11_${id}_1`,
