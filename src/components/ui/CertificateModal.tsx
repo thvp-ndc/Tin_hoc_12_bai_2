@@ -1,0 +1,186 @@
+import React, { useRef, useState } from 'react';
+import { 
+  Award, 
+  Download, 
+  Printer, 
+  X, 
+  Sparkles, 
+  CheckCircle,
+  GraduationCap
+} from 'lucide-react';
+import { Lesson } from '../../types/lesson';
+import { sounds } from '../../utils/soundEffects';
+import { toPng } from 'html-to-image';
+
+interface CertificateModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  lesson: Lesson;
+  studentName: string;
+  onUpdateStudentName: (name: string) => void;
+  scorePercent: number;
+}
+
+export const CertificateModal: React.FC<CertificateModalProps> = ({
+  isOpen,
+  onClose,
+  lesson,
+  studentName,
+  onUpdateStudentName,
+  scorePercent
+}) => {
+  const certRef = useRef<HTMLDivElement>(null);
+  const [isDownloading, setIsDownloading] = useState(false);
+
+  if (!isOpen) return null;
+
+  const handleDownload = async () => {
+    if (!certRef.current) return;
+    sounds.playWin();
+    setIsDownloading(true);
+
+    try {
+      const dataUrl = await toPng(certRef.current, {
+        cacheBust: true,
+        backgroundColor: '#ffffff',
+        quality: 1
+      });
+      const link = document.createElement('a');
+      link.download = `Chung_Nhan_Tin_Hoc_12_${lesson.code}_${studentName || 'Hoc_Sinh'}.png`;
+      link.href = dataUrl;
+      link.click();
+    } catch (err) {
+      console.error('Download error:', err);
+    } finally {
+      setIsDownloading(false);
+    }
+  };
+
+  const handlePrint = () => {
+    sounds.playClick();
+    window.print();
+  };
+
+  const currentDate = new Date().toLocaleDateString('vi-VN', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric'
+  });
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md animate-in fade-in">
+      <div className="relative w-full max-w-2xl bg-slate-900 border border-slate-700 rounded-3xl p-6 sm:p-8 text-white shadow-2xl space-y-6 max-h-[90vh] overflow-y-auto">
+        {/* Modal Top Bar */}
+        <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+          <div className="flex items-center gap-2 text-amber-400 font-bold text-lg">
+            <Award className="w-6 h-6" />
+            <span>Chứng Nhận Hoàn Thành Điện Tử</span>
+          </div>
+          <button 
+            onClick={() => {
+              sounds.playClick();
+              onClose();
+            }}
+            className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Input Student Name */}
+        <div className="space-y-2">
+          <label className="text-xs font-bold text-slate-300 uppercase tracking-wider">
+            Nhập Họ và Tên học sinh hiển thị trên chứng chỉ:
+          </label>
+          <input
+            type="text"
+            value={studentName}
+            onChange={(e) => onUpdateStudentName(e.target.value)}
+            placeholder="Ví dụ: Nguyễn Văn An - Lớp 12A1"
+            className="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-sm font-semibold text-cyan-300 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500"
+          />
+        </div>
+
+        {/* Printable Certificate Template View */}
+        <div 
+          ref={certRef}
+          className="relative p-8 sm:p-10 rounded-2xl bg-gradient-to-br from-amber-50 via-white to-amber-100/60 border-8 border-double border-amber-600/60 text-slate-900 shadow-xl text-center space-y-4"
+        >
+          {/* Certificate Header */}
+          <div className="space-y-1">
+            <div className="text-[11px] uppercase font-bold tracking-widest text-amber-800">
+              CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
+            </div>
+            <div className="text-[9px] text-slate-600">Độc lập - Tự do - Hạnh phúc</div>
+            <div className="w-24 h-0.5 bg-amber-600/40 mx-auto my-1" />
+            <h2 className="text-xl sm:text-2xl font-black text-amber-900 tracking-tight pt-2 uppercase">
+              CHỨNG NHẬN HOÀN THÀNH BÀI HỌC
+            </h2>
+            <p className="text-xs text-slate-600 font-medium">Chương trình GDPT 2018 môn Tin học 12</p>
+          </div>
+
+          {/* Student Name */}
+          <div className="py-2 space-y-1">
+            <p className="text-xs text-slate-600 italic">Chứng nhận em:</p>
+            <div className="text-2xl sm:text-3xl font-black text-blue-900 font-serif tracking-wide border-b-2 border-amber-400/60 pb-1 inline-block min-w-[200px]">
+              {studentName || 'HỌC SINH LỚP 12'}
+            </div>
+          </div>
+
+          {/* Achievement Description */}
+          <p className="text-xs sm:text-sm text-slate-700 max-w-lg mx-auto leading-relaxed">
+            Đã xuất sắc hoàn thành đầy đủ 8 bước học tập tương tác của bài học:
+            <br />
+            <strong className="text-blue-950 font-bold text-sm sm:text-base">Bài {lesson.id}: {lesson.title}</strong>
+          </p>
+
+          {/* Badges & Scores */}
+          <div className="flex justify-center items-center gap-6 py-2">
+            <div className="text-center">
+              <span className="text-[10px] text-slate-500 uppercase font-bold">Danh hiệu</span>
+              <div className="text-xs sm:text-sm font-bold text-amber-800">{lesson.completion.badgeName}</div>
+            </div>
+            <div className="w-px h-8 bg-amber-300" />
+            <div className="text-center">
+              <span className="text-[10px] text-slate-500 uppercase font-bold">Kết quả tự đánh giá</span>
+              <div className="text-xs sm:text-sm font-bold text-emerald-700">{scorePercent}% Xuất sắc</div>
+            </div>
+          </div>
+
+          {/* Date and Signature Footer */}
+          <div className="flex justify-between items-end pt-6 border-t border-amber-300/60 text-xs">
+            <div className="text-left space-y-1">
+              <div className="flex items-center gap-1 text-[10px] font-bold text-slate-600">
+                <CheckCircle className="w-3.5 h-3.5 text-emerald-600" />
+                <span>Nền tảng EdTech Tin học 12</span>
+              </div>
+              <div className="text-[9px] text-slate-500">Mã số: TH12-KNTT-{lesson.id}</div>
+            </div>
+
+            <div className="text-right space-y-1">
+              <div className="text-[10px] italic text-slate-600">Ngày cấp: {currentDate}</div>
+              <div className="text-[11px] font-bold text-amber-950">BAN CHUYÊN MÔN TIN HỌC</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex flex-wrap items-center justify-end gap-3 pt-2">
+          <button
+            onClick={handlePrint}
+            className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm font-bold transition-all flex items-center gap-2"
+          >
+            <Printer className="w-4 h-4" /> In chứng chỉ
+          </button>
+          <button
+            disabled={isDownloading}
+            onClick={handleDownload}
+            className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-slate-950 text-xs sm:text-sm font-extrabold shadow-glow-primary transition-all flex items-center gap-2 cursor-pointer"
+          >
+            <Download className="w-4 h-4" /> {isDownloading ? 'Đang xuất file...' : 'Tải về Chứng chỉ (.PNG)'}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
