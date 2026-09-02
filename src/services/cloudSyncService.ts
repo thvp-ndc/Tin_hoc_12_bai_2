@@ -4,8 +4,9 @@ const STORAGE_KEY_CLOUD_URL = 'tin_supabase_url';
 const STORAGE_KEY_CLOUD_KEY = 'tin_supabase_anon_key';
 const STORAGE_KEY_CLOUD_ENABLED = 'tin_cloud_sync_enabled';
 
-// URL mặc định có thể cấu hình sẵn
-const DEFAULT_SUPABASE_URL = 'https://beayyaqgxtkhqkldwhda.supabase.co';
+// Cấu hình Supabase mặc định của hệ thống
+const DEFAULT_SUPABASE_URL = 'https://fhyaewfzcfllqtfxpuap.supabase.co';
+const DEFAULT_SUPABASE_ANON_KEY = 'sb_publishable_KbT9GEJCQB61i4AnZOGANA_KA60BCal';
 
 export interface CloudConfig {
   url: string;
@@ -19,11 +20,13 @@ export interface CloudConfig {
 export function getCloudConfig(): CloudConfig {
   try {
     const url = localStorage.getItem(STORAGE_KEY_CLOUD_URL) || DEFAULT_SUPABASE_URL;
-    const anonKey = localStorage.getItem(STORAGE_KEY_CLOUD_KEY) || '';
-    const isEnabled = localStorage.getItem(STORAGE_KEY_CLOUD_ENABLED) === 'true';
+    const anonKey = localStorage.getItem(STORAGE_KEY_CLOUD_KEY) || DEFAULT_SUPABASE_ANON_KEY;
+    const isEnabledRaw = localStorage.getItem(STORAGE_KEY_CLOUD_ENABLED);
+    // Mặc định kích hoạt nếu chưa cấu hình tắt
+    const isEnabled = isEnabledRaw === null ? true : isEnabledRaw === 'true';
     return { url, anonKey, isEnabled };
   } catch {
-    return { url: DEFAULT_SUPABASE_URL, anonKey: '', isEnabled: false };
+    return { url: DEFAULT_SUPABASE_URL, anonKey: DEFAULT_SUPABASE_ANON_KEY, isEnabled: true };
   }
 }
 
@@ -61,7 +64,7 @@ export async function testCloudConnection(url: string, anonKey: string): Promise
 
   const cleanUrl = url.trim().replace(/\/+$/, '');
   try {
-    const res = await fetch(`${cleanUrl}/rest/v1/students?select=count`, {
+    const res = await fetch(`${cleanUrl}/rest/v1/students?select=*&limit=1`, {
       method: 'GET',
       headers: {
         'apikey': anonKey.trim(),
@@ -74,16 +77,16 @@ export async function testCloudConnection(url: string, anonKey: string): Promise
     } else if (res.status === 404 || res.status === 400) {
       return {
         success: false,
-        message: 'Kết nối được tới Supabase nhưng chưa tạo bảng "students". Vui lòng chạy mã SQL bên dưới!'
+        message: 'Kết nối được tới Supabase nhưng chưa tạo bảng "students". Vui lòng kiểm tra mã SQL!'
       };
     } else {
-      const errText = await res.text();
       return { success: false, message: `Lỗi xác thực (${res.status}): Vui lòng kiểm tra lại Anon Key!` };
     }
   } catch (err: any) {
     return { success: false, message: `Không thể kết nối tới máy chủ: ${err.message || 'Lỗi mạng'}` };
   }
 }
+
 
 /**
  * Đồng bộ thông tin học sinh lên Cloud (Upsert)
