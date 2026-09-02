@@ -14,7 +14,7 @@ import {
   Calendar
 } from 'lucide-react';
 import { StudentUser } from '../../types/auth';
-import { getStudentProgress, calculateStudentStats } from '../../services/progressService';
+import { getStudentProgress, calculateStudentStats, getStudentCertificates } from '../../services/progressService';
 import { updateStudentProfile, deleteStudent } from '../../services/authService';
 import { getTotalLessons, getLesson } from '../../data/curriculumManager';
 import { sounds } from '../../utils/soundEffects';
@@ -37,9 +37,11 @@ export const StudentDetailView: React.FC<StudentDetailViewProps> = ({
   const [isChangingPass, setIsChangingPass] = useState(false);
 
   const stats = calculateStudentStats(student.id);
+  const certificates = getStudentCertificates(student.id);
   const progressMap = getStudentProgress(student.id);
   const gradeProgress = progressMap[activeGrade] || {};
   const totalLessons = getTotalLessons(activeGrade);
+
 
   const handleResetPassword = () => {
     if (newPassword.length < 4) {
@@ -144,8 +146,12 @@ export const StudentDetailView: React.FC<StudentDetailViewProps> = ({
               <div className="text-[10px] text-slate-400 uppercase font-bold">Bài Hoàn Thành</div>
             </div>
             <div className="p-3 rounded-2xl bg-slate-900 border border-slate-800 text-center">
+              <div className="text-lg font-black text-amber-400">{certificates.length}</div>
+              <div className="text-[10px] text-slate-400 uppercase font-bold">Chứng Nhận</div>
+            </div>
+            <div className="p-3 rounded-2xl bg-slate-900 border border-slate-800 text-center">
               <div className="text-lg font-black text-cyan-300">{stats.avgQuizScore}%</div>
-              <div className="text-[10px] text-slate-400 uppercase font-bold">Điểm Trắc Nghiệm TB</div>
+              <div className="text-[10px] text-slate-400 uppercase font-bold">Điểm Quiz TB</div>
             </div>
           </div>
         </div>
@@ -156,6 +162,33 @@ export const StudentDetailView: React.FC<StudentDetailViewProps> = ({
           <div>Ngày đăng ký: <strong className="text-white">{new Date(student.createdAt).toLocaleDateString('vi-VN')}</strong></div>
         </div>
       </div>
+
+      {/* Certificates Section */}
+      {certificates.length > 0 && (
+        <div className="p-5 rounded-3xl bg-slate-950/80 border border-amber-500/30 space-y-3">
+          <h4 className="text-sm font-bold text-amber-300 flex items-center gap-2">
+            <Award className="w-4 h-4 text-amber-400" />
+            Giấy Chứng Nhận Số Đã Cấp ({certificates.length})
+          </h4>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {certificates.map((c: any) => (
+              <div key={c.id} className="p-3 rounded-2xl bg-slate-900/90 border border-slate-800 flex items-center justify-between text-xs">
+                <div>
+                  <div className="font-bold text-white truncate max-w-[200px]">{c.lessonTitle}</div>
+                  <div className="text-[10px] text-slate-400">
+                    Khối {c.grade} • Điểm: <strong className="text-emerald-400">{c.scorePercent}%</strong>
+                  </div>
+                  <div className="text-[9px] text-slate-500">
+                    Cấp ngày: {new Date(c.issuedAt).toLocaleDateString('vi-VN')}
+                  </div>
+                </div>
+                <span className="text-2xl">📜</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
 
       {/* Grade Selector Tabs for Progress Inspection */}
       <div className="space-y-4">
