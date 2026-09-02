@@ -124,11 +124,12 @@ export const ApplicationMindmap: React.FC<ApplicationMindmapProps> = ({
           <div className="space-y-1">
             <h3 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
               <Network className="w-6 h-6 text-cyan-400" />
-              Sơ Đồ Tư Duy Tổng Kết (Mindmap)
+              Sơ Đồ Tư Duy Tổng Kết Bài Học
             </h3>
             <p className="text-slate-400 text-xs sm:text-sm">
-              Infographic cấu trúc nhánh phẳng giúp học sinh ghi nhớ toàn diện kiến thức chỉ trong 1 phút.
+              Infographic sơ đồ tư duy tổng kết các mục trọng tâm theo đúng nội dung phần Khám phá kiến thức trong SGK.
             </p>
+
           </div>
 
           {/* Export & Zoom Controls */}
@@ -180,7 +181,9 @@ export const ApplicationMindmap: React.FC<ApplicationMindmapProps> = ({
           <div 
             ref={mindmapRef}
             style={{ transform: `scale(${zoomLevel})`, transformOrigin: 'top center' }}
-            className="p-8 rounded-3xl bg-slate-950 border border-slate-800/80 min-w-[700px] max-w-4xl transition-transform duration-200"
+            className={`p-8 rounded-3xl bg-slate-950 border border-slate-800/80 transition-transform duration-200 ${
+              (rootNode.children?.length || 1) >= 4 ? 'min-w-[900px] max-w-6xl' : 'min-w-[700px] max-w-5xl'
+            }`}
           >
             {/* Root Node */}
             <div className="text-center space-y-6">
@@ -188,27 +191,38 @@ export const ApplicationMindmap: React.FC<ApplicationMindmapProps> = ({
                 {rootNode.label}
               </div>
 
-              {/* Main Branches */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+              {/* Main Branches - Direct 1:1 mapping from Khám phá kiến thức */}
+              <div className={`grid gap-6 pt-4 ${
+                (rootNode.children?.length || 1) === 1 ? 'grid-cols-1 max-w-xl mx-auto' :
+                (rootNode.children?.length || 1) === 2 ? 'grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto' :
+                (rootNode.children?.length || 1) === 4 ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4' :
+                'grid-cols-1 md:grid-cols-3'
+              }`}>
                 {rootNode.children?.map((branch, bIdx) => (
                   <div 
                     key={branch.id || `branch_${bIdx}`} 
                     className="p-5 rounded-2xl bg-slate-900/90 border border-cyan-500/40 shadow-floating space-y-3 text-left relative before:content-[''] before:absolute before:-top-4 before:left-1/2 before:w-0.5 before:h-4 before:bg-cyan-500/40 flex flex-col justify-between"
                   >
                     <div className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <h4 className="font-bold text-cyan-300 text-base">{branch.label}</h4>
+                      <div className="flex items-center justify-between gap-2">
+                        <h4 className="font-bold text-cyan-300 text-sm sm:text-base leading-snug">{branch.label}</h4>
                         {branch.badge && (
-                          <span className="text-[10px] px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 font-semibold">
+                          <span className="text-[10px] px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 font-semibold shrink-0">
                             {branch.badge}
                           </span>
                         )}
                       </div>
 
-                      {/* Sub Nodes */}
+                      {branch.subtitle && (
+                        <p className="text-[11px] text-slate-400 italic line-clamp-2">
+                          {branch.subtitle}
+                        </p>
+                      )}
+
+                      {/* Sub Nodes from emCanNho */}
                       <div className="space-y-2 pt-2 border-t border-slate-800">
                         {branch.children?.map((sub, sIdx) => (
-                          <div key={sub.id || `sub_${sIdx}`} className="flex items-start gap-2 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                          <div key={sub.id || `sub_${sIdx}`} className="flex items-start gap-2 text-xs sm:text-sm text-slate-200 leading-relaxed">
                             <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0 mt-1.5" />
                             <span>{sub.label}</span>
                           </div>
@@ -227,6 +241,7 @@ export const ApplicationMindmap: React.FC<ApplicationMindmapProps> = ({
             </div>
           </div>
         </div>
+
       </div>
     </section>
   );

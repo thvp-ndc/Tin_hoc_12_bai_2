@@ -85,9 +85,11 @@ export interface MindMapNode {
   id: string;
   label: string;
   badge?: string;
+  subtitle?: string;
   children?: MindMapNode[];
   color?: string;
 }
+
 
 export interface Lesson {
   id: number;
