@@ -23,16 +23,16 @@ export const THEME7_LESSONS_PART2_11: Lesson[] = [
         id: 'obj_11_27_1',
         category: 'knowledge',
         categoryName: 'Kiến thức cốt lõi',
-        title: 'Bản chất của Lớp (Layer)',
-        description: 'Hiểu được nguyên lý các lớp ảnh xếp chồng trong suốt, lớp trên che khuất lớp dưới và độ mờ đục (Opacity).',
+        title: 'Bản chất của Lớp (Layer) & độ mờ đục',
+        description: 'Hiểu được nguyên lý các lớp ảnh xếp chồng trong suốt, lớp trên che khuất lớp dưới và cách kiểm soát độ mờ đục (Opacity).',
         iconName: 'Layers'
       },
       {
         id: 'obj_11_27_2',
         category: 'skill',
         categoryName: 'Kỹ năng & Năng lực',
-        title: 'Thao tác quản lý Layer',
-        description: 'Thực hiện tạo lớp mới, đổi thứ tự lớp, ẩn/hiện lớp (biểu tượng con mắt), điều chỉnh Opacity và gộp lớp (Merge Down).',
+        title: 'Thao tác quản lý Layer & cọ vẽ, chèn chữ',
+        description: 'Thực hiện được việc tạo lớp mới (Shift+Ctrl+N), đổi thứ tự lớp, ẩn/hiện lớp (con mắt), dùng cọ Paintbrush vẽ chi tiết và chèn chữ Text Tool.',
         iconName: 'Sliders'
       },
       {
@@ -58,150 +58,204 @@ export const THEME7_LESSONS_PART2_11: Lesson[] = [
     knowledge: [
       {
         id: 'tab_11_27_1',
-        title: '1. Khái Niệm Lớp (Layer) & Các Thao Tác Quản Lý Lớp',
-        subtitle: 'Xếp chồng các tấm kính trong suốt để tạo nên bức tranh tổng thể',
+        title: '1. Khái niệm và nguyên lý hoạt động của các lớp (Layers)',
+        subtitle: 'Những tấm kính trong suốt xếp chồng tạo nên tác phẩm hoàn chỉnh',
         iconName: 'Layers',
         keyPoints: [
-          'Khái niệm Layer: Giống như các tấm kính trong suốt đặt chồng lên nhau. Chi tiết vẽ trên lớp trên sẽ che khuất chi tiết ở lớp dưới.',
-          'Bảng điều khiển Layers Panel: Hiển thị danh sách các lớp theo thứ tự từ trên xuống dưới.',
-          'Biểu tượng Con mắt (Eye): Bật/tắt chế độ hiển thị của lớp mà không cần xóa nó.',
-          'Độ mờ đục (Opacity): Điều chỉnh từ 0% (hoàn toàn trong suốt tàng hình) đến 100% (hiển thị rõ nét tuyệt đối).',
-          'Tạo lớp mới: Bấm nút `New Layer` ở góc dưới bảng Layers hoặc phím tắt `Ctrl + Shift + N`.'
+          'Khái niệm: Lớp (Layer) giống như một tấm kính trong suốt. Các chi tiết vẽ trên một lớp sẽ độc lập hoàn toàn với các lớp khác.',
+          'Nguyên lý xếp chồng:',
+          '  - Chi tiết ở lớp nằm phía trên sẽ che khuất chi tiết ở lớp nằm phía dưới.',
+          '  - Các vùng trống không vẽ gì trên lớp sẽ trong suốt, cho phép nhìn xuyên thấu xuống các lớp bên dưới.',
+          'Lợi ích tối thượng: Cho phép di chuyển, phóng to, xóa hoặc đổi màu một chi tiết mà không làm ảnh hưởng đến các chi tiết khác của bức ảnh.'
         ],
         visualType: 'infographic',
         visualData: {
           nodes: [
-            { label: 'Layer 3: Chữ văn bản (Text)', desc: 'Nằm trên cùng: Tiêu đề poster, slogan' },
-            { label: 'Layer 2: Nhân vật (Subject)', desc: 'Nằm giữa: Ảnh người đã tách nền' },
-            { label: 'Layer 1: Phông nền (Background)', desc: 'Nằm dưới cùng: Bầu trời, phong cảnh thành phố' }
+            { label: 'Layer 3: Lớp chữ Text (Trên cùng)', desc: 'Chứa dòng chữ tiêu đề "Chào năm học mới"' },
+            { label: 'Layer 2: Lớp hình nhân vật', desc: 'Ảnh học sinh đã được tách nền trong suốt' },
+            { label: 'Layer 1: Lớp hình nền Background', desc: 'Bức ảnh phong cảnh cổng trường THPT' }
           ]
         },
         emCanNho: [
-          'Layer là các tấm kính trong suốt xếp chồng; lớp trên che khuất lớp dưới.',
-          'Luôn tạo Layer mới (`Ctrl + Shift + N`) trước khi vẽ hoặc thêm chi tiết mới.',
-          'Dùng `Opacity` để tạo hiệu ứng mờ ảo hòa trộn giữa các lớp.'
+          'Lớp (Layer) là các tấm kính trong suốt xếp chồng lên nhau.',
+          'Lớp trên che khuất lớp dưới; vùng trong suốt cho phép nhìn xuyên thấu.',
+          'Chỉnh sửa trên lớp nào chỉ tác động duy nhất lên lớp đó.'
+        ]
+      },
+      {
+        id: 'tab_11_27_2',
+        title: '2. Quản lý lớp (New Layer, thứ tự, ẩn/hiện, Opacity)',
+        subtitle: 'Các thao tác điều khiển bảng điều khiển Layers Panel',
+        iconName: 'Sliders',
+        keyPoints: [
+          'Tạo lớp mới: Nhấn nút dấu cộng dưới bảng Layers hoặc bấm phím tắt `Shift + Ctrl + N`.',
+          'Thay đổi thứ tự lớp: Kéo thả layer lên trên hoặc xuống dưới bằng chuột, hoặc dùng nút mũi tên lên/xuống.',
+          'Ẩn / Hiện lớp: Nhấp vào biểu tượng Con mắt bên trái tên layer để tạm thời ẩn đi chi tiết đó.',
+          'Độ mờ đục (Opacity): Điều chỉnh thanh trượt Opacity từ 100% (rõ nét hoàn toàn) về 50% hoặc 0% (trong suốt hoàn toàn) để tạo hiệu ứng bóng mờ ảo diệu.',
+          'Khóa lớp (Lock): Khóa điểm ảnh hoặc khóa vị trí để tránh vô tình vẽ nhầm lên lớp quan trọng.'
+        ],
+        visualType: 'comparison-table',
+        visualData: {
+          headers: ['Thao tác quản trị Layer', 'Phím tắt / Nút bấm', 'Ý nghĩa thực tế'],
+          rows: [
+            ['Tạo lớp mới', 'Shift + Ctrl + N', 'Tạo tấm kính trắng tinh để vẽ chi tiết mới'],
+            ['Ẩn / Hiện lớp', 'Biểu tượng Con Mắt', 'Tạm thời giấu chi tiết để so sánh trước/sau'],
+            ['Độ mờ đục (Opacity)', 'Thanh trượt Opacity (0-100%)', 'Tạo hiệu ứng bóng ma hoặc làm mờ nền'],
+            ['Xóa lớp', 'Phím Delete / Nút thùng rác', 'Vứt bỏ hẳn một lớp không còn sử dụng']
+          ]
+        },
+        emCanNho: [
+          'Tạo lớp mới bằng phím tắt `Shift + Ctrl + N`.',
+          'Biểu tượng Con Mắt dùng để bật/tắt hiển thị lớp.',
+          'Thanh trượt Opacity kiểm soát mức độ mờ đục trong suốt của lớp.'
+        ]
+      },
+      {
+        id: 'tab_11_27_3',
+        title: '3. Công cụ cọ vẽ Brush, tẩy Eraser và chèn chữ Text Tool',
+        subtitle: 'Bộ công cụ sáng tạo nghệ thuật trên từng lớp',
+        iconName: 'PenTool',
+        keyPoints: [
+          'Paintbrush (P): Cọ vẽ nét mềm mại, có thể chọn kiểu đầu cọ (Brush Shape), kích thước (Size) và độ cứng (Hardness).',
+          'Eraser (Shift + E): Tẩy xóa các nét vẽ thừa trên lớp đang chọn.',
+          'Bucket Fill (Shift + B): Đổ màu nền hoặc tô màu mảng khép kín.',
+          'Text Tool (T): Nhấp chuột tạo hộp văn bản, gõ chữ tiếng Việt (hỗ trợ chọn font chữ, kích cỡ chữ, màu sắc và căn lề). Lưu ý: Mỗi hộp văn bản tạo ra sẽ tự động sinh ra một Layer chữ độc lập.'
+        ],
+        visualType: 'comparison-table',
+        visualData: {
+          headers: ['Công cụ', 'Phím tắt', 'Thuộc tính quan trọng cần lưu ý'],
+          rows: [
+            ['Paintbrush', 'P', 'Size (Kích thước cọ), Spacing (Khoảng cách nét)'],
+            ['Eraser', 'Shift + E', 'Tẩy trên Layer trong suốt sẽ biến thành trong suốt'],
+            ['Text Tool', 'T', 'Tự động tạo Text Layer riêng, chọn font hỗ trợ tiếng Việt']
+          ]
+        },
+        emCanNho: [
+          'Công cụ cọ vẽ Paintbrush (P) dùng để vẽ nét nghệ thuật.',
+          'Công cụ Text Tool (T) tự động sinh ra một lớp chữ riêng biệt.',
+          'Luôn kiểm tra đúng lớp đang được chọn (Active Layer) trước khi cầm cọ vẽ.'
         ]
       }
     ],
     miniGame: {
       type: 'matching',
-      title: 'Ghép cặp Thao tác Layer và Tác dụng',
-      instruction: 'Nối thao tác quản lý lớp trong GIMP với kết quả tương ứng:',
+      title: 'Ghép cặp Thao Tác Layer và Phím Tắt / Biểu Tượng',
+      instruction: 'Nối thao tác quản lý lớp với phím tắt hoặc biểu tượng tương ứng:',
       matchingPairs: [
-        { id: 'ly1', left: 'Ctrl + Shift + N', right: 'Tạo một lớp mới (New Layer) trong suốt' },
-        { id: 'ly2', left: 'Biểu tượng Con mắt (Eye Icon)', right: 'Ẩn hoặc hiện lớp dữ liệu tương ứng trên bảng vẽ' },
-        { id: 'ly3', left: 'Kéo thanh trượt Opacity xuống 50%', right: 'Làm lớp trở nên bán trong suốt, nhìn xuyên thấu lớp bên dưới' },
-        { id: 'ly4', left: 'Kéo thả vị trí Layer lên trên cùng', right: 'Đưa đối tượng lên lớp tiền cảnh, che khuất các đối tượng bên dưới' }
+        { id: 'ly1', left: 'Tạo lớp mới (New Layer)', right: 'Shift + Ctrl + N' },
+        { id: 'ly2', left: 'Bật / Tắt ẩn hiện lớp', right: 'Biểu tượng Con Mắt' },
+        { id: 'ly3', left: 'Công cụ chèn văn bản Text Tool', right: 'Phím T' },
+        { id: 'ly4', left: 'Điều chỉnh độ trong suốt', right: 'Thanh trượt Opacity' }
       ]
     },
     assessment: [
       {
         id: 1,
-        question: 'Trong các phần mềm đồ họa như GIMP, khái niệm "Lớp" (Layer) được so sánh với hình ảnh thực tế nào sau đây?',
+        question: 'Nguyên lý cơ bản nào sau đây mô tả ĐÚNG NHẤT về cách hoạt động của các Lớp (Layers) trong GIMP?',
         options: [
-          'Những tấm kính trong suốt được vẽ các hình ảnh khác nhau rồi đặt chồng lên nhau',
-          'Một trang giấy báo in đen trắng',
-          'Một khối đất sét đặc',
-          'Một cuộn băng dính đen'
+          'Các lớp giống như những tấm kính trong suốt xếp chồng lên nhau, lớp nằm trên sẽ che khuất lớp nằm dưới',
+          'Các lớp được xếp nối tiếp nhau thành một hàng ngang',
+          'Mỗi lớp là một trang sách lật qua lại',
+          'Chỉ được phép tạo tối đa 2 lớp trong một bức ảnh'
         ],
         correctIndex: 0,
-        explanation: 'Layer giống như các tấm kính trong suốt cho phép nhìn xuyên qua những vùng không có nét vẽ.',
+        explanation: 'Khái niệm tấm kính trong suốt xếp chồng là cốt lõi của cấu trúc đồ họa Layer.',
         difficulty: 'Nhận biết'
       },
       {
         id: 2,
-        question: 'Tổ hợp phím tắt nào trong GIMP dùng để TẠO MỚI MỘT LỚP (New Layer)?',
-        options: ['Ctrl + Shift + N', 'Ctrl + N', 'Ctrl + L', 'Ctrl + Alt + Del'],
+        question: 'Tổ hợp phím tắt nào trong GIMP dùng để tạo nhanh một Lớp mới (New Layer)?',
+        options: ['Shift + Ctrl + N', 'Ctrl + N', 'Alt + N', 'Ctrl + L'],
         correctIndex: 0,
-        explanation: 'Ctrl + Shift + N mở hộp thoại tạo lớp mới trong GIMP (Ctrl + N là tạo file ảnh mới).',
+        explanation: 'Shift + Ctrl + N mở hộp thoại tạo New Layer (trong khi Ctrl + N là tạo ảnh mới).',
         difficulty: 'Nhận biết'
       },
       {
         id: 3,
-        question: 'Nếu bạn có 2 lớp: Lớp 1 (Nền phong cảnh) và Lớp 2 (Hình chú mèo). Để nhìn thấy chú mèo đứng trước phong cảnh, thứ tự xếp lớp phải như thế nào?',
+        question: 'Khi bạn chèn một dòng chữ bằng công cụ Text Tool (phím T), GIMP sẽ tự động làm điều gì?',
         options: [
-          'Lớp 2 (Chú mèo) phải nằm Ở TRÊN Lớp 1 (Phong cảnh)',
-          'Lớp 1 phải nằm ở trên Lớp 2',
-          'Đặt hai lớp ngang hàng nhau',
-          'Xóa Lớp 2 đi'
+          'Tự động tạo ra một Lớp chữ (Text Layer) riêng biệt mang tên dòng chữ đó',
+          'Vẽ dính chặt chữ vào ảnh nền không thể sửa được nữa',
+          'Xóa toàn bộ các lớp ảnh khác',
+          'Tự động tắt phần mềm'
         ],
         correctIndex: 0,
-        explanation: 'Lớp nằm trên sẽ hiển thị ở phía trước (tiền cảnh), che lớp phía dưới (hậu cảnh).',
+        explanation: 'Text Tool tự động tạo ra một lớp độc lập giúp người dùng dễ dàng đổi font, sửa nội dung chữ bất kỳ lúc nào.',
         difficulty: 'Thông hiểu'
       },
       {
         id: 4,
-        question: 'Thao tác nhấp chuột vào biểu tượng "Con mắt" ở cạnh tên một Layer trong bảng Layers Panel dùng để làm gì?',
+        question: 'Muốn làm mờ một bức ảnh nền để dòng chữ tiêu đề màu trắng bên trên nổi bật rõ ràng, bạn nên chỉnh thông số nào của Lớp nền?',
         options: [
-          'Ẩn hoặc hiện lớp đó trên bảng vẽ mà không cần xóa nó',
-          'Xóa vĩnh viễn lớp đó khỏi máy tính',
-          'Khóa chuột máy tính',
-          'Phóng to mắt nhân vật trong ảnh'
+          'Giảm thanh trượt Opacity (độ mờ đục) của lớp nền xuống khoảng 40% - 60%',
+          'Tăng kích thước cọ vẽ',
+          'Bấm phím tắt Crop',
+          'Xóa hẳn lớp nền đi'
         ],
         correctIndex: 0,
-        explanation: 'Biểu tượng con mắt dùng để chuyển đổi trạng thái hiển thị (Visibility) của lớp.',
-        difficulty: 'Nhận biết'
+        explanation: 'Giảm Opacity làm giảm độ đậm nét của lớp, tạo hiệu ứng mờ ảo làm nổi bật các lớp chữ phía trên.',
+        difficulty: 'Vận dụng'
       },
       {
         id: 5,
-        question: 'Tại sao việc chỉnh sửa trên nhiều Layer riêng biệt lại được coi là phương pháp làm việc "Không phá hủy" (Non-destructive editing)?',
+        question: 'Biểu tượng hình Con Mắt bên cạnh mỗi Lớp trong bảng điều khiển Layers có chức năng gì?',
         options: [
-          'Vì mỗi đối tượng nằm trên một lớp riêng, bạn có thể tự do xóa hoặc sửa lớp đó mà không làm ảnh hưởng hay hư hỏng ảnh gốc bên dưới',
-          'Vì phần mềm không tốn điện',
-          'Vì màn hình không bị xước',
-          'Vì không cần dùng chuột'
+          'Tạm thời Ẩn hoặc Hiện hiển thị lớp đó trên khung hình làm việc',
+          'Đổi màu bức ảnh thành màu đen trắng',
+          'Khóa không cho người khác nhìn trộm màn hình',
+          'Kích hoạt camera máy tính'
         ],
         correctIndex: 0,
-        explanation: 'Làm việc theo lớp bảo vệ ảnh gốc luôn nguyên vẹn, dễ dàng quay lại trạng thái ban đầu bất kỳ lúc nào.',
-        difficulty: 'Vận dụng'
+        explanation: 'Nhấp vào con mắt để ẩn/hiện lớp, rất hữu ích khi cần so sánh chi tiết hoặc giấu bớt các lớp tạm thời.',
+        difficulty: 'Nhận biết'
       }
     ],
     application: {
       project: {
-        title: 'Thực hành: Thiết kế Thiệp Chúc Mừng Sinh Nhật Đa Lớp',
-        context: 'Tự tay làm một tấm thiệp sinh nhật độc đáo tặng bạn bè bằng GIMP.',
-        mission: 'Xây dựng một tệp ảnh gồm ít nhất 3 lớp riêng biệt kết hợp cọ vẽ và chữ.',
+        title: 'Thiết Kế Banner: Thiệp Chúc Mừng Ngày Nhà Giáo Việt Nam 20/11',
+        context: 'Làm thiệp tri ân thầy cô giáo bằng phần mềm đồ họa GIMP.',
+        mission: 'Thiết kế bức thiệp đa lớp gồm ít nhất 3 Layer độc lập.',
         steps: [
-          'Lớp 1 (Nền): Tô màu chuyển sắc Gradient từ hồng sang tím pastel.',
-          'Lớp 2 (Trang trí): Dùng cọ vẽ Brush vẽ các ngôi sao và quả bóng bay.',
-          'Lớp 3 (Văn bản): Dùng Text Tool gõ chữ "Chúc Mừng Sinh Nhật!" với màu vàng kim rực rỡ.',
-          'Bước 4: Xuất thành tệp `thiep_sinh_nhat.png` gửi tặng bạn.'
+          'Layer 1 (Background): Chèn bức ảnh bó hoa tươi thắm hoặc bảng đen phấn trắng.',
+          'Layer 2 (Họa tiết vẽ): Tạo Layer mới, dùng cọ Paintbrush (P) vẽ một dải ruy băng màu đỏ mềm mại.',
+          'Layer 3 (Lời chúc Text): Dùng Text Tool (T) gõ chữ "Tri Ân Thầy Cô 20-11", chọn font chữ thư pháp nghệ thuật.',
+          'Tinh chỉnh: Giảm Opacity của hoa xuống 80% để dòng chữ nổi bật, xuất thành `thiep_20_11.png`.'
         ],
-        outputRequirement: 'Tệp thiệp hoàn chỉnh có bố cục hài hòa và các chi tiết phân lớp rõ ràng.',
-        practicalTip: 'Khi gõ chữ bằng Text Tool, GIMP sẽ tự động tạo một Text Layer riêng biệt cho bạn.'
+        outputRequirement: 'Tệp ảnh thiệp `thiep_20_11.png` hài hòa, bố cục lớp chuẩn xác, lời chúc trang trọng.',
+        practicalTip: 'Đặt tên cho từng Layer (ví dụ: "Lop_Nen", "Lop_Hoa", "Lop_Chu") giúp bạn không bao giờ bị nhầm lẫn khi dự án có hàng chục lớp.'
       },
       mindmap: {
         id: 'mm_11_27',
-        label: 'VẼ VÀ LỚP (LAYER)',
-        color: '#f43f5e',
+        label: 'CÔNG CỤ VẼ & LỚP (LAYER)',
+        color: '#e11d48',
         children: [
           {
             id: 'mm_11_27_1',
-            label: 'Khái niệm Layer',
+            label: 'Quản lý Layer',
             children: [
               { id: 'mm_11_27_1_1', label: 'Tấm kính trong suốt xếp chồng' },
-              { id: 'mm_11_27_1_2', label: 'Chỉnh sửa không phá hủy' },
-              { id: 'mm_11_27_1_3', label: 'Độ mờ đục Opacity (0-100%)' }
+              { id: 'mm_11_27_1_2', label: 'Tạo mới: Shift + Ctrl + N' },
+              { id: 'mm_11_27_1_3', label: 'Ẩn/Hiện: Con mắt | Opacity: Độ mờ' }
             ]
           },
           {
             id: 'mm_11_27_2',
-            label: 'Thao tác quản lý',
+            label: 'Công cụ vẽ & Chữ',
             children: [
-              { id: 'mm_11_27_2_1', label: 'New Layer (Ctrl+Shift+N)' },
-              { id: 'mm_11_27_2_2', label: 'Ẩn/Hiện con mắt (Visibility)' },
-              { id: 'mm_11_27_2_3', label: 'Thay đổi thứ tự trên/dưới' }
+              { id: 'mm_11_27_2_1', label: 'Paintbrush (P): Cọ vẽ nghệ thuật' },
+              { id: 'mm_11_27_2_2', label: 'Eraser (Shift + E): Tẩy xóa nét' },
+              { id: 'mm_11_27_2_3', label: 'Text Tool (T): Tự tạo Text Layer' }
             ]
           }
         ]
       }
     },
     completion: {
-      badgeName: 'Bậc Thầy Đồ Họa Đa Lớp 11',
+      badgeName: 'Bậc Thầy Layer GIMP 11',
       badgeIcon: 'Layers',
-      roleTitle: 'Chuyên Viên Thiết Kế Đồ Họa Layer',
-      congratsMessage: 'Tuyệt vời! Bạn đã làm chủ tư duy thiết kế đa lớp (Layers) và kỹ thuật ghép ảnh nghệ thuật không phá hủy.',
-      skillsUnlocked: ['Quản lý Layers Panel', 'Tạo New Layer (Ctrl+Shift+N)', 'Hiệu chỉnh Opacity & Blend Mode']
+      roleTitle: 'Chuyên Viên Thiết Kế Đồ Họa Đa Lớp',
+      congratsMessage: 'Tuyệt vời! Bạn đã làm chủ linh hồn của đồ họa số - hệ thống Lớp (Layer), tự tin sáng tạo các tác phẩm ghép ảnh nghệ thuật đỉnh cao.',
+      skillsUnlocked: ['Tư duy làm việc theo Layer', 'Quản lý Opacity & Thứ tự lớp', 'Sử dụng Paintbrush & Text Tool']
     }
   },
 
@@ -217,184 +271,251 @@ export const THEME7_LESSONS_PART2_11: Lesson[] = [
     estimatedMinutes: 45,
     xpTotal: 250,
     hero: {
-      tagline: 'Thổi hồn vào từng khung hình: Kỹ thuật sản xuất ảnh động GIF bằng GIMP',
-      description: 'Tìm hiểu nguyên lý thị giác lưu ảnh trên võng mạc, cách biến các lớp (Layers) thành từng khung hình hoạt họa (Frames), điều chỉnh thời gian dừng (Delay) và xuất tệp ảnh động định dạng GIF lặp vô tận.',
-      accentColor: 'from-rose-500 to-pink-600',
-      keyHighlights: ['Mỗi Layer là một khung hình (Frame)', 'Quy định thời gian dừng (ms)', 'Xuất tệp Animated GIF']
+      tagline: 'Thổi hồn vào hình ảnh: Tạo hoạt ảnh GIF sống động từ chuỗi các lớp Layer',
+      description: 'Khám phá ảo ảnh thị giác của ảnh động: biến mỗi Layer thành một khung hình (Frame), thiết lập thời gian hiển thị tính bằng mili-giây (ms), xem trước hoạt ảnh với Animation Playback và xuất tệp GIF lặp vô tận.',
+      accentColor: 'from-pink-600 to-rose-600',
+      keyHighlights: ['Nguyên lý khung hình Frame từ Layer', 'Xem trước Filters -> Animation Playback', 'Xuất ảnh GIF lặp vô tận']
     },
     objectives: [
       {
         id: 'obj_11_28_1',
         category: 'knowledge',
         categoryName: 'Kiến thức cốt lõi',
-        title: 'Nguyên lý tạo ảnh động',
-        description: 'Giải thích được hiện tượng lưu ảnh trên võng mạc mắt và cách máy tính trình chiếu liên tiếp các khung hình để tạo ảo giác chuyển động.',
+        title: 'Nguyên lý hoạt ảnh & khung hình (Frame)',
+        description: 'Giải thích được nguyên lý hiện tượng lưu ảnh trên võng mạc và cách GIMP ánh xạ mỗi Layer thành một khung hình (Frame) chuyển động theo thời gian.',
         iconName: 'PlayCircle'
       },
       {
         id: 'obj_11_28_2',
         category: 'skill',
         categoryName: 'Kỹ năng & Năng lực',
-        title: 'Tạo ảnh GIF trong GIMP',
-        description: 'Thiết lập được các khung hình trên từng Layer, cài đặt thời gian trễ (ví dụ: `Frame 1 (250ms)`) và xuất tệp GIF chạy lặp lại.',
+        title: 'Cài đặt thời gian & xuất ảnh động GIF',
+        description: 'Thiết lập được cú pháp thời gian trễ trong tên lớp `(100ms)`, xem trước chuyển động bằng `Filters -> Animation -> Playback` và xuất tệp `.gif` chuẩn.',
         iconName: 'Film'
       },
       {
         id: 'obj_11_28_3',
         category: 'attitude',
         categoryName: 'Phẩm chất & Đạo đức',
-        title: 'Sáng tạo và kiên nhẫn',
-        description: 'Tỉ mỉ điều chỉnh từng khung hình nhỏ để chuyển động mượt mà và tối ưu hóa dung lượng tệp nhẹ nhàng khi gửi qua mạng.',
-        iconName: 'Sparkles'
+        title: 'Tư duy sáng tạo & tính kiên trì',
+        description: 'Rèn luyện tính kiên nhẫn khi vẽ từng khung hình chuyển động tỉ mỉ và sáng tạo các nội dung ảnh động vui tươi, nhân văn.',
+        iconName: 'Smile'
       }
     ],
     warmup: {
-      title: 'Tình huống: Những nhãn dán Sticker động siêu dễ thương trên mạng',
-      scenario: 'Hàng ngày khi nhắn tin Zalo hoặc Messenger, bạn thường xuyên gửi các nhãn dán sticker hoạt hình chuyển động vui mắt (ảnh định dạng GIF). Bạn có muốn tự tay tạo ra một ảnh động mang phong cách riêng của mình?',
-      pollQuestion: 'Trong phần mềm GIMP, thành phần nào được sử dụng để đóng vai trò là từng khung hình chuyển động?',
+      title: 'Tình huống: Cuốn sổ hoạt hình vẽ tay lật nhanh (Flipbook)',
+      scenario: 'Hồi nhỏ bạn từng vẽ một chú người que ở góc các trang vở, mỗi trang chú que cử động tay chân một chút. Khi dùng ngón tay cái lật nhanh các mép trang giấy, chú que bỗng chuyển động chạy nhảy như thật!',
+      pollQuestion: 'Phần mềm GIMP biến điều kỳ diệu của cuốn sổ vẽ tay đó thành ảnh động số bằng cách nào?',
       pollOptions: [
-        { id: 'p11_28_1', text: 'Mỗi Lớp (Layer) trong danh sách sẽ đóng vai trò là một khung hình (Frame) chuyển động', votesPercent: 93, isPopular: true, insight: 'Chính xác! GIMP sẽ tự động duyệt lần lượt từng Layer từ dưới lên trên để phát hoạt họa chuyển động.' },
-        { id: 'p11_28_2', text: 'Mỗi nút bấm trên bàn phím', votesPercent: 3, insight: 'Bàn phím chỉ để nhập liệu ký tự, không tạo khung hình đồ họa.' },
-        { id: 'p11_28_3', text: 'Mỗi pixel trên màn hình', votesPercent: 4, insight: 'Pixel là điểm ảnh đơn lẻ, khung hình hoàn chỉnh được tạo từ cả một Layer.' }
+        { id: 'p11_28_1', text: 'Xem mỗi Lớp (Layer) như một trang giấy (khung hình) và chiếu lần lượt từng lớp theo thứ tự thời gian', votesPercent: 95, isPopular: true, insight: 'Chính xác! Khi xuất sang định dạng GIF, GIMP sẽ biến các layer từ dưới lên trên thành các khung hình chuyển động liên tục.' },
+        { id: 'p11_28_2', text: 'Nhúng một động cơ cơ học vào màn hình', votesPercent: 3, insight: 'Màn hình hiển thị điện tử, không có động cơ cơ học bên trong.' },
+        { id: 'p11_28_3', text: 'Chỉ là ảo giác chứ ảnh không chuyển động', votesPercent: 2, insight: 'Đó là ảnh động kỹ thuật số thực sự theo chuẩn định dạng GIF.' }
       ],
-      reflection: 'Tạo ảnh động GIF là cầu nối tuyệt vời đưa bạn từ thế giới ảnh tĩnh sang thế giới điện ảnh và video hoạt hình.'
+      reflection: 'Mỗi bức ảnh động đẹp đẽ đều được tạo nên từ sự kiên trì ghép nối từng khung hình nhỏ bé.'
     },
     knowledge: [
       {
         id: 'tab_11_28_1',
-        title: '1. Quy Trình Sản Xuất Ảnh Động GIF Trong GIMP',
-        subtitle: 'Biến các Layer thành từng khung hình chuyển động liên tiếp',
-        iconName: 'Film',
+        title: '1. Nguyên lý tạo ảnh động từ các khung hình (Layer)',
+        subtitle: 'Ảo ảnh thị giác: Biến các lớp tĩnh thành chuỗi chuyển động liên tục',
+        iconName: 'Layers',
         keyPoints: [
-          'Nguyên lý hoạt động: GIMP xem mỗi Layer là một khung hình (Frame). Thứ tự trình chiếu mặc định là từ lớp dưới cùng lên lớp trên cùng.',
-          'Thiết lập thời gian dừng (Frame Delay): Đổi tên Layer theo cú pháp kèm mili-giây, ví dụ: `Khung 1 (200ms)` nghĩa là khung hình dừng lại 0.2 giây trước khi nhảy sang khung tiếp theo.',
-          'Xem trước chuyển động: Vào menu `Filters -> Animation -> Playback...` để bấm Play xem thử chuyển động mượt mà trước khi xuất tệp.',
-          'Xuất tệp Animated GIF: Vào `File -> Export As...` -> Chọn đuôi `.gif` -> Tích chọn ô **"As animation"** và **"Loop forever"** (lặp vô tận).'
+          'Nguyên lý hoạt ảnh: Dựa vào hiện tượng lưu ảnh trên võng mạc của mắt người. Khi chuỗi các hình ảnh thay đổi nhanh liên tiếp (từ 10 đến 24 hình/giây), não bộ sẽ ghép chúng thành một chuyển động mượt mà liên tục.',
+          'Quy ước trong GIMP:',
+          '  - Mỗi Layer đại diện cho một khung hình (Frame).',
+          '  - Thứ tự phát: GIMP sẽ phát các khung hình lần lượt từ Layer dưới cùng (đáy bảng) lên dần Layer trên cùng (đỉnh bảng).',
+          '  - Tạo chuyển động: Sao chép lớp (Duplicate Layer), dịch chuyển vị trí đối tượng một chút ở lớp mới để tạo bước chuyển tiếp.'
         ],
         visualType: 'infographic',
         visualData: {
           nodes: [
-            { label: 'Layer 1: Đèn Đỏ (1000ms)', desc: 'Chiếc xe dừng lại trước vạch kẻ' },
-            { label: 'Layer 2: Đèn Vàng (500ms)', desc: 'Chuẩn bị khởi động động cơ' },
-            { label: 'Layer 3: Đèn Xanh (1000ms)', desc: 'Chiếc xe bắt đầu phóng đi' }
+            { label: 'Layer 1 (Đáy): Người que đứng yên', desc: 'Khung hình khởi đầu chuyển động' },
+            { label: 'Layer 2 (Giữa): Người que co chân', desc: 'Khung hình chuẩn bị nhảy' },
+            { label: 'Layer 3 (Đỉnh): Người que bật cao', desc: 'Khung hình đạt đỉnh cú nhảy' }
           ]
         },
         emCanNho: [
-          'Trong GIMP: Mỗi Layer tương ứng với một khung hình (Frame) của ảnh động.',
-          'Xem thử trước chuyển động bằng: `Filters -> Animation -> Playback...`.',
-          'Khi Export As đuôi `.gif`, BẮT BUỘC phải tích chọn ô **"As animation"**.'
+          'Mỗi Layer trong GIMP tương ứng với một khung hình (Frame) của ảnh động.',
+          'Trật tự phát: Từ lớp dưới cùng lên đến lớp trên cùng.',
+          'Nhân bản lớp (Duplicate Layer) rồi dịch chuyển đối tượng để tạo hoạt cảnh.'
+        ]
+      },
+      {
+        id: 'tab_11_28_2',
+        title: '2. Thiết lập thời gian dừng và xem trước Animation Playback',
+        subtitle: 'Kiểm soát tốc độ chuyển động tính bằng mili-giây (ms)',
+        iconName: 'PlayCircle',
+        keyPoints: [
+          'Cú pháp thời gian trễ: Đổi tên Layer đính kèm thời gian dừng trong dấu ngoặc đơn `(thời_gian_ms)`. Ví dụ: `KhungHinh1 (200ms)`.',
+          'Quy đổi thời gian: $1000\\text{ ms} = 1\\text{ giây}$. Ví dụ: `(100ms)` là 0.1 giây (10 khung hình/giây rất mượt mà).',
+          'Xem trước hoạt ảnh: Vào menu `Filters -> Animation -> Playback...`:',
+          '  - Nhấn nút `Play` để chạy thử chuyển động.',
+          '  - Điều chỉnh thanh trượt tốc độ (Speed) để xem nhanh/chậm.',
+          '  - Phát hiện các khung hình bị giật cục để tinh chỉnh lại.'
+        ],
+        visualType: 'comparison-table',
+        visualData: {
+          headers: ['Thời gian ghi sau tên Layer', 'Tốc độ hiển thị', 'Cảm giác thị giác tương ứng'],
+          rows: [
+            ['(50ms)', '20 khung hình / giây', 'Chuyển động cực nhanh, chớp nhoáng'],
+            ['(100ms) - (200ms)', '5 - 10 khung hình / giây', 'Tốc độ tiêu chuẩn, mượt mà vừa mắt cho ảnh GIF'],
+            ['(1000ms)', '1 khung hình / giây', 'Dừng lại 1 giây, phù hợp đọc thông điệp chữ']
+          ]
+        },
+        emCanNho: [
+          'Ghi `(xxx ms)` sau tên Layer để định thời gian dừng cho từng khung hình.',
+          'Dùng `Filters -> Animation -> Playback...` để xem trước chuyển động.',
+          '100ms đến 200ms là tốc độ lý tưởng cho hầu hết ảnh động hoạt hình.'
+        ]
+      },
+      {
+        id: 'tab_11_28_3',
+        title: '3. Xuất tệp ảnh động GIF lặp vô tận (Loop forever)',
+        subtitle: 'Đóng gói thành tệp ảnh động tiêu chuẩn chia sẻ khắp Internet',
+        iconName: 'Film',
+        keyPoints: [
+          'Các bước xuất ảnh động chuẩn:',
+          '  - Bước 1: Chọn menu `File -> Export As...` (Shift + Ctrl + E).',
+          '  - Bước 2: Đặt tên tệp có đuôi mở rộng là `.gif` (ví dụ: `nguoi_que_nhay.gif`).',
+          '  - Bước 3: Trong bảng tùy chọn Export Image as GIF, BẮT BUỘC phải tích chọn ô: `As animation` (Nếu không tích ô này, ảnh chỉ xuất ra 1 ảnh tĩnh duy nhất!).',
+          '  - Bước 4: Tích chọn ô `Loop forever` (để ảnh động lặp đi lặp lại vô tận không dừng).',
+          '  - Bước 5: Bấm nút `Export` để hoàn thành.'
+        ],
+        visualType: 'infographic',
+        visualData: {
+          nodes: [
+            { label: 'File -> Export As...', desc: 'Chọn định dạng đuôi .gif' },
+            { label: 'Tích chọn [x] As animation', desc: 'Kích hoạt chế độ hoạt ảnh nhiều khung hình' },
+            { label: 'Tích chọn [x] Loop forever', desc: 'Chuyển động lặp đi lặp lại vô tận' }
+          ]
+        },
+        emCanNho: [
+          'BẮT BUỘC phải tích chọn ô `As animation` khi xuất ảnh GIF trong GIMP.',
+          'Tích chọn `Loop forever` để hoạt ảnh chuyển động lặp lại liên tục.',
+          'Tệp `.gif` xuất ra có thể xem trực tiếp trên mọi trình duyệt web hoặc Zalo.'
         ]
       }
     ],
     miniGame: {
       type: 'matching',
-      title: 'Ghép cặp Thao tác Tạo ảnh động trong GIMP',
-      instruction: 'Nối thao tác sản xuất ảnh động với chức năng tương ứng:',
+      title: 'Ghép cặp Thao Tác Tạo Ảnh Động trong GIMP',
+      instruction: 'Nối thao tác với ý nghĩa thực thi:',
       matchingPairs: [
-        { id: 'gif1', left: 'Filters -> Animation -> Playback', right: 'Mở cửa sổ xem trước (Preview) hoạt ảnh đang chạy thử' },
-        { id: 'gif2', left: 'Đặt tên Layer: Frame 1 (500ms)', right: 'Quy định khung hình dừng lại nửa giây (500 mili-giây)' },
-        { id: 'gif3', left: 'Tùy chọn "As animation"', right: 'Yêu cầu GIMP xuất tệp GIF dưới dạng ảnh động chứ không phải ảnh tĩnh' },
-        { id: 'gif4', left: 'Tùy chọn "Loop forever"', right: 'Cho phép ảnh động tự động lặp lại liên tục không có điểm dừng' }
+        { id: 'an1', left: 'Filters -> Animation -> Playback', right: 'Mở cửa sổ xem trước chuyển động của chuỗi Layer' },
+        { id: 'an2', left: 'Đặt tên layer kèm (200ms)', right: 'Cài đặt thời gian dừng của khung hình đó là 0.2 giây' },
+        { id: 'an3', left: 'Tùy chọn [x] As animation', right: 'Lệnh bắt buộc để GIMP xuất các Layer thành ảnh động' },
+        { id: 'an4', left: 'Tùy chọn [x] Loop forever', right: 'Giúp ảnh GIF tự động quay vòng lặp đi lặp lại vô tận' }
       ]
     },
     assessment: [
       {
         id: 1,
-        question: 'Định dạng tệp hình ảnh nào sau đây hỗ trợ hiển thị ảnh chuyển động (ảnh động)?',
-        options: ['.gif', '.jpg', '.bmp', '.pdf'],
+        question: 'Để xem trước chuyển động của chuỗi các lớp ảnh động trong GIMP, bạn truy cập vào menu nào?',
+        options: [
+          'Filters -> Animation -> Playback...',
+          'File -> Save',
+          'Edit -> Paste',
+          'Colors -> Levels'
+        ],
         correctIndex: 0,
-        explanation: 'GIF (Graphics Interchange Format) là định dạng chuẩn quốc tế hỗ trợ lưu nhiều khung hình chuyển động.',
+        explanation: 'Filters -> Animation -> Playback mở trình phát hoạt cảnh cho phép xem trước tốc độ chuyển động.',
         difficulty: 'Nhận biết'
       },
       {
         id: 2,
-        question: 'Trong phần mềm GIMP, để xem trước ảnh động chạy thử như thế nào trước khi xuất bản, bạn dùng lệnh nào?',
-        options: ['Filters -> Animation -> Playback...', 'Tools -> Zoom', 'Colors -> Levels', 'Edit -> Undo'],
+        question: 'Muốn quy định một khung hình (Layer) dừng lại trong khoảng thời gian nửa giây (0.5 giây), bạn viết cú pháp nào vào sau tên của Layer đó?',
+        options: ['(500ms)', '(0.5s)', '(500s)', '(50ms)'],
         correctIndex: 0,
-        explanation: 'Animation Playback mở trình phát cho phép bấm Play, Pause và chỉnh tốc độ xem thử hoạt ảnh.',
-        difficulty: 'Nhận biết'
+        explanation: 'GIMP sử dụng đơn vị mili-giây (ms); 0.5 giây = 500 mili-giây viết dạng `(500ms)`.',
+        difficulty: 'Thông hiểu'
       },
       {
         id: 3,
-        question: 'Khi đặt tên cho một Layer là: `Buoc1 (250ms)`, con số 250ms mang ý nghĩa gì?',
+        question: 'Khi xuất tệp ảnh động định dạng .GIF, tùy chọn nào sau đây BẮT BUỘC phải được tích chọn?',
         options: [
-          'Khung hình đó sẽ hiển thị trong thời gian 250 mili-giây (0.25 giây)',
-          'Kích thước ảnh là 250 megabyte',
-          'Độ phân giải 250 điểm ảnh',
-          'Giá tiền 250 đồng'
+          'As animation (Dưới dạng hoạt ảnh)',
+          'As PDF document',
+          'Black and White only',
+          'Compress to ZIP'
         ],
         correctIndex: 0,
-        explanation: 'ms là viết tắt của milliseconds (mili-giây), 1000ms = 1 giây.',
+        explanation: 'Nếu không tích chọn "As animation", GIMP sẽ gộp tất cả các lớp thành một bức ảnh tĩnh duy nhất.',
         difficulty: 'Thông hiểu'
       },
       {
         id: 4,
-        question: 'Khi xuất tệp ảnh động bằng lệnh File -> Export As..., nếu bạn QUÊN không tích chọn ô "As animation", điều gì sẽ xảy ra?',
+        question: 'Trật tự hiển thị các khung hình (Frames) khi phát ảnh động GIF trong GIMP diễn ra theo thứ tự nào?',
         options: [
-          'Tệp GIF xuất ra sẽ chỉ là một bức ảnh tĩnh bất động (chỉ giữ lại lớp trên cùng)',
-          'Máy tính sẽ tắt nguồn',
-          'Tệp tự đổi thành video 4K',
-          'Phần mềm tự động gõ mã lệnh'
+          'Phát tuần tự từ Layer dưới cùng lên dần Layer trên cùng trong bảng Layers',
+          'Phát từ trên đỉnh xuống đáy',
+          'Phát ngẫu nhiên',
+          'Chỉ phát Layer đầu tiên'
         ],
         correctIndex: 0,
-        explanation: 'Nếu không chọn "As animation", GIMP sẽ hợp nhất các lớp thành một ảnh tĩnh duy nhất.',
+        explanation: 'Quy ước chuẩn của GIMP là khung hình đầu tiên nằm ở đáy bảng Layer, các khung hình tiếp theo xếp chồng lên trên.',
         difficulty: 'Thông hiểu'
       },
       {
         id: 5,
-        question: 'Để ảnh động GIF tự động phát lặp đi lặp lại mãi mãi mà không bị dừng lại ở khung cuối cùng, bạn cần tích chọn mục nào?',
-        options: ['Loop forever', 'Play once', 'Stop immediately', 'Mute audio'],
+        question: 'Tùy chọn "Loop forever" trong hộp thoại xuất ảnh GIF mang lại tác dụng gì?',
+        options: [
+          'Làm cho ảnh động tự động lặp lại liên tục không bao giờ dừng',
+          'Làm cho tệp ảnh tự động nhân đôi dung lượng',
+          'Khóa ảnh không cho người khác tải về',
+          'Phát nhạc kèm theo ảnh'
+        ],
         correctIndex: 0,
-        explanation: 'Loop forever giúp ảnh động liên tục tuần hoàn lặp vô tận.',
+        explanation: 'Loop forever cài cắm cờ lặp vô tận giúp ảnh chuyển động tuần hoàn liên tục trên website.',
         difficulty: 'Nhận biết'
       }
     ],
     application: {
       project: {
-        title: 'Thực hành: Tạo Ảnh Động "Đèn Giao Thông Chớp Nháy"',
-        context: 'Làm tài liệu tuyên truyền an toàn giao thông cho học sinh trường THPT.',
-        mission: 'Sản xuất một tệp ảnh động `den_giao_thong.gif` chuyển đổi giữa 3 màu Đỏ, Vàng, Xanh.',
+        title: 'Sáng Tạo: Tạo Hoạt Ảnh Đèn Giao Thông Nhấp Nháy (GIF)',
+        context: 'Làm tài liệu tuyên truyền an toàn giao thông cho học sinh.',
+        mission: 'Thiết kế cột đèn giao thông chuyển màu Đỏ - Vàng - Xanh lặp tuần hoàn.',
         steps: [
-          'Bước 1: Tạo Layer 1: Vẽ cột đèn sáng bóng màu Đỏ, đặt tên `Do (1000ms)`.',
-          'Bước 2: Tạo Layer 2: Vẽ cột đèn sáng bóng màu Vàng, đặt tên `Vang (400ms)`.',
-          'Bước 3: Tạo Layer 3: Vẽ cột đèn sáng bóng màu Xanh, đặt tên `Xanh (1000ms)`.',
-          'Bước 4: Mở Playback chạy thử, sau đó Export thành tệp `den_giao_thong.gif` tích chọn "As animation" và "Loop forever".'
+          'Khung 1 (Layer đáy): Đèn Đỏ sáng, Đèn Vàng và Xanh tắt. Đặt tên: `Den_Do (1000ms)`.',
+          'Khung 2 (Layer giữa): Đèn Vàng sáng, Đèn Đỏ và Xanh tắt. Đặt tên: `Den_Vang (500ms)`.',
+          'Khung 3 (Layer đỉnh): Đèn Xanh sáng, Đèn Đỏ và Vàng tắt. Đặt tên: `Den_Xanh (1000ms)`.',
+          'Kiểm tra: Vào `Filters -> Animation -> Playback...` xem thử.',
+          'Xuất bản: `File -> Export As...` -> `den_giao_thong.gif` (tích chọn `As animation` và `Loop forever`).'
         ],
-        outputRequirement: 'Tệp ảnh động GIF nhấp nháy 3 nhịp đèn mượt mà, kích thước tệp nhẹ dưới 200KB.',
-        practicalTip: 'Nhân bản (Duplicate Layer) từ Layer 1 rồi chỉ sửa màu bóng đèn sẽ giúp bạn tiết kiệm 80% thời gian vẽ.'
+        outputRequirement: 'Tệp `den_giao_thong.gif` chuyển màu nhịp nhàng, lặp lại vô tận, thời gian chuẩn xác.',
+        practicalTip: 'Dùng công cụ Bucket Fill tô màu xám sẫm cho các đèn tắt để tạo hiệu ứng bóng đèn chân thực.'
       },
       mindmap: {
         id: 'mm_11_28',
         label: 'TẠO ẢNH ĐỘNG GIF',
-        color: '#f43f5e',
+        color: '#db2777',
         children: [
           {
             id: 'mm_11_28_1',
             label: 'Nguyên lý khung hình',
             children: [
-              { id: 'mm_11_28_1_1', label: 'Mỗi Layer = 1 Frame' },
-              { id: 'mm_11_28_1_2', label: 'Độ trễ thời gian (ms)' },
-              { id: 'mm_11_28_1_3', label: 'Trình chiếu dưới lên trên' }
+              { id: 'mm_11_28_1_1', label: '1 Layer = 1 Frame' },
+              { id: 'mm_11_28_1_2', label: 'Phát từ đáy lên đỉnh' },
+              { id: 'mm_11_28_1_3', label: 'Cú pháp thời gian: (200ms)' }
             ]
           },
           {
             id: 'mm_11_28_2',
             label: 'Kiểm tra & Xuất bản',
             children: [
-              { id: 'mm_11_28_2_1', label: 'Animation Playback' },
-              { id: 'mm_11_28_2_2', label: 'Tích chọn As animation' },
-              { id: 'mm_11_28_2_3', label: 'Tích chọn Loop forever' }
+              { id: 'mm_11_28_2_1', label: 'Filters -> Animation -> Playback' },
+              { id: 'mm_11_28_2_2', label: 'Export as .gif' },
+              { id: 'mm_11_28_2_3', label: 'Tích: As animation & Loop forever' }
             ]
           }
         ]
       }
     },
     completion: {
-      badgeName: 'Nhà Làm Phim Hoạt Họa GIF 11',
-      badgeIcon: 'Film',
-      roleTitle: 'Chuyên Viên Sản Xuất Đồ Họa Động',
-      congratsMessage: 'Tuyệt vời! Bạn đã nắm vững nguyên lý hoạt họa và kỹ thuật tạo ảnh động GIF lặp vô tận bằng GIMP.',
-      skillsUnlocked: ['Tạo Frame từ Layer', 'Xem trước Animation Playback', 'Xuất bản Animated GIF chuẩn']
+      badgeName: 'Nghệ Sĩ Hoạt Họa GIF 11',
+      badgeIcon: 'PlayCircle',
+      roleTitle: 'Chuyên Viên Hoạt Họa & Thiết Kế Hoạt Ảnh Số',
+      congratsMessage: 'Tuyệt vời! Bạn đã nắm vững nguyên lý hoạt ảnh và xuất thành công tác phẩm ảnh động GIF đầu tay của mình.',
+      skillsUnlocked: ['Tạo khung hình Frame từ Layer', 'Cài đặt thời gian trễ (ms)', 'Xuất ảnh GIF lặp vô tận']
     }
   },
 
@@ -405,204 +526,226 @@ export const THEME7_LESSONS_PART2_11: Lesson[] = [
     title: 'Khám phá phần mềm làm phim',
     themeId: 7,
     themeName: 'Chủ đề 7: Phần mềm chỉnh sửa ảnh và làm video',
-    topicBadge: 'Phần mềm làm phim',
+    topicBadge: 'Dựng phim số',
     grade: 11,
     estimatedMinutes: 45,
     xpTotal: 250,
     hero: {
-      tagline: 'Bước chân vào phòng dựng phim: Khám phá thế giới biên tập video số',
-      description: 'Làm quen với giao diện chuẩn của phần mềm biên tập phim (OpenShot / Video Editor), hiểu cấu trúc dự án phim (Project), khu vực quản lý tài nguyên Media (hình ảnh, âm thanh, video clip) và dòng thời gian (Timeline).',
-      accentColor: 'from-rose-500 to-pink-600',
-      keyHighlights: ['Cấu trúc phần mềm dựng phim', 'Dòng thời gian đa rãnh (Timeline Tracks)', 'Quản lý tài nguyên Project Files']
+      tagline: 'Bước vào xưởng phim kỹ thuật số: Làm quen với phần mềm biên tập video OpenShot / Shotcut',
+      description: 'Khám phá ngôn ngữ điện ảnh số: hiểu khái niệm dự án phim (.osp), khám phá giao diện 4 phân khu chuẩn Hollywood (Project Files, Timeline dòng thời gian, Tracks rãnh đa tầng và Video Preview xem trước).',
+      accentColor: 'from-amber-600 to-red-600',
+      keyHighlights: ['Khái niệm Dự án phim số', 'Timeline & Các rãnh Tracks', 'Cửa sổ Video Preview thời gian thực']
     },
     objectives: [
       {
         id: 'obj_11_29_1',
         category: 'knowledge',
         categoryName: 'Kiến thức cốt lõi',
-        title: 'Các thành phần của dự án phim',
-        description: 'Phân biệt được tài nguyên gốc (Media Files), dòng thời gian (Timeline), rãnh video (Video Track), rãnh âm thanh (Audio Track) và màn hình xem trước (Preview).',
-        iconName: 'Clapperboard'
+        title: 'Hiểu nguyên lý biên tập phim phi tuyến tính',
+        description: 'Giải thích được nguyên lý dựng phim số trên dòng thời gian (Timeline) và phân biệt được tệp dự án phim với tệp video thành phẩm nén MP4.',
+        iconName: 'Film'
       },
       {
         id: 'obj_11_29_2',
         category: 'skill',
         categoryName: 'Kỹ năng & Năng lực',
-        title: 'Khởi tạo dự án và nạp dữ liệu',
-        description: 'Tạo được một Project mới, nhập (Import) hình ảnh, video clip, nhạc nền vào phần mềm dựng phim an toàn.',
-        iconName: 'FolderPlus'
+        title: 'Nhận diện & điều hướng giao diện làm phim',
+        description: 'Nhận diện và điều hướng thành thạo 4 khu vực giao diện: Project Files (tài nguyên), Timeline (dòng thời gian), Tracks (các rãnh xếp chồng) và Video Preview (màn hình xem trước).',
+        iconName: 'Layout'
       },
       {
         id: 'obj_11_29_3',
         category: 'attitude',
         categoryName: 'Phẩm chất & Đạo đức',
-        title: 'Tổ chức tài nguyên ngăn nắp',
-        description: 'Hình thành thói quen gom toàn bộ hình ảnh, âm thanh, video vào một thư mục dự án duy nhất để tránh bị lỗi mất liên kết tệp (Missing Media).',
-        iconName: 'CheckCircle2'
+        title: 'Văn hóa bản quyền âm nhạc & hình ảnh',
+        description: 'Có ý thức tìm kiếm và sử dụng các nguồn nhạc, hình ảnh miễn phí bản quyền (No Copyright Sounds / Creative Commons) khi làm video.',
+        iconName: 'ShieldCheck'
       }
     ],
     warmup: {
-      title: 'Tình huống: Mở dự án video lên thì toàn bộ màn hình báo "Missing Media" đỏ lòm!',
-      scenario: 'Một bạn học sinh lưu video ở màn hình Desktop, nhạc ở ổ D, ảnh ở thư mục Tải về. Hôm sau chép file dự án `.osp` sang máy tính trường học mở lên thì toàn bộ tài nguyên đều biến mất.',
-      pollQuestion: 'Nguyên tắc vàng nào khi bắt đầu làm một dự án video bạn bắt buộc phải tuân thủ?',
+      title: 'Tình huống: Gửi tệp dự án phim (.osp) cho bạn và... bạn mở ra màn hình đen xì!',
+      scenario: 'Bạn làm một video kỷ niệm rất công phu và gửi tệp `ky_niem.osp` (dung lượng chỉ 50 KB) cho bạn thân. Bạn ấy hí hửng mở lên thì màn hình đen ngòm và phần mềm báo lỗi: "Thiếu tất cả các tệp video và bài hát gốc!".',
+      pollQuestion: 'Tại sao tệp dự án phim (.osp) lại không chứa trực tiếp các đoạn video và bài hát bên trong?',
       pollOptions: [
-        { id: 'p11_29_1', text: 'Tạo một thư mục dự án duy nhất và gom toàn bộ video, ảnh, nhạc cần dùng vào thư mục đó trước khi dựng', votesPercent: 95, isPopular: true, insight: 'Chính xác! File dự án video chỉ lưu đường dẫn liên kết, nếu để file rải rác hoặc đổi vị trí sẽ gây lỗi mất liên kết dữ liệu.' },
-        { id: 'p11_29_2', text: 'Không cần gom, cứ để bừa bãi trên máy tính', votesPercent: 2, insight: 'Để bừa bãi sẽ chắc chắn gây lỗi Missing Media khi chuyển máy.' },
-        { id: 'p11_29_3', text: 'Xóa bớt video đi cho nhẹ', votesPercent: 3, insight: 'Xóa video gốc sẽ khiến phần mềm không còn dữ liệu để phát.' }
+        { id: 'p11_29_1', text: 'Vì tệp dự án chỉ lưu "đường dẫn liên kết" và các mốc thời gian cắt ghép, chứ không chứa nội dung các tệp video nặng hàng Gigabyte', votesPercent: 95, isPopular: true, insight: 'Chính xác! Tệp dự án chỉ là kịch bản chỉ đạo. Muốn bạn xem được, bạn phải xuất thành phẩm (Export Video) ra tệp .mp4.' },
+        { id: 'p11_29_2', text: 'Vì máy tính của bạn thân bị hỏng loa', votesPercent: 3, insight: 'Báo thiếu file media là do cơ chế liên kết đường dẫn của tệp dự án dựng phim.' },
+        { id: 'p11_29_3', text: 'Vì gửi qua Zalo làm mất dữ liệu', votesPercent: 2, insight: 'Lý do cốt lõi là sự khác biệt giữa tệp dự án (Project file) và tệp video xuất bản.' }
       ],
-      reflection: 'Kỹ năng quản lý tài nguyên khoa học là phẩm chất tiên quyết của một nhà làm phim chuyên nghiệp.'
+      reflection: 'Hiểu đúng bản chất tệp dự án phim giúp bạn không bao giờ gửi nhầm file cho thầy cô hoặc bạn bè.'
     },
     knowledge: [
       {
         id: 'tab_11_29_1',
-        title: '1. Giao Diện & Kiến Trúc Phần Mềm Dựng Phim',
-        subtitle: 'Project Files, Timeline, Tracks và Cửa sổ Preview',
-        iconName: 'Clapperboard',
+        title: '1. Khái niệm dự án phim và nguyên lý dựng video số',
+        subtitle: 'Bản chất của biên tập phi tuyến tính (Non-Linear Editing - NLE)',
+        iconName: 'Film',
         keyPoints: [
-          'Khu vực Project Files: Kho chứa toàn bộ tài nguyên đầu vào (video quay thô, ảnh chụp, nhạc nền, hiệu ứng âm thanh).',
-          'Dòng thời gian (Timeline): Nơi sắp xếp các đoạn clip theo trình tự thời gian từ trái sang phải (trục thời gian tính bằng giây và phút).',
-          'Hệ thống rãnh (Tracks): Cho phép xếp chồng nhiều lớp video và âm thanh. Rãnh trên sẽ đè lên rãnh dưới (tương tự như Layer trong GIMP).',
-          'Màn hình xem trước (Preview Window): Cho phép bấm Play/Pause để xem trực tiếp đoạn phim đang được biên tập ở vị trí con trỏ thời gian (Playhead).'
+          'Dự án phim (Video Project): Là tệp lưu trữ toàn bộ cấu trúc biên tập (thời điểm cắt gọt, hiệu ứng, chữ, âm thanh) nhưng chỉ chứa đường dẫn tham chiếu đến các tệp video, ảnh, nhạc gốc chứ không nhúng trực tiếp dữ liệu thô vào bên trong.',
+          'Ví dụ định dạng dự án: OpenShot (`.osp`), Shotcut (`.mlt`), Premiere (`.prproj`).',
+          'Lưu ý sống còn: Không được di chuyển, đổi tên hoặc xóa các tệp video/ảnh/nhạc gốc trên máy tính trong quá trình đang dựng phim, nếu không dự án sẽ bị lỗi mất đường dẫn (Missing Media).',
+          'Xuất bản (Export Video): Quá trình máy tính tổng hợp (Render) tất cả các lớp hình ảnh, âm thanh thành một tệp video duy nhất chuẩn nén `.mp4` để xem trên mọi thiết bị.'
+        ],
+        visualType: 'comparison-table',
+        visualData: {
+          headers: ['Tiêu chí', 'Tệp Dự Án (.osp / .mlt)', 'Tệp Video Thành Phẩm (.mp4)'],
+          rows: [
+            ['Dung lượng tệp', 'Rất nhẹ (chỉ vài chục Kilobyte)', 'Rất nặng (vài trăm Megabyte đến Gigabyte)'],
+            ['Bản chất nội dung', 'Chỉ chứa kịch bản và đường dẫn liên kết', 'Chứa toàn bộ hình ảnh và âm thanh đã hòa trộn'],
+            ['Khả năng chỉnh sửa', 'Mở ra chỉnh sửa từng đoạn, từng chữ dễ dàng', 'Đã bị nén cứng thành một khối, rất khó bóc tách'],
+            ['Khả năng chia sẻ', 'Chỉ mở được trên máy đã có sẵn các tệp gốc', 'Chia sẻ cho mọi người xem trên điện thoại, TV']
+          ]
+        },
+        emCanNho: [
+          'Tệp dự án phim (`.osp`) chỉ chứa đường dẫn liên kết, dung lượng rất nhẹ.',
+          'Tuyệt đối không xóa hoặc đổi chỗ các tệp video gốc khi đang dựng phim.',
+          'Phải thực hiện `Export Video` ra định dạng `.mp4` để mọi người cùng xem được.'
+        ]
+      },
+      {
+        id: 'tab_11_29_2',
+        title: '2. Giao diện phần mềm dựng phim: Project Files, Timeline, Tracks, Preview',
+        subtitle: 'Bố cục 4 khu vực làm việc chuẩn của xưởng phim số OpenShot',
+        iconName: 'Layout',
+        keyPoints: [
+          '1. Vùng tệp dự án (Project Files - góc trên bên trái): Nơi nhập (Import) và chứa toàn bộ các nguyên liệu video, hình ảnh, âm thanh phục vụ cho bộ phim.',
+          '2. Vùng xem trước (Video Preview - góc trên bên phải): Màn hình TV thu nhỏ cho phép xem lại video đang dựng theo thời gian thực kèm các nút Play, Pause, Tua đi/Tua lại.',
+          '3. Vùng dòng thời gian (Timeline - góc dưới): Chiều ngang biểu thị thời gian tính bằng Giờ:Phút:Giây:Khung hình. Đầu đọc (Playhead / Con trỏ đỏ) chỉ vị trí thời gian hiện tại.',
+          '4. Các rãnh đa tầng (Tracks): Các hàng ngang xếp chồng lên nhau trên Timeline. Nguyên tắc: Rãnh nằm ở trên (Track 5) sẽ che khuất hình ảnh của rãnh nằm ở dưới (Track 4). Rãnh âm thanh có thể đặt ở bất kỳ Track nào.'
         ],
         visualType: 'infographic',
         visualData: {
           nodes: [
-            { label: 'Track 3: Phụ đề & Logo', desc: 'Nằm trên cùng: Chữ hiển thị, nhãn dán' },
-            { label: 'Track 2: Đoạn Video chính', desc: 'Nằm giữa: Các cảnh quay diễn biến câu chuyện' },
-            { label: 'Track 1: Nhạc nền (Audio)', desc: 'Nằm dưới: Bài hát nền nhẹ nhàng du dương' }
+            { label: 'Project Files (Tài nguyên)', desc: 'Chứa video, hình ảnh logo, tệp nhạc mp3' },
+            { label: 'Video Preview (Màn hình xem)', desc: 'Màn hình hiển thị kết quả thời gian thực' },
+            { label: 'Timeline & Tracks (Dòng thời gian)', desc: 'Nơi sắp xếp, cắt ghép các phân cảnh phim' }
           ]
         },
         emCanNho: [
-          'Gom toàn bộ tài nguyên vào một thư mục dự án duy nhất trước khi làm phim.',
-          'Timeline sắp xếp video theo thời gian; Tracks xếp chồng hình ảnh/âm thanh theo lớp.',
-          'Con trỏ thời gian (Playhead) chỉ vị trí khung hình đang được chiếu ở Preview.'
+          'Giao diện gồm 4 phần: Project Files, Video Preview, Timeline và Tracks.',
+          'Con trỏ đỏ (Playhead) chỉ mốc thời gian đang hiển thị trên màn hình Preview.',
+          'Quy tắc Track: Track trên che Track dưới (tương tự như Layer trong đồ họa).'
         ]
       }
     ],
     miniGame: {
       type: 'matching',
-      title: 'Ghép cặp Thành phần Phần mềm làm phim',
-      instruction: 'Nối các khu vực trên giao diện dựng phim với chức năng tương ứng:',
+      title: 'Ghép cặp Khu Vực Giao Diện Làm Phim và Nhiệm Vụ',
+      instruction: 'Nối khu vực trên giao diện phần mềm dựng phim với vai trò tương ứng:',
       matchingPairs: [
-        { id: 'vid1', left: 'Khu vực Project Files', right: 'Nơi nhập (Import) và quản lý hình ảnh, video, âm thanh gốc' },
-        { id: 'vid2', left: 'Dòng thời gian Timeline', right: 'Trục ngang hiển thị thời gian diễn biến của toàn bộ đoạn phim' },
-        { id: 'vid3', left: 'Con trỏ thời gian (Playhead)', right: 'Thanh trượt đứng chỉ đúng giây phút đang được chiếu thử' },
-        { id: 'vid4', left: 'Màn hình Video Preview', right: 'Khung hình hiển thị trực quan kết quả của bộ phim' }
+        { id: 'vd1', left: 'Vùng Project Files', right: 'Kho chứa các đoạn video, ảnh chụp và tệp nhạc nhập vào' },
+        { id: 'vd2', left: 'Vùng Video Preview', right: 'Màn hình chiếu thử bộ phim theo thời gian thực' },
+        { id: 'vd3', left: 'Dòng thời gian Timeline', right: 'Thước đo ngang hiển thị trật tự thời gian diễn ra bộ phim' },
+        { id: 'vd4', left: 'Các rãnh Tracks', right: 'Các tầng xếp chồng clip; rãnh trên che rãnh dưới' }
       ]
     },
     assessment: [
       {
         id: 1,
-        question: 'Trong phần mềm làm phim, khu vực "Timeline" (Dòng thời gian) dùng để làm gì?',
+        question: 'Tại sao khi gửi tệp dự án phim (.osp) cho người khác mà không đính kèm các tệp video và nhạc gốc, người nhận lại không xem được video?',
         options: [
-          'Sắp xếp các đoạn video, hình ảnh và âm thanh theo thứ tự thời gian xuất hiện từ đầu đến cuối',
-          'Xem dự báo thời tiết ngày mai',
-          'Tự động tắt máy tính',
-          'Đổi mật khẩu tài khoản'
+          'Vì tệp dự án chỉ chứa đường dẫn liên kết đến các tệp nguyên liệu trên máy tính bạn chứ không chứa nội dung video bên trong',
+          'Vì phần mềm bị hỏng',
+          'Vì người nhận chưa cắm tai nghe',
+          'Vì tệp dự án bị nhiễm virus'
         ],
         correctIndex: 0,
-        explanation: 'Timeline là không gian làm việc chính nơi đạo diễn sắp đặt nhịp điệu của các cảnh phim.',
-        difficulty: 'Nhận biết'
+        explanation: 'Cơ chế NLE chỉ lưu metadata và đường dẫn tệp để tối ưu tốc độ xử lý.',
+        difficulty: 'Thông hiểu'
       },
       {
         id: 2,
-        question: 'Tại sao tệp dự án phim (ví dụ tệp .osp) lại có dung lượng rất nhẹ (chỉ vài Kilobyte) dù bộ phim dài hàng chục phút?',
+        question: 'Trên Timeline của phần mềm làm phim, quy tắc hiển thị giữa các rãnh (Tracks) xếp chồng lên nhau là gì?',
         options: [
-          'Vì tệp dự án chỉ lưu các thông tin chỉ dẫn cắt ghép và đường dẫn tới tệp gốc, chứ không chứa nội dung video gốc bên trong',
-          'Vì phần mềm nén siêu cấp vô địch',
-          'Vì phim không có màu',
-          'Vì phim bị xóa hết'
+          'Đoạn video nằm ở Track phía trên sẽ che khuất hình ảnh của đoạn video nằm ở Track phía dưới',
+          'Đoạn video ở Track dưới sẽ che đoạn video ở Track trên',
+          'Tất cả các rãnh tự động hòa lẫn màu vào nhau',
+          'Chỉ có Track 1 mới phát được hình ảnh'
         ],
         correctIndex: 0,
-        explanation: 'Tệp dự án là tệp kịch bản điều khiển liên kết, dữ liệu thật nằm ở các tệp media gốc.',
+        explanation: 'Tương tự hệ thống Layer trong đồ họa: Track trên đè lên Track dưới.',
         difficulty: 'Thông hiểu'
       },
       {
         id: 3,
-        question: 'Trên Timeline có nhiều rãnh (Tracks) xếp chồng lên nhau. Nếu Track 2 đặt một hình ảnh logo, còn Track 1 đặt một đoạn video cảnh quay, điều gì sẽ hiển thị?',
+        question: 'Thanh con trỏ màu đỏ (Playhead) di chuyển ngang trên dòng thời gian Timeline có ý nghĩa gì?',
         options: [
-          'Hình logo ở Track 2 sẽ nổi lên trên và đè lên góc của đoạn video ở Track 1',
-          'Đoạn video sẽ che mất logo',
-          'Hai track tự động biến mất',
-          'Màn hình báo lỗi'
+          'Chỉ định chính xác vị trí thời gian hiện tại đang được chiếu trên màn hình Video Preview',
+          'Báo hiệu máy tính sắp hết pin',
+          'Đánh dấu đoạn video bị lỗi',
+          'Xóa toàn bộ các video đi qua'
         ],
         correctIndex: 0,
-        explanation: 'Quy tắc rãnh Track tương tự Layer: Track có số thứ tự cao hơn (ở trên) sẽ đè lên Track ở dưới.',
-        difficulty: 'Thông hiểu'
+        explanation: 'Playhead là đầu đọc chỉ thời điểm hiện tại của thước đo thời gian.',
+        difficulty: 'Nhận biết'
       },
       {
         id: 4,
-        question: 'Hành động nào sau đây sẽ làm hỏng dự án phim và gây lỗi "Missing Media" (Mất tệp)?',
-        options: [
-          'Xóa hoặc đổi tên hoặc di chuyển tệp video gốc sang thư mục khác sau khi đã đưa vào dự án',
-          'Bấm nút Play để xem phim',
-          'Kéo dài thời lượng ảnh trên Timeline',
-          'Tắt bớt âm thanh'
-        ],
+        question: 'Định dạng tệp video chuẩn quốc tế phổ biến nhất hiện nay, tương thích trên mọi điện thoại, máy tính và tivi thông minh là gì?',
+        options: ['.mp4', '.osp', '.psd', '.exe'],
         correctIndex: 0,
-        explanation: 'Khi đổi vị trí hoặc xóa tệp gốc, phần mềm dựng phim sẽ không thể tìm thấy dữ liệu để phát.',
-        difficulty: 'Vận dụng'
+        explanation: 'MP4 (chuẩn nén H.264/AAC) là định dạng video đa phương tiện phổ biến nhất hành tinh.',
+        difficulty: 'Nhận biết'
       },
       {
         id: 5,
-        question: 'Thao tác đầu tiên cần làm khi bắt đầu biên tập một đoạn video ngắn là gì?',
+        question: 'Hành động nào sau đây cần TUYỆT ĐỐI TRÁNH trong khi bạn đang thực hiện dựng một dự án phim trên máy tính?',
         options: [
-          'Thu thập đầy đủ hình ảnh, video, âm thanh vào 1 thư mục và Import vào Project Files',
-          'Xuất video ra tệp MP4 ngay lập tức',
-          'Tắt màn hình máy tính',
-          'Gõ chữ phụ đề trước'
+          'Đổi tên thư mục chứa các video gốc hoặc xóa bớt các đoạn video gốc trên ổ đĩa',
+          'Bấm nút Play để xem thử',
+          'Lưu dự án định kỳ bằng Ctrl + S',
+          'Kéo dài thanh thước đo Timeline'
         ],
         correctIndex: 0,
-        explanation: 'Chuẩn bị và nạp tài nguyên đầy đủ là bước tiền kỳ bắt buộc trước khi tiến hành cắt ghép.',
-        difficulty: 'Nhận biết'
+        explanation: 'Đổi tên hoặc xóa file gốc sẽ làm đứt gãy đường dẫn liên kết, khiến dự án báo lỗi Missing Media đỏ rực.',
+        difficulty: 'Vận dụng'
       }
     ],
     application: {
       project: {
-        title: 'Thực hành: Khởi Tạo Dự Án Phim "Kỷ Niệm Mái Trường"',
-        context: 'Lớp 11 chuẩn bị làm video ngắn kỷ niệm ngày Nhà giáo Việt Nam 20/11.',
-        mission: 'Thiết lập thư mục dự án và nạp các tài nguyên vào phần mềm dựng phim.',
+        title: 'Khởi Tạo: Thiết Lập Thư Mục Dự Án Phim "Hành Trình Tri Thức 11"',
+        context: 'Chuẩn bị dựng video giới thiệu về các hoạt động trải nghiệm của lớp.',
+        mission: 'Tổ chức cấu trúc thư mục làm phim chuyên nghiệp và khởi tạo dự án OpenShot.',
         steps: [
-          'Bước 1: Tạo thư mục `Du_An_Video_20_11` trong ổ đĩa máy tính.',
-          'Bước 2: Thu thập 5 bức ảnh chụp trường lớp và 1 bài hát nhạc nền vào thư mục đó.',
-          'Bước 3: Mở phần mềm làm phim (OpenShot / Clipchamp), tạo dự án mới và Import toàn bộ ảnh, nhạc vào Project Files.',
-          'Bước 4: Lưu tệp dự án với tên `Ky_Niem_20_11.osp` vào cùng thư mục.'
+          'Bước 1: Tạo thư mục lớn `DU_AN_PHIM_11` trên ổ D:.',
+          'Bước 2: Tạo 4 thư mục con bên trong: `1_Video_Goc`, `2_Hinh_Anh`, `3_Am_Thanh`, `4_Thanh_Pham`.',
+          'Bước 3: Mở OpenShot, lưu dự án ngay từ đầu: `File -> Save Project` với tên `Phim_Lop_11.osp` vào thư mục lớn.',
+          'Bước 4: Nhập (Import) 3 video ngắn và 1 bài nhạc nền mp3 vào vùng Project Files.'
         ],
-        outputRequirement: 'Dự án phim được khởi tạo hoàn chỉnh, các tài nguyên sẵn sàng trên khay Project Files.',
-        practicalTip: 'Đặt tên các tệp ảnh theo thứ tự kịch bản (VD: `01_cong_truong.jpg`, `02_lop_hoc.jpg`) để khi kéo xuống Timeline không bị lộn xộn.'
+        outputRequirement: 'Cấu trúc thư mục ngăn nắp, khoa học, dự án OpenShot đã sẵn sàng biên tập.',
+        practicalTip: 'Tổ chức thư mục dự án ngăn nắp ngay từ ngày đầu giúp bạn không bao giờ bị thất lạc file khi dự án kéo dài nhiều tuần.'
       },
       mindmap: {
         id: 'mm_11_29',
         label: 'PHẦN MỀM LÀM PHIM',
-        color: '#f43f5e',
+        color: '#ea580c',
         children: [
           {
             id: 'mm_11_29_1',
-            label: 'Cấu trúc giao diện',
+            label: 'Khái niệm cốt lõi',
             children: [
-              { id: 'mm_11_29_1_1', label: 'Project Files (Nguồn tài nguyên)' },
-              { id: 'mm_11_29_1_2', label: 'Timeline (Dòng thời gian)' },
-              { id: 'mm_11_29_1_3', label: 'Preview (Màn hình phát thử)' }
+              { id: 'mm_11_29_1_1', label: 'Tệp dự án .osp (Đường dẫn nhẹ)' },
+              { id: 'mm_11_29_1_2', label: 'Tệp thành phẩm .mp4 (Render nén)' },
+              { id: 'mm_11_29_1_3', label: 'Không xóa/đổi chỗ file gốc' }
             ]
           },
           {
             id: 'mm_11_29_2',
-            label: 'Nguyên tắc quản lý',
+            label: '4 Phân khu giao diện',
             children: [
-              { id: 'mm_11_29_2_1', label: 'Thư mục dự án duy nhất' },
-              { id: 'mm_11_29_2_2', label: 'Tránh lỗi Missing Media' },
-              { id: 'mm_11_29_2_3', label: 'Lưu tệp dự án định kỳ' }
+              { id: 'mm_11_29_2_1', label: 'Project Files: Kho nguyên liệu' },
+              { id: 'mm_11_29_2_2', label: 'Video Preview: Màn hình chiếu' },
+              { id: 'mm_11_29_2_3', label: 'Timeline & Tracks: Xếp lớp thời gian' }
             ]
           }
         ]
       }
     },
     completion: {
-      badgeName: 'Nhà Biên Tập Phim Tập Sự 11',
-      badgeIcon: 'Clapperboard',
-      roleTitle: 'Chuyên Viên Quản Trị Dự Án Video',
-      congratsMessage: 'Tuyệt vời! Bạn đã nắm vững cấu trúc phần mềm dựng phim và kỹ năng quản lý tài nguyên video chuẩn.',
-      skillsUnlocked: ['Hiểu Timeline & Tracks', 'Quản lý thư mục dự án an toàn', 'Import tài nguyên media']
+      badgeName: 'Nhà Sản Xuất Phim Khởi Nghiệp 11',
+      badgeIcon: 'Film',
+      roleTitle: 'Chuyên Viên Quản Trị Dự Án Phim Số',
+      congratsMessage: 'Tuyệt vời! Bạn đã bước vào thế giới điện ảnh số, nắm chắc giao diện và nguyên tắc vận hành của phần mềm dựng phim chuyên nghiệp.',
+      skillsUnlocked: ['Tổ chức thư mục dự án phim', 'Hiểu bản chất .osp vs .mp4', 'Làm chủ 4 phân khu giao diện làm phim']
     }
   },
 
@@ -613,195 +756,257 @@ export const THEME7_LESSONS_PART2_11: Lesson[] = [
     title: 'Biên tập phim',
     themeId: 7,
     themeName: 'Chủ đề 7: Phần mềm chỉnh sửa ảnh và làm video',
-    topicBadge: 'Kỹ xảo & Biên tập video',
+    topicBadge: 'Kỹ thuật dựng phim',
     grade: 11,
     estimatedMinutes: 45,
     xpTotal: 250,
     hero: {
-      tagline: 'Nghệ thuật cắt ghép hình ảnh: Cắt tỉa, chuyển cảnh, lồng nhạc và xuất video',
-      description: 'Làm chủ các thao tác kỹ thuật dựng phim chuyên nghiệp: Cắt gọt đầu đuôi clip, tách đoạn (Split), thêm hiệu ứng chuyển cảnh (Transitions), cân chỉnh âm lượng nhạc nền (Fade in/out), chèn tiêu đề chữ và xuất tệp video chuẩn MP4 Full HD.',
-      accentColor: 'from-rose-500 to-pink-600',
-      keyHighlights: ['Cắt tách video (Split / Trim)', 'Hiệu ứng chuyển cảnh (Transitions)', 'Lồng âm thanh & Xuất file MP4']
+      tagline: 'Phép màu của người dựng phim: Cắt gọt khung hình, chuyển cảnh mượt mà và phối nhạc đỉnh cao',
+      description: 'Thực hành các thao tác biên tập sống còn: Cắt tỉa (Trim), Tách đoạn (Split bằng công cụ Razor Tool), thêm hiệu ứng chuyển cảnh (Transitions), chèn phụ đề tiêu đề và điều chỉnh âm lượng (Fade in / Fade out).',
+      accentColor: 'from-amber-600 to-red-600',
+      keyHighlights: ['Cắt tỉa & Tách đoạn Razor Tool', 'Chuyển cảnh mượt mà Transitions', 'Hiệu ứng âm thanh Fade in / Fade out']
     },
     objectives: [
       {
         id: 'obj_11_30_1',
         category: 'knowledge',
         categoryName: 'Kiến thức cốt lõi',
-        title: 'Các kỹ thuật biên tập video cơ bản',
-        description: 'Hiểu rõ các thuật ngữ: Cắt tỉa (Trim), Tách đoạn (Split), Hiệu ứng chuyển cảnh (Transition), Tăng/giảm âm lượng dần (Fade in/Fade out).',
+        title: 'Nắm vững quy trình biên tập phim',
+        description: 'Trình bày được các bước hoàn thiện một thước phim: sắp xếp cảnh -> cắt gọt chi tiết thừa -> thêm chuyển cảnh -> chèn tiêu đề -> phối âm thanh -> xuất video.',
         iconName: 'Scissors'
       },
       {
         id: 'obj_11_30_2',
         category: 'skill',
         categoryName: 'Kỹ năng & Năng lực',
-        title: 'Hoàn thiện đoạn video hoàn chỉnh',
-        description: 'Cắt bỏ các đoạn quay lỗi, ghép các cảnh mượt mà có hiệu ứng chuyển cảnh, lồng phụ đề và xuất bản ra tệp MP4 chất lượng cao.',
-        iconName: 'Film'
+        title: 'Thực hiện cắt ghép & chuyển cảnh, âm thanh',
+        description: 'Sử dụng thành thạo công cụ kéo cắt Razor Tool (C), áp dụng hiệu ứng chuyển cảnh Transitions mềm mại và chỉnh Fade in/out cho nhạc nền.',
+        iconName: 'Sliders'
       },
       {
         id: 'obj_11_30_3',
         category: 'attitude',
         categoryName: 'Phẩm chất & Đạo đức',
-        title: 'Tôn trọng bản quyền âm nhạc',
-        description: 'Lựa chọn các bản nhạc nền miễn phí bản quyền (Royalty-free / YouTube Audio Library) để tránh bị chặn âm thanh khi đăng tải.',
-        iconName: 'Music'
+        title: 'Nhịp điệu cảm xúc & sự chỉn chu',
+        description: 'Rèn luyện cảm quan về nhịp điệu phim (Rhythm), không lạm dụng quá nhiều hiệu ứng chuyển cảnh lòe loẹt làm người xem bị chóng mặt.',
+        iconName: 'Heart'
       }
     ],
     warmup: {
-      title: 'Tình huống: Video quay bị rung và có 10 giây quay nhầm xuống đất',
-      scenario: 'Đoạn video quay buổi sinh hoạt câu lạc bộ rất hay, nhưng ở giữa có khoảng 10 giây người quay vô tình cúi xuống làm ống kính chỉ quay vào mũi giày.',
-      pollQuestion: 'Thao tác biên tập nào giúp loại bỏ đoạn 10 giây quay hỏng đó một cách sạch sẽ?',
+      title: 'Tình huống: Video quay bị rung tay 5 giây đầu và kết thúc quá đột ngột',
+      scenario: 'Một đoạn video bạn quay cảnh cô giáo bước vào lớp bị rung lắc 5 giây đầu do chưa cầm chắc máy, và ở giây cuối cùng thì bạn vô tình lia máy xuống đất.',
+      pollQuestion: 'Thao tác kỹ thuật nào trên Timeline giúp bạn loại bỏ chính xác 5 giây đầu và 2 giây cuối bị lỗi đó?',
       pollOptions: [
-        { id: 'p11_30_1', text: 'Dùng công cụ Cắt/Tách (Split / Razor) cắt ở đầu và cuối đoạn hỏng rồi bấm phím Delete xóa đi', votesPercent: 94, isPopular: true, insight: 'Chính xác! Công cụ Split giúp chia nhỏ clip và xóa bỏ những đoạn lỗi thừa một cách hoàn hảo.' },
-        { id: 'p11_30_2', text: 'Dùng băng dính dán lên màn hình để che mũi giày', votesPercent: 2, insight: 'Dán băng dính không sửa được tệp video gốc.' },
-        { id: 'p11_30_3', text: 'Tua thật nhanh qua đoạn đó', votesPercent: 4, insight: 'Tua nhanh vẫn để lộ cảnh quay hỏng, làm giảm chất lượng chuyên nghiệp của video.' }
+        { id: 'p11_30_1', text: 'Kéo mép clip để cắt tỉa (Trim) hoặc dùng công cụ kéo cắt (Razor Tool - phím C) để tách và xóa đoạn thừa', votesPercent: 95, isPopular: true, insight: 'Chính xác! Cắt gọt (Trim & Split) là thao tác căn bản nhất để giữ lại những thước phim đắt giá nhất.' },
+        { id: 'p11_30_2', text: 'Quay lại toàn bộ từ đầu', votesPercent: 3, insight: 'Khoảnh khắc tự nhiên không thể quay lại được.' },
+        { id: 'p11_30_3', text: 'Để nguyên không sửa', votesPercent: 2, insight: 'Để đoạn rung lắc sẽ làm giảm nghiêm trọng chất lượng của bộ phim.' }
       ],
-      reflection: 'Biết cắt bỏ những chi tiết thừa là bí quyết quan trọng nhất để tạo nên một thước phim cuốn hút, hấp dẫn người xem.'
+      reflection: 'Nghệ thuật làm phim không nằm ở lúc bấm máy quay, mà nằm ở bàn tay người biên tập trên bàn dựng.'
     },
     knowledge: [
       {
         id: 'tab_11_30_1',
-        title: '1. Quy Trình Biên Tập & Kỹ Thuật Dựng Video Chuẩn',
-        subtitle: 'Cắt ghép, Chuyển cảnh, Xử lý âm thanh và Xuất bản',
-        iconName: 'Video',
+        title: '1. Cắt gọt và tách đoạn video (Trim, Split)',
+        subtitle: 'Loại bỏ chi tiết hỏng, gạn đục khơi trong cho từng cảnh quay',
+        iconName: 'Scissors',
         keyPoints: [
-          'Cắt tách clip (Split): Đưa Playhead đến vị trí cần cắt, nhấp biểu tượng cây kéo (hoặc phím tắt) để chia một clip dài thành hai đoạn độc lập.',
-          'Hiệu ứng chuyển cảnh (Transitions): Kéo thả hiệu ứng (như Fade, Dissolve, Wipe) vào giữa hai đoạn clip để cảnh chuyển tiếp mềm mại, không bị giật cục.',
-          'Biên tập âm thanh: Sử dụng hiệu ứng `Fade In` (âm lượng to dần lúc đầu) và `Fade Out` (nhỏ dần lúc kết thúc); giảm âm lượng nhạc nền xuống khoảng 20% khi có lời nói thuyết minh.',
-          'Xuất video (Export Video): Chọn định dạng phổ biến nhất là `MP4 (H.264)`, độ phân giải Full HD (1920x1080) và tốc độ khung hình 30 fps.'
+          'Kéo mép clip (Trimming): Đặt chuột vào mép đầu hoặc mép cuối của đoạn clip trên Timeline, con trỏ đổi thành mũi tên 2 chiều, kéo vào trong để rút ngắn thời lượng.',
+          'Công cụ kéo cắt (Razor Tool - Phím tắt C):',
+          '  - Bật biểu tượng chiếc kéo (Razor Tool).',
+          '  - Nhấp chuột vào đúng vị trí con trỏ đỏ trên clip để chia 1 clip dài thành 2 clip độc lập.',
+          '  - Nhấp chọn đoạn thừa bị hỏng và bấm phím `Delete` để xóa bỏ.',
+          'Bắt dính (Snapping - Biểu tượng nam châm): Bật nam châm để các đoạn clip tự động hút dính vào nhau mà không bị hở khoảng đen giữa các cảnh.'
+        ],
+        visualType: 'comparison-table',
+        visualData: {
+          headers: ['Thao tác cắt gọt', 'Cách thực hiện', 'Khi nào nên dùng?'],
+          rows: [
+            ['Kéo mép (Trim)', 'Kéo đầu/cuối clip', 'Cắt bỏ vài giây chuẩn bị ở đầu hoặc thừa ở đuôi'],
+            ['Tách đoạn (Split)', 'Razor Tool (Phím C)', 'Cắt đôi clip để chèn một hình ảnh khác vào giữa'],
+            ['Xóa đoạn hỏng', 'Chọn đoạn + Phím Delete', 'Loại bỏ đoạn phim bị rung lắc, mờ nét']
+          ]
+        },
+        emCanNho: [
+          'Kéo mép clip để cắt tỉa nhanh đầu và đuôi đoạn phim.',
+          'Dùng công cụ kéo cắt Razor Tool (C) để chia đôi clip tại vị trí con trỏ đỏ.',
+          'Luôn bật tính năng Bắt dính (Nam châm) để các clip nối liền mạch không bị đen.'
+        ]
+      },
+      {
+        id: 'tab_11_30_2',
+        title: '2. Thêm hiệu ứng chuyển cảnh (Transitions) và chèn tiêu đề',
+        subtitle: 'Nối kết các phân cảnh mượt mà và làm rõ thông điệp',
+        iconName: 'Sparkles',
+        keyPoints: [
+          'Hiệu ứng chuyển cảnh (Transitions): Giúp chuyển tiếp từ cảnh quay này sang cảnh quay tiếp theo một cách êm ái thay vì bị giật cục đột ngột.',
+          'Cách thêm Transitions trong OpenShot:',
+          '  - Mở tab `Transitions`, chọn hiệu ứng mong muốn (như Fade, Wipe, Dissolve).',
+          '  - Kéo thả hiệu ứng đặt đè lên vị trí giao nhau giữa 2 clip trên Timeline.',
+          'Chèn tiêu đề (Titles): Vào menu `Title -> Title...`, chọn mẫu khung chữ, nhập nội dung, chọn màu chữ và font chữ tiếng Việt, sau đó kéo tệp tiêu đề đặt lên một Track ở phía trên clip video.'
         ],
         visualType: 'infographic',
         visualData: {
           nodes: [
-            { label: 'Bước 1: Cắt ghép thô (Rough Cut)', desc: 'Cắt bỏ cảnh hỏng, xếp theo kịch bản' },
-            { label: 'Bước 2: Hiệu ứng & Chữ (Finishing)', desc: 'Thêm chuyển cảnh, tiêu đề, nhạc nền' },
-            { label: 'Bước 3: Xuất bản (Export Video)', desc: 'Kết xuất tệp MP4 Full HD 1080p sắc nét' }
+            { label: 'Clip Cảnh A', desc: 'Đoạn phim kết thúc cảnh thứ nhất' },
+            { label: 'Hiệu ứng Fade (Mờ dần)', desc: 'Cầu nối chuyển cảnh êm ái dài 1 giây' },
+            { label: 'Clip Cảnh B', desc: 'Đoạn phim mở đầu cảnh thứ hai' }
           ]
         },
         emCanNho: [
-          'Dùng công cụ `Split / Razor` để cắt rời các phân đoạn video.',
-          'Chèn `Transitions` giữa các cảnh để chuyển tiếp mượt mà.',
-          'Xuất video chuẩn định dạng `MP4 (H.264)` độ phân giải Full HD 1080p.'
+          'Kéo thả hiệu ứng từ tab Transitions đặt vào điểm giao giữa hai clip.',
+          'Ưu tiên hiệu ứng mờ dần (Fade / Dissolve) để giữ tính chuyên nghiệp.',
+          'Tiêu đề (Title) luôn được đặt ở Track phía trên để hiển thị đè lên video.'
+        ]
+      },
+      {
+        id: 'tab_11_30_3',
+        title: '3. Biên tập âm thanh (Fade in/out) và xuất tệp video MP4',
+        subtitle: 'Hòa âm phối khí và hoàn tất thành phẩm xuất xưởng',
+        iconName: 'Volume2',
+        keyPoints: [
+          'Hiệu ứng Fade Âm thanh:',
+          '  - `Fade in` (To dần ở đầu bài): Nhạc nền từ từ to lên nhẹ nhàng khi mở màn.',
+          '  - `Fade out` (Nhỏ dần ở cuối bài): Nhạc nền nhỏ dần rồi tắt hẳn khi video kết thúc (tránh bị cụt nhạc đột ngột gây khó chịu).',
+          'Điều chỉnh âm lượng (Volume): Chuột phải vào tệp nhạc trên Timeline -> chọn `Volume` -> chỉnh 50% hoặc 30% để tiếng nhạc nền không át tiếng thuyết minh của con người.',
+          'Xuất video hoàn chỉnh: Nhấp vào nút tròn đỏ `Export Video` trên thanh công cụ -> Chọn Profile: Web, Target: MP4 (h.264), Quality: Med/High -> Bấm `Export Video`.'
+        ],
+        visualType: 'comparison-table',
+        visualData: {
+          headers: ['Thông số xuất video', 'Giá trị khuyên dùng', 'Mục đích tối ưu'],
+          rows: [
+            ['Định dạng (Format)', 'MP4 (h.264)', 'Xem mượt trên mọi điện thoại, Youtube, TV'],
+            ['Độ phân giải (Resolution)', 'FHD 1080p 30fps', 'Hình ảnh sắc nét chuẩn màn hình hiện đại'],
+            ['Chất lượng (Quality)', 'Medium / High', 'Cân bằng giữa độ nét và dung lượng tệp vừa phải']
+          ]
+        },
+        emCanNho: [
+          'Nhạc nền phải có `Fade in` ở đầu và `Fade out` ở cuối để kết thúc êm tai.',
+          'Giảm âm lượng nhạc nền xuống 30-40% nếu có giọng người thuyết minh.',
+          'Xuất video chuẩn `MP4 Full HD 1080p` để chia sẻ cho mọi người cùng thưởng thức.'
         ]
       }
     ],
     miniGame: {
       type: 'matching',
-      title: 'Ghép cặp Thao tác Kỹ xảo và Hiệu ứng đạt được',
-      instruction: 'Nối thao tác biên tập video với kết quả hiệu ứng tương ứng:',
+      title: 'Ghép cặp Kỹ Thuật Dựng Phim và Mục Đích',
+      instruction: 'Nối kỹ thuật dựng phim với tác dụng của nó:',
       matchingPairs: [
-        { id: 'fx1', left: 'Cắt tách Split (Razor Tool)', right: 'Chia một đoạn video dài thành các phần nhỏ để xóa bớt đoạn thừa' },
-        { id: 'fx2', left: 'Hiệu ứng Fade Out cho âm thanh', right: 'Âm lượng nhạc nền nhỏ dần đều trước khi bài hát kết thúc êm ái' },
-        { id: 'fx3', left: 'Hiệu ứng Dissolve Transition', right: 'Cảnh cũ mờ dần và hòa tan từ từ vào cảnh mới' },
-        { id: 'fx4', left: 'Export Video MP4 1080p', right: 'Xuất bản ra tệp video hoàn chỉnh chạy mượt trên YouTube, TV' }
+        { id: 'ed1', left: 'Công cụ kéo cắt Razor Tool (C)', right: 'Tách đôi đoạn video tại vị trí con trỏ đỏ để xóa chi tiết thừa' },
+        { id: 'ed2', left: 'Hiệu ứng Fade Out âm thanh', right: 'Làm tiếng nhạc nền nhỏ dần rồi tắt êm ái khi hết phim' },
+        { id: 'ed3', left: 'Hiệu ứng Transitions', right: 'Tạo bước chuyển tiếp mượt mà êm ái giữa 2 cảnh quay' },
+        { id: 'ed4', left: 'Chức năng Export Video', right: 'Tổng hợp mọi lớp hình ảnh âm thanh thành tệp video .mp4' }
       ]
     },
     assessment: [
       {
         id: 1,
-        question: 'Thao tác nào dùng để chia một đoạn clip dài trên Timeline thành hai đoạn riêng biệt?',
-        options: ['Split (Cắt/Tách đoạn)', 'Zoom In', 'Loop Video', 'Save Project'],
+        question: 'Phím tắt nào trong OpenShot dùng để kích hoạt nhanh công cụ kéo cắt tách đoạn video (Razor Tool)?',
+        options: ['Phím C', 'Phím X', 'Phím V', 'Phím B'],
         correctIndex: 0,
-        explanation: 'Lệnh Split (biểu tượng cây kéo) cắt đôi clip tại vị trí con trỏ thời gian.',
+        explanation: 'Phím C (Cut / Cleave) kích hoạt nhanh biểu tượng chiếc kéo Razor Tool trên Timeline.',
         difficulty: 'Nhận biết'
       },
       {
         id: 2,
-        question: 'Hiệu ứng "Fade In" khi áp dụng cho một đoạn âm thanh nhạc nền có tác dụng gì?',
+        question: 'Hiệu ứng "Fade out" đối với tệp âm thanh bài hát ở cuối video có tác dụng gì?',
         options: [
-          'Làm cho âm lượng bài hát to dần lên từ từ lúc bắt đầu, tránh làm giật mình người xem',
-          'Tắt tiếng hoàn toàn',
-          'Làm méo tiếng ca sĩ',
-          'Tăng tốc độ bài hát lên 10 lần'
+          'Làm âm lượng tiếng nhạc nhỏ dần từ từ rồi tắt hẳn một cách êm ái',
+          'Làm bài hát chạy nhanh gấp đôi',
+          'Làm biến đổi giọng nói người thành tiếng người máy',
+          'Lặp lại bài hát thêm 10 lần'
         ],
         correctIndex: 0,
-        explanation: 'Fade In làm âm thanh to dần êm ái, mang lại trải nghiệm nghe dễ chịu.',
+        explanation: 'Fade out là kỹ thuật làm âm lượng nhỏ dần về 0 để kết thúc video tự nhiên, không bị giật cụt.',
         difficulty: 'Thông hiểu'
       },
       {
         id: 3,
-        question: 'Khi chèn hiệu ứng chuyển cảnh (Transitions) vào giữa hai clip, điều gì sẽ xảy ra?',
+        question: 'Tại sao khi lồng nhạc nền cho video có lời thuyết minh của giáo viên hoặc bạn học, ta nên hạ âm lượng (Volume) của bài nhạc xuống khoảng 30% - 40%?',
         options: [
-          'Hai cảnh phim sẽ chuyển đổi qua lại mượt mà (như mờ chồng, gạt sang bên) thay vì nhảy cảnh đột ngột',
-          'Đoạn video bị xóa mất',
-          'Máy tính tự động tắt phần mềm',
-          'Video bị đổi sang màu trắng đen'
+          'Để tiếng nhạc nền không lấn át tiếng người nói, giúp người xem nghe rõ ràng nội dung bài thuyết trình',
+          'Để loa máy tính đỡ bị tốn điện',
+          'Vì phần mềm không cho phát nhạc to',
+          'Để video chạy nhanh hơn'
         ],
         correctIndex: 0,
-        explanation: 'Transitions giúp kết nối các phân cảnh điện ảnh một cách nghệ thuật và trơn tru.',
+        explanation: 'Cân bằng âm thanh (Audio Ducking/Mixing) đảm bảo giọng nói chính luôn rõ ràng, nổi bật trên nền nhạc.',
         difficulty: 'Thông hiểu'
       },
       {
         id: 4,
-        question: 'Định dạng tệp video nào sau đây được sử dụng phổ biến nhất trên toàn thế giới, tương thích với mọi thiết bị từ điện thoại đến máy tính và TV?',
-        options: ['.mp4 (MPEG-4)', '.txt', '.wav', '.html'],
+        question: 'Để chèn một dòng chữ tiêu đề "Chào mừng các bạn đến với Lớp 11A1" đè lên trên đoạn video mở đầu, bạn cần đặt đoạn tiêu đề ở rãnh (Track) nào?',
+        options: [
+          'Đặt ở một Track nằm PHÍA TRÊN đoạn video đó',
+          'Đặt ở Track nằm phía dưới đoạn video',
+          'Đặt ở ngoài Timeline',
+          'Xóa đoạn video đi rồi mới đặt tiêu đề'
+        ],
         correctIndex: 0,
-        explanation: 'MP4 (chuẩn nén H.264) là định dạng video tiêu chuẩn toàn cầu hiện nay.',
-        difficulty: 'Nhận biết'
+        explanation: 'Quy tắc rãnh: Đối tượng ở Track trên sẽ hiển thị đè lên trên đối tượng ở Track dưới.',
+        difficulty: 'Vận dụng'
       },
       {
         id: 5,
-        question: 'Khi lồng một bản nhạc nền vào video có người đang thuyết minh, bạn nên điều chỉnh âm lượng nhạc nền như thế nào?',
+        question: 'Khi xuất video để đăng tải lên YouTube hoặc gửi qua Zalo cho cả lớp xem, định dạng xuất bản nào sau đây là TỐI ƯU NHẤT?',
         options: [
-          'Giảm âm lượng nhạc nền xuống vừa phải (khoảng 15% - 25%) để người nghe nghe rõ lời thuyết minh',
-          'Bật nhạc nền to hết cỡ át tiếng người nói',
-          'Tắt luôn tiếng người nói',
-          'Mở cùng lúc 10 bài hát khác nhau'
+          'Định dạng MP4 (chuẩn nén video H.264 và âm thanh AAC)',
+          'Định dạng tệp dự án .osp',
+          'Định dạng ảnh tĩnh .jpg',
+          'Định dạng văn bản .txt'
         ],
         correctIndex: 0,
-        explanation: 'Nhạc nền chỉ đóng vai trò hỗ trợ cảm xúc, không được lấn át giọng nói của nhân vật chính.',
-        difficulty: 'Vận dụng'
+        explanation: 'MP4 H.264 là chuẩn video toàn cầu nhẹ, nét và tương thích trên 100% các thiết bị số.',
+        difficulty: 'Nhận biết'
       }
     ],
     application: {
       project: {
-        title: 'Thực hành: Sản Xuất Video Giới Thiệu Bản Thân 60 Giây',
-        context: 'Làm một video ngắn "Shorts / Reel" giới thiệu sở thích và ước mơ của học sinh lớp 11.',
-        mission: 'Biên tập một đoạn video hoàn chỉnh thời lượng đúng 60 giây có chuyển cảnh và nhạc nền.',
+        title: 'Thực Hành: Biên Tập Video Clip Giới Thiệu Trường THPT Dài 1 Phút',
+        context: 'Làm sản phẩm truyền thông chào đón các em học sinh lớp 10 nhập trường.',
+        mission: 'Biên tập trọn vẹn video clip 60 giây gồm tiêu đề, cắt gọt cảnh, nhạc nền và xuất file MP4.',
         steps: [
-          'Bước 1: Ghép 4 đoạn clip quay ngắn: Chào hỏi, Học tập, Thể thao, Ước mơ tương lai.',
-          'Bước 2: Cắt gọt đầu đuôi mỗi clip khoảng 15 giây.',
-          'Bước 3: Chèn hiệu ứng chuyển cảnh mờ dần (Dissolve) giữa các đoạn.',
-          'Bước 4: Lồng một bản nhạc nền sôi động có Fade In đầu và Fade Out cuối video.',
-          'Bước 5: Xuất video thành tệp `Gioi_Thieu_Ban_Than.mp4` Full HD.'
+          'Bước 1: Sắp xếp 4 clip cảnh quay trường (Cổng trường, Sân trường, Lớp học, Thư viện) lên Track 2.',
+          'Bước 2: Cắt bỏ các đoạn bị rung tay bằng Razor Tool (C), đảm bảo mỗi cảnh dài 10-15 giây.',
+          'Bước 3: Đặt hiệu ứng chuyển cảnh `Fade` giữa các đoạn clip.',
+          'Bước 4: Kéo tệp nhạc nền tuổi học trò vào Track 1, chỉnh Volume 40%, thêm Fade in ở đầu và Fade out ở cuối.',
+          'Bước 5: Thêm tiêu đề "Ngôi Trường Mến Yêu" trên Track 3 ở 5 giây đầu tiên.',
+          'Bước 6: Xuất video thành phẩm: `Gioi_Thieu_Truong.mp4` chuẩn 1080p.'
         ],
-        outputRequirement: 'Tệp video MP4 60 giây chuyển động mượt mà, âm thanh cân đối không bị rè.',
-        practicalTip: 'Chọn nhạc nền có tiết tấu phù hợp với nhịp cắt của hình ảnh để video trông chuyên nghiệp như phim điện ảnh.'
+        outputRequirement: 'Tệp video `Gioi_Thieu_Truong.mp4` hoàn chỉnh, hình ảnh mượt mà, âm nhạc êm dịu, không lỗi đen hình.',
+        practicalTip: 'Đeo tai nghe khi dựng phim để nghe rõ các tiếng ồn tạp âm và điều chỉnh độ cân bằng âm lượng chính xác nhất.'
       },
       mindmap: {
         id: 'mm_11_30',
-        label: 'BIÊN TẬP VIDEO PHIM',
-        color: '#f43f5e',
+        label: 'BIÊN TẬP PHIM',
+        color: '#ea580c',
         children: [
           {
             id: 'mm_11_30_1',
-            label: 'Kỹ thuật hình ảnh',
+            label: 'Cắt gọt & Chuyển cảnh',
             children: [
-              { id: 'mm_11_30_1_1', label: 'Cắt tỉa Trim & Tách Split' },
-              { id: 'mm_11_30_1_2', label: 'Hiệu ứng Transitions' },
-              { id: 'mm_11_30_1_3', label: 'Chèn phụ đề & Title' }
+              { id: 'mm_11_30_1_1', label: 'Trim: Kéo mép đầu/cuối clip' },
+              { id: 'mm_11_30_1_2', label: 'Razor Tool (C): Tách đôi clip' },
+              { id: 'mm_11_30_1_3', label: 'Transitions: Chuyển cảnh êm ái' }
             ]
           },
           {
             id: 'mm_11_30_2',
-            label: 'Xử lý âm thanh & Xuất',
+            label: 'Âm thanh & Xuất bản',
             children: [
-              { id: 'mm_11_30_2_1', label: 'Fade In / Fade Out âm thanh' },
-              { id: 'mm_11_30_2_2', label: 'Cân bằng âm lượng thoại và nhạc' },
-              { id: 'mm_11_30_2_3', label: 'Xuất file MP4 Full HD 1080p' }
+              { id: 'mm_11_30_2_1', label: 'Fade in / Fade out âm thanh' },
+              { id: 'mm_11_30_2_2', label: 'Giảm âm lượng nhạc nền (30-40%)' },
+              { id: 'mm_11_30_2_3', label: 'Export Video: MP4 Full HD' }
             ]
           }
         ]
       }
     },
     completion: {
-      badgeName: 'Đạo Diễn Video Chuyên Nghiệp 11',
-      badgeIcon: 'Video',
-      roleTitle: 'Chuyên Viên Biên Tập & Dựng Video',
-      congratsMessage: 'Xuất sắc! Bạn đã làm chủ kỹ thuật cắt ghép, chèn hiệu ứng chuyển cảnh và xuất bản video MP4 chất lượng cao.',
-      skillsUnlocked: ['Tách clip bằng Split Tool', 'Chèn Transitions nghệ thuật', 'Xử lý Fade âm thanh & Xuất MP4']
+      badgeName: 'Đạo Diễn Dựng Phim 11',
+      badgeIcon: 'Scissors',
+      roleTitle: 'Chuyên Viên Biên Tập & Kỹ Xảo Video Số',
+      congratsMessage: 'Tuyệt vời! Bạn đã nắm trọn các kỹ năng dựng phim cốt lõi: cắt gọt, chuyển cảnh, hòa âm và xuất bản video chất lượng cao.',
+      skillsUnlocked: ['Tách đoạn bằng Razor Tool', 'Hiệu ứng Transitions & Tiêu đề', 'Kỹ thuật Fade âm thanh & Render MP4']
     }
   },
 
@@ -817,199 +1022,262 @@ export const THEME7_LESSONS_PART2_11: Lesson[] = [
     estimatedMinutes: 45,
     xpTotal: 250,
     hero: {
-      tagline: 'Đỉnh cao sáng tạo học đường: Dự án sản xuất phim hoạt hình ngắn hoàn chỉnh',
-      description: 'Dự án thực hành tổng hợp kết nối toàn bộ kỹ năng của Chủ đề 7: Xây dựng kịch bản phân cảnh (Storyboard), thiết kế nhân vật và bối cảnh trong GIMP, làm chuyển động và dựng thành một bộ phim hoạt hình ngắn ý nghĩa.',
-      accentColor: 'from-rose-500 to-pink-600',
-      keyHighlights: ['Kịch bản phân cảnh (Storyboard)', 'Thiết kế nhân vật trong GIMP', 'Sản xuất phim hoạt hình hoàn chỉnh']
+      tagline: 'Đỉnh cao tích hợp đa phương tiện: Tự tay sản xuất bộ phim hoạt hình ngắn hoàn chỉnh',
+      description: 'Dự án tổng hợp cuối năm: Kết hợp sức mạnh vẽ nhân vật tách nền của GIMP với kỹ xảo dàn dựng, chuyển cảnh và lồng tiếng của OpenShot để tạo nên một bộ phim hoạt hình ngắn ý nghĩa.',
+      accentColor: 'from-amber-600 to-red-600',
+      keyHighlights: ['Xây dựng kịch bản phân cảnh Storyboard', 'Vẽ nhân vật tách nền PNG trong GIMP', 'Dàn dựng, lồng tiếng & hòa âm trong OpenShot']
     },
     objectives: [
       {
         id: 'obj_11_31_1',
         category: 'knowledge',
         categoryName: 'Kiến thức cốt lõi',
-        title: 'Quy trình sản xuất phim hoạt hình',
-        description: 'Nắm vững 3 giai đoạn: Tiền kỳ (Kịch bản, phân cảnh), Sản xuất (Vẽ nhân vật, bối cảnh, tạo chuyển động) và Hậu kỳ (Dựng phim, lồng tiếng, xuất video).',
+        title: 'Quy trình sản xuất phim hoạt hình số',
+        description: 'Nắm vững quy trình 3 giai đoạn sản xuất phim: Tiền kỳ (Kịch bản Storyboard) -> Sản xuất (Vẽ đồ họa GIMP) -> Hậu kỳ (Dựng phim, lồng tiếng, xuất video trong OpenShot).',
         iconName: 'Clapperboard'
       },
       {
         id: 'obj_11_31_2',
         category: 'skill',
         categoryName: 'Kỹ năng & Năng lực',
-        title: 'Vận dụng tổng hợp công cụ đồ họa',
-        description: 'Kết hợp thành thạo GIMP để vẽ tách nền nhân vật và phần mềm video để ráp nối thành phim hoạt hình có âm thanh sống động.',
-        iconName: 'Sparkles'
+        title: 'Tích hợp GIMP và OpenShot hoàn chỉnh',
+        description: 'Vẽ và xuất các nhân vật trong suốt (.png) từ GIMP, sau đó đưa vào OpenShot để tạo hoạt cảnh di chuyển, lồng tiếng thoại và phối nhạc thành công.',
+        iconName: 'Video'
       },
       {
         id: 'obj_11_31_3',
         category: 'attitude',
         categoryName: 'Phẩm chất & Đạo đức',
-        title: 'Tự hào tác phẩm sáng tạo cá nhân',
-        description: 'Hình thành niềm tự hào khi tự tay sáng tạo ra một sản phẩm truyền thông số hoàn chỉnh mang thông điệp giáo dục tích cực.',
-        iconName: 'Award'
+        title: 'Làm việc nhóm & truyền tải thông điệp ý nghĩa',
+        description: 'Rèn luyện tinh thần hợp tác nhóm, phân công công việc hiệu quả và lựa chọn đề tài phim mang tính giáo dục, nhân văn (bảo vệ môi trường, tình bạn tuổi học trò).',
+        iconName: 'Users'
       }
     ],
     warmup: {
-      title: 'Tình huống: Biến câu chuyện ngụ ngôn thành phim hoạt hình 2D',
-      scenario: 'Nhóm bạn muốn chuyển thể câu chuyện ngụ ngôn "Rùa và Thỏ" thành một đoạn phim hoạt hình ngắn dài 2 phút để chiếu trong buổi chào cờ đầu tuần.',
-      pollQuestion: 'Giai đoạn nào quyết định tính mạch lạc và thành công của một bộ phim hoạt hình trước khi bắt tay vào vẽ?',
+      title: 'Tình huống: Một bộ phim hoạt hình 2 phút cần bao nhiêu công sức?',
+      scenario: 'Để làm một bộ phim hoạt hình ngắn dự thi cấp trường, nhóm của bạn có 3 thành viên: Một bạn giỏi viết văn, một bạn vẽ rất đẹp trên máy tính và một bạn rất am hiểu về âm nhạc và phần mềm dựng video.',
+      pollQuestion: 'Phương án phân công công việc theo quy trình xưởng phim chuyên nghiệp nào sau đây là HỢP LÝ NHẤT?',
       pollOptions: [
-        { id: 'p11_31_1', text: 'Xây dựng kịch bản chi tiết và vẽ phác thảo phân cảnh (Storyboard)', votesPercent: 94, isPopular: true, insight: 'Chính xác! Storyboard là bản thiết kế kiến trúc của bộ phim, giúp nhóm hình dung rõ từng cảnh quay trước khi tốn công sản xuất.' },
-        { id: 'p11_31_2', text: 'Bật máy tính vẽ bừa bãi không cần nghĩ', votesPercent: 3, insight: 'Không có kịch bản sẽ khiến phim bị lộn xộn, cụt ngủn và không truyền tải được thông điệp.' },
-        { id: 'p11_31_3', text: 'Chỉ tìm nhạc nền thật hay', votesPercent: 3, insight: 'Nhạc nền chỉ là yếu tố hỗ trợ, nội dung câu chuyện mới là linh hồn của bộ phim.' }
+        { id: 'p11_31_1', text: 'Bạn viết văn làm Kịch bản (Storyboard) -> Bạn vẽ thiết kế nhân vật trong GIMP -> Bạn dựng phim lắp ráp cảnh và lồng âm thanh trong OpenShot', votesPercent: 96, isPopular: true, insight: 'Chính xác! Mô hình chuyên môn hóa Tiền kỳ - Đồ họa - Hậu kỳ là bí quyết làm nên thành công của mọi xưởng phim hoạt hình.' },
+        { id: 'p11_31_2', text: 'Cả 3 bạn cùng tranh nhau giành lấy chiếc chuột máy tính', votesPercent: 2, insight: 'Tranh giành công cụ chỉ gây mất đoàn kết và lãng phí thời gian.' },
+        { id: 'p11_31_3', text: 'Để một bạn làm hết còn 2 bạn đi ngủ', votesPercent: 2, insight: 'Làm việc nhóm đòi hỏi sự chung sức và tinh thần trách nhiệm của mọi thành viên.' }
       ],
-      reflection: 'Phim hoạt hình là sự kết tinh hoàn mỹ giữa tư duy văn học, nghệ thuật mỹ thuật tạo hình và công nghệ xử lý số.'
+      reflection: 'Sự kết hợp ăn ý giữa Kịch bản hay - Hình ảnh đẹp - Âm thanh truyền cảm sẽ tạo nên một tác phẩm hoạt hình lay động lòng người.'
     },
     knowledge: [
       {
         id: 'tab_11_31_1',
-        title: '1. Quy Trình 3 Giai Đoạn Sản Xuất Phim Hoạt Hình Hoàn Chỉnh',
-        subtitle: 'Tiền kỳ -> Sản xuất tài nguyên -> Hậu kỳ dựng phim',
-        iconName: 'Clapperboard',
+        title: '1. Xây dựng kịch bản phân cảnh (Storyboard)',
+        subtitle: 'Bản vẽ thiết kế kiến trúc trước khi bắt tay vào dựng phim',
+        iconName: 'FileText',
         keyPoints: [
-          'Giai đoạn 1: Tiền kỳ (Pre-production): Viết kịch bản lời thoại và vẽ kịch bản phân cảnh (Storyboard) mô tả từng góc máy.',
-          'Giai đoạn 2: Sản xuất (Production): Dùng GIMP vẽ nhân vật trên nền trong suốt (PNG), vẽ các tư thế chuyển động (bước đi, nhảy, vẫy tay) và bối cảnh nền.',
-          'Giai đoạn 3: Hậu kỳ (Post-production): Đưa toàn bộ tài nguyên vào phần mềm làm phim, sắp xếp các rãnh Tracks, lồng hiệu ứng âm thanh (tiếng bước chân, tiếng gió thổi), ghi âm giọng đọc lồng tiếng và xuất tệp MP4 Full HD.'
+          'Kịch bản phân cảnh (Storyboard): Bản vẽ phác thảo từng khung hình chính của bộ phim kèm theo lời thoại, hành động của nhân vật và thời lượng dự kiến.',
+          'Cấu trúc một bảng Storyboard chuẩn:',
+          '  - Cảnh số mấy (Scene ID): Ví dụ Cảnh 1 (0:00 - 0:15).',
+          '  - Bối cảnh (Background): Phòng học, sân trường, công viên.',
+          '  - Hành động nhân vật (Action): Nhân vật bước vào, vẫy tay chào bạn.',
+          '  - Lời thoại / Âm thanh (Audio): "Chào An, hôm nay bạn có khỏe không?", tiếng chim hót líu lo.',
+          'Lợi ích: Tránh việc vẽ thừa thãi những nhân vật không cần thiết và giúp các thành viên trong nhóm hiểu chung một tầm nhìn.'
+        ],
+        visualType: 'comparison-table',
+        visualData: {
+          headers: ['Phân cảnh', 'Thời lượng', 'Hình ảnh hiển thị', 'Âm thanh & Lời thoại'],
+          rows: [
+            ['Cảnh 1: Mở màn', '0:00 - 0:10', 'Bình minh sân trường, chú chim chuyền cành', 'Tiếng chim hót, nhạc nền vui tươi (Fade in)'],
+            ['Cảnh 2: Gặp gỡ', '0:10 - 0:35', 'Hai bạn học sinh gặp nhau cổng trường', 'Lời chào hỏi, tiếng cười nói giòn giã'],
+            ['Cảnh 3: Kết thúc', '0:35 - 1:00', 'Cả nhóm cùng bước vào lớp học, hiện thông điệp', 'Tiếng trống trường vang lên, nhạc Fade out']
+          ]
+        },
+        emCanNho: [
+          'Storyboard là kim chỉ nam định hình toàn bộ bộ phim hoạt hình.',
+          'Xác định rõ: Hình ảnh, Hành động nhân vật, Lời thoại và Thời lượng.',
+          'Lập Storyboard kỹ càng giúp tiết kiệm 80% thời gian dựng phim.'
+        ]
+      },
+      {
+        id: 'tab_11_31_2',
+        title: '2. Thiết kế nhân vật và bối cảnh trong GIMP',
+        subtitle: 'Sản xuất các nguyên liệu đồ họa số tách nền đạt chuẩn',
+        iconName: 'Palette',
+        keyPoints: [
+          'Thiết kế nhân vật:',
+          '  - Vẽ các trạng thái biểu cảm khác nhau (vui, buồn, ngạc nhiên) và các tư thế cử động (bước đi, vẫy tay) trên từng Layer riêng.',
+          '  - Xóa sạch phông nền xung quanh thành trong suốt (Transparent).',
+          '  - Xuất ra định dạng `.png` để khi đưa vào phim không bị viền trắng bao quanh.',
+          'Thiết kế bối cảnh (Background): Vẽ hoặc tìm kiếm ảnh nền phong cảnh chất lượng cao (tỉ lệ 16:9, độ phân giải 1920x1080), xuất dưới dạng `.jpg` hoặc `.png`.',
+          'Quy tắc đặt tên tài nguyên: Đặt tên gợi nhớ rõ ràng (ví dụ: `nv_nam_cuoi.png`, `nv_nam_vaytay.png`, `nen_san_truong.jpg`).'
         ],
         visualType: 'infographic',
         visualData: {
           nodes: [
-            { label: 'Giai đoạn 1: Tiền kỳ', desc: 'Kịch bản câu chuyện & Vẽ Storyboard phân cảnh' },
-            { label: 'Giai đoạn 2: Sản xuất', desc: 'Vẽ nhân vật, bối cảnh trong suốt trên GIMP' },
-            { label: 'Giai đoạn 3: Hậu kỳ', desc: 'Ghép Timeline, lồng tiếng, xuất video MP4' }
+            { label: 'Vẽ nhân vật trên Layer riêng', desc: 'Sử dụng cọ Paintbrush và bảng màu tươi sáng' },
+            { label: 'Tách nền trong suốt', desc: 'Đảm bảo nền dạng ô cờ caro xám trắng' },
+            { label: 'Xuất file .PNG chuẩn', desc: 'Lưu vào thư mục tài nguyên của dự án phim' }
           ]
         },
         emCanNho: [
-          '3 giai đoạn làm phim: Tiền kỳ (Kịch bản), Sản xuất (Vẽ đồ họa), Hậu kỳ (Dựng phim).',
-          'Vẽ nhân vật trên Layer trong suốt bằng GIMP và xuất định dạng PNG.',
-          'Lồng tiếng thuyết minh và tiếng động thực tế để phim hoạt hình trở nên sống động.'
+          'Tất cả nhân vật hoạt hình BẮT BUỘC phải xuất định dạng `.png` trong suốt.',
+          'Vẽ nhiều tư thế và biểu cảm khác nhau để nhân vật chuyển động sinh động.',
+          'Ảnh nền bối cảnh nên chuẩn tỉ lệ màn hình ngang 16:9.'
+        ]
+      },
+      {
+        id: 'tab_11_31_3',
+        title: '3. Lắp ghép hoạt cảnh trên Timeline, lồng tiếng và hoàn thiện phim',
+        subtitle: 'Hậu kỳ đỉnh cao: Thổi hồn chuyển động và âm vang cho tác phẩm',
+        iconName: 'Video',
+        keyPoints: [
+          'Sắp đặt các rãnh Tracks trong OpenShot:',
+          '  - Track 1 (Dưới cùng): Tệp nhạc nền và hiệu ứng âm thanh phụ (SFX: tiếng bước chân, tiếng chuông).',
+          '  - Track 2: Tệp ghi âm giọng nói lồng tiếng của các nhân vật (Voice-over).',
+          '  - Track 3: Bức ảnh bối cảnh nền sân trường (`nen_san_truong.jpg`).',
+          '  - Track 4: Nhân vật cử động (`nv_nam_vaytay.png`). Dùng hiệu ứng Transform di chuyển vị trí nhân vật từ trái sang phải.',
+          '  - Track 5 (Trên cùng): Tiêu đề tên phim và phụ đề thuyết minh.',
+          'Kiểm tra và Render: Xem lại toàn bộ phim trên Video Preview, chỉnh sửa các chỗ lệch giọng và xuất tệp `Phim_Hoat_Hinh_11.mp4`.'
+        ],
+        visualType: 'comparison-table',
+        visualData: {
+          headers: ['Tầng rãnh Track', 'Loại tài nguyên bố trí', 'Mục đích hiển thị'],
+          rows: [
+            ['Track 5 (Trên đỉnh)', 'Tiêu đề chữ & Logo nhóm', 'Hiển thị đè lên trên tất cả mọi thứ'],
+            ['Track 4', 'Nhân vật hoạt hình (.png)', 'Chuyển động trên nền cảnh'],
+            ['Track 3', 'Hình ảnh bối cảnh (.jpg)', 'Làm phông nền tĩnh phía sau'],
+            ['Track 2', 'Tệp ghi âm giọng lồng tiếng', 'Giọng nói nhân vật khớp với hình ảnh'],
+            ['Track 1 (Đáy)', 'Nhạc nền du dương (mp3)', 'Tạo không khí cảm xúc cho bộ phim']
+          ]
+        },
+        emCanNho: [
+          'Bố trí đa tầng: Nhạc ở Track 1, Nền ở Track 3, Nhân vật ở Track 4, Chữ ở Track 5.',
+          'Khớp khẩu hình và hành động nhân vật với tệp ghi âm giọng nói lồng tiếng.',
+          'Xuất video MP4 chất lượng cao để nộp bài thu hoạch cuối năm học.'
         ]
       }
     ],
     miniGame: {
       type: 'matching',
-      title: 'Ghép cặp Giai đoạn Sản xuất Phim Hoạt Hình',
-      instruction: 'Nối các công việc cụ thể với giai đoạn tương ứng trong quy trình làm phim:',
+      title: 'Ghép cặp Giai Đoạn Sản Xuất Phim Hoạt Hình',
+      instruction: 'Nối giai đoạn sản xuất với công việc cụ thể:',
       matchingPairs: [
-        { id: 'ani1', left: 'Vẽ kịch bản phân cảnh (Storyboard)', right: 'Giai đoạn Tiền kỳ (Lên kế hoạch và định hình góc máy)' },
-        { id: 'ani2', left: 'Vẽ nhân vật tách nền trong GIMP', right: 'Giai đoạn Sản xuất (Tạo lập tài nguyên hình ảnh đồ họa)' },
-        { id: 'ani3', left: 'Ghi âm giọng lồng tiếng nhân vật', right: 'Giai đoạn Hậu kỳ (Thu thập âm thanh hội thoại)' },
-        { id: 'ani4', left: 'Ráp nối trên Timeline và xuất MP4', right: 'Giai đoạn Hậu kỳ (Đóng gói sản phẩm phim thành phẩm)' }
+        { id: 'anp1', left: 'Giai đoạn Tiền kỳ (Pre-production)', right: 'Viết kịch bản phân cảnh Storyboard và phác thảo lời thoại' },
+        { id: 'anp2', left: 'Giai đoạn Sản xuất (Production)', right: 'Dùng GIMP vẽ nhân vật tách nền PNG và bối cảnh' },
+        { id: 'anp3', left: 'Giai đoạn Hậu kỳ (Post-production)', right: 'Đưa vào OpenShot lắp ghép Timeline, lồng tiếng và xuất MP4' },
+        { id: 'anp4', left: 'Định dạng nhân vật bắt buộc', right: 'Tệp ảnh PNG hỗ trợ kênh trong suốt Transparent' }
       ]
     },
     assessment: [
       {
         id: 1,
-        question: 'Kịch bản phân cảnh (Storyboard) trong quy trình sản xuất phim hoạt hình đóng vai trò là gì?',
+        question: 'Tại sao các hình ảnh nhân vật hoạt hình vẽ từ GIMP khi đưa sang OpenShot để làm phim BẮT BUỘC phải xuất dưới định dạng .PNG thay vì .JPG?',
         options: [
-          'Bản phác thảo gồm các khung tranh nối tiếp nhau minh họa các cảnh quay chính và lời thoại của câu chuyện',
-          'Một danh sách các loại máy tính cần mua',
-          'Bảng điểm của các diễn viên',
-          'Hóa đơn tiền điện phòng máy'
+          'Vì định dạng PNG hỗ trợ nền trong suốt, giúp nhân vật không bị bao quanh bởi một mảng màu trắng vuông đè lên cảnh nền',
+          'Vì định dạng PNG có dung lượng nặng hơn',
+          'Vì OpenShot không đọc được file JPG',
+          'Vì PNG tự động biết nói chuyện'
         ],
         correctIndex: 0,
-        explanation: 'Storyboard là bản vẽ thiết kế trực quan giúp toàn bộ ê-kíp thống nhất góc máy và diễn biến cảnh phim.',
-        difficulty: 'Nhận biết'
+        explanation: 'Kênh Alpha trong suốt của PNG cho phép nhân vật hòa quyện tự nhiên vào bối cảnh phía sau.',
+        difficulty: 'Thông hiểu'
       },
       {
         id: 2,
-        question: 'Khi vẽ các nhân vật hoạt hình trong GIMP để chuẩn bị đưa sang phần mềm dựng video, bạn nên xuất tệp ảnh ở định dạng nào?',
+        question: 'Kịch bản phân cảnh (Storyboard) đóng vai trò gì trong quá trình sản xuất phim hoạt hình?',
         options: [
-          '.png (vì giữ được nền trong suốt, giúp nhân vật dễ dàng di chuyển trên các bối cảnh khác nhau)',
-          '.jpg (vì có nền trắng che hết cảnh phía sau)',
-          '.txt',
-          '.mp3'
+          'Là bản thiết kế chi tiết từng cảnh quay (hình ảnh, hành động, lời thoại, thời lượng) làm kim chỉ nam định hướng cho toàn đội',
+          'Là tấm vé vào cổng rạp chiếu phim',
+          'Là hợp đồng mua máy tính',
+          'Là bài văn nghị luận xã hội'
         ],
         correctIndex: 0,
-        explanation: 'Định dạng PNG trong suốt là bắt buộc để nhân vật không bị vướng viền hộp trắng bao quanh.',
-        difficulty: 'Thông hiểu'
+        explanation: 'Storyboard giúp trực quan hóa kịch bản thành hình ảnh trước khi bắt tay vào sản xuất thực tế.',
+        difficulty: 'Nhận biết'
       },
       {
         id: 3,
-        question: 'Để tạo cảm giác một chú thỏ đang chạy từ từ từ trái sang phải màn hình trong video, kỹ thuật nào được áp dụng?',
+        question: 'Trong OpenShot, nếu đặt nhân vật hoạt hình ở Track 3 và đặt bức ảnh bối cảnh ở Track 4 (nằm phía trên Track 3), điều gì sẽ xảy ra?',
         options: [
-          'Tạo chuyển động dịch chuyển vị trí (Transform / Motion) cho tệp ảnh chú thỏ trên Timeline',
-          'Dán mắt sát vào màn hình chạy theo',
-          'Cầm màn hình lắc qua lắc lại',
-          'Bấm phím Caps Lock'
+          'Bức ảnh bối cảnh sẽ che khuất hoàn toàn nhân vật hoạt hình, làm nhân vật biến mất khỏi màn hình',
+          'Nhân vật hoạt hình sẽ bay lên trời',
+          'Màn hình máy tính chuyển sang màu xanh',
+          'Không có hiện tượng gì, video vẫn xem bình thường'
         ],
         correctIndex: 0,
-        explanation: 'Tính năng Animation / Transform cho phép thiết lập điểm đầu và điểm cuối để vật thể tự động lướt qua màn hình.',
-        difficulty: 'Thông hiểu'
-      },
-      {
-        id: 4,
-        question: 'Yếu tố âm thanh nào sau đây giúp bộ phim hoạt hình trở nên sống động, chân thực và có cảm xúc nhất?',
-        options: [
-          'Sự kết hợp hài hòa giữa Lời thoại nhân vật, Tiếng động môi trường (Sound FX) và Nhạc nền (Music)',
-          'Chỉ cần tiếng nhạc xập xình to hết cỡ',
-          'Để im lặng không có bất kỳ âm thanh nào',
-          'Tiếng còi báo cháy'
-        ],
-        correctIndex: 0,
-        explanation: 'Âm thanh đa tầng gồm giọng nói, tiếng động hiệu ứng và âm nhạc tạo nên linh hồn cho phim hoạt hình.',
+        explanation: 'Track trên che Track dưới; bối cảnh là ảnh đặc nằm ở Track trên sẽ đè mất nhân vật ở Track dưới.',
         difficulty: 'Vận dụng'
       },
       {
-        id: 5,
-        question: 'Sau khi hoàn thành bộ phim hoạt hình, bước cuối cùng để chia sẻ cho cả lớp cùng xem trên màn hình Smartboard là gì?',
+        id: 4,
+        question: 'Khi thực hiện lồng tiếng cho nhân vật hoạt hình, thao tác nào giúp giọng nói của bạn khớp chính xác với cử động mở miệng của nhân vật?',
         options: [
-          'Xuất video ra tệp định dạng chuẩn MP4 chất lượng Full HD 1080p',
-          'Gửi tệp dự án .osp chưa có video gốc',
-          'Xóa toàn bộ thư mục dự án',
-          'Chụp ảnh màn hình lưu lại'
+          'Căn chỉnh vị trí đầu clip âm thanh giọng nói trên Timeline trùng khít với mốc thời gian nhân vật bắt đầu xuất hiện và cử động',
+          'Nói thật to vào tai nghe',
+          'Tua video chạy nhanh gấp 10 lần',
+          'Xóa bài hát nền đi'
         ],
         correctIndex: 0,
-        explanation: 'Xuất tệp MP4 thành phẩm là bước đóng gói hoàn tất để có thể phát mượt mà trên mọi màn hình máy chiếu và Smartboard.',
+        explanation: 'Đồng bộ hóa âm thanh và hình ảnh trên Timeline là kỹ năng hậu kỳ then chốt.',
+        difficulty: 'Thông hiểu'
+      },
+      {
+        id: 5,
+        question: 'Quy trình chuẩn 3 giai đoạn để sản xuất một bộ phim hoạt hình số hoàn chỉnh là gì?',
+        options: [
+          'Tiền kỳ (Kịch bản Storyboard) -> Sản xuất đồ họa (Vẽ nhân vật GIMP) -> Hậu kỳ (Dựng phim, lồng tiếng OpenShot)',
+          'Mua máy tính -> Bật máy tính -> Tắt máy tính',
+          'Lồng tiếng -> Xuất phim -> Viết kịch bản sau cùng',
+          'Chỉ cần tải video trên mạng về đổi tên'
+        ],
+        correctIndex: 0,
+        explanation: 'Quy trình Tiền kỳ - Sản xuất - Hậu kỳ là chuẩn công nghiệp điện ảnh và hoạt hình toàn cầu.',
         difficulty: 'Nhận biết'
       }
     ],
     application: {
       project: {
-        title: 'Dự Án Tổng Hợp: Sản Xuất Phim Hoạt Hình Ngắn "Bảo Vệ Môi Trường"',
-        context: 'Chiến dịch truyền thông "Trường học xanh - Không rác thải nhựa" của Đoàn trường THPT.',
-        mission: 'Sản xuất một đoạn phim hoạt hình ngắn 90 giây truyền tải thông điệp bỏ rác đúng nơi quy định.',
+        title: 'Đồ Án Tốt Nghiệp Lớp 11: Sản Xuất Phim Hoạt Hình Ngắn "Bảo Vệ Hành Tinh Xanh"',
+        context: 'Tham gia cuộc thi Sáng tạo truyền thông số học sinh THPT.',
+        mission: 'Sản xuất một bộ phim hoạt hình ngắn 1 phút truyền tải thông điệp không xả rác bừa bãi.',
         steps: [
-          'Bước 1: Viết kịch bản ngắn: Bạn học sinh vứt vỏ hộp sữa bừa bãi và chú gấu xanh xuất hiện giải thích.',
-          'Bước 2: Dùng GIMP vẽ 2 nhân vật (Bạn học sinh, Chú gấu) và bối cảnh sân trường.',
-          'Bước 3: Đưa tài nguyên vào phần mềm làm phim, tạo chuyển động nhân vật bước đi.',
-          'Bước 4: Nhóm tự ghi âm giọng nói lồng tiếng cho nhân vật.',
-          'Bước 5: Lồng nhạc nền vui tươi và xuất thành video `Hanh_Trinh_Xanh.mp4` hoàn chỉnh.'
+          'Bước 1 (Tiền kỳ): Lập Storyboard 3 cảnh: Cảnh 1 (Bạn vứt chai nhựa), Cảnh 2 (Trái Đất buồn bã), Cảnh 3 (Hành động nhặt rác bỏ vào thùng).',
+          'Bước 2 (GIMP): Vẽ Trái Đất có khuôn mặt và vỏ chai nhựa, xuất tệp PNG trong suốt.',
+          'Bước 3 (OpenShot): Bố trí Bối cảnh ở Track 2, Trái Đất ở Track 3, Vỏ chai ở Track 4.',
+          'Bước 4: Ghi âm giọng nói lồng tiếng truyền cảm đặt vào Track 1.',
+          'Bước 5: Thêm nhạc nền du dương, thêm tiêu đề và xuất tệp `Hanh_Tinh_Xanh.mp4`.'
         ],
-        outputRequirement: 'Một bộ phim hoạt hình ngắn hoàn chỉnh 90 giây có cốt truyện ý nghĩa, hình ảnh ngộ nghĩnh và âm thanh sống động.',
-        practicalTip: 'Hãy phân công rõ ràng: một bạn phụ trách kịch bản và âm thanh, hai bạn phụ trách vẽ nhân vật trên GIMP, một bạn phụ trách dựng Timeline!'
+        outputRequirement: 'Phim hoạt hình `Hanh_Tinh_Xanh.mp4` thời lượng 60s, âm thanh trong trẻo, hình ảnh đáng yêu, thông điệp sâu sắc.',
+        practicalTip: 'Tận dụng các âm thanh đời thực (SFX tiếng chai nhựa rơi "cạch", tiếng chim hót) để bộ phim trở nên vô cùng sống động.'
       },
       mindmap: {
         id: 'mm_11_31',
         label: 'DỰ ÁN PHIM HOẠT HÌNH',
-        color: '#f43f5e',
+        color: '#b91c1c',
         children: [
           {
             id: 'mm_11_31_1',
-            label: 'Quy trình 3 bước',
+            label: '3 Giai đoạn sản xuất',
             children: [
-              { id: 'mm_11_31_1_1', label: 'Tiền kỳ: Kịch bản Storyboard' },
-              { id: 'mm_11_31_1_2', label: 'Sản xuất: Vẽ nhân vật PNG' },
-              { id: 'mm_11_31_1_3', label: 'Hậu kỳ: Dựng phim & Lồng tiếng' }
+              { id: 'mm_11_31_1_1', label: '1. Tiền kỳ: Kịch bản Storyboard' },
+              { id: 'mm_11_31_1_2', label: '2. Sản xuất: Đồ họa GIMP (PNG trong suốt)' },
+              { id: 'mm_11_31_1_3', label: '3. Hậu kỳ: Dựng OpenShot & Lồng tiếng' }
             ]
           },
           {
             id: 'mm_11_31_2',
-            label: 'Đóng gói sản phẩm',
+            label: 'Hoàn thiện tác phẩm',
             children: [
-              { id: 'mm_11_31_2_1', label: 'Lời thoại & Sound FX' },
-              { id: 'mm_11_31_2_2', label: 'Nhạc nền cảm xúc' },
-              { id: 'mm_11_31_2_3', label: 'Xuất file MP4 Full HD' }
+              { id: 'mm_11_31_2_1', label: 'Đa tầng Track (Chữ, Nhân vật, Cảnh, Nhạc)' },
+              { id: 'mm_11_31_2_2', label: 'Khớp hình với giọng nói lồng tiếng' },
+              { id: 'mm_11_31_2_3', label: 'Xuất bản MP4 Full HD' }
             ]
           }
         ]
       }
     },
     completion: {
-      badgeName: 'Nhà Sản Xuất Phim Hoạt Hình 11',
-      badgeIcon: 'Award',
-      roleTitle: 'Đạo Diễn Sản Xuất Hoạt Hình Số',
-      congratsMessage: 'CHÚC MỪNG BẠN! Bạn đã xuất sắc hoàn thành trọn bộ 31 bài học SGK Tin học 11 - Định hướng Tin học Ứng dụng!',
-      skillsUnlocked: ['Quy trình sản xuất phim hoạt hình', 'Tích hợp GIMP và Video Editor', 'Sáng tạo truyền thông số']
+      badgeName: 'Nhà Làm Phim Hoạt Hình Toàn Năng 11',
+      badgeIcon: 'Clapperboard',
+      roleTitle: 'Tổng Đạo Diễn Hoạt Hình Kỹ Thuật Số',
+      congratsMessage: 'CHÚC MỪNG BẠN! Bạn đã hoàn thành xuất sắc toàn bộ 31 bài học môn Tin học 11 - Định hướng Tin học ứng dụng với hành trang công nghệ số vững vàng!',
+      skillsUnlocked: ['Quy trình sản xuất phim Storyboard', 'Tích hợp đồ họa GIMP và OpenShot', 'Xuất bản phim hoạt hình hoàn chỉnh']
     }
   }
 ];

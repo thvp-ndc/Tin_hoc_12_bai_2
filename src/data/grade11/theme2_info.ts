@@ -24,15 +24,15 @@ export const THEME2_LESSONS_11: Lesson[] = [
         category: 'knowledge',
         categoryName: 'Kiến thức cốt lõi',
         title: 'Ưu thế của lưu trữ đám mây',
-        description: 'Trình bày được lợi ích của lưu trữ trực tuyến: truy cập mọi lúc mọi nơi, sao lưu an toàn, không lo hỏng ổ cứng vật lý.',
+        description: 'Trình bày được khái niệm và các lợi ích nổi bật của lưu trữ trực tuyến: truy cập mọi lúc mọi nơi, tự động đồng bộ và sao lưu an toàn.',
         iconName: 'Cloud'
       },
       {
         id: 'obj_11_6_2',
         category: 'skill',
         categoryName: 'Kỹ năng & Năng lực',
-        title: 'Thiết lập quyền truy cập tệp',
-        description: 'Phân biệt và áp dụng đúng các cấp độ chia sẻ tệp: Người xem (Viewer), Người nhận xét (Commenter) và Người chỉnh sửa (Editor).',
+        title: 'Tổ chức & phân quyền chia sẻ tệp',
+        description: 'Thực hiện được việc tải tệp lên, tạo thư mục quản lý và phân quyền chia sẻ chính xác theo 3 cấp độ: Viewer, Commenter, Editor.',
         iconName: 'Share2'
       },
       {
@@ -40,7 +40,7 @@ export const THEME2_LESSONS_11: Lesson[] = [
         category: 'attitude',
         categoryName: 'Phẩm chất & Đạo đức',
         title: 'Bảo vệ quyền riêng tư dữ liệu',
-        description: 'Cẩn trọng khi chia sẻ liên kết công khai và ý thức bảo vệ tài liệu cá nhân nhạy cảm trên môi trường số.',
+        description: 'Cẩn trọng khi chia sẻ liên kết công khai và có ý thức bảo vệ tài liệu cá nhân, thông tin nhạy cảm trên môi trường số.',
         iconName: 'ShieldCheck'
       }
     ],
@@ -58,137 +58,205 @@ export const THEME2_LESSONS_11: Lesson[] = [
     knowledge: [
       {
         id: 'tab_11_6_1',
-        title: '1. Khái niệm Lưu trữ Đám mây & Phân quyền Chia sẻ',
-        subtitle: 'Cộng tác trực tuyến an toàn và hiệu quả',
-        iconName: 'CloudRain',
+        title: '1. Khái niệm và lợi ích của lưu trữ đám mây',
+        subtitle: 'Bản chất công nghệ lưu trữ trực tuyến và ưu điểm vượt trội',
+        iconName: 'Cloud',
         keyPoints: [
-          'Dịch vụ lưu trữ đám mây (Cloud Storage): Dữ liệu được lưu trữ trên các máy chủ từ xa của nhà cung cấp (Google, Microsoft) và quản lý qua mạng Internet.',
-          'Các mức phân quyền chia sẻ tệp: "Người xem" (Viewer - chỉ đọc, không sửa), "Người nhận xét" (Commenter - đóng góp ý kiến), "Người chỉnh sửa" (Editor - toàn quyền sửa và xóa nội dung).',
-          'Nguyên tắc an toàn: Hạn chế chia sẻ ở chế độ "Bất kỳ ai có đường liên kết đều có thể chỉnh sửa" đối với tài liệu quan trọng.'
+          'Khái niệm lưu trữ đám mây (Cloud Storage): Dữ liệu được lưu trữ trên các hệ thống máy chủ từ xa của nhà cung cấp dịch vụ (Google, Microsoft, Dropbox) và được người dùng truy cập, quản lý thông qua mạng Internet.',
+          'Các lợi ích then chốt:',
+          '  - Truy cập linh hoạt: Mở và chỉnh sửa dữ liệu mọi lúc, mọi nơi từ máy tính, máy tính bảng hay điện thoại.',
+          '  - An toàn dữ liệu: Không lo nguy cơ mất trắng dữ liệu do hỏng ổ cứng vật lý, cháy nổ hay nhiễm virus cục bộ.',
+          '  - Tiết kiệm chi phí phần cứng và dung lượng lưu trữ trên thiết bị cá nhân.',
+          '  - Hỗ trợ làm việc nhóm và cộng tác đồng thời theo thời gian thực vượt trội.'
         ],
         visualType: 'infographic',
         visualData: {
           nodes: [
-            { label: 'Cấp độ 1: Người xem (Viewer)', desc: 'Chỉ được đọc tài liệu, không được thay đổi' },
-            { label: 'Cấp độ 2: Người nhận xét (Commenter)', desc: 'Được gắn ghi chú góp ý ở lề văn bản' },
-            { label: 'Cấp độ 3: Người chỉnh sửa (Editor)', desc: 'Toàn quyền thêm, sửa, xóa nội dung tệp' }
+            { label: 'Thiết bị cá nhân', desc: 'PC, Laptop, Smartphone, Tablet' },
+            { label: 'Đường truyền Internet', desc: 'Mã hóa SSL/TLS an toàn bảo mật' },
+            { label: 'Trung tâm dữ liệu (Data Center)', desc: 'Hàng ngàn máy chủ sao lưu dự phòng liên tục' }
           ]
         },
         emCanNho: [
-          'Lưu trữ đám mây giúp truy cập dữ liệu mọi lúc mọi nơi và tự động đồng bộ.',
-          '3 cấp độ quyền chia sẻ chính: Người xem (Viewer), Người nhận xét (Commenter), Người chỉnh sửa (Editor).',
-          'Luôn kiểm tra kỹ quyền hạn trước khi gửi link tài liệu cho người khác.'
+          'Lưu trữ đám mây là giải pháp lưu dữ liệu trên máy chủ Internet của nhà cung cấp.',
+          'Giúp truy cập tài liệu mọi lúc mọi nơi từ bất kỳ thiết bị thông minh nào.',
+          'Bảo vệ an toàn dữ liệu khỏi rủi ro hỏng hóc thiết bị phần cứng cá nhân.'
+        ]
+      },
+      {
+        id: 'tab_11_6_2',
+        title: '2. Quản lý thư mục và đồng bộ dữ liệu',
+        subtitle: 'Tổ chức dữ liệu khoa học và cơ chế đồng bộ tự động',
+        iconName: 'FolderPlus',
+        keyPoints: [
+          'Tạo lập và tổ chức cây thư mục: Đặt tên thư mục rõ ràng theo năm học, môn học hoặc dự án (ví dụ: `TinHoc11/BaiTap`).',
+          'Tải lên tệp và thư mục: Kéo thả trực tiếp từ máy tính vào giao diện web của Google Drive/OneDrive.',
+          'Cơ chế đồng bộ hóa (Sync): Cài đặt ứng dụng Google Drive / OneDrive for Desktop để các thay đổi trên máy tính tự động cập nhật lên đám mây và ngược lại.',
+          'Lịch sử phiên bản (Version History): Cho phép xem lại và khôi phục các phiên bản chỉnh sửa cũ của tệp tài liệu trong vòng 30 ngày.'
+        ],
+        visualType: 'infographic',
+        visualData: {
+          nodes: [
+            { label: 'Thư mục trên máy tính', desc: 'Sửa file bài tập văn bản' },
+            { label: 'Phần mềm đồng bộ Sync', desc: 'Tự động tải bản mới lên đám mây trong 1 giây' },
+            { label: 'Đám mây Google Drive', desc: 'Lưu trữ phiên bản mới nhất, xem được trên điện thoại' }
+          ]
+        },
+        emCanNho: [
+          'Tổ chức thư mục trên đám mây theo phân cấp khoa học giúp tìm kiếm nhanh chóng.',
+          'Ứng dụng đồng bộ tự động cập nhật mọi thay đổi giữa máy tính và đám mây.',
+          'Tính năng Lịch sử phiên bản giúp khôi phục dữ liệu khi lỡ tay xóa hoặc sửa nhầm.'
+        ]
+      },
+      {
+        id: 'tab_11_6_3',
+        title: '3. Thiết lập quyền truy cập (Viewer, Commenter, Editor)',
+        subtitle: 'Kiểm soát an toàn chia sẻ tài liệu và cộng tác nhóm',
+        iconName: 'Share2',
+        keyPoints: [
+          'Ba mức phân quyền truy cập tiêu chuẩn:',
+          '  - Người xem (Viewer): Chỉ được phép đọc và tải xuống tài liệu, không được thay đổi nội dung.',
+          '  - Người nhận xét (Commenter): Được đọc và gắn các ghi chú nhận xét ở lề trang, không sửa trực tiếp vào văn bản.',
+          '  - Người chỉnh sửa (Editor): Toàn quyền thêm, xóa, sửa nội dung và chia sẻ tệp cho người khác.',
+          'Hai hình thức chia sẻ:',
+          '  - Chia sẻ đích danh qua địa chỉ Email (khuyến nghị cho tài liệu mật hoặc nhóm học tập).',
+          '  - Chia sẻ qua đường liên kết công khai (bất kỳ ai có liên kết đều truy cập được).'
+        ],
+        visualType: 'comparison-table',
+        visualData: {
+          headers: ['Mức quyền hạn', 'Quyền đọc', 'Quyền ghi chú', 'Quyền sửa nội dung', 'Đối tượng phù hợp'],
+          rows: [
+            ['Người xem (Viewer)', 'Có', 'Không', 'Không', 'Gửi báo cáo cho giáo viên, tài liệu tham khảo'],
+            ['Người nhận xét (Commenter)', 'Có', 'Có', 'Không', 'Nhờ thầy cô hoặc bạn bè chấm và góp ý bài tập'],
+            ['Người chỉnh sửa (Editor)', 'Có', 'Có', 'Có', 'Các thành viên trong cùng nhóm dự án học tập']
+          ]
+        },
+        emCanNho: [
+          '3 cấp độ chia sẻ: Người xem (Viewer), Người nhận xét (Commenter), Người chỉnh sửa (Editor).',
+          'Chỉ cấp quyền Editor cho những người đáng tin cậy cùng làm việc.',
+          'Không chia sẻ liên kết công khai có quyền Editor đối với tài liệu quan trọng.'
         ]
       }
     ],
     miniGame: {
       type: 'matching',
-      title: 'Ghép cặp Quyền hạn chia sẻ tệp Đám mây',
-      instruction: 'Nối đúng cấp độ phân quyền với quyền hạn tương ứng:',
+      title: 'Ghép cặp Quyền Hạn Đám Mây và Tình Huống Thực Tế',
+      instruction: 'Nối mức phân quyền phù hợp với từng tình huống chia sẻ:',
       matchingPairs: [
-        { id: 'p1', left: 'Người xem (Viewer)', right: 'Chỉ đọc và tải xuống tài liệu, không được gõ thêm chữ' },
-        { id: 'p2', left: 'Người nhận xét (Commenter)', right: 'Được tạo ghi chú góp ý nhưng không làm hỏng văn bản gốc' },
-        { id: 'p3', left: 'Người chỉnh sửa (Editor)', right: 'Toàn quyền sửa đổi, định dạng và xóa nội dung tài liệu' },
-        { id: 'p4', left: 'Chủ sở hữu (Owner)', right: 'Quyền cao nhất: chuyển nhượng quyền hoặc xóa vĩnh viễn tệp' }
+        { id: 'sh1', left: 'Cấp quyền Người xem (Viewer)', right: 'Gửi bảng tổng kết điểm thi học kỳ cho toàn bộ học sinh lớp xem' },
+        { id: 'sh2', left: 'Cấp quyền Người nhận xét (Commenter)', right: 'Gửi bài tiểu luận nhờ cô giáo chấm bài và ghi chú nhận xét sửa lỗi' },
+        { id: 'sh3', left: 'Cấp quyền Người chỉnh sửa (Editor)', right: 'Hai bạn cùng nhóm ngồi soạn chung một bài thuyết trình PowerPoint' },
+        { id: 'sh4', left: 'Tính năng Lịch sử phiên bản', right: 'Khôi phục lại bài văn trước khi bị bạn bè xóa nhầm' }
       ]
     },
     assessment: [
       {
         id: 1,
-        question: 'Dịch vụ nào sau đây KHÔNG PHẢI là dịch vụ lưu trữ đám mây trực tuyến?',
-        options: ['Google Maps', 'Google Drive', 'Microsoft OneDrive', 'Dropbox'],
+        question: 'Khi bạn gửi bài tập báo cáo cho thầy cô giáo chấm điểm, bạn nên thiết lập quyền chia sẻ nào là HỢP LÝ NHẤT?',
+        options: [
+          'Người xem (Viewer) hoặc Người nhận xét (Commenter)',
+          'Người chỉnh sửa (Editor) cho phép xóa hết',
+          'Công khai cho toàn thế giới cùng vào sửa',
+          'Khóa tài khoản không cho ai mở'
+        ],
         correctIndex: 0,
-        explanation: 'Google Maps là dịch vụ bản đồ số định vị, không phải kho lưu trữ tệp đám mây.',
-        difficulty: 'Nhận biết'
-      },
-      {
-        id: 2,
-        question: 'Khi gửi bài tập cho giáo viên chấm điểm xem trước, bạn nên cấp quyền chia sẻ nào là an toàn nhất?',
-        options: ['Người xem (Viewer) hoặc Người nhận xét (Commenter)', 'Toàn quyền quản trị viên máy chủ', 'Người chỉnh sửa tự do xóa bài', 'Không cấp quyền gì'],
-        correctIndex: 0,
-        explanation: 'Quyền Viewer/Commenter giúp giáo viên đọc bài và ghi nhận xét mà tránh bị chỉnh sửa nhầm nội dung.',
+        explanation: 'Quyền Viewer hoặc Commenter đảm bảo bài làm gốc của bạn không bị sửa đổi ngoài ý muốn trong khi thầy cô vẫn đọc và nhận xét được.',
         difficulty: 'Thông hiểu'
       },
       {
+        id: 2,
+        question: 'Dịch vụ nào sau đây KHÔNG PHẢI là dịch vụ lưu trữ đám mây?',
+        options: ['Adobe Photoshop CC', 'Google Drive', 'Microsoft OneDrive', 'Dropbox'],
+        correctIndex: 0,
+        explanation: 'Adobe Photoshop là phần mềm chỉnh sửa đồ họa, không phải dịch vụ lưu trữ đám mây thuần túy.',
+        difficulty: 'Nhận biết'
+      },
+      {
         id: 3,
-        question: 'Lợi ích nào sau đây là lớn nhất khi cả nhóm cùng làm bài trên Google Docs qua đám mây?',
+        question: 'Tại sao lưu trữ đám mây lại an toàn hơn so với việc chỉ lưu tệp duy nhất trên một chiếc USB bỏ trong túi quần?',
         options: [
-          'Nhiều người có thể cùng vào soạn thảo đồng thời và theo dõi chỉnh sửa trong thời gian thực',
-          'Máy tính không cần kết nối mạng',
-          'Tự động làm bài thi hộ học sinh',
-          'Xóa hết bài tập của các nhóm khác'
+          'Vì USB dễ bị rơi mất, gãy hỏng hoặc dính virus khi cắm máy lạ, trong khi đám mây được sao lưu an toàn tại trung tâm dữ liệu',
+          'Vì đám mây không cần điện',
+          'Vì lưu trên USB thì bài tập tự động biến mất sau 1 ngày',
+          'Vì đám mây có thể cầm trên tay được'
         ],
         correctIndex: 0,
-        explanation: 'Khả năng cộng tác thời gian thực (Real-time collaboration) là điểm mạnh vượt trội của đám mây.',
+        explanation: 'USB là phần cứng vật lý nhỏ bé rất dễ thất lạc hoặc chập mạch, trong khi đám mây có các bản sao lưu phân tán an toàn.',
         difficulty: 'Thông hiểu'
       },
       {
         id: 4,
-        question: 'Để khôi phục lại một phiên bản bài viết cũ đã lỡ bị bạn cùng nhóm xóa mất trên Google Drive, ta sử dụng tính năng gì?',
-        options: ['Lịch sử phiên bản (Version History)', 'Xóa luôn tài khoản', 'Cài lại hệ điều hành', 'Bấm phím F5 liên tục'],
+        question: 'Nếu vô tình một thành viên trong nhóm xóa mất một đoạn văn quan trọng trong Google Docs, bạn có thể lấy lại bằng cách nào?',
+        options: [
+          'Mở menu Tệp -> Lịch sử phiên bản (Version history) để khôi phục lại thời điểm trước đó',
+          'Xóa luôn tệp tin đi viết lại từ đầu',
+          'Đập bàn phím máy tính',
+          'Tắt mạng Internet đi bật lại'
+        ],
         correctIndex: 0,
-        explanation: 'Version History lưu lại từng mốc thời gian chỉnh sửa, cho phép xem lại và khôi phục bản cũ bất kỳ lúc nào.',
+        explanation: 'Google Docs tự động lưu từng ký tự gõ theo thời gian thực và cho phép lùi lại lịch sử chỉnh sửa bất kỳ lúc nào.',
         difficulty: 'Vận dụng'
       },
       {
         id: 5,
-        question: 'Nguy cơ nào có thể xảy ra nếu bạn để chế độ chia sẻ tệp là "Bất kỳ ai có đường liên kết đều có thể chỉnh sửa"?',
+        question: 'Nguyên tắc bảo mật quan trọng nhất khi chia sẻ tài liệu học tập qua đường liên kết là gì?',
         options: [
-          'Người lạ có link có thể vô tình hoặc cố ý chỉnh sửa, xóa sạch nội dung bài làm của bạn',
-          'Máy tính bị cháy nguồn',
-          'Màn hình tự đổi màu xanh',
-          'Không có nguy cơ gì'
+          'Không chia sẻ quyền Editor dưới dạng liên kết công khai cho bất kỳ ai trên mạng',
+          'Phải gửi kèm mật khẩu thẻ ngân hàng',
+          'Chỉ được chia sẻ vào ban đêm',
+          'Không được đặt tên cho tệp'
         ],
         correctIndex: 0,
-        explanation: 'Cấp quyền sửa công khai cho bất kỳ ai có link tiềm ẩn rủi ro bị phá hoại hoặc lộ thông tin.',
-        difficulty: 'Thông hiểu'
+        explanation: 'Chia sẻ công khai quyền Editor sẽ khiến bất kỳ ai có link đều có thể xóa sạch hoặc chèn nội dung xấu vào tệp của bạn.',
+        difficulty: 'Vận dụng'
       }
     ],
     application: {
       project: {
-        title: 'Dự án: Thiết lập Thư mục Dự án Học tập Nhóm trên Đám mây',
-        context: 'Tổ chức không gian lưu trữ trực tuyến cho nhóm 4 bạn cùng học tập môn Tin học 11.',
-        mission: 'Tạo thư mục trên Google Drive và cấu hình chia sẻ phân quyền khoa học.',
+        title: 'Dự Án Học Tập: Thiết Lập Thư Mục Đám Mây Cho Nhóm Học Tập 4 Bạn',
+        context: 'Nhóm 4 bạn chuẩn bị làm bài tập lớn môn Tin học 11 cần không gian làm việc chung.',
+        mission: 'Khởi tạo thư mục dự án trên Google Drive và phân quyền làm việc nhóm chuẩn mực.',
         steps: [
-          'Bước 1: Tạo thư mục mang tên "Nhom_Tin_Hoc_11" trên Google Drive.',
-          'Bước 2: Tạo 3 thư mục con: "Tai_Lieu_Tham_Khao", "Bai_Lam_Thao_Luan", "San_Pham_Nop".',
-          'Bước 3: Mời 3 bạn cùng nhóm với quyền Editor, và lấy link chia sẻ chế độ Viewer gửi cho giáo viên.'
+          'Bước 1: Trưởng nhóm tạo thư mục mang tên `DuAn_Tin11_Nhom1`.',
+          'Bước 2: Tạo 3 thư mục con: `TaiLieuThamKhao`, `BaoCaoChinh`, `HinhAnh`.',
+          'Bước 3: Chia sẻ thư mục qua email cho 3 bạn thành viên với quyền `Editor`.',
+          'Bước 4: Tạo một tệp `KeHoachLamViec.gdoc` và 4 bạn cùng đồng thời vào gõ họ tên, phân công nhiệm vụ.'
         ],
-        outputRequirement: 'Đường liên kết Google Drive được cấu hình phân quyền chuẩn xác.',
-        practicalTip: 'Đặt tên tệp tin không dấu, có gạch dưới ngăn cách (VD: `Bai_tap_nhom_1.docx`) để tránh lỗi đường dẫn.'
+        outputRequirement: 'Liên kết thư mục Google Drive được thiết lập phân quyền an toàn, đúng email thành viên.',
+        practicalTip: 'Trưởng nhóm nên tắt tùy chọn "Người chỉnh sửa có thể thay đổi quyền và chia sẻ" trong phần cài đặt nâng cao của thư mục.'
       },
       mindmap: {
         id: 'mm_11_6',
         label: 'LƯU TRỮ ĐÁM MÂY',
-        color: '#0284c7',
+        color: '#0ea5e9',
         children: [
           {
             id: 'mm_11_6_1',
-            label: 'Dịch vụ phổ biến',
+            label: 'Lợi ích cốt lõi',
             children: [
-              { id: 'mm_11_6_1_1', label: 'Google Drive' },
-              { id: 'mm_11_6_1_2', label: 'Microsoft OneDrive' },
-              { id: 'mm_11_6_1_3', label: 'Dropbox / iCloud' }
+              { id: 'mm_11_6_1_1', label: 'Truy cập mọi lúc mọi nơi' },
+              { id: 'mm_11_6_1_2', label: 'An toàn dữ liệu, chống mất mát' },
+              { id: 'mm_11_6_1_3', label: 'Cộng tác nhóm thời gian thực' }
             ]
           },
           {
             id: 'mm_11_6_2',
-            label: 'Cấp độ phân quyền',
+            label: 'Phân quyền chia sẻ',
             children: [
-              { id: 'mm_11_6_2_1', label: 'Viewer (Chỉ xem)' },
-              { id: 'mm_11_6_2_2', label: 'Commenter (Nhận xét)' },
-              { id: 'mm_11_6_2_3', label: 'Editor (Chỉnh sửa)' }
+              { id: 'mm_11_6_2_1', label: 'Viewer: Chỉ xem' },
+              { id: 'mm_11_6_2_2', label: 'Commenter: Nhận xét ở lề' },
+              { id: 'mm_11_6_2_3', label: 'Editor: Chỉnh sửa toàn quyền' }
             ]
           }
         ]
       }
     },
     completion: {
-      badgeName: 'Chuyên Gia Điện Toán Đám Mây 11',
+      badgeName: 'Chuyên Gia Đám Mây 11',
       badgeIcon: 'Cloud',
-      roleTitle: 'Cộng Tác Viên Đám Mây Chuyên Nghiệp',
-      congratsMessage: 'Tuyệt vời! Bạn đã làm chủ kỹ năng lưu trữ, chia sẻ và cộng tác thời gian thực trên đám mây.',
-      skillsUnlocked: ['Quản lý Google Drive / OneDrive', 'Phân quyền tệp an toàn', 'Làm việc nhóm trực tuyến']
+      roleTitle: 'Chuyên Viên Quản Trị Dữ Liệu Đám Mây',
+      congratsMessage: 'Tuyệt vời! Bạn đã thành thạo kỹ năng lưu trữ đám mây và phân quyền an toàn để làm việc nhóm hiệu quả.',
+      skillsUnlocked: ['Sử dụng Google Drive / OneDrive', 'Phân quyền Viewer/Commenter/Editor', 'Quản lý lịch sử phiên bản Version History']
     }
   },
 
@@ -204,194 +272,219 @@ export const THEME2_LESSONS_11: Lesson[] = [
     estimatedMinutes: 45,
     xpTotal: 250,
     hero: {
-      tagline: 'Kỹ năng vàng thời đại số: Trở thành bậc thầy tra cứu thông tin chính xác',
-      description: 'Làm chủ các toán tử tìm kiếm chuyên nghiệp của Google: dấu ngoặc kép (" "), toán tử site:, filetype:, dấu trừ (-) loại trừ từ khóa và tìm kiếm theo khoảng thời gian.',
-      accentColor: 'from-blue-600 to-cyan-500',
-      keyHighlights: ['Toán tử "cụm từ chính xác"', 'Lọc định dạng filetype:pdf', 'Tìm trong trang site:edu.vn']
+      tagline: 'Làm chủ mỏ vàng tri thức: Kỹ thuật tra cứu thông tin học tập chính xác tuyệt đối',
+      description: 'Khám phá các toán tử tìm kiếm chuyên nghiệp của Google: tìm kiếm cụm từ chính xác `""`, loại trừ từ khóa `-`, lọc theo định dạng tệp `filetype:` và giới hạn tên miền `site:`.',
+      accentColor: 'from-blue-600 to-indigo-600',
+      keyHighlights: ['Toán tử tìm kiếm Google', 'Lọc định dạng filetype:pdf', 'Giới hạn tên miền site:edu.vn']
     },
     objectives: [
       {
         id: 'obj_11_7_1',
         category: 'knowledge',
         categoryName: 'Kiến thức cốt lõi',
-        title: 'Cú pháp các toán tử tìm kiếm',
-        description: 'Giải thích được ý nghĩa và tác dụng của các toán tử: dấu ngoặc kép, dấu trừ (-), site:, filetype:, OR.',
+        title: 'Nguyên lý toán tử tìm kiếm nâng cao',
+        description: 'Giải thích được ý nghĩa và tác dụng của các toán tử tìm kiếm nâng cao trên các công cụ tìm kiếm: dấu ngoặc kép `""`, dấu trừ `-`, `site:`, `filetype:`.',
         iconName: 'Search'
       },
       {
         id: 'obj_11_7_2',
         category: 'skill',
         categoryName: 'Kỹ năng & Năng lực',
-        title: 'Truy vấn tài liệu học tập chính xác',
-        description: 'Tìm kiếm nhanh các tài liệu định dạng PDF, PowerPoint từ các nguồn cổng thông tin giáo dục chính thống (.edu.vn / .gov.vn).',
+        title: 'Tra cứu tài nguyên học tập chính xác',
+        description: 'Vận dụng phối hợp các toán tử tìm kiếm để tìm nhanh chóng các tài liệu học tập chuẩn xác (tệp PDF, đề thi, slide bài giảng) từ các nguồn chính thống.',
         iconName: 'Filter'
       },
       {
         id: 'obj_11_7_3',
         category: 'attitude',
         categoryName: 'Phẩm chất & Đạo đức',
-        title: 'Kỹ năng thẩm định độ tin cậy',
-        description: 'Biết kiểm chứng độ tin cậy của thông tin trên mạng trước khi trích dẫn và sử dụng trong bài làm.',
+        title: 'Thẩm định nguồn tin & tôn trọng bản quyền',
+        description: 'Có kỹ năng đánh giá độ tin cậy của thông tin số, kiểm chứng tác giả và trích dẫn nguồn gốc tài liệu một cách trung thực, có văn hóa.',
         iconName: 'CheckCircle'
       }
     ],
     warmup: {
-      title: 'Tình huống: Tìm tài liệu ôn thi bị ngập trong tin tức quảng cáo',
-      scenario: 'Bạn cần tìm đề thi thử môn Tin học 11 định dạng tệp PDF từ các trường chuyên để in ra làm. Nhưng khi gõ "de thi tin hoc 11", kết quả trả về hàng triệu bài viết quảng cáo khóa học bán sách.',
-      pollQuestion: 'Cú pháp tìm kiếm chuẩn nào giúp bạn chỉ nhận đúng các tệp PDF tài liệu từ trang giáo dục?',
+      title: 'Tình huống: Tìm tài liệu ôn thi học kỳ bị ngập trong quảng cáo',
+      scenario: 'Bạn gõ vào Google: "Đề cương ôn thi Tin học 11". Kết quả trả về hàng triệu trang web chứa quảng cáo bán hàng, khóa học trả phí và các bài viết rác không liên quan.',
+      pollQuestion: 'Cú pháp tìm kiếm nào giúp bạn tìm ĐÍCH DANH tệp tài liệu định dạng PDF từ các trường học hoặc cổng giáo dục?',
       pollOptions: [
-        { id: 'p11_7_1', text: '"Tin học 11" filetype:pdf site:edu.vn', votesPercent: 91, isPopular: true, insight: 'Chính xác! filetype:pdf lọc đúng file PDF tải được, và site:edu.vn lọc các nguồn uy tín từ ngành giáo dục.' },
-        { id: 'p11_7_2', text: 'Gõ: "Xin hãy cho tôi xin đề thi PDF cảm ơn nhiều"', votesPercent: 4, insight: 'Công cụ tìm kiếm không hoạt động theo cách trò chuyện lịch sự như vậy.' },
-        { id: 'p11_7_3', text: 'Bấm bừa vào liên kết đầu tiên có chữ QC', votesPercent: 5, insight: 'Liên kết có chữ QC (Quảng cáo) thường dẫn đến trang bán hàng, không phải tài liệu bạn cần.' }
+        { id: 'p11_7_1', text: '"Tin học 11" filetype:pdf site:edu.vn', votesPercent: 95, isPopular: true, insight: 'Chính xác! Cú pháp này yêu cầu Google chỉ trả về tệp PDF từ các tên miền giáo dục .edu.vn.' },
+        { id: 'p11_7_2', text: 'Tìm kiếm đề cương Tin 11 xin cảm ơn Google', votesPercent: 3, insight: 'Thêm lời cảm ơn không giúp công cụ tìm kiếm lọc bớt kết quả rác.' },
+        { id: 'p11_7_3', text: 'Gõ chữ in hoa toàn bộ kết quả', votesPercent: 2, insight: 'Google không phân biệt chữ hoa hay chữ thường trong từ khóa.' }
       ],
-      reflection: 'Thành thạo toán tử tìm kiếm giúp bạn tiết kiệm hàng giờ đồng hồ mò mẫm vô ích trên Internet.'
+      reflection: 'Sử dụng toán tử tìm kiếm nâng cao giúp bạn tiết kiệm 90% thời gian tra cứu và loại bỏ hoàn toàn các trang web rác.'
     },
     knowledge: [
       {
         id: 'tab_11_7_1',
-        title: '1. Bảng Toán Tử Tìm Kiếm Nâng Cao Google',
-        subtitle: 'Khai thác tối đa sức mạnh của cỗ máy tìm kiếm',
-        iconName: 'Filter',
+        title: '1. Toán tử tìm kiếm nâng cao (ngoặc kép, trừ, site, filetype)',
+        subtitle: 'Vũ khí tra cứu thông tin chính xác của chuyên gia số',
+        iconName: 'Search',
         keyPoints: [
-          'Dấu ngoặc kép `"cụm từ"`: Tìm kiếm chính xác từng từ và đúng thứ tự các từ trong ngoặc.',
-          'Toán tử `filetype:đuôi_tệp`: Chỉ hiển thị kết quả có định dạng tệp mong muốn (filetype:pdf, filetype:pptx, filetype:xlsx).',
-          'Toán tử `site:tên_miền`: Chỉ tìm kiếm thông tin bên trong một website hoặc tên miền cụ thể (site:moet.gov.vn, site:edu.vn).',
-          'Dấu trừ `-từ_khóa`: Loại bỏ các kết quả có chứa từ khóa không mong muốn (VD: virus máy tính -sinh học).'
+          'Dấu ngoặc kép `"cụm từ"`: Tìm kiếm chính xác từng từ và đúng thứ tự xuất hiện. Ví dụ: `"Hệ điều hành mạng"`.',
+          'Dấu trừ `-từ_khóa`: Loại bỏ tất cả các kết quả chứa từ khóa phía sau dấu trừ. Ví dụ: `Tin học 11 -game` (tìm tin học 11 loại trừ các kết quả liên quan đến game).',
+          'Toán tử `filetype:định_dạng`: Chỉ tìm kiếm các tệp tin có định dạng cụ thể (pdf, docx, pptx, xlsx). Ví dụ: `Giao án Tin 11 filetype:pptx`.',
+          'Toán tử `site:tên_miền`: Chỉ tìm kiếm bên trong một trang web hoặc một đuôi tên miền cụ thể. Ví dụ: `Tuyển sinh 2026 site:moet.gov.vn` hoặc `site:edu.vn`.'
         ],
         visualType: 'comparison-table',
         visualData: {
-          headers: ['Toán tử', 'Ví dụ tìm kiếm', 'Tác dụng kết quả'],
+          headers: ['Toán tử', 'Cú pháp mẫu', 'Ý nghĩa kết quả'],
           rows: [
-            ['"..." (Ngoặc kép)', '"Tin học 11 Kết nối tri thức"', 'Tìm chính xác cả cụm từ, không bị tách rời'],
-            ['filetype:', 'giao an tin 11 filetype:docx', 'Chỉ trả về các tệp Word để tải về chỉnh sửa'],
-            ['site:', 'tuyen sinh 2026 site:edu.vn', 'Chỉ tìm trong các trang web giáo dục Việt Nam'],
-            ['- (Dấu trừ)', 'hệ điều hành -windows', 'Tìm thông tin hệ điều hành nhưng loại trừ Windows']
+            ['Dấu ngoặc kép `""`', '"Chương trình GDPT 2018"', 'Bắt buộc các từ phải đứng cạnh nhau đúng thứ tự'],
+            ['Dấu trừ `-`', 'Python cơ bản -youtube', 'Tìm tài liệu Python nhưng loại bỏ kết quả từ trang YouTube'],
+            ['`filetype:`', 'De thi Tin hoc 11 filetype:pdf', 'Chỉ tải về các tệp tài liệu định dạng PDF'],
+            ['`site:`', 'Huong dan on tap site:edu.vn', 'Chỉ tìm trong các trang web giáo dục Việt Nam (.edu.vn)']
           ]
         },
         emCanNho: [
-          'Dùng ngoặc kép `"..."` để tìm chính xác cụm từ nguyên vẹn.',
-          'Dùng `filetype:pdf/docx/pptx` để tìm trực tiếp tệp tài liệu cần tải.',
-          'Dùng `site:ten_mien` để giới hạn tìm kiếm trong các nguồn tin uy tín.'
+          'Dấu ngoặc kép `""` tìm cụm từ chính xác tuyệt đối.',
+          'Dấu trừ `-` loại trừ kết quả không mong muốn.',
+          'Dùng `filetype:pdf` tìm sách/tài liệu; dùng `site:edu.vn` tìm nguồn tin giáo dục tin cậy.'
+        ]
+      },
+      {
+        id: 'tab_11_7_2',
+        title: '2. Đánh giá độ tin cậy và trích dẫn thông tin số',
+        subtitle: 'Bộ lọc thông thái trước ma trận tin giả trên Internet',
+        iconName: 'ShieldCheck',
+        keyPoints: [
+          'Nguyên tắc đánh giá độ tin cậy nguồn tin (Tiêu chí CRAAP):',
+          '  - Tính cập nhật (Currency): Ngày đăng bài là khi nào, tài liệu có bị lỗi thời không?',
+          '  - Tính phù hợp (Relevance): Nội dung có đúng trọng tâm bài toán cần tìm?',
+          '  - Cơ quan tác giả (Authority): Ai viết bài này? Là chuyên gia, trường đại học (.edu) hay trang web cá nhân vô danh?',
+          '  - Độ chính xác (Accuracy): Thông tin có dẫn chứng số liệu, có trích dẫn khoa học kiểm chứng được không?',
+          '  - Mục đích (Purpose): Bài viết nhằm mục đích cung cấp tri thức hay nhằm quảng cáo bán hàng, định hướng dư luận?',
+          'Văn hóa trích dẫn: Khi sử dụng số liệu, hình ảnh, văn bản trong bài tập, bắt buộc phải ghi rõ: Tên tác giả, Tên bài viết, Tên trang web và Ngày truy cập.'
+        ],
+        visualType: 'infographic',
+        visualData: {
+          nodes: [
+            { label: '1. Kiểm tra Tác giả & Tên miền', desc: 'Ưu tiên các tên miền .gov.vn, .edu.vn, các tổ chức uy tín' },
+            { label: '2. Đối chiếu Đa nguồn', desc: 'So sánh thông tin trên ít nhất 2 nguồn tin độc lập' },
+            { label: '3. Trích dẫn Nguồn gốc', desc: 'Ghi rõ link và tác giả ở cuối bài thuyết trình' }
+          ]
+        },
+        emCanNho: [
+          'Luôn kiểm tra tác giả, tính cập nhật và mục đích của trang web trước khi tin tưởng.',
+          'Ưu tiên tài nguyên từ các cơ quan chính phủ (.gov.vn) và viện trường (.edu.vn).',
+          'Luôn trích dẫn nguồn gốc tài liệu để thể hiện sự trung thực trong nghiên cứu khoa học.'
         ]
       }
     ],
     miniGame: {
       type: 'matching',
-      title: 'Ghép cặp Cú pháp tìm kiếm và Nhu cầu thực tế',
-      instruction: 'Nối nhu cầu tìm kiếm với cú pháp toán tử tương ứng:',
+      title: 'Ghép cặp Toán tử Tìm kiếm và Mục tiêu Tra cứu',
+      instruction: 'Nối câu lệnh tìm kiếm với mục tiêu tương ứng:',
       matchingPairs: [
-        { id: 's1', left: 'Cần tìm bài giảng slide môn Tin 11', right: 'tin hoc 11 filetype:pptx' },
-        { id: 's2', left: 'Cần tra cứu quy chế thi của Bộ GD&ĐT', right: 'quy che thi tot nghiep site:moet.gov.vn' },
-        { id: 's3', left: 'Tìm bài viết về Virus máy tính (loại bỏ virus y học)', right: 'virus may tinh -corona -y_te' },
-        { id: 's4', left: 'Tìm chính xác câu trích dẫn văn học', right: '"Học vấn không có quê hương nhưng người học phải có tổ quốc"' }
+        { id: 'sr1', left: 'site:taphuan.nxbgd.vn', right: 'Chỉ tìm tài liệu trên cổng tập huấn của NXB Giáo dục' },
+        { id: 'sr2', left: 'filetype:pdf', right: 'Chỉ tải các tệp tài liệu sách điện tử hoặc đề thi dạng PDF' },
+        { id: 'sr3', left: '"Cơ sở dữ liệu quan hệ"', right: 'Tìm chính xác cụm từ 5 chữ này đứng liền nhau' },
+        { id: 'sr4', left: 'Tin học 11 -quangcao', right: 'Tìm kiến thức Tin 11 và loại bỏ các bài viết chứa chữ quangcao' }
       ]
     },
     assessment: [
       {
         id: 1,
-        question: 'Để tìm kiếm tài liệu dạng tệp trình chiếu PowerPoint về môn Tin học, cú pháp nào sau đây ĐÚNG?',
-        options: ['tin hoc 11 filetype:pptx', 'tin hoc 11 type=powerpoint', 'tin hoc 11 tim slide', 'tin hoc 11 show:ppt'],
+        question: 'Để tìm kiếm chính xác cụm từ "Hệ cơ sở dữ liệu" mà không bị các từ ngữ đứng rời rạc nhau, bạn sử dụng cú pháp nào?',
+        options: ['"Hệ cơ sở dữ liệu"', '[Hệ cơ sở dữ liệu]', 'Hệ + cơ + sở + dữ + liệu', 'find: Hệ cơ sở dữ liệu'],
         correctIndex: 0,
-        explanation: 'filetype:pptx là toán tử chuẩn để lọc các tệp trình chiếu PowerPoint.',
+        explanation: 'Cặp dấu ngoặc kép "" yêu cầu Google tìm kiếm đúng nguyên văn thứ tự cụm từ.',
         difficulty: 'Nhận biết'
       },
       {
         id: 2,
-        question: 'Cú pháp: "an toan mang" site:gov.vn có ý nghĩa gì?',
+        question: 'Muốn tải slide bài giảng PowerPoint về bài học "Mạng máy tính", cú pháp tìm kiếm nào sau đây là TỐI ƯU NHẤT?',
         options: [
-          'Tìm chính xác cụm từ "an toan mang" chỉ bên trong các trang web thuộc cơ quan chính phủ Việt Nam (.gov.vn)',
-          'Tìm trên tất cả các trang web thương mại điện tử',
-          'Xóa trang web gov.vn',
-          'Không tìm thấy gì'
+          '"Mạng máy tính" filetype:pptx',
+          'Mạng máy tính làm ơn cho xin file',
+          'Mạng máy tính download full crack',
+          'PPTX Mạng máy tính'
         ],
         correctIndex: 0,
-        explanation: 'site:gov.vn giới hạn phạm vi tìm kiếm trong tên miền của các cơ quan nhà nước.',
+        explanation: 'filetype:pptx giới hạn chỉ trả về các tệp trình chiếu PowerPoint.',
         difficulty: 'Thông hiểu'
       },
       {
         id: 3,
-        question: 'Khi tìm kiếm: laptop mỏng nhẹ -gaming, kết quả trả về sẽ như thế nào?',
-        options: [
-          'Tìm các laptop mỏng nhẹ nhưng loại trừ hoàn toàn những bài viết có chứa từ khóa "gaming"',
-          'Chỉ tìm các laptop chơi game cấu hình khủng',
-          'Mua laptop gaming giá rẻ',
-          'Lỗi cú pháp không chạy được'
-        ],
+        question: 'Tên miền nào sau đây thường có độ tin cậy cao nhất khi tìm kiếm tài liệu học tập và số liệu thống kê tại Việt Nam?',
+        options: ['.gov.vn (Cơ quan chính phủ) và .edu.vn (Giáo dục đại học/trường học)', '.xyz', '.biz', '.club'],
         correctIndex: 0,
-        explanation: 'Dấu trừ (-) đặt sát từ khóa có tác dụng loại trừ các kết quả chứa từ đó.',
+        explanation: 'Tên miền .gov.vn và .edu.vn được Bộ Thông tin & Truyền thông cấp phép nghiêm ngặt cho các tổ chức nhà nước và giáo dục.',
         difficulty: 'Thông hiểu'
       },
       {
         id: 4,
-        question: 'Dấu hiệu nào sau đây cho thấy một nguồn thông tin trên Internet có ĐỘ TIN CẬY CAO?',
+        question: 'Ý nghĩa của dấu trừ (-) trong câu lệnh tìm kiếm: "virus -corona" là gì?',
         options: [
-          'Thuộc các trang web chính thức của bộ ban ngành, viện nghiên cứu, trường đại học (.gov, .edu) có tác giả rõ ràng',
-          'Được chia sẻ bởi tài khoản ẩn danh trên diễn đàn mạng',
-          'Bài viết có tiêu đề giật gân, câu like',
-          'Trang web có nhiều banner quảng cáo cá độ'
+          'Tìm các kết quả về virus nhưng loại trừ tất cả các trang có nhắc đến từ corona',
+          'Lấy từ virus trừ đi từ corona',
+          'Tìm virus corona gấp 2 lần',
+          'Báo lỗi không tìm được'
         ],
         correctIndex: 0,
-        explanation: 'Nguồn tin từ các tổ chức uy tín có đuôi tên miền .gov, .edu và tác giả chuyên môn có độ tin cậy cao nhất.',
-        difficulty: 'Vận dụng'
+        explanation: 'Toán tử dấu trừ loại bỏ triệt để các kết quả chứa từ khóa đi liền ngay sau nó.',
+        difficulty: 'Thông hiểu'
       },
       {
         id: 5,
-        question: 'Toán tử tìm kiếm OR (in hoa) giữa hai từ khóa có tác dụng gì?',
+        question: 'Khi sử dụng một đoạn văn hoặc bức ảnh từ trang web khác đưa vào bài báo cáo thuyết trình của nhóm, hành động nào sau đây là ĐÚNG ĐẠO ĐỨC?',
         options: [
-          'Tìm kết quả có chứa từ khóa thứ nhất HOẶC từ khóa thứ hai (hoặc cả hai)',
-          'Bắt buộc cả hai từ phải xuất hiện',
-          'Xóa cả hai từ',
-          'Dịch từ khóa sang tiếng Anh'
+          'Ghi rõ tên tác giả hoặc nguồn đường link website tham khảo ở phần tài liệu tham khảo',
+          'Tự nhận là do chính mình tự chụp và tự viết',
+          'Cắt bỏ chữ ký của tác giả gốc',
+          'Bảo bạn bè giữ bí mật'
         ],
         correctIndex: 0,
-        explanation: 'Toán tử logic OR mở rộng phạm vi tìm kiếm khi một trong các điều kiện thỏa mãn.',
-        difficulty: 'Nhận biết'
+        explanation: 'Trích dẫn nguồn minh bạch là yêu cầu bắt buộc thể hiện đạo đức học thuật và tôn trọng sở hữu trí tuệ.',
+        difficulty: 'Vận dụng'
       }
     ],
     application: {
       project: {
-        title: 'Thực hành: Thu thập Tài liệu Ôn tập Cơ sở Dữ liệu',
-        context: 'Học sinh cần chuẩn bị tài liệu ôn tập lý thuyết CSDL chuẩn bị cho bài thi giữa kỳ.',
-        mission: 'Sử dụng các toán tử tìm kiếm để thu thập 3 tài liệu chất lượng cao.',
+        title: 'Truy Tìm Kho Báu Tri Thức: Thu Thập Tài Liệu Chuyên Đề CSDL',
+        context: 'Lớp chuẩn bị bước vào Chủ đề 4: Giới thiệu các hệ cơ sở dữ liệu.',
+        mission: 'Sử dụng toán tử nâng cao để thu thập bộ tài liệu chuẩn dạng PDF từ nguồn chính thống.',
         steps: [
-          'Bước 1: Soạn cú pháp tìm sách bài tập CSDL PDF: `"co so du lieu" filetype:pdf site:edu.vn`.',
-          'Bước 2: Tìm slide giới thiệu SQL: `ngon ngu sql filetype:pptx`.',
-          'Bước 3: Đánh giá tác giả, năm ban hành và lưu tệp vào thư mục học tập.'
+          'Bước 1: Gõ lệnh: `"Hệ cơ sở dữ liệu" filetype:pdf site:edu.vn` để tìm giáo trình đại học.',
+          'Bước 2: Gõ lệnh: `HeidiSQL tutorial filetype:pdf` để tìm hướng dẫn thực hành.',
+          'Bước 3: Tải 2 tệp tài liệu hay nhất, ghi chép lại nguồn trích dẫn: Tên tác giả, Đơn vị xuất bản, Link tải.'
         ],
-        outputRequirement: 'Danh sách 3 liên kết tài liệu thu thập được kèm ghi chú đánh giá độ tin cậy.',
-        practicalTip: 'Khi tìm văn bản quy phạm pháp luật, luôn gõ thêm năm gần nhất (ví dụ: `thong tu 2024 site:moet.gov.vn`) để tránh đọc văn bản cũ đã hết hiệu lực.'
+        outputRequirement: 'Thư mục chứa 2 tệp PDF học liệu chuẩn kèm file ghi chú trích dẫn nguồn.',
+        practicalTip: 'Kết hợp nhiều toán tử cùng lúc (ví dụ vừa `""` vừa `filetype:` vừa `site:`) sẽ thu hẹp kết quả về dưới 50 trang web tinh túy nhất.'
       },
       mindmap: {
         id: 'mm_11_7',
         label: 'TÌM KIẾM NÂNG CAO',
-        color: '#0284c7',
+        color: '#4f46e5',
         children: [
           {
             id: 'mm_11_7_1',
-            label: 'Toán tử từ khóa',
+            label: 'Toán tử cốt lõi',
             children: [
-              { id: 'mm_11_7_1_1', label: '" " Cụm từ chính xác' },
+              { id: 'mm_11_7_1_1', label: '"" Cụm từ chính xác' },
               { id: 'mm_11_7_1_2', label: '- Loại trừ từ khóa' },
-              { id: 'mm_11_7_1_3', label: 'OR Tìm kiếm linh hoạt' }
+              { id: 'mm_11_7_1_3', label: 'filetype:pdf, pptx' },
+              { id: 'mm_11_7_1_4', label: 'site:edu.vn, gov.vn' }
             ]
           },
           {
             id: 'mm_11_7_2',
-            label: 'Toán tử phạm vi',
+            label: 'Đánh giá & Trích dẫn',
             children: [
-              { id: 'mm_11_7_2_1', label: 'filetype: (pdf, pptx, docx)' },
-              { id: 'mm_11_7_2_2', label: 'site: (.edu.vn, .gov.vn)' }
+              { id: 'mm_11_7_2_1', label: 'Tiêu chí CRAAP thẩm định' },
+              { id: 'mm_11_7_2_2', label: 'Kiểm tra tên miền tác giả' },
+              { id: 'mm_11_7_2_3', label: 'Trích dẫn nguồn trung thực' }
             ]
           }
         ]
       }
     },
     completion: {
-      badgeName: 'Bậc Thầy Tra Cứu Số 11',
+      badgeName: 'Thám Tử Tìm Kiếm Số 11',
       badgeIcon: 'Search',
-      roleTitle: 'Chuyên Viên Khai Thác Thông Tin Nâng Cao',
-      congratsMessage: 'Tuyệt vời! Bạn đã nắm trọn các toán tử tìm kiếm chuyên nghiệp giúp tra cứu tài liệu nhanh và chính xác.',
-      skillsUnlocked: ['Cú pháp filetype & site', 'Toán tử ngoặc kép & loại trừ', 'Kỹ năng thẩm định tin tức']
+      roleTitle: 'Chuyên Viên Phân Tích Thông Tin Trực Tuyến',
+      congratsMessage: 'Xuất sắc! Bạn đã nắm trọn các toán tử tìm kiếm chuyên nghiệp và phương pháp thẩm định tin tức khoa học.',
+      skillsUnlocked: ['Toán tử filetype: & site:', 'Toán tử cụm từ "" và loại trừ -', 'Kỹ năng thẩm định tin giả CRAAP']
     }
   },
 
@@ -407,196 +500,232 @@ export const THEME2_LESSONS_11: Lesson[] = [
     estimatedMinutes: 45,
     xpTotal: 250,
     hero: {
-      tagline: 'Giao tiếp số văn minh, chuyên nghiệp và bảo mật thông tin',
-      description: 'Nắm vững quy tắc viết thư điện tử chuẩn mực (tiêu đề, kính gửi, CC, BCC, chữ ký số tự động) và các biện pháp bảo vệ danh tính, quyền riêng tư trên các nền tảng mạng xã hội.',
-      accentColor: 'from-blue-600 to-cyan-500',
-      keyHighlights: ['Phân biệt CC và BCC', 'Chữ ký email chuyên nghiệp', 'Thiết lập quyền riêng tư mạng xã hội']
+      tagline: 'Văn hóa giao tiếp thời đại số: Nghi thức email công sở và bảo vệ quyền riêng tư mạng xã hội',
+      description: 'Làm chủ quy chuẩn viết thư điện tử chuyên nghiệp: phân biệt To, CC, BCC, tạo chữ ký số (Signature); thiết lập xác thực 2 bước (2FA) và bảo vệ an toàn thông tin cá nhân trên mạng xã hội.',
+      accentColor: 'from-indigo-600 to-violet-600',
+      keyHighlights: ['Phân biệt To, CC và BCC', 'Chữ ký email chuyên nghiệp', 'Bảo mật 2 lớp 2FA']
     },
     objectives: [
       {
         id: 'obj_11_8_1',
         category: 'knowledge',
         categoryName: 'Kiến thức cốt lõi',
-        title: 'Cấu trúc thư điện tử chuẩn mực',
-        description: 'Hiểu rõ các thành phần của email chuyên nghiệp: To, Cc (Carbon Copy), Bcc (Blind Carbon Copy), Tiêu đề (Subject) và Chữ ký (Signature).',
+        title: 'Nghi thức thư điện tử & cơ chế 2FA',
+        description: 'Phân biệt được chức năng của các trường người nhận To, CC, BCC trong email và hiểu nguyên lý hoạt động của xác thực hai yếu tố (2FA).',
         iconName: 'Mail'
       },
       {
         id: 'obj_11_8_2',
         category: 'skill',
         categoryName: 'Kỹ năng & Năng lực',
-        title: 'Soạn thảo & Bảo mật tài khoản',
-        description: 'Soạn một bức thư xin phép/nộp bài chuẩn nghi thức và thiết lập tính năng xác thực hai yếu tố (2FA) cho tài khoản mạng xã hội.',
-        iconName: 'Send'
+        title: 'Soạn email chuẩn mực & bảo mật tài khoản',
+        description: 'Soạn thảo được bức thư điện tử chuẩn nghi thức công sở (có tiêu đề ngắn gọn, nội dung lịch sự, chữ ký Signature) và kích hoạt thành công 2FA trên tài khoản cá nhân.',
+        iconName: 'Shield'
       },
       {
         id: 'obj_11_8_3',
         category: 'attitude',
         categoryName: 'Phẩm chất & Đạo đức',
-        title: 'Văn hóa giao tiếp mạng văn minh',
-        description: 'Ứng xử lịch sự, không phát tán thư rác (Spam) và bảo vệ dữ liệu cá nhân của bản thân và bạn bè trên không gian mạng.',
-        iconName: 'HeartHandshake'
+        title: 'Văn hóa giao tiếp & tôn trọng quyền riêng tư',
+        description: 'Ứng xử văn minh trên mạng xã hội, không gửi thư rác (Spam) và có ý thức bảo vệ danh tính, quyền riêng tư của người khác khi chia sẻ ảnh.',
+        iconName: 'Heart'
       }
     ],
     warmup: {
-      title: 'Tình huống: Gửi thư nộp bài cho Thầy giáo',
-      scenario: 'Một bạn học sinh gửi email nộp bài tập lớn cho thầy giáo: Tiêu đề bỏ trống, nội dung chỉ có 1 file đính kèm mang tên "untitled.docx" và không có lời chào hay họ tên người gửi.',
-      pollQuestion: 'Bức email trên thiếu sót điều gì nghiêm trọng nhất trong văn hóa giao tiếp công nghệ?',
+      title: 'Tình huống: Gửi email cho 50 bạn nhưng bị lộ toàn bộ danh sách địa chỉ mail',
+      scenario: 'Bạn là bí thư chi đoàn gửi thông báo hoạt động cắm trại cho 50 bạn trong khối. Do sơ suất điền toàn bộ 50 địa chỉ vào ô "To", tất cả mọi người đều nhìn thấy địa chỉ email cá nhân của nhau, dẫn đến nhiều bạn bị kẻ xấu gửi thư rác quấy rối.',
+      pollQuestion: 'Khi gửi thư cho nhiều người mà muốn BẢO MẬT danh tính, không để người nhận biết bạn đã gửi cho những ai khác, bạn BẮT BUỘC phải dùng ô nào?',
       pollOptions: [
-        { id: 'p11_8_1', text: 'Thiếu tiêu đề rõ ràng, thiếu lời chào thưa kính gửi và không nêu rõ họ tên học sinh', votesPercent: 94, isPopular: true, insight: 'Chính xác! Thư không tiêu đề rất dễ bị bộ lọc tự động ném vào hòm thư rác (Spam) và thể hiện thái độ thiếu tôn trọng.' },
-        { id: 'p11_8_2', text: 'Thiếu chèn bài hát yêu thích vào thư', votesPercent: 3, insight: 'Email học tập công việc không chèn file nhạc gây phiền hà.' },
-        { id: 'p11_8_3', text: 'Thiếu biểu tượng cảm xúc mặt cười', votesPercent: 3, insight: 'Thư gửi thầy cô cần sự trang trọng, không nên lạm dụng icon nhí nhố.' }
+        { id: 'p11_8_1', text: 'Ô BCC (Blind Carbon Copy - Gửi bản sao ẩn danh)', votesPercent: 94, isPopular: true, insight: 'Chính xác! BCC giấu kín toàn bộ danh sách email của những người nhận khác để bảo vệ quyền riêng tư.' },
+        { id: 'p11_8_2', text: 'Ô CC (Carbon Copy)', votesPercent: 4, insight: 'CC vẫn hiển thị công khai toàn bộ danh sách email cho tất cả người nhận cùng thấy.' },
+        { id: 'p11_8_3', text: 'Ô To (Người nhận chính)', votesPercent: 2, insight: 'To hiển thị công khai toàn bộ danh sách email.' }
       ],
-      reflection: 'Kỹ năng soạn email chuyên nghiệp là hành trang không thể thiếu khi bạn bước vào giảng đường đại học và môi trường doanh nghiệp.'
+      reflection: 'Phân biệt rành mạch To, CC và BCC là kỹ năng giao tiếp công sở tối thiểu của mọi công dân số chuyên nghiệp.'
     },
     knowledge: [
       {
         id: 'tab_11_8_1',
-        title: '1. Quy Chuẩn Soạn Email Chuyên Nghiệp (CC & BCC)',
-        subtitle: 'Các trường thông tin cốt lõi trong giao tiếp thư tín điện tử',
-        iconName: 'MailCheck',
+        title: '1. Soạn thảo thư điện tử chuyên nghiệp (To, CC, BCC, Signature)',
+        subtitle: 'Quy chuẩn nghi thức thư từ điện tử trong học tập và công việc',
+        iconName: 'Mail',
         keyPoints: [
-          'Trường To (Đến): Địa chỉ người nhận chính có trách nhiệm xử lý nội dung thư.',
-          'Trường CC (Carbon Copy): Gửi đồng kính gửi cho những người liên quan để theo dõi thông tin (tất cả mọi người đều nhìn thấy danh sách email của nhau).',
-          'Trường BCC (Blind Carbon Copy): Gửi bản sao ẩn danh, những người nhận trong danh sách To và CC KHÔNG nhìn thấy địa chỉ của người nhận trong BCC (bảo vệ quyền riêng tư khi gửi đồng loạt).',
-          'Tiêu đề thư (Subject): Ngắn gọn, súc tích, tóm tắt nội dung (VD: `[11A1] Nộp bài tập Tin học tuần 5 - Nguyễn Văn An`).',
-          'Chữ ký thư (Signature): Tự động hiển thị ở cuối thư gồm: Họ tên, Trường lớp, Số điện thoại liên hệ.'
+          'Trường người nhận trong Email:',
+          '  - To (Người nhận chính): Người có trách nhiệm trực tiếp đọc, xử lý và phản hồi nội dung bức thư.',
+          '  - CC (Carbon Copy - Đồng kính gửi): Những người cần theo dõi, nắm bắt thông tin nhưng không bắt buộc phải trả lời. Mọi người đều thấy địa chỉ email của nhau.',
+          '  - BCC (Blind Carbon Copy - Gửi bản sao ẩn): Những người nhận được bản sao nhưng địa chỉ email của họ hoàn toàn được ẩn giấu trước tất cả những người khác trong ô To và CC.',
+          'Tiêu đề thư (Subject): Ngắn gọn, súc tích, tóm tắt chính xác nội dung thư (ví dụ: `[11A1] - Nộp bài thu hoạch Tin học 11 - Nguyễn Văn A`). Tuyệt đối không để trống tiêu đề.',
+          'Chữ ký thư điện tử (Email Signature): Tự động đính kèm ở cuối mỗi bức thư, bao gồm: Họ tên, Chức vụ/Lớp học, Số điện thoại liên hệ, Trường học/Tổ chức.'
         ],
         visualType: 'comparison-table',
         visualData: {
-          headers: ['Trường gửi', 'Mục đích sử dụng', 'Người khác có thấy email không?'],
+          headers: ['Trường', 'Mục đích sử dụng', 'Mức độ công khai danh tính'],
           rows: [
-            ['To (Đến)', 'Người nhận trực tiếp chịu trách nhiệm', 'Có, ai cũng thấy'],
-            ['CC (Bản sao)', 'Người cùng theo dõi tiến độ công việc', 'Có, ai cũng thấy'],
-            ['BCC (Bản sao ẩn)', 'Gửi thông báo số lượng lớn, bảo vệ danh tính', 'KHÔNG, hoàn toàn ẩn danh']
+            ['To', 'Người nhận trực tiếp chịu trách nhiệm thực thi', 'Công khai cho tất cả mọi người thấy'],
+            ['CC (Carbon Copy)', 'Gửi kèm cho người liên quan để nắm thông tin', 'Công khai cho tất cả mọi người thấy'],
+            ['BCC (Blind CC)', 'Gửi cho danh sách đông người, bảo vệ quyền riêng tư', 'Bí mật tuyệt đối, không ai biết danh sách BCC']
           ]
         },
         emCanNho: [
-          'Dùng `CC` khi muốn người khác cùng theo dõi thông tin công khai.',
-          'Dùng `BCC` khi gửi thư cho nhiều người nhưng cần bảo mật địa chỉ email của nhau.',
-          'Email chuyên nghiệp luôn có Tiêu đề rõ ràng, Lời chào thưa, Nội dung chỉn chu và Chữ ký cuối thư.'
+          'To dành cho người xử lý chính; CC dành cho người cùng theo dõi.',
+          'BCC dùng khi gửi thư hàng loạt để giấu địa chỉ email người khác, bảo vệ riêng tư.',
+          'Luôn viết Tiêu đề thư (Subject) rõ ràng và cài đặt Chữ ký email (Signature) chuyên nghiệp.'
+        ]
+      },
+      {
+        id: 'tab_11_8_2',
+        title: '2. Thiết lập bảo mật tài khoản và quyền riêng tư (2FA)',
+        subtitle: 'Pháo đài bảo vệ tài khoản số trước các cuộc tấn công đánh cắp mật khẩu',
+        iconName: 'Shield',
+        keyPoints: [
+          'Xác thực hai yếu tố (2FA - Two-Factor Authentication): Cơ chế bảo mật yêu cầu 2 bằng chứng xác minh danh tính:',
+          '  - Yếu tố 1: Thứ bạn biết (Mật khẩu password).',
+          '  - Yếu tố 2: Thứ bạn sở hữu (Mã OTP gửi về điện thoại, ứng dụng Google Authenticator, hoặc khóa bảo mật vật lý USB).',
+          'Dù tin tặc có dò được mật khẩu của bạn, chúng vẫn không thể đăng nhập nếu không có mã xác minh yếu tố thứ hai.',
+          'Bảo vệ quyền riêng tư trên Mạng xã hội:',
+          '  - Không đăng tải công khai căn cước công dân, vé máy bay, vị trí định vị nhà riêng.',
+          '  - Thiết lập chế độ hiển thị bài viết "Chỉ bạn bè" thay vì "Công khai" (Public).',
+          '  - Cảnh giác trước các ứng dụng vui, bói toán đòi cấp quyền truy cập danh bạ và tin nhắn.'
+        ],
+        visualType: 'infographic',
+        visualData: {
+          nodes: [
+            { label: 'Bước 1: Nhập Mật Khẩu', desc: 'Mật khẩu mạnh gồm chữ hoa, số, ký tự đặc biệt' },
+            { label: 'Bước 2: Xác thực 2FA', desc: 'Mã số 6 chữ số thay đổi mỗi 30 giây từ ứng dụng xác thực' },
+            { label: 'Đăng nhập thành công', desc: 'Tài khoản được bảo vệ tuyệt đối an toàn' }
+          ]
+        },
+        emCanNho: [
+          'Luôn kích hoạt xác thực hai bước (2FA) cho email và mạng xã hội.',
+          '2FA bảo vệ tài khoản an toàn ngay cả khi mật khẩu bị lộ.',
+          'Không chia sẻ thông tin cá nhân nhạy cảm công khai trên mạng xã hội.'
         ]
       }
     ],
     miniGame: {
       type: 'matching',
-      title: 'Ghép cặp Thành phần Email và Chức năng',
-      instruction: 'Nối các thành phần trong cửa sổ soạn email với mục đích chuẩn:',
+      title: 'Ghép cặp Khái niệm Email & Bảo mật với Vai trò',
+      instruction: 'Nối khái niệm với vai trò chính xác:',
       matchingPairs: [
-        { id: 'e1', left: 'Trường CC', right: 'Đồng gửi thông tin công khai cho người cùng theo dõi' },
-        { id: 'e2', left: 'Trường BCC', right: 'Gửi bản sao ẩn danh, bảo vệ quyền riêng tư của người nhận' },
-        { id: 'e3', left: 'Dòng Tiêu đề (Subject)', right: 'Tóm tắt nội dung ngắn gọn giúp người nhận nắm bắt ngay' },
-        { id: 'e4', left: 'Chữ ký thư (Signature)', right: 'Tự động chèn thông tin cá nhân và liên hệ ở cuối thư' }
+        { id: 'em1', left: 'Trường BCC trong Email', right: 'Giấu kín địa chỉ người nhận khi gửi thư cho nhiều người' },
+        { id: 'em2', left: 'Chữ ký email (Signature)', right: 'Tự động đính kèm thông tin liên hệ và chức danh ở cuối thư' },
+        { id: 'em3', left: 'Xác thực hai bước (2FA)', right: 'Lớp bảo vệ thứ 2 qua mã OTP điện thoại chống mất tài khoản' },
+        { id: 'em4', left: 'Trường CC trong Email', right: 'Gửi bản sao công khai cho người liên quan để nắm thông tin' }
       ]
     },
     assessment: [
       {
         id: 1,
-        question: 'Khi cần gửi thư thông báo cho 50 phụ huynh trong lớp nhưng KHÔNG MUỐN các phụ huynh nhìn thấy địa chỉ email của nhau, bạn nên đặt danh sách email vào trường nào?',
-        options: ['Trường BCC', 'Trường CC', 'Trường To', 'Dòng tiêu đề Subject'],
+        question: 'Khi gửi thư điện tử cho một danh sách 40 bạn cùng lớp, tại sao bạn NÊN đặt các địa chỉ email vào ô BCC thay vì ô To hay CC?',
+        options: [
+          'Để bảo vệ quyền riêng tư, tránh làm lộ địa chỉ email của các bạn cho những người khác thấy',
+          'Vì ô BCC làm email gửi đi nhanh hơn',
+          'Vì ô BCC cho phép gửi kèm tệp nặng 100GB',
+          'Vì ô To chỉ cho phép gửi tối đa 1 người'
+        ],
         correctIndex: 0,
-        explanation: 'Trường BCC (Blind Carbon Copy) giấu kín toàn bộ địa chỉ email của những người nhận trong danh sách đó.',
+        explanation: 'BCC ẩn danh toàn bộ người nhận với nhau, ngăn ngừa việc rò rỉ thông tin cá nhân và tin nhắn rác.',
         difficulty: 'Thông hiểu'
       },
       {
         id: 2,
-        question: 'Tiêu đề thư (Subject) nào sau đây là chuyên nghiệp và rõ ràng nhất khi nộp bài tập?',
+        question: 'Thành phần nào sau đây là KHÔNG THỂ THIẾU và bắt buộc phải viết rõ ràng, súc tích khi gửi thư điện tử học tập, công việc?',
         options: [
-          '[Tin học 11] Nộp bài tập thực hành số 2 - Lê Thị Mai - Lớp 11A3',
-          'Nộp bài nè thầy ơi',
-          'Thư không có tiêu đề',
-          'Help me please khẩn cấp'
+          'Dòng Tiêu đề thư (Subject)',
+          'Một bức ảnh đại diện đẹp',
+          'Lời chúc mừng sinh nhật',
+          'Icon nhãn dán vui nhộn'
         ],
         correctIndex: 0,
-        explanation: 'Tiêu đề có cấu trúc gồm môn học, tên bài, họ tên và lớp giúp giáo viên phân loại bài nhanh chóng.',
-        difficulty: 'Vận dụng'
+        explanation: 'Tiêu đề thư giúp người nhận biết ngay thư nói về việc gì trước khi quyết định mở đọc.',
+        difficulty: 'Nhận biết'
       },
       {
         id: 3,
-        question: 'Để bảo vệ an toàn cho tài khoản mạng xã hội trước nguy cơ bị kẻ xấu chiếm đoạt (hack), biện pháp nào sau đây HIỆU QUẢ NHẤT?',
+        question: 'Xác thực hai yếu tố (2FA) bảo vệ tài khoản của bạn như thế nào khi một kẻ xấu đã biết được mật khẩu của bạn?',
         options: [
-          'Kích hoạt tính năng xác thực hai yếu tố (2FA) qua ứng dụng xác thực hoặc tin nhắn SMS',
-          'Đặt mật khẩu là ngày sinh nhật hoặc 123456 cho dễ nhớ',
-          'Đăng nhập tài khoản trên máy tính quán net rồi không đăng xuất',
-          'Chia sẻ mật khẩu cho tất cả bạn thân cùng dùng chung'
+          'Kẻ xấu vẫn bị chặn lại vì không có mã xác minh thứ hai gửi về điện thoại di động hoặc ứng dụng xác thực của bạn',
+          '2FA sẽ tự động phát chuông báo động ở nhà bạn',
+          '2FA sẽ xóa sạch toàn bộ máy tính của kẻ xấu',
+          '2FA không có tác dụng gì khi đã lộ mật khẩu'
         ],
         correctIndex: 0,
-        explanation: 'Xác thực 2 yếu tố (2FA) đòi hỏi mã xác thực động ngay cả khi kẻ gian biết mật khẩu.',
+        explanation: 'Dù biết mật khẩu, kẻ xấu thiếu thiết bị vật lý giữ mã OTP nên hoàn toàn không thể đăng nhập.',
         difficulty: 'Thông hiểu'
       },
       {
         id: 4,
-        question: 'Hành vi nào sau đây là VI PHẠM đạo đức và quy tắc ứng xử trên mạng xã hội?',
+        question: 'Hành vi nào sau đây trên mạng xã hội là TIỀM ẨN NGUY CƠ mất an toàn thông tin cá nhân cao nhất?',
         options: [
-          'Đăng tải hình ảnh và thông tin bí mật đời tư của người khác khi chưa được sự đồng ý',
-          'Thả cảm xúc biểu tượng cho bài viết của bạn bè',
-          'Chia sẻ bài báo khoa học từ trang báo uy tín',
-          'Gắn thẻ bạn bè vào bài thảo luận học tập'
+          'Chụp ảnh công khai Căn cước công dân hoặc Thẻ lên máy bay (Boarding Pass) đăng lên mạng xã hội',
+          'Nhắn tin hỏi thăm bài tập với bạn cùng lớp',
+          'Đổi ảnh đại diện chụp phong cảnh',
+          'Xem video bài giảng môn Tin học'
         ],
         correctIndex: 0,
-        explanation: 'Tự ý phát tán thông tin đời tư cá nhân vi phạm nghiêm trọng Luật An ninh mạng và quyền riêng tư.',
-        difficulty: 'Nhận biết'
+        explanation: 'CCCD và vé máy bay chứa mã vạch, số định danh, ngày sinh giúp kẻ xấu mạo danh lừa đảo tài chính.',
+        difficulty: 'Vận dụng'
       },
       {
         id: 5,
-        question: 'Chức năng "Báo cáo" (Report / Phản hồi vi phạm) trên mạng xã hội dùng để làm gì?',
+        question: 'Một chữ ký email (Email Signature) chuyên nghiệp thường bao gồm những thông tin nào sau đây?',
         options: [
-          'Báo cáo các nội dung độc hại, lừa đảo, bắt nạt trực tuyến hoặc thông tin sai sự thật cho quản trị viên xử lý',
-          'Xóa tài khoản của chính mình',
-          'Tăng lượt người theo dõi nhanh chóng',
-          'Gửi quà sinh nhật cho bạn bè'
+          'Họ và tên, Đơn vị/Lớp học, Số điện thoại liên hệ và Chức danh/Nhiệm vụ',
+          'Mật khẩu tài khoản email',
+          'Số dư tài khoản ngân hàng',
+          'Toàn bộ danh bạ bạn bè'
         ],
         correctIndex: 0,
-        explanation: 'Báo cáo vi phạm giúp cộng đồng chung tay xây dựng môi trường mạng trong sạch và an toàn.',
+        explanation: 'Chữ ký email cung cấp danh tính và phương thức liên hệ chính thức cho người đọc.',
         difficulty: 'Nhận biết'
       }
     ],
     application: {
       project: {
-        title: 'Thực hành: Thiết lập Chữ Ký Chuyên Nghiệp & Soạn Thư Mẫu',
-        context: 'Xây dựng tác phong giao tiếp số chuyên nghiệp cho học sinh THPT.',
-        mission: 'Cài đặt chữ ký tự động trong hộp thư Gmail/Outlook và soạn thảo một bức thư mẫu.',
+        title: 'Thiết Lập Bộ Nhận Diện Email & Bật Lá Chắn Bảo Mật 2FA',
+        context: 'Học sinh chuẩn bị bước vào giai đoạn nộp hồ sơ xét tuyển và liên lạc học thuật qua email.',
+        mission: 'Soạn thảo chữ ký email chuẩn mực trong Gmail và kích hoạt bảo mật 2 lớp 2FA.',
         steps: [
-          'Bước 1: Mở Cài đặt Gmail -> Thẻ Chung -> Mục Chữ ký (Signature).',
-          'Bước 2: Tạo chữ ký gồm: Họ và tên, Học sinh lớp, Trường THPT, Số điện thoại và câu châm ngôn học tập.',
-          'Bước 3: Bấm Soạn thư gửi cho bạn bên cạnh để kiểm tra độ hiển thị của chữ ký.'
+          'Bước 1: Mở Gmail -> Cài đặt (Settings) -> Kéo xuống mục `Chữ ký (Signature)`.',
+          'Bước 2: Soạn chữ ký định dạng chuẩn: Họ tên in đậm, Lớp, Trường, Số điện thoại và liên kết trang cá nhân.',
+          'Bước 3: Mở Cài đặt tài khoản Google -> Mục `Bảo mật` -> Bật `Xác minh 2 bước (2-Step Verification)`.',
+          'Bước 4: Soạn một bức thư thử nghiệm gửi cho giáo viên: Tiêu đề rõ ràng, dùng trường To/CC chuẩn xác.'
         ],
-        outputRequirement: 'Ảnh chụp bức thư điện tử hiển thị đầy đủ tiêu đề chuẩn mực và chữ ký tự động đẹp mắt.',
-        practicalTip: 'Không nên dùng quá nhiều màu sắc sặc sỡ trong chữ ký, chỉ nên dùng màu chữ tối giản, trang nhã.'
+        outputRequirement: 'Ảnh chụp màn hình thông báo "Xác minh 2 bước đang BẬT" và bức thư có chữ ký chuyên nghiệp.',
+        practicalTip: 'Tải ứng dụng Google Authenticator trên điện thoại để lấy mã 2FA nhanh chóng ngay cả khi không có sóng di động SMS.'
       },
       mindmap: {
         id: 'mm_11_8',
         label: 'EMAIL & MẠNG XÃ HỘI',
-        color: '#0284c7',
+        color: '#6366f1',
         children: [
           {
             id: 'mm_11_8_1',
-            label: 'Cấu trúc Email chuẩn',
+            label: 'Nghi thức Email',
             children: [
-              { id: 'mm_11_8_1_1', label: 'To (Người nhận chính)' },
-              { id: 'mm_11_8_1_2', label: 'CC (Bản sao công khai)' },
-              { id: 'mm_11_8_1_3', label: 'BCC (Bản sao ẩn danh)' },
-              { id: 'mm_11_8_1_4', label: 'Subject & Signature' }
+              { id: 'mm_11_8_1_1', label: 'To: Người nhận chính' },
+              { id: 'mm_11_8_1_2', label: 'CC: Đồng kính gửi' },
+              { id: 'mm_11_8_1_3', label: 'BCC: Ẩn danh bảo mật' },
+              { id: 'mm_11_8_1_4', label: 'Tiêu đề & Chữ ký Signature' }
             ]
           },
           {
             id: 'mm_11_8_2',
-            label: 'An toàn mạng xã hội',
+            label: 'Bảo mật tài khoản',
             children: [
-              { id: 'mm_11_8_2_1', label: 'Xác thực 2 yếu tố 2FA' },
-              { id: 'mm_11_8_2_2', label: 'Quyền riêng tư bài đăng' },
-              { id: 'mm_11_8_2_3', label: 'Ứng xử mạng văn minh' }
+              { id: 'mm_11_8_2_1', label: 'Bật xác thực 2 bước (2FA)' },
+              { id: 'mm_11_8_2_2', label: 'Quyền riêng tư mạng xã hội' },
+              { id: 'mm_11_8_2_3', label: 'Không lộ thông tin CCCD/Vé' }
             ]
           }
         ]
       }
     },
     completion: {
-      badgeName: 'Công Dân Số Văn Minh 11',
-      badgeIcon: 'MailCheck',
-      roleTitle: 'Chuyên Viên Giao Tiếp Kỹ Thuật Số',
-      congratsMessage: 'Tuyệt vời! Bạn đã nắm vững các chuẩn mực giao tiếp email chuyên nghiệp và bảo vệ an toàn trên mạng xã hội.',
-      skillsUnlocked: ['Phân biệt To/CC/BCC', 'Tạo chữ ký Signature', 'Bảo mật 2FA mạng xã hội']
+      badgeName: 'Sứ Giả Giao Tiếp Số 11',
+      badgeIcon: 'Mail',
+      roleTitle: 'Chuyên Viên Truyền Thông & An Toàn Danh Tính',
+      congratsMessage: 'Tuyệt vời! Bạn đã hoàn thành xuất sắc Chủ đề 2, làm chủ kỹ năng email công sở và trang bị lá chắn 2FA an toàn cho tài khoản cá nhân.',
+      skillsUnlocked: ['Phân biệt To, CC, BCC', 'Thiết kế chữ ký email Signature', 'Kích hoạt bảo mật 2 lớp 2FA']
     }
   }
 ];

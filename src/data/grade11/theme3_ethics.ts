@@ -23,24 +23,24 @@ export const THEME3_LESSONS_11: Lesson[] = [
         id: 'obj_11_9_1',
         category: 'knowledge',
         categoryName: 'Kiến thức cốt lõi',
-        title: 'Nhận diện các hình thức lừa đảo số',
-        description: 'Trình bày được các dấu hiệu nhận biết tin nhắn giả mạo ngân hàng, đường link độc hại và thủ đoạn đánh cắp tài khoản.',
+        title: 'Nhận diện thủ đoạn lừa đảo & mã độc',
+        description: 'Trình bày được dấu hiệu nhận biết các hình thức tấn công giả mạo (Phishing), kỹ nghệ thao túng tâm lý (Social Engineering) và cơ chế phá hoại của mã độc tống tiền (Ransomware).',
         iconName: 'ShieldAlert'
       },
       {
         id: 'obj_11_9_2',
         category: 'skill',
         categoryName: 'Kỹ năng & Năng lực',
-        title: 'Kỹ năng phòng vệ và xử lý sự cố',
-        description: 'Biết cách kiểm tra tính xác thực của đường link (URL), không cung cấp mã OTP và biết các bước xử lý khi nghi ngờ bị lộ thông tin.',
+        title: 'Kỹ năng phòng vệ & bảo vệ mã OTP',
+        description: 'Thực hiện được việc kiểm tra độ tin cậy của đường link URL, bảo mật tuyệt đối mã OTP cá nhân và biết các bước ứng phó khi nghi ngờ tài khoản bị xâm nhập.',
         iconName: 'Lock'
       },
       {
         id: 'obj_11_9_3',
         category: 'attitude',
         categoryName: 'Phẩm chất & Đạo đức',
-        title: 'Cảnh giác và trách nhiệm xã hội',
-        description: 'Hình thành thái độ tỉnh táo trước các thông tin kích động, không chia sẻ tin giả và nhắc nhở người thân phòng ngừa lừa đảo.',
+        title: 'Cảnh giác & lan tỏa văn hóa an toàn số',
+        description: 'Có thái độ tỉnh táo trước các bẫy tâm lý kích động lòng tham/sợ hãi, không phát tán tin giả và có trách nhiệm cảnh báo bảo vệ gia đình, bạn bè.',
         iconName: 'UserCheck'
       }
     ],
@@ -58,157 +58,182 @@ export const THEME3_LESSONS_11: Lesson[] = [
     knowledge: [
       {
         id: 'tab_11_9_1',
-        title: '1. Các Thủ Đoạn Tấn Công Phổ Biến & Quy Tắc Phòng Vệ',
-        subtitle: 'Cảnh giác trước Phishing, Ransomware và Social Engineering',
-        iconName: 'Shield',
+        title: '1. Nhận diện các hình thức tấn công lừa đảo (Phishing, mạo danh)',
+        subtitle: 'Các bẫy tâm lý và kỹ nghệ xã hội Social Engineering',
+        iconName: 'ShieldAlert',
         keyPoints: [
-          'Tấn công giả mạo (Phishing): Kẻ lừa đảo gửi email hoặc tin nhắn mạo danh ngân hàng, cơ quan công an, trường học dẫn dụ nạn nhân vào trang web giả mạo để chiếm đoạt tên đăng nhập, mật khẩu và mã OTP.',
-          'Kỹ nghệ xã hội (Social Engineering): Thủ đoạn thao túng tâm lý (đánh vào lòng tham, sự sợ hãi hoặc lòng trắc ẩn) để ép nạn nhân tự nguyện cung cấp thông tin bí mật.',
-          'Mã độc tống tiền (Ransomware): Loại mã độc mã hóa toàn bộ dữ liệu trên máy tính nạn nhân và đòi tiền chuộc để giải mã.',
-          'Quy tắc 3 KHÔNG: KHÔNG bấm vào link lạ; KHÔNG cung cấp mật khẩu/mã OTP; KHÔNG chuyển tiền theo yêu cầu của người lạ qua mạng.'
+          'Tấn công giả mạo (Phishing): Kẻ lừa đảo gửi email, tin nhắn mạo danh ngân hàng, cơ quan công an, tòa án, nhà trường hoặc thương hiệu uy tín. Chúng tạo các website có giao diện giống hệt trang thật nhưng có tên miền sai lệch (ví dụ: `vietcombank-online.xyz` thay vì `vietcombank.com.vn`) nhằm lừa người dùng nhập tên đăng nhập và mật khẩu.',
+          'Kỹ nghệ xã hội (Social Engineering): Thủ đoạn thao túng tâm lý nạn nhân dựa trên: (1) Đánh vào lòng tham (trúng thưởng lớn, quà tặng 0 đồng), (2) Đánh vào nỗi sợ hãi (đe dọa bị khóa tài khoản ngân hàng, liên quan đến vụ án ma túy), (3) Đánh vào tình cảm (hack Facebook người thân nhắn tin mượn tiền gấp).',
+          'Cách nhận diện đường link lừa đảo: Tên miền chứa ký tự lạ, cố tình sai chính tả (như `faceb00k.com`, `g00gle.com`), hoặc dùng các đuôi tên miền rẻ tiền miễn phí (.xyz, .top, .cc, .info).'
+        ],
+        visualType: 'comparison-table',
+        visualData: {
+          headers: ['Dấu hiệu', 'Trang web / Tin nhắn chính thống', 'Trang web / Tin nhắn lừa đảo Phishing'],
+          rows: [
+            ['Tên miền (Domain)', 'Đúng thương hiệu, đuôi chuẩn (.vn, .com)', 'Sai chính tả, thêm từ lạ (vcb-nhantien.xyz)'],
+            ['Giao thức bảo mật', 'Có ổ khóa xanh HTTPS hợp lệ', 'Cảnh báo bảo mật Certificate không hợp lệ'],
+            ['Nội dung thông điệp', 'Trang trọng, không ép buộc thời gian', 'Tạo tâm lý hoảng loạn, hối thúc trong 15 phút'],
+            ['Yêu cầu cung cấp', 'Không bao giờ hỏi mật khẩu/OTP', 'Đòi nhập toàn bộ số thẻ, mật khẩu và mã OTP']
+          ]
+        },
+        emCanNho: [
+          'Phishing là hình thức lừa đảo mạo danh tổ chức uy tín để đánh cắp tài khoản.',
+          'Luôn soi kỹ từng chữ cái trên thanh địa chỉ URL của trình duyệt trước khi đăng nhập.',
+          'Cơ quan công an và ngân hàng không bao giờ làm việc qua tin nhắn mạng xã hội hay yêu cầu chuyển tiền.'
+        ]
+      },
+      {
+        id: 'tab_11_9_2',
+        title: '2. Phòng chống mã độc tống tiền (Ransomware) và bảo vệ OTP',
+        subtitle: 'Bảo vệ tài sản số và dữ liệu cá nhân then chốt',
+        iconName: 'Lock',
+        keyPoints: [
+          'Mã độc tống tiền (Ransomware): Mã độc tự động mã hóa toàn bộ dữ liệu (ảnh, tài liệu Word, Excel) trên máy tính nạn nhân bằng các thuật toán quân sự mạnh. Sau đó chúng hiện thông báo đòi tiền chuộc bằng tiền điện tử (Bitcoin) để cung cấp chìa khóa giải mã.',
+          'Bảo vệ mã OTP (One-Time Password): Mã xác thực dùng một lần là chốt chặn cuối cùng bảo vệ tài sản ngân hàng. Kẻ gian chỉ cần lấy được mã OTP là tiền trong tài khoản sẽ bị chuyển sạch trong tích tắc. Không chia sẻ mã OTP cho bất kỳ ai, kể cả người tự xưng là nhân viên ngân hàng.',
+          'Quy tắc 3 KHÔNG phòng vệ an toàn:',
+          '  - KHÔNG bấm vào đường link lạ trong tin nhắn hoặc email không rõ nguồn gốc.',
+          '  - KHÔNG tải và mở các tệp đính kèm lạ (.exe, .scr, .zip) từ người lạ.',
+          '  - KHÔNG chia sẻ mã xác thực OTP hay mật khẩu cá nhân cho bất kỳ ai dưới bất kỳ hình thức nào.'
         ],
         visualType: 'infographic',
         visualData: {
           nodes: [
-            { label: 'Quy tắc 1: Kiểm tra URL', desc: 'Nhìn kỹ tên miền chính (VD: vietcombank.com.vn vs vcb-online.xyz)' },
-            { label: 'Quy tắc 2: Bảo mật OTP', desc: 'Mã OTP chỉ dùng khi bạn chủ động thực hiện giao dịch' },
-            { label: 'Quy tắc 3: Xác minh nguồn tin', desc: 'Gọi điện trực tiếp cho người thân khi nhận tin nhắn vay tiền gấp' }
+            { label: 'Nguyên tắc 1: Cảnh giác với link lạ', desc: 'Không nhấp vào link nhận quà, link vay vốn nhanh' },
+            { label: 'Nguyên tắc 2: Giữ bí mật mã OTP', desc: 'Mã OTP là của riêng bạn, chia sẻ OTP = Mất tiền' },
+            { label: 'Nguyên tắc 3: Sao lưu ngoại tuyến (Offline Backup)', desc: 'Lưu trữ bản sao dữ liệu quan trọng trên ổ cứng rời cất tủ' }
           ]
         },
         emCanNho: [
-          'Mã OTP là chìa khóa bảo mật cá nhân, ngân hàng và cơ quan công an KHÔNG BAO GIỜ yêu cầu bạn cung cấp OTP.',
-          'Cảnh giác với các đường link lạ có tên miền đuôi lạ (.xyz, .top, .cc).',
-          'Luôn xác minh lại bằng cuộc gọi thoại khi có người thân nhắn tin nhờ chuyển tiền gấp.'
+          'Mã độc Ransomware mã hóa dữ liệu đòi tiền chuộc; phòng bệnh bằng cách sao lưu dữ liệu thường xuyên.',
+          'Mã OTP là chìa khóa bí mật tối cao, tuyệt đối không cung cấp cho bất kỳ ai.',
+          'Thực hiện nghiêm quy tắc 3 KHÔNG khi tham gia không gian mạng.'
         ]
       }
     ],
     miniGame: {
-      type: 'drag-drop',
-      title: 'Phân loại Hành vi An toàn và Nguy hiểm trên Mạng',
-      instruction: 'Kéo thả các tình huống vào đúng nhóm An toàn hoặc Nguy cơ cao:',
-      categories: [
-        { id: 'safe', title: 'Hành vi An toàn số', color: 'border-emerald-500 bg-emerald-950/40 text-emerald-300' },
-        { id: 'danger', title: 'Hành vi Nguy hiểm (Nguy cơ bị hack/lừa)', color: 'border-rose-500 bg-rose-950/40 text-rose-300' }
-      ],
-      dragItems: [
-        { id: 'g1', text: 'Bật xác thực sinh trắc học (vân tay/khuôn mặt) trên ứng dụng ngân hàng', category: 'safe', explanation: 'Tăng cường bảo mật đa lớp an toàn tối đa.' },
-        { id: 'g2', text: 'Bấm vào link nhận học bổng từ tin nhắn của một tài khoản Facebook lạ', category: 'danger', explanation: 'Đường link lạ có thể dẫn đến trang lừa đảo Phishing đánh cắp tài khoản.' },
-        { id: 'g3', text: 'Gọi điện thoại thoại video xác nhận trước khi chuyển tiền cho bạn bè', category: 'safe', explanation: 'Xác minh người thật, tránh trường hợp tài khoản bạn bè bị hack mạo danh.' },
-        { id: 'g4', text: 'Cung cấp mã OTP nhận được qua SMS cho người tự xưng là cán bộ công an', category: 'danger', explanation: 'Cơ quan chức năng không bao giờ yêu cầu công dân đọc mã OTP qua điện thoại.' }
+      type: 'matching',
+      title: 'Ghép cặp Thủ Đoạn Lừa Đảo và Biện Pháp Ứng Phó',
+      instruction: 'Nối chiêu trò lừa đảo với hành động xử lý đúng đắn:',
+      matchingPairs: [
+        { id: 'sc1', left: 'Nhận tin nhắn Facebook bạn thân mượn tiền gấp', right: 'Gọi điện thoại thoại trực tiếp kiểm tra giọng nói trước khi chuyển' },
+        { id: 'sc2', left: 'Tin nhắn mạo danh công an dọa bắt vì liên quan án ma túy', right: 'Bình tĩnh dập máy ngay lập tức vì công an chỉ gửi giấy triệu tập trực tiếp' },
+        { id: 'sc3', left: 'Người tự xưng nhân viên ngân hàng xin mã OTP để hủy giao dịch', right: 'Tuyệt đối từ chối và cúp máy vì ngân hàng không bao giờ hỏi OTP' },
+        { id: 'sc4', left: 'Email thông báo nhận quà khuyến mãi kèm file nén lạ', right: 'Xóa email ngay lập tức, không giải nén tệp đính kèm' }
       ]
     },
     assessment: [
       {
         id: 1,
-        question: 'Thuật ngữ "Phishing" trong an toàn thông tin dùng để chỉ hình thức tấn công nào?',
+        question: 'Khi nhận được một tin nhắn thông báo bạn trúng thưởng ô tô và yêu cầu nhập mã OTP gửi về điện thoại vào một trang web lạ, bạn nên làm gì?',
         options: [
-          'Hình thức lừa đảo giả mạo các tổ chức uy tín để dụ người dùng cung cấp mật khẩu, mã OTP và thông tin thẻ tín dụng',
-          'Phần mềm giúp tăng tốc độ mạng Internet',
-          'Trò chơi câu cá giải trí trên điện thoại',
-          'Kỹ thuật vẽ hình bằng máy tính'
+          'Tuyệt đối không nhập mã OTP, xóa tin nhắn và báo cáo số điện thoại lừa đảo',
+          'Nhập mã OTP ngay để kịp nhận thưởng',
+          'Gửi mã OTP cho bạn cùng lớp cùng xem',
+          'Đăng mã OTP lên trang cá nhân Facebook'
         ],
         correctIndex: 0,
-        explanation: 'Phishing (giả mạo) là phương thức lừa đảo số phổ biến nhất hiện nay nhằm đánh cắp thông tin đăng nhập.',
-        difficulty: 'Nhận biết'
+        explanation: 'Mã OTP chỉ dùng để xác nhận giao dịch bạn chủ động thực hiện; nhập vào web lạ sẽ bị mất tiền tài khoản.',
+        difficulty: 'Thông hiểu'
       },
       {
         id: 2,
-        question: 'Ngân hàng hoặc các cơ quan công an Việt Nam có bao giờ gọi điện hoặc nhắn tin yêu cầu người dân cung cấp mã OTP không?',
+        question: 'Mục đích chính của loại mã độc tống tiền (Ransomware) khi lây nhiễm vào máy tính nạn nhân là gì?',
         options: [
-          'TUYỆT ĐỐI KHÔNG BAO GIỜ, bất kỳ ai hỏi mã OTP của bạn chắc chắn là kẻ lừa đảo',
-          'Có, khi cán bộ muốn kiểm tra tài khoản giúp bạn',
-          'Có, nếu cuộc gọi vào ban đêm',
-          'Chỉ yêu cầu khi bạn trúng thưởng'
+          'Mã hóa toàn bộ tệp dữ liệu trên máy tính và đòi nạn nhân trả tiền chuộc để lấy lại chìa khóa giải mã',
+          'Làm hỏng chuột máy tính',
+          'Tự động tăng dung lượng RAM máy tính',
+          'Cài đặt hộ phần mềm học tập'
         ],
         correctIndex: 0,
-        explanation: 'Mã OTP chỉ thuộc quyền sở hữu của riêng bạn, không có bất kỳ tổ chức hợp pháp nào có quyền đòi hỏi bạn đọc mã này.',
-        difficulty: 'Thông hiểu'
+        explanation: 'Ransomware giữ các tệp tin của người dùng làm con tin bằng cách mã hóa chúng.',
+        difficulty: 'Nhận biết'
       },
       {
         id: 3,
-        question: 'Khi nhận được tin nhắn Messenger từ một người bạn thân với nội dung: "Tớ đang có việc gấp, bạn chuyển khoản cho tớ vay 2 triệu vào số tài khoản này với", bạn nên làm gì đầu tiên?',
+        question: 'Thủ đoạn "Kỹ nghệ xã hội" (Social Engineering) của tin tặc thường lợi dụng yếu tố nào của con người để lừa đảo?',
         options: [
-          'Gọi điện thoại thoại trực tiếp cho bạn (bằng số điện thoại thông thường) để xác nhận có đúng bạn mình đang vay tiền không',
-          'Chuyển tiền ngay lập tức vì là bạn thân',
-          'Mắng bạn một trận thậm tệ',
-          'Gửi thêm mật khẩu tài khoản ngân hàng của mình cho bạn'
+          'Lợi dụng tâm lý sợ hãi, lòng tham hoặc sự thiếu hiểu biết của nạn nhân',
+          'Lợi dụng tốc độ chạy của máy tính',
+          'Lợi dụng thời tiết mưa bão',
+          'Lợi dụng thương hiệu của màn hình máy tính'
         ],
         correctIndex: 0,
-        explanation: 'Rất nhiều trường hợp tài khoản mạng xã hội bị tin tặc chiếm quyền điều khiển và nhắn tin lừa đảo hàng loạt bạn bè.',
-        difficulty: 'Vận dụng'
-      },
-      {
-        id: 4,
-        question: 'Mã độc tống tiền (Ransomware) gây hại cho máy tính nạn nhân bằng cách nào?',
-        options: [
-          'Mã hóa toàn bộ các tệp tài liệu quan trọng trên máy và đòi tiền chuộc để cung cấp khóa giải mã',
-          'Tự động tăng âm lượng loa máy tính lên mức to nhất',
-          'Làm bàn phím máy tính đổi sang màu hồng',
-          'Tự động giải bài tập về nhà'
-        ],
-        correctIndex: 0,
-        explanation: 'Ransomware làm tê liệt dữ liệu của người dùng hoặc doanh nghiệp để tống tiền chuộc bằng tiền mã hóa.',
+        explanation: 'Kỹ nghệ xã hội đánh vào tâm lý con người thay vì bẻ khóa kỹ thuật.',
         difficulty: 'Thông hiểu'
       },
       {
-        id: 5,
-        question: 'Để phòng tránh rủi ro mất mát dữ liệu do mã độc Ransomware gây ra, biện pháp dự phòng quan trọng nhất là gì?',
+        id: 4,
+        question: 'Dấu hiệu nào sau đây cho thấy một đường link URL nhiều khả năng là trang web lừa đảo giả mạo (Phishing)?',
         options: [
-          'Thực hiện sao lưu (Backup) dữ liệu định kỳ ra ổ cứng di động hoặc dịch vụ đám mây an toàn',
-          'Không bao giờ tắt máy tính',
-          'Cài đặt 10 phần mềm diệt virus cùng lúc',
-          'Tắt kết nối Wi-Fi vĩnh viễn'
+          'Tên miền bị sai chính tả hoặc chèn thêm các từ lạ như vcb-online-nhanthuong.xyz',
+          'Đường link có đuôi tên miền .gov.vn của chính phủ',
+          'Trang web có chứng chỉ bảo mật của trường đại học',
+          'Trang web hiển thị bài viết của báo Tuổi Trẻ'
         ],
         correctIndex: 0,
-        explanation: 'Sao lưu dữ liệu định kỳ giúp bạn dễ dàng khôi phục lại hệ thống mà không phải trả tiền chuộc cho tin tặc.',
+        explanation: 'Kẻ xấu thường mua các tên miền rẻ tiền gần giống tên miền thật để đánh lừa người dùng mất cảnh giác.',
+        difficulty: 'Vận dụng'
+      },
+      {
+        id: 5,
+        question: 'Biện pháp hiệu quả nhất để không bao giờ bị mất sạch tài liệu học tập khi máy tính không may bị dính mã độc Ransomware là gì?',
+        options: [
+          'Thường xuyên sao lưu dữ liệu sang ổ cứng di động rời (sau khi sao lưu xong rút cất tủ) hoặc lưu trên đám mây',
+          'Tắt màn hình máy tính khi đi ngủ',
+          'Dán băng dính che camera laptop',
+          'Không bao giờ bật máy tính'
+        ],
+        correctIndex: 0,
+        explanation: 'Bản sao lưu ngoại tuyến (Offline Backup) không thể bị mã độc trên máy tính tấn công tới.',
         difficulty: 'Vận dụng'
       }
     ],
     application: {
       project: {
-        title: 'Dự án: Cẩm nang Nhận diện Lừa đảo Số cho Gia đình',
-        context: 'Nhiều người lớn tuổi trong gia đình chưa có nhiều kỹ năng công nghệ và dễ trở thành nạn nhân của các cuộc gọi lừa đảo.',
-        mission: 'Thiết kế một tờ rơi hoặc bản ghi chú hướng dẫn các quy tắc an toàn số dán tại góc học tập/phòng khách gia đình.',
+        title: 'Cẩm Nang Học Đường: "Cẩm Nang Phòng Chống Lừa Đảo Không Gian Mạng"',
+        context: 'Nhiều học sinh và phụ huynh trong trường trở thành nạn nhân của các chiêu trò lừa đảo mạo danh.',
+        mission: 'Thiết kế một infographic hoặc tờ rơi tóm tắt quy tắc an toàn số cho học sinh toàn trường.',
         steps: [
-          'Bước 1: Liệt kê 3 chiêu trò lừa đảo phổ biến nhất hiện nay (Cuộc gọi mạo danh công an, Tin nhắn trúng thưởng, Giả danh con cái cấp cứu).',
-          'Bước 2: Ghi rõ quy tắc "Không click link lạ - Không đọc mã OTP - Gọi điện thoại kiểm chứng".',
-          'Bước 3: Ghi số điện thoại đường dây nóng an ninh mạng của cơ quan công an để liên hệ khi cần thiết.'
+          'Mục 1: Nhận diện 3 chiêu trò phổ biến nhất (Mạo danh công an, hack Facebook vay tiền, trúng thưởng giả).',
+          'Mục 2: Bật mí bí quyết soi tên miền URL giả mạo.',
+          'Mục 3: Cảnh báo đỏ về bảo vệ mã bí mật OTP.',
+          'Mục 4: Danh bạ khẩn cấp: Đường dây nóng của Cục An toàn thông tin và Công an địa phương.'
         ],
-        outputRequirement: 'Một bản ghi chú hoặc infographic nhỏ tuyên truyền an toàn số cho người thân.',
-        practicalTip: 'Giải thích bằng ngôn từ mộc mạc, dễ hiểu để ông bà, cha mẹ dễ ghi nhớ và áp dụng khi gặp tình huống thực tế.'
+        outputRequirement: 'Ấn phẩm cẩm nang số rõ ràng, ngắn gọn, dễ hiểu để phổ biến trên bảng tin chi đoàn.',
+        practicalTip: 'Khắc ghi khẩu hiệu: "Chậm lại 30 giây - Xác minh qua điện thoại - Nói KHÔNG với mã OTP lạ".'
       },
       mindmap: {
         id: 'mm_11_9',
-        label: 'GIAO TIẾP AN TOÀN TRÊN MẠNG',
-        color: '#059669',
+        label: 'GIAO TIẾP AN TOÀN SỐ',
+        color: '#10b981',
         children: [
           {
             id: 'mm_11_9_1',
-            label: 'Mối đe dọa phổ biến',
+            label: 'Nhận diện mối nguy',
             children: [
-              { id: 'mm_11_9_1_1', label: 'Tấn công Phishing (Giả mạo)' },
+              { id: 'mm_11_9_1_1', label: 'Tấn công Phishing giả mạo' },
               { id: 'mm_11_9_1_2', label: 'Mã độc tống tiền Ransomware' },
-              { id: 'mm_11_9_1_3', label: 'Lừa đảo mạo danh người thân' }
+              { id: 'mm_11_9_1_3', label: 'Kỹ nghệ xã hội thao túng tâm lý' }
             ]
           },
           {
             id: 'mm_11_9_2',
-            label: 'Quy tắc vàng bảo vệ',
+            label: 'Quy tắc phòng vệ',
             children: [
-              { id: 'mm_11_9_2_1', label: 'Bảo mật tuyệt đối mã OTP' },
-              { id: 'mm_11_9_2_2', label: 'Xác thực 2 yếu tố (2FA)' },
-              { id: 'mm_11_9_2_3', label: 'Kiểm chứng URL và nguồn tin' }
+              { id: 'mm_11_9_2_1', label: 'Soi kỹ đường link URL' },
+              { id: 'mm_11_9_2_2', label: 'Tuyệt đối giữ bí mật mã OTP' },
+              { id: 'mm_11_9_2_3', label: 'Quy tắc 3 KHÔNG' }
             ]
           }
         ]
       }
     },
     completion: {
-      badgeName: 'Hiệp Sĩ An Ninh Mạng 11',
+      badgeName: 'Hiệp Sĩ An Toàn Mạng 11',
       badgeIcon: 'ShieldAlert',
-      roleTitle: 'Chuyên Viên Phòng Vệ Không Gian Mạng',
-      congratsMessage: 'Tuyệt vời! Bạn đã trang bị lá chắn số vững chắc để bảo vệ bản thân và người thân trên môi trường Internet.',
-      skillsUnlocked: ['Nhận diện bẫy Phishing', 'Bảo vệ mã OTP', 'Quy tắc 3 Không phòng vệ số']
+      roleTitle: 'Chuyên Viên Tuyên Truyền An Toàn Thông Tin',
+      congratsMessage: 'Tuyệt vời! Bạn đã trang bị lá chắn kiến thức vững chắc để bảo vệ bản thân và gia đình trước mọi cạm bẫy lừa đảo trên không gian mạng.',
+      skillsUnlocked: ['Nhận diện Phishing & Ransomware', 'Kiểm tra tên miền độc hại', 'Bảo vệ mã bí mật OTP']
     }
   }
 ];

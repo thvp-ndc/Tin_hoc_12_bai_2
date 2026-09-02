@@ -9,6 +9,9 @@ export interface ObjectiveItem {
   iconName: string;
 }
 
+export type Objective = ObjectiveItem;
+
+
 export interface PollOption {
   id: string;
   text: string;

@@ -49,9 +49,22 @@ export const LESSON_TITLES_10: Record<number, { title: string; themeId: number; 
   34: { title: 'Nghề phát triển phần mềm', themeId: 6, themeName: 'Chủ đề 6: Hướng nghiệp với Tin học', badge: 'Hướng nghiệp Lập trình viên', desc: 'Khám phá nghề Kỹ sư phần mềm (Software Engineer): quy trình làm việc Agile, vai trò và triển vọng phát triển nghề nghiệp.' }
 };
 
+import { ALL_GRADE_10_CURRICULUM } from './grade10/curriculum10';
+
 export function getLesson10ById(id: number): Lesson {
   const existing = LESSONS_DATA_10.find(l => l.id === id);
-  if (existing) return existing;
+  const curriculum = ALL_GRADE_10_CURRICULUM[id];
+
+  if (existing) {
+    if (curriculum) {
+      return {
+        ...existing,
+        objectives: curriculum.objectives,
+        knowledge: curriculum.knowledge
+      };
+    }
+    return existing;
+  }
 
   const meta = LESSON_TITLES_10[id] || {
     title: `Bài ${id}: Tin học 10 chuẩn GDPT 2018`,
@@ -60,6 +73,63 @@ export function getLesson10ById(id: number): Lesson {
     badge: 'Tin học 10',
     desc: 'Học tập và thực hành theo chuẩn SGK Tin học 10 (taphuan.nxbgd.vn).'
   };
+
+  const defaultObjectives = [
+    {
+      id: `obj_10_${id}_1`,
+      category: 'knowledge' as const,
+      categoryName: 'Kiến thức cốt lõi',
+      title: `Nắm vững lý thuyết ${meta.title}`,
+      description: `Hiểu rõ các khái niệm, quy tắc và cú pháp chuẩn được trình bày trong ${meta.title}.`,
+      iconName: 'BookOpen'
+    },
+    {
+      id: `obj_10_${id}_2`,
+      category: 'skill' as const,
+      categoryName: 'Kỹ năng & Năng lực',
+      title: 'Kỹ năng thực hành & Thuật toán',
+      description: 'Vận dụng kiến thức để giải quyết bài toán trên máy tính hoặc viết chương trình Python.',
+      iconName: 'Code'
+    },
+    {
+      id: `obj_10_${id}_3`,
+      category: 'attitude' as const,
+      categoryName: 'Phẩm chất & Đạo đức',
+      title: 'Tư duy logic & Ý thức tự học',
+      description: 'Phát triển năng lực tư duy logic, tính kiên trì và thói quen giải quyết vấn đề khoa học.',
+      iconName: 'Sparkles'
+    }
+  ];
+
+  const defaultKnowledge = [
+    {
+      id: `tab_10_${id}_1`,
+      title: `1. Nội dung trọng tâm ${meta.title}`,
+      subtitle: 'Kiến thức chuẩn SGK Tin học 10 taphuan.nxbgd.vn',
+      iconName: 'Code2',
+      keyPoints: [
+        `Nắm vững các thuật ngữ và định nghĩa then chốt trong ${meta.title}.`,
+        'Thực hiện đúng cú pháp và quy trình thao tác theo từng bước.',
+        'Kết hợp kiểm thử để đảm bảo kết quả chính xác không có lỗi.'
+      ],
+      visualType: id >= 16 && id <= 32 ? 'interactive-python' as const : 'infographic' as const,
+      visualData: id >= 16 && id <= 32 ? {
+        defaultCode: `# Thực hành lập trình Python cho ${meta.title}\nprint("Xin chào! Đang chạy ${meta.title}")\nx = 10\ny = 20\nprint("Kết quả x + y =", x + y)`,
+        simulatedOutput: `Xin chào! Đang chạy ${meta.title}\nKết quả x + y = 30`
+      } : {
+        nodes: [
+          { label: 'Bước 1: Khái niệm', desc: 'Xác định định nghĩa cốt lõi' },
+          { label: 'Bước 2: Cú pháp / Thao tác', desc: 'Thực thi các lệnh theo chuẩn' },
+          { label: 'Bước 3: Đánh giá', desc: 'Kiểm tra và củng cố kiến thức' }
+        ]
+      },
+      emCanNho: [
+        `Nắm vững bản chất và quy tắc cốt lõi của ${meta.title}.`,
+        'Luôn chạy thử nghiệm và kiểm tra lỗi cẩn thận.',
+        'Ghi nhớ các trường hợp đặc biệt để tránh mắc lỗi cú pháp.'
+      ]
+    }
+  ];
 
   return {
     id,
@@ -77,32 +147,7 @@ export function getLesson10ById(id: number): Lesson {
       accentColor: 'from-emerald-600 to-teal-600',
       keyHighlights: ['Chuẩn SGK GDPT 2018 taphuan.nxbgd.vn', 'Trải nghiệm học tập tương tác', 'Thực hành ứng dụng thực tế']
     },
-    objectives: [
-      {
-        id: `obj_10_${id}_1`,
-        category: 'knowledge',
-        categoryName: 'Kiến thức cốt lõi',
-        title: `Nắm vững lý thuyết ${meta.title}`,
-        description: `Hiểu rõ các khái niệm, quy tắc và cú pháp chuẩn được trình bày trong ${meta.title}.`,
-        iconName: 'BookOpen'
-      },
-      {
-        id: `obj_10_${id}_2`,
-        category: 'skill',
-        categoryName: 'Kỹ năng & Năng lực',
-        title: 'Kỹ năng thực hành & Thuật toán',
-        description: 'Vận dụng kiến thức để giải quyết bài toán trên máy tính hoặc viết chương trình Python.',
-        iconName: 'Code'
-      },
-      {
-        id: `obj_10_${id}_3`,
-        category: 'attitude',
-        categoryName: 'Phẩm chất & Đạo đức',
-        title: 'Tư duy logic & Ý thức tự học',
-        description: 'Phát triển năng lực tư duy logic, tính kiên trì và thói quen giải quyết vấn đề khoa học.',
-        iconName: 'Sparkles'
-      }
-    ],
+    objectives: curriculum?.objectives || defaultObjectives,
     warmup: {
       title: `Tình huống khởi động: ${meta.title}`,
       scenario: `Trong quá trình học tập và áp dụng máy tính, tình huống gắn liền với ${meta.title} sẽ giúp ta thấu hiểu rõ nét giá trị của công nghệ.`,
@@ -114,35 +159,8 @@ export function getLesson10ById(id: number): Lesson {
       ],
       reflection: `Thực hành đều đặn với ${meta.title} sẽ giúp bạn phát triển tư duy giải quyết vấn đề xuất sắc.`
     },
-    knowledge: [
-      {
-        id: `tab_10_${id}_1`,
-        title: `1. Nội dung trọng tâm ${meta.title}`,
-        subtitle: 'Kiến thức chuẩn SGK Tin học 10 taphuan.nxbgd.vn',
-        iconName: 'Code2',
-        keyPoints: [
-          `Nắm vững các thuật ngữ và định nghĩa then chốt trong ${meta.title}.`,
-          'Thực hiện đúng cú pháp và quy trình thao tác theo từng bước.',
-          'Kết hợp kiểm thử để đảm bảo kết quả chính xác không có lỗi.'
-        ],
-        visualType: id >= 16 && id <= 32 ? 'interactive-python' : 'infographic',
-        visualData: id >= 16 && id <= 32 ? {
-          defaultCode: `# Thực hành lập trình Python cho ${meta.title}\nprint("Xin chào! Đang chạy ${meta.title}")\nx = 10\ny = 20\nprint("Kết quả x + y =", x + y)`,
-          simulatedOutput: `Xin chào! Đang chạy ${meta.title}\nKết quả x + y = 30`
-        } : {
-          nodes: [
-            { label: 'Bước 1: Khái niệm', desc: 'Xác định định nghĩa cốt lõi' },
-            { label: 'Bước 2: Cú pháp / Thao tác', desc: 'Thực thi các lệnh theo chuẩn' },
-            { label: 'Bước 3: Đánh giá', desc: 'Kiểm tra và củng cố kiến thức' }
-          ]
-        },
-        emCanNho: [
-          `Nắm vững bản chất và quy tắc cốt lõi của ${meta.title}.`,
-          'Luôn chạy thử nghiệm và kiểm tra lỗi cẩn thận.',
-          'Ghi nhớ các trường hợp đặc biệt để tránh mắc lỗi cú pháp.'
-        ]
-      }
-    ],
+    knowledge: curriculum?.knowledge || defaultKnowledge,
+
     miniGame: {
       type: 'matching',
       title: `Thử thách ghép cặp thuật ngữ: ${meta.title}`,
