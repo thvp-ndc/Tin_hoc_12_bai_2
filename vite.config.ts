@@ -4,6 +4,12 @@ import react from '@vitejs/plugin-react';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  base: './', // Relative base path ensures assets load cleanly on GitHub Pages
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    sourcemap: false
+  },
   server: {
     port: 3000,
     open: true
