@@ -1,15 +1,15 @@
 import { Lesson, MindMapNode } from '../types/lesson';
 
 /**
- * Tinh chỉnh nhãn chuỗi cho ngắn gọn, súc tích phù hợp hiển thị trên Sơ đồ tư duy
+ * Làm sạch và chuẩn hóa nhãn cho các nút con trên Sơ đồ tư duy
  */
-function cleanMindmapLabel(text: string, maxLen: number = 80): string {
+function cleanSubNodeText(text: string, maxLen: number = 110): string {
   if (!text) return '';
   let cleaned = text.trim();
-  // Loại bỏ số thứ tự đầu dòng như "1. ", "2. ", "Bước 1: "
-  cleaned = cleaned.replace(/^\d+\.\s*/, '');
-  cleaned = cleaned.replace(/^Bước\s+\d+:\s*/i, '');
-  // Cắt ngắn nếu quá dài
+  // Loại bỏ các gạch đầu dòng hoặc ký tự hoa thị/số thứ tự thừa
+  cleaned = cleaned.replace(/^[-•*]\s*/, '');
+  cleaned = cleaned.replace(/^\d+[\).]\s*/, '');
+  
   if (cleaned.length > maxLen) {
     cleaned = cleaned.substring(0, maxLen - 3) + '...';
   }
@@ -17,179 +17,66 @@ function cleanMindmapLabel(text: string, maxLen: number = 80): string {
 }
 
 /**
- * Kiểm tra xem sơ đồ tư duy có phải là placeholder mẫu chung chung không
- */
-function isGenericMindmap(mindmap?: MindMapNode): boolean {
-  if (!mindmap || !mindmap.children || mindmap.children.length === 0) return true;
-  
-  // Kiểm tra nếu có các từ khóa placeholder cũ
-  const genericLabels = [
-    'kiến thức cốt lõi',
-    'khái niệm & cú pháp chuẩn',
-    'thao tác từng bước',
-    'dự án học đường',
-    'nguyên lý hoạt động',
-    'kiểm thử & sửa lỗi',
-    'định hướng nghề nghiệp'
-  ];
-
-  let genericMatchCount = 0;
-  for (const branch of mindmap.children) {
-    if (genericLabels.includes(branch.label.toLowerCase().trim())) {
-      genericMatchCount++;
-    }
-    if (branch.children) {
-      for (const sub of branch.children) {
-        if (genericLabels.includes(sub.label.toLowerCase().trim())) {
-          genericMatchCount++;
-        }
-      }
-    }
-  }
-
-  // Nếu có từ 2 nhãn trùng với placeholder generic thì coi là generic
-  return genericMatchCount >= 2;
-}
-
-/**
- * Xây dựng Sơ đồ tư duy (Mindmap) chuẩn xác, chuyên sâu từ các tab kiến thức SGK và mục tiêu bài học
+ * Xây dựng Sơ đồ tư duy tổng kết (Mindmap ở Bước 7/8)
+ * THEO ĐÚNG NỘI DUNG BÀI HỌC Ở MỤC KHÁM PHÁ KIẾN THỨC (Bước 4/8)
+ * 
+ * Mỗi nhánh chính trong sơ đồ tư duy tương ứng chuẩn xác 1:1 với một mục trong
+ * phần Khám phá kiến thức (Mục 1, Mục 2, Mục 3...).
+ * Các nút con được trích xuất trực tiếp từ các ý trọng tâm trong hộp "Em cần nhớ"
+ * và các điểm cốt lõi (keyPoints) của từng mục.
  */
 export function generateRobustMindmap(lesson: Lesson): MindMapNode {
-  // Nếu bài học đã có mindmap thủ công chất lượng cao và KHÔNG phải placeholder generic, giữ nguyên
-  if (lesson.application?.mindmap && !isGenericMindmap(lesson.application.mindmap)) {
-    // Đảm bảo có màu sắc đẹp
+  const grade = lesson.grade || 12;
+  const gradeColor = grade === 10 ? '#059669' : grade === 11 ? '#8b5cf6' : '#2563eb';
+  const rootId = `mm_${grade}_${lesson.id}`;
+
+  const tabs = lesson.knowledge || [];
+
+  // Trường hợp không có tab khám phá kiến thức (phòng hờ dữ liệu lỗi)
+  if (tabs.length === 0) {
     return {
-      ...lesson.application.mindmap,
-      color: lesson.application.mindmap.color || (lesson.grade === 10 ? '#059669' : lesson.grade === 11 ? '#8b5cf6' : '#2563eb')
+      id: rootId,
+      label: lesson.title.toUpperCase(),
+      color: gradeColor,
+      children: [
+        {
+          id: `${rootId}_1`,
+          label: 'Nội Dung Trọng Tâm',
+          badge: 'Bài học',
+          children: [
+            { id: `${rootId}_1_1`, label: lesson.hero?.tagline || lesson.title },
+            { id: `${rootId}_1_2`, label: 'Nắm vững lý thuyết và thực hành theo SGK' }
+          ]
+        }
+      ]
     };
   }
 
-  const gradeColor = lesson.grade === 10 ? '#059669' : lesson.grade === 11 ? '#8b5cf6' : '#2563eb';
-  const rootId = `mm_${lesson.grade || 12}_${lesson.id}`;
-
-  const branches: MindMapNode[] = [];
-  const knowledgeTabs = lesson.knowledge || [];
-
-  if (knowledgeTabs.length >= 3) {
-    // Trường hợp bài học có từ 3 mục SGK trở lên: 3 nhánh tương ứng 3 mục lớn
-    for (let i = 0; i < Math.min(3, knowledgeTabs.length); i++) {
-      const tab = knowledgeTabs[i];
-      const branchTitle = cleanMindmapLabel(tab.title, 45);
-      
-      // Lấy các ý quan trọng từ emCanNho hoặc keyPoints
-      const sourcePoints = (tab.emCanNho && tab.emCanNho.length > 0) ? tab.emCanNho : tab.keyPoints;
-      const subNodes: MindMapNode[] = sourcePoints.slice(0, 3).map((pt, idx) => ({
-        id: `${rootId}_${i + 1}_${idx + 1}`,
-        label: cleanMindmapLabel(pt, 75)
-      }));
-
-      branches.push({
-        id: `${rootId}_${i + 1}`,
-        label: branchTitle,
-        badge: `Mục ${i + 1}`,
-        children: subNodes
-      });
-    }
-  } else if (knowledgeTabs.length === 2) {
-    // Trường hợp bài học có 2 mục SGK: Nhánh 1 (Mục 1), Nhánh 2 (Mục 2), Nhánh 3 (Kỹ năng & Vận dụng thực tiễn)
-    // Nhánh 1: Mục 1
-    const tab1 = knowledgeTabs[0];
-    const sourcePoints1 = (tab1.emCanNho && tab1.emCanNho.length > 0) ? tab1.emCanNho : tab1.keyPoints;
-    branches.push({
-      id: `${rootId}_1`,
-      label: cleanMindmapLabel(tab1.title, 45),
-      badge: 'Mục 1',
-      children: sourcePoints1.slice(0, 3).map((pt, idx) => ({
-        id: `${rootId}_1_${idx + 1}`,
-        label: cleanMindmapLabel(pt, 75)
-      }))
-    });
-
-    // Nhánh 2: Mục 2
-    const tab2 = knowledgeTabs[1];
-    const sourcePoints2 = (tab2.emCanNho && tab2.emCanNho.length > 0) ? tab2.emCanNho : tab2.keyPoints;
-    branches.push({
-      id: `${rootId}_2`,
-      label: cleanMindmapLabel(tab2.title, 45),
-      badge: 'Mục 2',
-      children: sourcePoints2.slice(0, 3).map((pt, idx) => ({
-        id: `${rootId}_2_${idx + 1}`,
-        label: cleanMindmapLabel(pt, 75)
-      }))
-    });
-
-    // Nhánh 3: Kỹ năng & Vận dụng từ Mục tiêu (skill, attitude) và Dự án (project)
-    const skillObj = lesson.objectives?.find(o => o.category === 'skill');
-    const attitudeObj = lesson.objectives?.find(o => o.category === 'attitude');
-    const projectMission = lesson.application?.project?.mission || lesson.application?.project?.title;
-
-    const subNodes3: MindMapNode[] = [];
-    if (skillObj) {
-      subNodes3.push({
-        id: `${rootId}_3_1`,
-        label: `Kỹ năng: ${cleanMindmapLabel(skillObj.title, 65)}`
-      });
-    }
-    if (attitudeObj) {
-      subNodes3.push({
-        id: `${rootId}_3_2`,
-        label: `Phẩm chất: ${cleanMindmapLabel(attitudeObj.title, 65)}`
-      });
-    }
-    if (projectMission) {
-      subNodes3.push({
-        id: `${rootId}_3_3`,
-        label: `Thực chiến: ${cleanMindmapLabel(projectMission, 65)}`
-      });
-    } else {
-      subNodes3.push({
-        id: `${rootId}_3_3`,
-        label: 'Thực hành thao tác và kiểm thử chuẩn mực'
-      });
-    }
-
-    branches.push({
-      id: `${rootId}_3`,
-      label: 'Kỹ Năng & Vận Dụng',
-      badge: 'Thực hành',
-      children: subNodes3
-    });
-  } else if (knowledgeTabs.length === 1) {
-    // Trường hợp bài học có 1 mục: Nhánh 1 (Lý thuyết cốt lõi), Nhánh 2 (Quy trình thực hành), Nhánh 3 (Vận dụng)
-    const tab1 = knowledgeTabs[0];
-    const sourcePoints1 = (tab1.emCanNho && tab1.emCanNho.length > 0) ? tab1.emCanNho : tab1.keyPoints;
+  // TẠO CÁC NHÁNH CHÍNH THEO ĐÚNG CÁC MỤC TRONG KHÁM PHÁ KIẾN THỨC (1:1)
+  const branches: MindMapNode[] = tabs.map((tab, tabIdx) => {
+    const rawTitle = tab.title.trim();
     
-    branches.push({
-      id: `${rootId}_1`,
-      label: cleanMindmapLabel(tab1.title, 45),
-      badge: 'Trọng tâm',
-      children: sourcePoints1.slice(0, 3).map((pt, idx) => ({
-        id: `${rootId}_1_${idx + 1}`,
-        label: cleanMindmapLabel(pt, 75)
-      }))
-    });
+    // Xác định huy hiệu mục (Ví dụ: "Mục 1", "Mục 2", "Mục 3")
+    const matchMuc = rawTitle.match(/^(\d+)[\.\:]\s*(.*)/);
+    const badge = matchMuc ? `Mục ${matchMuc[1]}` : `Mục ${tabIdx + 1}`;
 
-    const skillObj = lesson.objectives?.find(o => o.category === 'skill');
-    branches.push({
-      id: `${rootId}_2`,
-      label: 'Kỹ Năng Thực Hành',
-      badge: 'Thao tác',
-      children: [
-        { id: `${rootId}_2_1`, label: skillObj ? cleanMindmapLabel(skillObj.description, 70) : 'Tuân thủ các bước thực hành' },
-        { id: `${rootId}_2_2`, label: 'Kiểm thử dữ liệu và phát hiện lỗi sớm' }
-      ]
-    });
+    // Lấy các ý trọng tâm từ "Em cần nhớ" hoặc "keyPoints" của mục khám phá kiến thức này
+    const sourcePoints = (tab.emCanNho && tab.emCanNho.length > 0) ? tab.emCanNho : tab.keyPoints;
 
-    branches.push({
-      id: `${rootId}_3`,
-      label: 'Ứng Dụng Thực Tế',
-      badge: 'Dự án',
-      children: [
-        { id: `${rootId}_3_1`, label: cleanMindmapLabel(lesson.application?.project?.title || 'Giải quyết vấn đề học tập', 70) },
-        { id: `${rootId}_3_2`, label: cleanMindmapLabel(lesson.application?.project?.practicalTip || 'Tối ưu hiệu quả và chia sẻ sản phẩm', 70) }
-      ]
-    });
-  }
+    // Mỗi ý trong mục là một nút con phản ánh chính xác kiến thức của mục
+    const subNodes: MindMapNode[] = sourcePoints.slice(0, 4).map((point, ptIdx) => ({
+      id: `${rootId}_${tabIdx + 1}_${ptIdx + 1}`,
+      label: cleanSubNodeText(point)
+    }));
+
+    return {
+      id: `${rootId}_${tabIdx + 1}`,
+      label: rawTitle,
+      badge: badge,
+      subtitle: tab.subtitle ? cleanSubNodeText(tab.subtitle, 80) : undefined,
+      children: subNodes
+    };
+  });
 
   return {
     id: rootId,
@@ -200,15 +87,16 @@ export function generateRobustMindmap(lesson: Lesson): MindMapNode {
 }
 
 /**
- * Đảm bảo mọi bài học khi được lấy ra đều có Sơ đồ tư duy chuẩn xác, không bị rỗng hay generic
+ * Đảm bảo Sơ đồ tư duy tổng kết của mọi bài học luôn được cập nhật đồng bộ
+ * và phản ánh chính xác 100% nội dung bài học ở mục khám phá kiến thức
  */
 export function ensureRobustMindmap(lesson: Lesson): Lesson {
-  const robustMindmap = generateRobustMindmap(lesson);
+  const mindmapFromKnowledge = generateRobustMindmap(lesson);
   return {
     ...lesson,
     application: {
       ...lesson.application,
-      mindmap: robustMindmap
+      mindmap: mindmapFromKnowledge
     }
   };
 }
